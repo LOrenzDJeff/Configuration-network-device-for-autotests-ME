@@ -1,0 +1,68 @@
+Value bd_name (\s+Bridge domain: 100, state: up)
+Value mac_learn (\s+MAC learning: enabled)
+Value local_switch (\s+Local switching: enabled)
+Value flood_multicast (\s+Flooding Multicast: enabled)
+Value unknown_unicast (\s+Unknown unicast: enabled)
+Value mac_age_time (\s+MAC aging time: \d+ s, MAC limit: \d+, Action: enabled, MTU: \d+)
+Value oper_status (\s+Oper-status: up)
+Value ac (\s+ACs: 3 \(3 up\))
+Value pw (\s+PWs: \d+ \(\d+ up\))
+Value ac1 (\s+AC:\s+\w+\s+\d+/\d+/\d+.\d+|\s+AC:\s+\w+\d+/\d+/\d+.\d+)
+
+Start
+  ^${bd_name}
+  ^${mac_learn}
+  ^${local_switch}
+  ^${flood_multicast}
+  ^${unknown_unicast}
+  ^${mac_age_time}
+  ^${oper_status}
+  ^${ac}
+  ^${pw}
+  ^${ac1} -> Record
+#  ^${ac2} -> Record
+#  ^${ac3} -> Record
+
+#0/FMC0:atDR1# show l2vpn bridge-domain bd-name 100
+#Wed Jan 15 16:27:47 2020
+#  MM  -- mtu mismatch            Up -- up              GUp -- going up
+#  CM  -- control-word mismatch   Dn -- down            GDn -- going down
+#  OL  -- no outgoing label       ST -- standby         Lld -- lower layer down
+#  BK  -- backup connection       Fl -- failed          Drm -- dormant
+#  SP  -- static pseudowire       SW -- switchover
+#  
+#  Bridge domain: 100, state: up
+#    MAC learning: enabled
+#    Local switching: enabled
+#    Flood replication point: egress
+#    Flooding Multicast: all
+#      Unknown unicast: enabled
+#    MAC aging time: 300 s, MAC limit: 4000, Action: all, MTU: 1500
+#    Oper-status: up
+#    ACs: 3 (3 up)
+#    PWs: 0 (0 up)
+#    List of ACs:
+#    
+#      AC: Tengigabitethernet
+#        AC binding status: up, Interface oper state: up
+#      AC: Tengigabitethernet
+#        AC binding status: up, Interface oper state: up
+#      AC: Tengigabitethernet
+#        AC binding status: up, Interface oper state: up
+#    
+#    List of PWs:
+#    
+#    List of VFIs:
+#  
+#    List of Autodiscovery PWs:
+#  
+#0/FMC0:atDR1# 
+# 
+#      AC: Tengigabitethernet0/1/5.100
+#        AC binding status: up, Interface oper state: up
+#      AC: Tengigabitethernet0/1/5.10010
+#        AC binding status: up, Interface oper state: up
+#      AC: Tengigabitethernet0/1/5.10020
+#        AC binding status: up, Interface oper state: up
+#Value ac2 (\s+AC:\s+\w+\s+\d+/\d+/\d+.20010|\s+AC:\s+\w+\d+/\d+/\d+.20010)
+#Value ac3 (\s+AC:\s+\w+\s+\d+/\d+/\d+.20020|\s+AC:\s+\w+\d+/\d+/\d+.20020)

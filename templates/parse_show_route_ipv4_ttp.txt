@@ -1,0 +1,8 @@
+  Routing entry for {{ route_to_ipv4 }}
+    Last update: {{ time }}
+    Routing Descriptor Blocks
+      {{ next_hop }}, via {{ interface }}
+      Known via {{ protocol }}, distance {{ dist }}, metric {{ metric }}
+        type {{ type }}, protection {{ protect }}, route-type {{ route_type }}
+  
+  Entries: {{ entries }}

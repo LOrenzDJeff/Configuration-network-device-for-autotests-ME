@@ -1,0 +1,7 @@
+Value protocol (OSPF)
+Value possibility_of_auth (Packet cannot be authenticated)
+Value auth_key_byte (\d{2})
+
+Start
+  ^\s+\S+\s\S+\s\S+\s${protocol}\s\d+\s${possibility_of_auth}.\sDiagnostic information for support:\s+Packet data = \S+\s\S+\s\S+\s\S+\s\S{4}${auth_key_byte}\S{2}\s -> Record
+

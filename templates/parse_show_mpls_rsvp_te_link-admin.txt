@@ -1,0 +1,18 @@
+Value int_name (\S+)
+Value int_max_band (\d+.\d+)
+Value int_free_band (\d+.\d+)
+
+Start
+  ^\s+Interface\s+is\s+${int_name}
+  ^\s+Maximum bandwidth:\s+${int_max_band}\s+Mbps
+  ^\s+Available bandwidth:\s+${int_free_band}\s+Mbps
+
+#0/FMC0:atDR1# show mpls rsvp te link-administration bandwidth-allocation interfaces bu1
+#Fri Aug 21 15:33:03 2020
+#  Interface is Bundle-ether1
+#  
+#    Maximum bandwidth:   3000.00 Mbps
+#    Available bandwidth: 2000.00 Mbps
+#  
+#0/FMC0:atDR1# 
+#

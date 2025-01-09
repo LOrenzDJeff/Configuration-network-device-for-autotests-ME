@@ -1,0 +1,58 @@
+Value LLDP_tx_interval (\d+)
+Value LLDP_hold_multiplicator (\d+)
+Value LLDP_ttl (\d+)
+Value LLDP_reinit_delay (\d+)
+Value LLDP_notif_interval (\d+)
+Value LLDP_pps (\d+)
+Value LLDP_mgmt_addr (\d+.\d+.\d+.\d+)
+Value Top (\s+Port\s+State TX\s+State RX\s+Optional TLVs\s+Notifications tables\s+Notifications device\s+Agent\s+Mgmt-addr)
+Value port_name (\S+)
+Value port_tx_state (\S+)
+Value port_rx_state (\S+)
+Value port_TLV (MM PD SC SD SM)
+Value port_notif_table (\S+)
+Value port_notif_dev (\S+)
+Value port_agent (\w)
+Value port_mgmt_addr (\d+.\d+.\d+.\d+)
+
+Start
+  ^\s+LLDP\s+tx\s+interval\s+:\s+${LLDP_tx_interval}\s+seconds
+  ^\s+LLDP\s+hold\s+multiplier\s+:\s+${LLDP_hold_multiplicator} 
+  ^\s+LLDP\s+TTL\s+:\s+${LLDP_ttl}\s+seconds
+  ^\s+LLDP\s+reinitialization\s+delay\s+:\s+${LLDP_reinit_delay}\s+seconds
+  ^\s+LLDP\s+notifications\s+interval\s+:\s+${LLDP_notif_interval}\s+seconds
+  ^\s+LLDP\s+pps\s+:\s+${LLDP_pps}
+  ^\s+Management\s+address\s+:\s+${LLDP_mgmt_addr}
+  ^${Top}
+  ^\s+${port_name}\s+${port_tx_state}\s+${port_rx_state}\s+${port_TLV}\s+${port_notif_table}\s+${port_notif_dev}\s+${port_agent}\s+${port_mgmt_addr} -> Record
+# System information:
+#        Chassis type        : MAC address
+#        Chassis ID          : a8:f9:4b:8b:9d:7f
+#        System name         : atDR1
+#        System description  : Eltex ME5000M modular carrier router
+#  
+#  Global LLDP information:
+#        LLDP tx interval            : 30 seconds
+#        LLDP hold multiplier        : 4
+#        LLDP TTL                    : 121 seconds
+#        LLDP reinitialization delay : 2 seconds
+#        LLDP notifications interval : 30 seconds
+#        LLDP pps                    : 5
+#        Management address          : 10.0.19.5
+#  
+#  LLDP agent codes:
+#        (N) Nearest Bridge, (NnT) Nearest non-TPMR Bridge
+#        (NC) Nearest Customer Bridge
+#  
+#  LLDP optional TLV codes:
+#        (MM) Enable management address TLV, (PD) Enable port description TLV
+#        (SC) Enable system capabilities TLV, (SD) Enable system description TLV 
+#        (SM) Enable system name TLV 
+#  
+#  Port            State TX  State RX  Optional TLVs     Notifications tables  Notifications device  Agent  Mgmt-addr          
+#  --------------- --------- --------- ----------------- --------------------- --------------------- ------ ------------------ 
+#  te0/1/3         enabled   enabled   MM PD SC SD SM    enabled               enabled               N      10.0.19.5          
+#  te0/1/4         enabled   enabled   MM PD SC SD SM    enabled               enabled               N      10.0.19.5          
+#  te0/8/3         enabled   enabled   MM PD SC SD SM    enabled               enabled               N      10.0.19.5          
+#  te0/8/4         enabled   enabled   MM PD SC SD SM    enabled               enabled               N      10.0.19.5          
+#0/FMC0:atDR1# 

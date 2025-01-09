@@ -1,0 +1,35 @@
+Value prefix (192.168.168.4[123]/\d+)
+Value next_hop (\d+.\d+.\d+.\d+)
+Value metric (\d+)
+Value local_pref (\d+)
+Value weight (\d+)
+Value path (\?|\d+\s+i)
+Value total_path (\d+)
+
+Start
+  ^\s+\*?>\s+${prefix}\s+${next_hop}\s+${metric}\s+${local_pref}\s+${weight}\s+${path} -> Record
+  ^\s+Total entries:\s+${total_path}
+
+
+#0/ME5100:atAR2# show bgp vrf VRF40 
+#Wed Apr  1 16:58:04 2020
+#  BGP router identifier 192.168.42.1, vrf VRF40, local AS number 65100 
+#  Graceful Restart is disabled
+#  BGP table state: active
+#  BGP scan interval: 120 secs
+#  
+#  Status codes: d damped, h history, > best, S stale, * active, u untracked, i internal
+#  Origin codes: i igp, e egp, n none
+#  
+#  Network                  Next hop         Metric  LocPrf  Weight  Path 
+#  ------------------------ ---------------- ------- ------- ------- ----- 
+#   >   192.168.41.0/24     1.0.0.1          0       100     32768   ? 
+#   >   192.168.43.0/24     1.0.0.3          0       100     32768   ? 
+#   >   192.168.168.41/32   1.0.0.1          0       100     32768   ? 
+#  *>   192.168.168.42/32   192.168.42.2     0       100     0       65042 i 
+#   >   192.168.168.43/32   1.0.0.3          0       100     32768   ? 
+#
+#  Total paths: 5
+#  
+#0/ME5100:atAR2# 
+#

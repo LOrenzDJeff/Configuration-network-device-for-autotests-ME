@@ -1,0 +1,12 @@
+Value bgp_state (\w+)
+Value hold_time (\d+)
+Value keep_alive (\d+)
+Value conf_hold_time (\d+)
+Value conf_keep_alive (\d+)
+Value peer_group (\S+\s*\S*)
+
+Start
+  ^\s+BGP STATE: ${bgp_state}
+  ^\s+Hold time is ${hold_time}\s+\S+\s+\S+\s+\S+\s+\S+\s+${keep_alive}
+  ^\s+Configured hold time is ${conf_hold_time}\s+\S+\s+\S+\s+\S+\s+\S+\s+${conf_keep_alive}
+  ^\s+Peer group: ${peer_group}

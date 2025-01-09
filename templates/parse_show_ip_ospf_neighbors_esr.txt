@@ -1,0 +1,22 @@
+Value Top (Router ID\s+Pri\s+State\s+DTime\s+Interface\s+Router IP)
+Value neighbor_id (\d+.\d+.\d+.\d+)
+Value neighbor_pri (\d+)
+Value neighbor_state (Full/DR|Full/BDR|2-Way/Other)
+Value neighbor_int (te\d/\d/\d|br\d+|br_\d+|tengigabitethernet \d/\d/\d|bridge \d+)
+Value neighbor_ip (\d+.\d+.\d+.\d+)
+
+
+Start
+  ^${Top}
+  ^${neighbor_id}\s+${neighbor_pri}\s+${neighbor_state}\s+\d+:\d+\s+${neighbor_int} *${neighbor_ip} -> Record
+
+
+#labr02# show ip ospf neighbors 
+#Router ID        Pri  State          DTime  Interface      Router IP
+#---------        ---  -----          -----  -------------  ---------
+#0.0.0.10         128  Full/DR        00:34  te1/0/1        192.168.100.10
+#labr02# show ip ospf neighbors vrf vrf10
+#Router ID        Pri  State          DTime  Interface      Router IP
+#---------        ---  -----          -----  -------------  ---------
+#0.0.0.1          128  Full/BDR       00:33  br10           192.168.100.1
+#labr02#

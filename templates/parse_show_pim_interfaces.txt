@@ -1,0 +1,41 @@
+Value Top (\s+Address\s+Interface\s+Status\s+Nbr Count\s+Hello Intvl\s+DR pri\s+Suppress\s+DR\s+)
+Value int_addr (192.168.55.\d+/30|46.61.193.160/24|10.1.1.1/24)
+Value int (bu[12]|te0/0/11.35[12]|te0/1/5.35[03]|te0/0/9.30) 
+Value DR_addr (192.168.55.\d+|local)
+
+Start
+  ^${Top} -> Record
+  ^\s+${int_addr}\s+${int}\s+up\s+[10]\s+30\s+1\s+true\s+${DR_addr}\s+ -> Record 
+
+#0/ME5100:atAR1# show pim interfaces
+#Fri Apr 10 16:51:02 2020
+#  IPv4
+#  
+#  Address              Interface          Status    Nbr Count   Hello Intvl   DR pri           Suppress   DR 
+#  -------------------- ------------------ --------- ----------- ------------- ---------------- ---------- --- 
+#  192.168.55.1/30      bu1                up        1           30            1                true       192.168.55.2 
+#  192.168.55.21/30     bu2                up        1           30            1                true       192.168.55.22 
+#  192.168.55.9/30      te0/0/11.352       up        1           30            1                true       192.168.55.10 
+#  46.61.193.160/24     te0/0/9.30         up        0           30            1                true       local 
+#
+#0/ME5100:atAR2# show pim interfaces 
+#Fri Apr 10 16:52:19 2020
+#  IPv4
+#  
+#  Address              Interface          Status    Nbr Count   Hello Intvl   DR pri           Suppress   DR 
+#  -------------------- ------------------ --------- ----------- ------------- ---------------- ---------- --- 
+#  192.168.55.6/30      bu1                up        1           30            1                true       local 
+#  192.168.55.22/30     bu2                up        1           30            1                true       local 
+#  192.168.55.13/30     te0/0/11.351       up        1           30            1                true       192.168.55.14 
+#
+#0/FMC0:atDR1# show pim interfaces
+#Fri Apr 10 16:51:42 2020
+#  IPv4
+#  
+#  Address              Interface          Status    Nbr Count   Hello Intvl   DR pri           Suppress   DR 
+#  -------------------- ------------------ --------- ----------- ------------- ---------------- ---------- --- 
+#  192.168.55.2/30      bu1                up        1           30            1                true       local 
+#  192.168.55.5/30      bu2                up        1           30            1                true       192.168.55.6 
+#  192.168.55.17/30     te0/1/5.350        up        1           30            1                true       192.168.55.18 
+#  10.1.1.1/24          te0/1/5.353        up        0           30            1                true       local 
+#

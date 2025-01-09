@@ -1,0 +1,24 @@
+Value int_name (te\d/\d/\d+.\d+|bu[12])
+Value int_max_resv_bw (\d+.\d+)
+Value int_alloc_bw (\d+.\d+)
+Value int_hello ([Yy]es|[Nn]o)
+Value int_srefresh ([Yy]es|[Nn]o)
+Value int_auth ([Yy]es|[Nn]o)
+Value int_bfd ([Yy]es|[Nn]o)
+Value int_te_metric (\d+)
+Value int_label_type (ImpNull)
+
+Start
+  ^\s+${int_name}\s+${int_max_resv_bw}\s+Mbps\s+${int_alloc_bw}\s+Mbps\s+${int_hello}\s+${int_srefresh}\s+${int_auth}\s+${int_bfd}\s+${int_te_metric}\s+${int_label_type} -> Record
+
+
+#0/FMC0:atDR1# show mpls rsvp interfaces 
+#Mon May 17 17:55:58 2021
+#  Interface          Max resv BW     Allocated BW    Hello  SRefresh  Auth  BFD   TE metric   Label type 
+#  ------------------ --------------- --------------- ------ --------- ----- ----- ----------- ----------- 
+#  te0/1/5.350        100.00 Mbps     100.00 Mbps     Yes    No        No    No    1           ImpNull 
+#  bu1                3000.00 Mbps    2000.00 Mbps    Yes    No        No    No    1           ImpNull 
+#  bu2                100.00 Mbps     100.00 Mbps     Yes    No        No    No    1           ImpNull 
+#  
+#0/FMC0:atDR1# 
+

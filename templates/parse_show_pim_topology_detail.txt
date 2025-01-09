@@ -1,0 +1,71 @@
+Value S_G (\(46.61.193.86, 225.54.205.13[56]\) SPT, asm, Up: \d+[dh]\d+[hm]\d+[ms]|\(46.61.193.86, 225.54.205.13[56]\) asm, Up: \d+[dh]\d+[hm]\d+[ms])
+Value Star_G (\(\*, 225.54.205.13[56]\) asm, Up: \d+[dh]\d+[hm]\d+[ms], RP: 1.0.0.2 is not local \(config\)|\(\*, 225.54.205.13[56]\) asm, Up: \d+[dh]\d+[hm]\d+[ms], RP: 1.0.0.2 is local \(config\))
+Value JP_info (JP: not-joined \(never\), neighbor: 192.168.55.\d+|JP: joined \(never\), neighbor: 0.0.0.0|JP: joined \(\d+[dh]\d+[hm]\d+[ms]\), neighbor: 192.168.55.\d+|JP: joined \(never\), 0.0.0.0|JP: joined \(\d+[dh]\d+[hm]\d+[ms]\), 0.0.0.0|JP: joined \(\d+[dh]\d+[hm]\d+[ms]\), 192.168.55.\d+)
+Value RPF_info (RPF: Tengigabitethernet0/0/9.30, nexthop: 46.61.193.86, protocol: local, prefix: 46.61.193.0/24, metric preferenced: 0, used: 0|RPF: Bundle-ether[12], nexthop: 192.168.55.\d+, protocol: isis, prefix: 46.61.193.0/24, metric preferenced: 116, used: 10|RPF: Bundle-ether2, nexthop: 192.168.55.\d+, protocol: isis, prefix: 1.0.0.2/32, metric preferenced: 116, used: 10|RPF: unknown, nexthop: 0.0.0.0, protocol: other, prefix: 1.0.0.2/32, metric preferenced: 0, used: 0)
+Value DR_info (\s+DR register state: no-info, time \d+[dh]\d+[hm]\d+[ms]|\s+DR register state: prune, time \d+[dh]\d+[hm]\d+[ms])
+Value Downstream_int (\s+te0/1/5.353 asm, Up: \d+[dh]\d+[hm]\d+[ms] is local|\s+bu1 asm, Up: \d+[dh]\d+[hm]\d+[ms] is not local|No interfaces in immediate olist)
+
+
+Start
+  ^\s+${S_G} -> SG
+  ^\s+${Star_G} -> Star_G
+
+
+SG
+  ^\s+${JP_info}
+  ^\s+${RPF_info}
+  ^\s+${DR_info}
+  ^\s+${Downstream_int} -> Record Start
+
+Star_G
+  ^\s+${JP_info}
+  ^\s+${RPF_info}
+  ^\s+${Downstream_int} -> Record Start
+
+#0/FMC0:atDR1# show pim topology detail 
+#Mon Apr 13 11:30:51 2020
+#  IP PIM Multicast Topology Table
+#  Entry state: (*/S,G)[RPT/SPT] Mode, Protocol, Uptime, Info
+#  Interface state: Name, Uptime, Fwd, Info
+#    
+#    (46.61.193.86, 225.54.205.135) SPT, asm, Up: 00h11m41s
+#    JP: joined (00h00m18s), neighbor: 192.168.55.1
+#    RPF: Bundle-ether1, nexthop: 192.168.55.1, protocol: isis, prefix: 46.61.193.0/24, metric preferenced: 116, used: 10
+#    DR register state: no-info, time 00h00m00s
+#      No interfaces in immediate olist
+#    
+#    (46.61.193.86, 225.54.205.135) RPT pruned, Up: 00h00m00s 
+#      No interfaces in immediate olist
+#    
+#    
+#    (*, 225.54.205.135) asm, Up: 00h11m44s, RP: 1.0.0.2 is not local (config)
+#    JP: joined (00h00m17s), 192.168.55.6
+#    RPF: Bundle-ether2, nexthop: 192.168.55.6, protocol: isis, prefix: 1.0.0.2/32, metric preferenced: 116, used: 10
+#      te0/1/5.353 asm, Up: 00h11m44s is local
+#        Timers: 00h00m00s prune pending, 00h00m00s join expiry, 00h00m00s assert
+#        Assert winner 0.0.0.0 address, metric preferenced 0, used: 0
+#    
+#    
+#    (46.61.193.86, 225.54.205.136) SPT, asm, Up: 00h11m41s
+#    JP: joined (00h00m18s), neighbor: 192.168.55.1
+#    RPF: Bundle-ether1, nexthop: 192.168.55.1, protocol: isis, prefix: 46.61.193.0/24, metric preferenced: 116, used: 10
+#    DR register state: no-info, time 00h00m00s
+#      No interfaces in immediate olist
+#    
+#    (46.61.193.86, 225.54.205.136) RPT pruned, Up: 00h00m00s 
+#      No interfaces in immediate olist
+#    
+#    
+#    (*, 225.54.205.136) asm, Up: 00h11m44s, RP: 1.0.0.2 is not local (config)
+#    JP: joined (00h00m17s), 192.168.55.6
+#    RPF: Bundle-ether2, nexthop: 192.168.55.6, protocol: isis, prefix: 1.0.0.2/32, metric preferenced: 116, used: 10
+#      te0/1/5.353 asm, Up: 00h11m44s is local
+#        Timers: 00h00m00s prune pending, 00h00m00s join expiry, 00h00m00s assert
+#        Assert winner 0.0.0.0 address, metric preferenced 0, used: 0
+#    
+#      
+#0/FMC0:atDR1# 
+#Value S_G (\(46.61.193.86, 225.54.205.13[56]\))
+  #^\s+${Star_G}\s+${SPT_asm}\s+Up:\s+${uptime},\s+${RP} \(config\) -> StarG
+#Value Star_G (\(\*, 225.54.205.13[56]\))
+#Value RP (RP: 1.0.0.2 is not local|RP: 1.0.0.2 is local)

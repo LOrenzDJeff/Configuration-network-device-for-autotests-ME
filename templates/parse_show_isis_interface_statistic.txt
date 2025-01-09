@@ -1,0 +1,133 @@
+Value int (Bundle-ether[12]|Tengigabitethernet0/[01]/\d+.\d+)
+Value lvl1 (\s+Level one:)
+Value lvl2 (\s+Level two:)
+Value l1IIH (\s+Hello IS-IS PDUs: \d+ received, \d+ sent)
+Value l1EIH (\s+Hello ES-IS PDUs: \d+ received, \d+ sent)
+Value l1ESH (\s+Hello ES PDUs: \d+ received, \d+ sent)
+Value l1LSP (\s+LSP: \d+ received, \d+ sent)
+Value l1CSNP (\s+CSNP: \d+ received, \d+ sent)
+Value l1PSNP (\s+PSNP: \d+ received, \d+ sent)
+Value discard_l1IHH (\s+Discarded IIH: \d+ received)
+Value discard_l1LSP (\s+Discarded LSP: \d+ received)
+Value discard_l1CSNP (\s+Discarded CSNP: \d+ received)
+Value discard_l1PSNP (\s+Discarded PSNP: \d+ received)
+Value l2IIH (\s+Hello IS-IS PDUs: \d+ received, \d+ sent)
+Value l2EIH (\s+Hello ES-IS PDUs: \d+ received, \d+ sent)
+Value l2ESH (\s+Hello ES PDUs: \d+ received, \d+ sent)
+Value l2LSP (\s+LSP: \d+ received, \d+ sent)
+Value l2CSNP (\s+CSNP: \d+ received, \d+ sent)
+Value l2PSNP (\s+PSNP: \d+ received, \d+ sent)
+Value discard_l2IHH (\s+Discarded IIH: \d+ received)
+Value discard_l2LSP (\s+Discarded LSP: \d+ received)
+Value discard_l2CSNP (\s+Discarded CSNP: \d+ received)
+Value discard_l2PSNP (\s+Discarded PSNP: \d+ received)
+
+Start
+  ^\s+Interface: ${int}
+  ^${lvl1} -> Level1
+  ^${lvl2} -> Level2  
+
+Level1
+  ^${l1IIH}
+  ^${l1EIH}
+  ^${l1ESH}
+  ^${l1LSP}
+  ^${l1CSNP}
+  ^${l1PSNP}
+  ^${discard_l1IHH}
+  ^${discard_l1LSP}
+  ^${discard_l1CSNP}
+  ^${discard_l1PSNP} -> Start
+
+Level2
+  ^${l2IIH}
+  ^${l2EIH}
+  ^${l2ESH}
+  ^${l2LSP}
+  ^${l2CSNP}
+  ^${l2PSNP}
+  ^${discard_l2IHH}
+  ^${discard_l2LSP}
+  ^${discard_l2CSNP}
+  ^${discard_l2PSNP} -> Record Start
+
+#  IS-IS Router test
+#    
+#  Interface: Bundle-ether1
+#    Level one:
+#      Hello IS-IS PDUs: 0 received, 0 sent
+#      Hello ES-IS PDUs: 0 received, 0 sent
+#      Hello ES PDUs: 0 received, 0 sent
+#      LSP: 0 received, 0 sent
+#      CSNP: 0 received, 0 sent
+#      PSNP: 0 received, 0 sent
+#      Unknown packet: 0 received, 0 sent
+#      Discarded IIH: 0 received
+#      Discarded LSP: 0 received
+#      Discarded CSNP: 0 received
+#      Discarded PSNP: 0 received
+#    Level two:
+#      Hello IS-IS PDUs: 46474 received, 139352 sent
+#      Hello ES-IS PDUs: 0 received, 0 sent
+#      Hello ES PDUs: 0 received, 0 sent
+#      LSP: 2687 received, 3307 sent
+#      CSNP: 1 received, 36606 sent
+#      PSNP: 10 received, 0 sent
+#      Unknown packet: 0 received, 0 sent
+#      Discarded IIH: 0 received
+#      Discarded LSP: 0 received
+#      Discarded CSNP: 0 received
+#      Discarded PSNP: 0 received
+#    
+#  Interface: Bundle-ether2
+#    Level one:
+#      Hello IS-IS PDUs: 0 received, 0 sent
+#      Hello ES-IS PDUs: 0 received, 0 sent
+#      Hello ES PDUs: 0 received, 0 sent
+#      LSP: 0 received, 0 sent
+#      CSNP: 0 received, 0 sent
+#      PSNP: 0 received, 0 sent
+#      Unknown packet: 0 received, 0 sent
+#      Discarded IIH: 0 received
+#      Discarded LSP: 0 received
+#      Discarded CSNP: 0 received
+#      Discarded PSNP: 0 received
+#    Level two:
+#      Hello IS-IS PDUs: 46405 received, 46464 sent
+#      Hello ES-IS PDUs: 0 received, 0 sent
+#      Hello ES PDUs: 0 received, 0 sent
+#      LSP: 2616 received, 3168 sent
+#      CSNP: 36543 received, 36544 sent
+#      PSNP: 2926 received, 2390 sent
+#      Unknown packet: 0 received, 0 sent
+#      Discarded IIH: 0 received
+#      Discarded LSP: 0 received
+#      Discarded CSNP: 0 received
+#      Discarded PSNP: 0 received
+#    
+#  Interface: Tengigabitethernet0/0/11.351
+#    Level one:
+#      Hello IS-IS PDUs: 0 received, 0 sent
+#      Hello ES-IS PDUs: 0 received, 0 sent
+#      Hello ES PDUs: 0 received, 0 sent
+#      LSP: 0 received, 0 sent
+#      CSNP: 0 received, 0 sent
+#      PSNP: 0 received, 0 sent
+#      Unknown packet: 0 received, 0 sent
+#      Discarded IIH: 0 received
+#      Discarded LSP: 0 received
+#      Discarded CSNP: 0 received
+#      Discarded PSNP: 0 received
+#    Level two:
+#      Hello IS-IS PDUs: 22158 received, 46546 sent
+#      Hello ES-IS PDUs: 0 received, 0 sent
+#      Hello ES PDUs: 0 received, 0 sent
+#      LSP: 577 received, 5374 sent
+#      CSNP: 11633 received, 36623 sent
+#      PSNP: 4608 received, 425 sent
+#      Unknown packet: 0 received, 0 sent
+#      Discarded IIH: 0 received
+#      Discarded LSP: 12 received
+#      Discarded CSNP: 1 received
+#      Discarded PSNP: 0 received
+#

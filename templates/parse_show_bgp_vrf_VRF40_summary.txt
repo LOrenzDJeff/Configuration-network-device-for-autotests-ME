@@ -1,0 +1,14 @@
+  {{ neighbor | re("192.168.42.2") }} {{ as | re("65042") }} {{ msg_rcvd | re("\d+") }} {{ msg_sent | re("\d+") }} {{ up_down | re("\d+[dh]\d+[hm]\d+[ms]") }} {{ st_pfxrcd | re("\d+") }}
+
+#0/ME5100:atAR2# show bgp vrf VRF40 summary 
+#Wed Apr  1 14:12:03 2020
+#  BGP router identifier 192.168.42.1, vrf VRF40, local AS number 65100
+#  Graceful Restart is disabled
+#  BGP table state: active
+#  BGP scan interval: 120 secs
+#  Neighbor                   AS          MsgRcvd       MsgSent       Up/Down    St/PfxRcd     
+#  -------------------------- ----------- ------------- ------------- ---------- ------------- 
+#  192.168.42.2               65042       13            11            00h08m10s  1             
+#
+#
+#0/ME5100:atAR2# 

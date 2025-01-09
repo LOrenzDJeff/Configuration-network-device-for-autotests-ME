@@ -1,0 +1,60 @@
+Value rt1_type (C|B|O E2)
+Value pref1 (192.168.168.41/32)
+Value metric1 (\[0/0\]|\[\d+\]|\[150/10/0\])
+Value gate1 (dev loopback 2|via 192.168.42.1 on bridge 42|via 192.168.42.1 on br_42|dev lo2)
+Value rt1_src (\[direct \d+[:-]\d+[:-]\d+\]|\[bgp65042 \d+[:-]\d+[:-]\d+\] \(AS65100\?\))
+Value rt2_type (O E2|C)
+Value pref2 (192.168.168.42/32)
+Value metric2 (\[150/10/0\]|\[0/0\])
+Value gate2 (via 192.168.41.1 on bridge 41|via 192.168.41.1 on br_41|dev loopback 3|dev lo3)
+Value rt2_src (\[ospf41 \d+[:-]\d+[:-]\d+\]|\[direct \d+[:-]\d+[:-]\d+\])
+Value rt2_ospf_tag (\d+|tag \d+)
+Value rt2_ospf_area (0.0.0.40)
+Value rt3_type (O E2|B|C)
+Value pref3 (192.168.168.43/32)
+Value metric3 (\[150/10/0\]|\[\d+\]|\[0/0\])
+Value gate3 (via 192.168.41.1 on bridge 41|via 192.168.41.1 on br_41|via 192.168.42.1 on bridge 42|via 192.168.42.1 on br_42|dev loopback 4|dev lo4)
+Value rt3_src (\[ospf41 \d+[:-]\d+[:-]\d+\]|\[bgp65042 \d+[:-]\d+[:-]\d+\] \(AS65100\?\)|\[direct \d+[:-]\d+[:-]\d+\])
+Value rt3_ospf_tag (\d+|tag \d+)
+Value rt3_ospf_area (0.0.0.40)
+Value def_rt_type (S)
+Value def_rt_prefix (0.0.0.0/0)
+Value def_rt_metric (\[\d+/\d+\])
+Value def_rt_gate (via 192.168.43.1 on bridge 43|via 192.168.43.1 on br_43)
+Value def_rt_src (\[static \d+[:-]\d+[:-]\d+\])
+
+Start
+  ^${rt1_type}\s+\*\s+${pref1}\s+${metric1}\s+${gate1}\s+${rt1_src}
+  ^${rt2_type}\s+\*\s+${pref2}\s+${metric2}\s+${gate2}\s+${rt2_src}\s+\(${rt2_ospf_tag}\)\s+\(${rt2_ospf_area}\)
+  ^${rt2_type}\s+\*\s+${pref2}\s+${metric2}\s+${gate2}\s+${rt2_src} 
+  ^${rt3_type}\s+\*\s+${pref3}\s+${metric3}\s+${gate3}\s+${rt3_src}\s+\(${rt3_ospf_tag}\)\s+\(${rt3_ospf_area}\)
+  ^${rt3_type}\s+\*\s+${pref3}\s+${metric3}\s+${gate3}\s+${rt3_src}
+  ^${def_rt_type}\s+\*\s+${def_rt_prefix}\s+${def_rt_metric}\s+${def_rt_gate}\s+${def_rt_src} 
+
+#labr02# show ip route vrf vrf41
+#
+#C     * 192.168.41.0/24    [0/0]             dev br41                          [direct 14:32:37] 
+#O E2  * 192.168.42.0/24    [150/10/0]        via 192.168.41.1 on br41          [ospf41 15:08:15]  (1) (0.0.0.40)
+#O E2  * 192.168.43.0/24    [150/10/0]        via 192.168.41.1 on br41          [ospf41 15:08:15]  (1) (0.0.0.40)
+#O E2  * 192.168.168.42/32  [150/10/0]        via 192.168.41.1 on br41          [ospf41 15:08:15]  (1) (0.0.0.40)
+#O E2  * 192.168.168.43/32  [150/10/0]        via 192.168.41.1 on br41          [ospf41 15:08:15]  (1) (0.0.0.40)
+#C     * 192.168.168.41/32  [0/0]             dev lo2                           [direct 02:05:44] 
+#labr02# 
+
+#labr02# show ip route vrf vrf42
+#
+#B     * 192.168.41.0/24    [170]             via 192.168.42.1 on br42          [bgp65042 14:35:52] (AS65100?)
+#C     * 192.168.42.0/24    [0/0]             dev br42                          [direct 14:32:37] 
+#B     * 192.168.43.0/24    [170]             via 192.168.42.1 on br42          [bgp65042 14:33:31] (AS65100?)
+#C     * 192.168.168.42/32  [0/0]             dev lo3                           [direct 02:05:43] 
+#B     * 192.168.168.43/32  [170]             via 192.168.42.1 on br42          [bgp65042 14:33:32] (AS65100?)
+#B     * 192.168.168.41/32  [170]             via 192.168.42.1 on br42          [bgp65042 14:35:53] (AS65100?)
+#labr02# 
+
+#labr02# show ip route vrf vrf43
+
+#S     * 0.0.0.0/0          [1/0]             via 192.168.43.1 on br43          [static 14:32:37] 
+#C     * 192.168.43.0/24    [0/0]             dev br43                          [direct 14:32:37] 
+#C     * 192.168.168.43/32  [0/0]             dev lo4                           [direct 02:05:43] 
+#labr02# 
+

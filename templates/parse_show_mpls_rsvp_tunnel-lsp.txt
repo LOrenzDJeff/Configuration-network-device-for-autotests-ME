@@ -1,0 +1,19 @@
+Value Top (\s+Tunnel name\s+LSP id\s+LSP name\s+Source\s+Destination\s+LSP Status\s+Signaled name\s+)
+Value tun_name (\S+)
+Value tun_lsp_id (\d+)
+Value tun_lsp_name (\S+)
+Value tun_src (1.0.0.\d)
+Value tun_dst (1.0.0.\d)
+Value tun_lsp_status (up|down)
+Value tun_lsp_signalled_name (\S+)
+
+Start
+  ^${Top}
+  ^\s+${tun_name}\s+${tun_lsp_id}\s+${tun_lsp_name}\s+${tun_src}\s+${tun_dst}\s+${tun_lsp_status}\s+${tun_lsp_signalled_name}\s+ -> Record
+#0/ME5100:atAR1# show mpls rsvp tunnels-lsp 
+#Mon Jul 20 15:07:12 2020
+#  Tunnel name                       LSP id      LSP name                          Source            Destination       LSP Status  Signaled name 
+#  --------------------------------- ----------- --------------------------------- ----------------- ----------------- ----------- -------------- 
+#  to_atAR2                          0           atAR1_to_atAR2-lsp1               1.0.0.3           1.0.0.2           down        to_atAR2@atAR1_to_atAR2-lsp1 
+#  none                              0           none                              1.0.0.1           1.0.0.4           up          to_vMX-1@atDR1_to_vMX-lsp1 
+#0/ME5100:atAR1# 

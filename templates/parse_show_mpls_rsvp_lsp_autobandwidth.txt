@@ -1,0 +1,32 @@
+Value sample_int_max_bw (\d+)
+Value overflow_limit (\d+)
+Value overflow_count (\d+)
+Value underflow_limit (\d+)
+Value underflow_count (\d+)
+Value time_next_adjustment (\d+)
+Value time_last_adjustment (\d+:\d+:\d+)
+Value last_bw (\d+)
+Value last_req_bw (\d+)
+Value last_sig_bw (\d+)
+
+Start
+  ^\s+Min\s+BW:\s+\d+\s+Kbit/s,\s+Max\s+BW:\s+\d+\s+Kbit/s,\s+Max\s+AvgBW\s+util:\s+${sample_int_max_bw}\s+Kbit/s
+  ^\s+Overflow\s+limit:\s+${overflow_limit},\s+count:\s+${overflow_count}
+  ^\s+Underflow limit:\s+${underflow_limit},\s+count:\s+${underflow_count}
+  ^\s+Time\s+for\s+Next\s+Adjustment:\s+${time_next_adjustment}\s+sec,\s+Time\s+of\s+Last\s+Adjustment:\s+\w+\s+\w+\s+\d+\s+${time_last_adjustment}\s+\d+
+  ^\s+Last\s+BW:\s+${last_bw}\s+Kbit/s,\s+Last Requested\s+BW:\s+${last_req_bw}\s+Kbit/s,\s+Last\s+Signaled\s+BW:\s+${last_sig_bw}\s+Kbit/s
+
+#0/ME5200:atAR2_ER06# show mpls rsvp lsp autobandwidth 
+#Thu Dec 15 13:54:38 2022
+#  Tunnel: to_atAR1
+#    Min BW: 100 Kbit/s, Max BW: 1000000 Kbit/s, Max AvgBW util: 0 Kbit/s
+#    Overflow limit: 3, count: 0
+#    Underflow limit: 3, count: 0
+#    Adjustment Timer: 300 sec, Adjustment Threshold: 0
+#    Time for Next Adjustment: 268 sec, Time of Last Adjustment: Thu Dec 15 13:54:06 2022
+#    Last BW: 0 Kbit/s, Last Requested BW: 100 Kbit/s, Last Signaled BW: 0 Kbit/s
+#    Highest Watermark BW: 6240 Kbit/s
+#    Total AutoBw Adjustments: 2
+# 
+#0/ME5200:atAR2_ER06# 
+

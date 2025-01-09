@@ -1,0 +1,53 @@
+Value relay_agent_name (\w+)
+Value helper_addr (\d+.\d+.\d+.\d+)
+Value vrf_name (\w+)
+Value dhcp_discover (\d+)
+Value dhcp_offer (\d+)
+Value dhcp_request (\d+)
+
+
+Start
+  ^\s+Relay agent name:\s+${relay_agent_name}
+  ^\s+IPv4 helper-address:\s+${helper_addr}
+  ^\s+VRF name:\s+${vrf_name}
+  ^\s+Discover:\s+${dhcp_discover}
+  ^\s+Offer:\s+${dhcp_offer}
+  ^\s+Request:\s+${dhcp_request}
+
+#0/ME5200:atAR2# show relay-agent counters ipv4 
+#Tue Apr  6 17:28:32 2021
+#  
+#  Relay agent name:         test
+#    IPv4 helper-address:    192.168.70.1
+#      VRF name:             default
+#    Interface:              te0/0/11.10042
+#      Interface oper state: up
+#    IPv4 Counters
+#      DHCP Packets:
+#        Discover:         138
+#        Offer:            2
+#        Request:          2
+#        Decline:          0
+#        ACK:              2
+#        NAK:              0
+#        Release:          0
+#        Inform:           0
+#        Lease query:      0
+#        Lease unassigned: 0
+#        Lease unknown:    0
+#        Lease active:     0
+#      Failed packets
+#        Bad length:                  0
+#        To interface w/o IPv4:       0
+#        TTL expired:                 0
+#        Unexpected type:             0
+#        Bad Header length:           0
+#        Add options fail:            0
+#        Receive packet fail:         0
+#        Send packet fail:            0
+#        Deleted pending packet:      0
+#        To deleted interface:        0
+#        Strip options fail:          0
+#  
+#0/ME5200:atAR2# 
+

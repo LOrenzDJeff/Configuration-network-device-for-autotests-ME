@@ -1,0 +1,20 @@
+Value neighbor_addr (\d+.\d+.\d+.\d+)
+Value local_addr (\d+.\d+.\d+.\d+)
+Value remote_discr (\d+)
+Value state (\S+)
+Value code (\S+)
+Value proto (\S+)
+Value sess_name (\S*)
+
+Start
+  ^\s+${neighbor_addr}\s+${local_addr}\s+${remote_discr}\s+${state}\s+${code}\s+${proto}\s+${sess_name} -> Record                     
+#0/FMC0:atDR1# show bfd neighbors 
+#Tue Jan 26 16:56:12 2021
+#  IPv4
+#  Neighbor address  Local address    Discriminator  State       Code                    Protocols               Session name 
+#  ----------------- ---------------- -------------- ----------- ----------------------- ----------------------- ------------- 
+#  192.168.55.1      192.168.55.2     3              up          no-diagnostic           isis                     
+#  192.168.55.1      192.168.55.2     1              up          no-diagnostic           rgs                      
+#  192.168.55.6      192.168.55.5     2              up          no-diagnostic           isis                     
+#0/FMC0:atDR1# 
+

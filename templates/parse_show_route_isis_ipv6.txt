@@ -1,0 +1,58 @@
+Value line1 (\s+Codes: i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2)
+Value line2 (\s+LE1 - IS-IS level1 external, LE2 - IS-IS level2 external)
+Value route_ipv6 (2004:0:10:1::4/128\s+via \w+::\w+:\w+:\w+:\w+ \[116/10\],)
+Value total_count (\d+)
+
+Start
+  ^${line1}
+  ^${line2}
+  ^\s+i\s+L2\s+${route_ipv6}\s+\d+[wdh]\d+[dhm]\d+[hms],\s+te0/0/11.352
+  ^\s+i\s+L2\s+${route_ipv6}\s+\d+[wdh]\d+[dhm]\d+[hms],\s+te0/0/11.351
+  ^\s+i\s+L2\s+${route_ipv6}\s+\d+[wdh]\d+[dhm]\d+[hms],\s+te0/1/5.350  
+  ^\s+Total entries: ${total_count}
+
+#0/FMC0:atDR1# show route isis ipv6
+#Wed Dec 25 11:40:55 2019
+#  Codes: i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2
+#      LE1 - IS-IS level1 external, LE2 - IS-IS level2 external
+#  
+#  
+#  i L2   2001:db8:cafe:a002::/64    via fe80::e2d9:e3ff:fedf:34b6 [116/20], 05d19h34m, bu1
+#  i L2   2001:db8:cafe:a012::/64    via fe80::e2d9:e3ff:fedf:3536 [116/20], 00h01m10s, bu2
+#  i L2   2001:db8:cafe:a013::/64    via fe80::e2d9:e3ff:fedf:34b6 [116/20], 00h01m10s, bu1
+#  i L2   2002:0:10:1::2/128    via fe80::e2d9:e3ff:fedf:3536 [116/10], 05d19h34m, bu2
+#  i L2   2003:0:10:1::3/128    via fe80::e2d9:e3ff:fedf:34b6 [116/10], 05d19h34m, bu1
+#  i L2   2004:0:10:1::4/128    via fe80::205:8601:5e71:4f00 [116/10], 00h01m10s, te0/1/5.350
+#  
+#  Total route count: 6
+#
+#0/ME5100:atAR1# show route isis ipv6
+#Wed Dec 25 11:41:40 2019
+#  Codes: i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2
+#      LE1 - IS-IS level1 external, LE2 - IS-IS level2 external
+#  
+#  
+#  i L2   2001:0:10:1::1/128    via fe80::aaf9:4bff:fe8b:9372 [116/10], 05d19h34m, bu1
+#  i L2   2001:db8:cafe:a001::/64    via fe80::e2d9:e3ff:fedf:3537 [116/20], 05d19h34m, bu2
+#  i L2   2001:db8:cafe:a011::/64    via fe80::aaf9:4bff:fe8b:9372 [116/20], 00h20m27s, bu1
+#  i L2   2001:db8:cafe:a012::/64    via fe80::e2d9:e3ff:fedf:3537 [116/20], 00h20m27s, bu2
+#  i L2   2002:0:10:1::2/128    via fe80::e2d9:e3ff:fedf:3537 [116/10], 05d19h44m, bu2
+#  i L2   2004:0:10:1::4/128    via fe80::205:8601:6071:4f00 [116/10], 00h20m27s, te0/0/11.352
+#  
+#  Total route count: 6
+# 
+#0/ME5100:atAR2# show route isis ipv6
+#Wed Dec 25 11:43:10 2019
+#  Codes: i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2
+#      LE1 - IS-IS level1 external, LE2 - IS-IS level2 external
+#  
+#  
+#  i L2   2001:0:10:1::1/128    via fe80::aaf9:4bff:fe8b:9373 [116/10], 05d19h36m, bu1
+#  i L2   2001:db8:cafe:a003::/64    via fe80::e2d9:e3ff:fedf:34b7 [116/20], 05d19h36m, bu2
+#  i L2   2001:db8:cafe:a011::/64    via fe80::aaf9:4bff:fe8b:9373 [116/20], 00h22m48s, bu1
+#  i L2   2001:db8:cafe:a013::/64    via fe80::e2d9:e3ff:fedf:34b7 [116/20], 00h21m59s, bu2
+#  i L2   2003:0:10:1::3/128    via fe80::e2d9:e3ff:fedf:34b7 [116/10], 05d19h46m, bu2
+#  i L2   2004:0:10:1::4/128    via fe80::205:8601:5f71:4f00 [116/10], 00h22m48s, te0/0/11.351
+#  
+#  Total route count: 6
+#

@@ -1,0 +1,16 @@
+Value Top (\s+SID\s+Username\s+Host\s+Logged in at\s+Login/Idle time\s+Level\s+)
+Value user (\s+\d [* ]\s+\w+\s+\d+.\d+.\d+.\d+\s+telnet\s+\d\d:\d\d:\d\d \d\d.\d\d.\d\d\d\d\s+\d\dh\d\dm\d\ds/\d\dh\d\dm\d\ds\s+p\d+)
+
+Start
+  ^${Top} -> Record
+  ^${user} -> Record
+
+#Пример вывода команды 'show users'
+#0/ME5100:atAR1-Test2# show users
+#Thu Dec 12 11:26:53 2019
+#  SID     Username  Host                                Logged in at          Login/Idle time       Level  
+#  ------- --------- ----------------------------------- --------------------- --------------------- ------ 
+#  1 *     admin     192.168.16.189 telnet                11:22:34 12.12.2019   00h04m19s/00h00m00s   p15    
+# 
+#  Total sessions: 1, * - current session
+#0/ME5100:atAR1-Test2# 

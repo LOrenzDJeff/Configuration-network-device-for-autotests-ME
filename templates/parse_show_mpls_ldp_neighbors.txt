@@ -1,0 +1,21 @@
+Value header (\s+Peer\s+Uptime\s+Expires\s+Adjcs\s+Addrs\s+Labels\s+GR|\s+Peer\s+Up/Down time\s+Expires\s+Adjcs\s+Addrs\s+Labels\s+GR)
+Value neighbor (1.0.0.\d:0)
+Value uptime (\d+[wdh]\d+[dhm]\d+[hms])
+Value expires (\d+)
+Value adjcs (\d+)
+Value addrs (\d+)
+Value labels (\d+)
+Value GR_flag (\w+)
+
+Start
+  ^${header}
+  ^\s+${neighbor}\s+${uptime}\s+${expires}s\s+${adjcs}\s+${addrs}\s+${labels}\s+${GR_flag} -> Record
+
+#0/ME5100:atAR1# show mpls ldp neighbors 
+#Fri Jan 10 10:51:32 2020
+#  Peer                    Uptime     Expires     Adjcs  Addrs  Labels  GR
+#  ----------------------- ---------- ---------- ------ ------ ------- ----
+#  1.0.0.1:0               00h18m46s  34s        2       4      2       N
+#  1.0.0.2:0               00h18m46s  34s        2       4      2       N
+#0/ME5100:atAR1# 
+#

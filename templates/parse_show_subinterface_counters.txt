@@ -1,0 +1,43 @@
+Value input_rate (\d+)
+Value output_rate (\d+)
+Value pps_input (\d+)
+Value pps_output (\d+)
+Value packets_input (\d+)
+Value packets_output (\d+)
+
+Start
+  ^\s+\d+ seconds input rate is ${input_rate} bit/s
+  ^\s+\d+ seconds output rate is ${output_rate} bit/s
+  ^\s+\d+ seconds input rate is ${pps_input} pps
+  ^\s+\d+ seconds output rate is ${pps_output} pps
+  ^\s+${packets_input} packets input, \d+ bytes received
+  ^\s+${packets_output} packets output, \d+ bytes sent
+
+#0/FMC0:atDR1# show interfaces tengigabitethernet 0/1/5.100
+#Thu Jan 16 08:47:33 2020
+#  Tengigabitethernet0/1/5.100 is Up
+#    Interface index is 275
+#    Hardware is Tengigabitethernet, address is a8:f9:4b:8b:92:99
+#    Encapsulation: 802.1Q(0x8100) outer vid 100
+#    Rewrite ingress: pop one tag
+#    Rewrite egress: push outer vid 100 type 8100, inner type 8100
+#    Link is up for 4 hours, 45 minutes, 39 seconds
+#    Description: to_labr02:gi1/0/2
+#    No IPv4 address assigned
+#    No IPv6 address assigned
+#    Interface is bound to VRF default
+#    Interface is in layer2 forwarding mode
+#    ARP aging time is 240 minutes
+#    Interface MTU is 1518
+#    20 seconds input rate is 41464 bit/s
+#    20 seconds output rate is 41456 bit/s
+#    20 seconds input rate is 49 pps
+#    20 seconds output rate is 49 pps
+#      1003 packets input, 104236 bytes received
+#      1003 packets output, 104228 bytes sent
+#  
+#0/FMC0:atDR1# 
+#
+#
+#
+#  

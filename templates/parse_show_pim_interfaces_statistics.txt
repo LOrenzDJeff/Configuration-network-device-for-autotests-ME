@@ -1,0 +1,109 @@
+Value ipv4_int1_hello_err (\d+)
+Value ipv4_int1_hello_sent (\d+)
+Value ipv4_int1_hello_recv (\d+)
+Value ipv4_int1_jp_sent (\d+)
+Value ipv4_int1_jp_recv (\d+)
+Value ipv4_int2_hello_err (\d+)
+Value ipv4_int2_hello_sent (\d+)
+Value ipv4_int2_hello_recv (\d+)
+Value ipv4_int2_jp_sent (\d+)
+Value ipv4_int2_jp_recv (\d+)
+Value ipv4_int3_hello_err (\d+)
+Value ipv4_int3_hello_sent (\d+)
+Value ipv4_int3_hello_recv (\d+)
+Value ipv4_int3_jp_sent (\d+)
+Value ipv4_int3_jp_recv (\d+)
+
+
+Start
+  ^\s+Bundle-ether1 -> int1
+  ^\s+Bundle-ether2 -> int2
+
+int1
+  ^\s+Hello\s+${ipv4_int1_hello_err}\s+${ipv4_int1_hello_sent}\s+${ipv4_int1_hello_recv}
+  ^\s+Join/Prune\s+N/A\s+${ipv4_int1_jp_sent}\s+${ipv4_int1_jp_recv} -> Record Start
+
+
+int2
+  ^\s+Hello\s+${ipv4_int2_hello_err}\s+${ipv4_int2_hello_sent}\s+${ipv4_int2_hello_recv} 
+  ^\s+Join/Prune\s+N/A\s+${ipv4_int2_jp_sent}\s+${ipv4_int2_jp_recv} -> Record Start
+
+#0/FMC0:atDR1# show pim interfaces statistics 
+#Wed Jan 20 11:58:35 2021
+#  IPv4
+#  
+#  Bundle-ether1
+#    Message type        Errors      Sent        Received
+#    Hello               0           376         377
+#    Assert                          0           0
+#    Join/Prune                      193         4
+#    Bootstrap                       0
+#    DF election                     0
+#    Graft                           0
+#    Graft Ack                       0
+#    Joined sources                  368
+#    Pruned sources                  4
+#    State Refresh                   0
+#    Filtered            0
+#    Incorrect checksum  0
+#    Unknown hello opt   0
+#    Unknown neighbor    0
+#    Unknown type        0
+#  
+#  Bundle-ether2
+#    Message type        Errors      Sent        Received
+#    Hello               0           378         377
+#    Assert                          0           0
+#    Join/Prune                      382         5
+#    Bootstrap                       0
+#    DF election                     0
+#    Graft                           0
+#    Graft Ack                       0
+#    Joined sources                  372
+#    Pruned sources                  374
+#    State Refresh                   0
+#    Filtered            0
+#    Incorrect checksum  0
+#    Unknown hello opt   0
+#    Unknown neighbor    0
+#    Unknown type        0
+#  
+#  Tengigabitethernet0/1/5.350
+#    Message type        Errors      Sent        Received
+#    Hello               0           377         401
+#    Assert                          0           0
+#    Join/Prune                      0           0
+#    Bootstrap                       0
+#    DF election                     0
+#    Graft                           0
+#    Graft Ack                       0
+#    Joined sources                  0
+#    Pruned sources                  0
+#    State Refresh                   0
+#    Filtered            0
+#    Incorrect checksum  0
+#    Unknown hello opt   0
+#    Unknown neighbor    0
+#    Unknown type        0
+#  
+#  Tengigabitethernet0/1/5.353
+#    Message type        Errors      Sent        Received
+#    Hello               0           0           0
+#    Assert                          0           0
+#    Join/Prune                      0           0
+#    Bootstrap                       0
+#    DF election                     0
+#    Graft                           0
+#    Graft Ack                       0
+#    Joined sources                  0
+#    Pruned sources                  0
+#    State Refresh                   0
+#    Filtered            0
+#    Incorrect checksum  0
+#    Unknown hello opt   0
+#    Unknown neighbor    0
+#    Unknown type        0
+#  
+#  IPv6
+#0/FMC0:atDR1# 
+

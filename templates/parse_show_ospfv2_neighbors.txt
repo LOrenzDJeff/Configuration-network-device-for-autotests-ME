@@ -1,0 +1,48 @@
+Value Routing_process (\s+Routing Process: test,\s+ID 1.0.0.[123])
+Value DR (full|full-BDR|full-DR)
+Value neighbor1 (1.0.0.1)
+Value neighbor2 (1.0.0.2)
+Value neighbor3 (1.0.0.3)
+Value neighbor4 (1.0.0.4)
+
+Start
+  ^${Routing_process}
+  ^\s+${neighbor1}\s+0.0.0.0\s+\d+\s+${DR}\s+not-required\s+\d+:\d+:\d+\s+\d+[dh]\d+[hm]\d+[ms]\s+192.168.55.\d\s+bu1\s+
+  ^\s+${neighbor2}\s+0.0.0.0\s+\d+\s+${DR}\s+not-required\s+\d+:\d+:\d+\s+\d+[dh]\d+[hm]\d+[ms]\s+192.168.55.\d+\s+bu2\s+
+  ^\s+${neighbor3}\s+0.0.0.0\s+\d+\s+full\s+not-required\s+\d+:\d+:\d+\s+\d+[dh]\d+[hm]\d+[ms]\s+192.168.55.\d+\s+bu[21]\s+
+  ^\s+${neighbor4}\s+0.0.0.0\s+128\s+full\s+not-required\s+\d+:\d+:\d+\s+\d+[dh]\d+[hm]\d+[ms]\s+192.168.55.\d+\s+te0/[01]/\d+.35[012]\s+
+
+#0/FMC0:atDR1# show ospfv2 neighbors 
+#Thu Apr  2 15:16:37 2020
+#  Routing Process: test, with ID 1.0.0.1
+#    Router is not an area border router
+#  Neighbor ID      Area ID          Pri    State               BFD           Dead Time  Last state change  Address          Interface 
+#  ---------------- ---------------- ------ ------------------- ------------- ---------- ------------------ ---------------- ---------- 
+#  1.0.0.3          0.0.0.0          1      full                not-required  00:00:33   00h31m06s          192.168.55.1     bu1 
+#  1.0.0.2          0.0.0.0          10     full                not-required  00:00:33   00h31m06s          192.168.55.6     bu2 
+#  1.0.0.4          0.0.0.0          128    full                not-required  00:00:22   00h29m33s          192.168.55.18    te0/1/5.350 
+#  
+#0/FMC0:atDR1# 
+#0/ME5100:atAR1# show ospfv2 neighbors 
+#Thu Apr  2 07:54:02 2020
+#  Routing Process: test, with ID 1.0.0.3
+#    Router is not an area border router
+#  Neighbor ID      Area ID          Pri    State               BFD           Dead Time  Last state change  Address          Interface 
+#  ---------------- ---------------- ------ ------------------- ------------- ---------- ------------------ ---------------- ---------- 
+#  1.0.0.1          0.0.0.0          1      full                not-required  00:00:37   00h08m27s          192.168.55.2     bu1 
+#  1.0.0.2          0.0.0.0          1      full                not-required  00:00:30   01h49m04s          192.168.55.22    bu2 
+#  1.0.0.4          0.0.0.0          128    full                not-required  00:00:37   00h43m47s          192.168.55.10    te0/0/11.352 
+#  
+#0/ME5100:atAR1# 
+#0/ME5100:atAR2# show ospfv2 neighbors 
+#Thu Apr  2 08:19:00 2020
+#  Routing Process: test, with ID 1.0.0.2
+#    Router is not an area border router
+#  Neighbor ID      Area ID          Pri    State               BFD           Dead Time  Last state change  Address          Interface 
+#  ---------------- ---------------- ------ ------------------- ------------- ---------- ------------------ ---------------- ---------- 
+#  1.0.0.1          0.0.0.0          1      full-BDR            not-required  00:00:39   00h33m24s          192.168.55.5     bu1 
+#  1.0.0.3          0.0.0.0          1      full                not-required  00:00:33   02h14m07s          192.168.55.21    bu2 
+#  1.0.0.4          0.0.0.0          128    full                not-required  00:00:39   01h08m55s          192.168.55.14    te0/0/11.351 
+#  
+#0/ME5100:atAR2# 
+#

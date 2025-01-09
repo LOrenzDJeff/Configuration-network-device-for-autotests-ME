@@ -1,0 +1,50 @@
+Value Top (MAC address\s+Type\s+Learned from\s+LC\/location\s+Bridge-domain name)
+Value CE_MAC (\w\w:\w\w:\w\w:\w\w:\w\w:\w\w)
+Value MAC_type (\S+)
+#Value learned_int (bu[12].[34]00|pw\s+1.0.0.[12]\s+123|pw\s+1.0.0.[12]\s+\S+\s+\d+|te\d+/\d+/\d+|te\d+/\d+/\d+.\d+)
+Value learned_int (bu[12].[34]00|pw\s+\d+.\d+.\d+.\d+\s+\d+|pw\s+1.0.0.[12]\s+\S+\s+\d+|te\d+/\d+/\d+|te\d+/\d+/\d+.\d+)
+Value LC_loc (0/[018])
+Value BD_name (\S+)
+Value Total_entries (\d+)
+
+Start
+  ^\s+${Top} -> Record
+  ^\s+${CE_MAC}\s+${MAC_type}\s+${learned_int}\s+${LC_loc}\s+${BD_name}\s+ -> Record
+  ^\s+Total entries: ${Total_entries}
+
+
+
+
+#0/ME5200:atAR2# show l2vpn mac-table bridge-domain BD-TEST
+#Wed Jul 26 19:12:42 2023
+#  MAC address        Type     Learned from                               LC/location     Bridge-domain name 
+#  ------------------ -------- ------------------------------------------ --------------- ------------------- 
+#  de:ad:be:af:00:41  Dynamic  pw 1.0.0.1 2                               0/0             BD-TEST 
+#  de:ad:be:af:00:42  Dynamic  te0/0/11.10042                             0/0             BD-TEST 
+#
+#  Total entries: 2
+#0/ME5200:atAR2# 
+
+
+
+#0/FMC0:atDR1# show l2vpn mac-table bridge-domain BD-TEST
+#Tue Aug 25 14:33:38 2020
+#  MAC address        Type     Learned from                               LC/location     Bridge-domain name 
+#  ------------------ -------- ------------------------------------------ --------------- ------------------- 
+#  e0:d9:e3:df:34:b6  Dynamic  bu1.300                                    0/1             BD-TEST 
+#  e0:d9:e3:df:34:b7  Dynamic  pw 1.0.0.2 123                             0/1             BD-TEST 
+#
+#  Total objects for this criteria: 2
+#0/FMC0:atDR1# 
+
+
+#0/ME5100:atAR2#  show l2vpn mac-table bridge-domain BD-TEST
+#Tue Aug 25 14:36:32 2020
+#  MAC address        Type     Learned from                               LC/location     Bridge-domain name 
+#  ------------------ -------- ------------------------------------------ --------------- ------------------- 
+#  e0:d9:e3:df:34:b6  Dynamic  pw 1.0.0.1 123                             0/0             BD-TEST 
+#  e0:d9:e3:df:34:b7  Dynamic  bu2.400                                    0/0             BD-TEST 
+#
+#  Total objects for this criteria: 2
+#0/ME5100:atAR2# 
+#

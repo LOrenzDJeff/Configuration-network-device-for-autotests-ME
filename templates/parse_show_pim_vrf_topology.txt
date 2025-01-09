@@ -1,0 +1,16 @@
+<group name="s_g_spt">
+    ({{ source_ip }}, {{ group_ip }}) {{ tree_type }}, {{ mode }}, Up: {{ entry_uptime }}
+    JP: joined {{ jp_joined }}, RPF: {{ rpf_interface }}, ({{ rpf_ip }})
+      {{ interface }} {{ int_mode }}, Up: {{ int_uptime }} is {{ int_type }}
+</group>
+<group name="s_g_rpt">
+    ({{ source_ip }}, {{ group_ip }}) RPT {{ rpt_prune }}, Up: {{ entry_uptime }}
+</group>
+
+<group name="*_g">
+    (*, {{ group_ip }}) {{ mode }}, Up: {{ entry_uptime }}, RP: {{ rp_ip }} is {{ rp_type | re(".*") }}
+    JP: joined {{ jp_joined }}, RPF: {{ rpf_interface }}, ({{ rpf_ip }})
+      {{ interface }} {{ int_mode }}, Up: {{ int_uptime }} is {{ int_type }}
+</group>
+
+

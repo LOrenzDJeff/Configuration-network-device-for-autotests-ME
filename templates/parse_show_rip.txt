@@ -1,0 +1,51 @@
+Value interface (\S+)
+Value send (\w+)
+Value receive (\w+)
+Value sent_updates (\d+)
+Value recv_updates (\d+)
+Value recv_bad_packets (\d*)
+Value recv_bad_routes (\d*)
+Value nbr_recv_bad_packets (\d*)
+Value nbr_recv_bad_routes (\d*)            
+Value ip_address (\S+)
+Value last_update (\S+)
+Value version (\d+)
+Value bfd_status (\S+)
+    
+         
+           
+Start	            
+ ^\s+Interface(s):
+ ^\s+${interface}\s+${send}\s+${receive}\s+${sent_updates}\s+${recv_updates}\s+${recv_bad_packets}\s+${recv_bad_routes} ->  Record 
+ ^\s+Neighbor(s):
+ ^\s+${ip_address}\s+${interface}\s+${last_update}\s+${version}\s+${bfd_status}\s*${nbr_recv_bad_packets}\s*${nbr_recv_bad_routes} -> Record
+
+ 
+
+# atAR1# show rip
+#Fri Sep  6 11:42:50 2024
+#  Routing Information Protocol:
+#  QoS class codes for outgoing messages:
+#  DSCP: 48
+#  VLAN prio: 0
+#
+#    Timers:
+#      Update interval: 30 sec
+#      Holddown interval: 180 sec
+#      Flush interval: 120 sec
+#
+#    Interface(s):
+#      Interface        Send             Receive          Sent      Recv      Recv bad  Recv bad  
+#                                                         updates   updates   packets   routes    
+#      ---------------- ---------------- ---------------- --------- --------- --------- --------- 
+#      bu1              enabled          enabled          4         4         0         0         
+#      bu2              enabled          enabled          1         6         0         0         
+#
+#
+#    Neighbor(s):
+#      IP address                   Interface        Last update      Version          BFD status       Recv bad  Recv bad  
+#                                                                                                       packets   routes    
+#      ---------------------------- ---------------- ---------------- ---------------- ---------------- --------- --------- 
+#      192.168.55.2                 bu1              00h00m27s        2                not-required     0         0         
+#      192.168.55.22                bu2              00h00m27s        2                not-required     0         0
+# 

@@ -1,0 +1,44 @@
+Value int_name (\S+)
+Value int_status (\S+)
+Value if_index (\d+)
+Value MAC_addr (\w\+:\w+:\w+:\w+:\w+:\w+)
+Value ipv4_addr (\d+.\d+.\d+.\d+/\d+)
+Value mtu (\d+)
+Value ip_mtu (\d+)
+
+
+Start
+  ^\s+${int_name}\s+is\s+${int_status}\Z
+  ^\s+Interface index is ${if_index}
+  ^\s+Hardware is \w+, address is ${MAC_addr}
+  ^\s+IPv4 address is ${ipv4_addr}
+  ^\s+Interface MTU is ${mtu}
+  ^\s+Interface IP MTU is ${ip_mtu}
+
+
+
+#0/ME5200:atAR2_ER06# show interfaces  tengigabitethernet 0/0/17.366
+#Tue Aug 30 11:37:00 2022
+#  Tengigabitethernet0/0/17.366 is Up
+#    Interface index is 83
+#    Hardware is Tengigabitethernet, address is e0:d9:e3:df:6e:91
+#    Encapsulation: 802.1Q(0x8100) outer vid 366
+#    Link is up for 1 hours, 16 minutes, 50 seconds
+#    Description is not set
+#    IPv4 address is 192.168.54.49/30
+#    No IPv6 address assigned
+#    Interface is bound to VRF default
+#    Interface is in layer3 forwarding mode
+#    ARP aging time is 240 minutes
+#    Interface MTU is 1518
+#    Interface IP MTU is 1500
+#    300 seconds input rate is 1544 bit/s
+#    300 seconds output rate is 0 bit/s
+#    300 seconds input rate is 0 pps
+#    300 seconds output rate is 0 pps
+#      1489 packets input, 896466 bytes received
+#      3 packets output, 126 bytes sent
+#  
+#0/ME5200:atAR2_ER06# 
+
+

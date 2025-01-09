@@ -1,0 +1,15 @@
+Value bu1_sent (\d+)
+Value bu1_recv (\d+)
+Value bu2_sent (\d+)
+Value bu2_recv (\d+)
+
+Start
+  ^\s+bu1\s+\d+\s+${bu1_sent}\s+${bu1_recv}\s+\d+\s+\d+
+  ^\s+bu2\s+\d+\s+${bu2_sent}\s+${bu2_recv}\s+\d+\s+\d+
+
+#0/ME5100:atAR2(config-bundle-ether)# do show interf utilization | incl bu
+#Wed Jan 29 17:57:39 2020
+#  bu1              20         7             7             10                10                
+#  bu2              20         8             7             10                10                
+#0/ME5100:atAR2(config-bundle-ether)# 
+#

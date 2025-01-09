@@ -1,0 +1,10 @@
+Value IP (\d+(.\d+){3})
+Value age (\d\d(:\d\d){2})
+Value mac ([0-9a-fA-F]{2}(:[0-9a-fA-F]{2}){5})
+Value state (Interface|Dynamic|Incomplete)
+Value timeout ((\d+:){2}\d+)
+Value Int (\S+)
+
+
+Start
+  ^\s+${IP}\s+${age}\s+${mac}\s+${state}\s+${timeout}\s+${Int} -> Record

@@ -1,0 +1,22 @@
+Value Top (\s+Neighbor\s+Interface\s+Uptime\s+Expires\s+BFD\s+DR pri\s+)
+Value Nbr_addr (\d+.\d+.\d+.\d+)
+Value int (bu[12]|te0/0/11.35[12]|te0/1/5.350)
+Value uptime (\d+[dh]\d+[hm]\d+[ms])
+Value expires (\d+[dh]\d+[hm]\d+[ms])
+Value bfd (not-required)
+Value DR (\d+)
+Value priority (\(DR\)|\s+)
+
+Start
+  ^${Top}
+  ^\s+${Nbr_addr}\s+${int}\s+${uptime}\s+${expires}\s+${bfd}\s+${DR}\s+${priority} -> Record
+
+#0/ME5100:atAR1# show pim neighbors 
+#Fri Jan  8 15:34:46 2021
+#  Neighbor         Interface               Uptime     Expires    BFD           DR pri           
+#  ---------------- ----------------------- ---------- ---------- ------------- ---------------- 
+#  192.168.55.2     bu1                     00h07m15s  00h01m29s  not-required  1 (DR)           
+#  192.168.55.22    bu2                     04h51m39s  00h01m36s  not-required  1 (DR)           
+#  192.168.55.10    te0/0/11.352            00h15m18s  00h01m44s  not-required  1 (DR)           
+#0/ME5100:atAR1# 
+

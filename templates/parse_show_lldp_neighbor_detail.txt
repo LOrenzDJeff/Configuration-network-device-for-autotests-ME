@@ -1,0 +1,98 @@
+Value portN (Tengigabitethernet ?0/[18]/[34]|Tengigabitethernet ?0/0/[1-4])
+Value p_chassis (\w\w:\w\w:\w\w:\w\w:\w\w:\w\w)
+Value p_port_id (te ?\d/\d/\d)
+Value p_neib_mac (\w\w:\w\w:\w\w:\w\w:\w\w:\w\w)
+Value p_port_descr (\w+:te ?\d/\d/\d)
+Value p_sys_name (\w+)
+Value p_sys_descr (Eltex ME5000M? modular carrier router|Eltex ME5[12]00 carrier router|System Description: Eltex ME5[12]00 carrier router|System Description: Eltex ME5000M? modular carrier router)
+Value p_syscap (\s+System Capabilities: Bridge, Router)
+Value p_encap (\s+Enabled Capabilities: Bridge, Router)
+Value p_manange_ip (\d+\.\d+\.\d+\.\d+)
+
+Start
+  ^\s+Local Interface: ${portN} 
+  ^\s+Chassis id: ${p_chassis}
+  ^\s+Port id: ${p_port_id}
+  ^\s+Neighbor MAC address: ${p_neib_mac}
+  ^\s+Port Description: ${p_port_descr}
+  ^\s+System Name: ${p_sys_name}
+  ^\s+${p_sys_descr}
+  ^${p_syscap}   
+  ^${p_encap}   
+  ^\s+Management Address: ${p_manange_ip} -> Record 
+
+  
+
+#0/ME5100:atAR1# show lldp neighbors detail 
+#Tue Dec 17 12:11:53 2019
+#  
+#  
+#  Local Interface: Tengigabitethernet0/0/1
+#    
+#    Chassis id: e0:d9:e3:df:35:20
+#    Port id: te 0/0/1
+#    Neighbor MAC address: e0:d9:e3:df:35:21
+#    Port Description: to_atAR1:te0/0/1
+#    System Name: atAR2
+#    
+#    System Description:
+#    Eltex ME5100 carrier router
+#    
+#    System Capabilities: Bridge, Router
+#    Enabled Capabilities: Bridge, Router
+#    Agent: 
+#    Management Address: 192.168.55.13
+#  
+#  
+#  Local Interface: Tengigabitethernet0/0/2
+#    
+#    Chassis id: e0:d9:e3:df:35:20
+#    Port id: te 0/0/2
+#    Neighbor MAC address: e0:d9:e3:df:35:22
+#    Port Description: to_atAR1:te0/0/2
+#    System Name: atAR2
+#    
+#    System Description:
+#    Eltex ME5100 carrier router
+#    
+#    System Capabilities: Bridge, Router
+#    Enabled Capabilities: Bridge, Router
+#    Agent: 
+#    Management Address: 192.168.55.13
+#  
+#  
+#  Local Interface: Tengigabitethernet0/0/3
+#    
+#    Chassis id: a8:f9:4b:8b:92:80
+#    Port id: te 0/1/3
+#    Neighbor MAC address: a8:f9:4b:8b:92:97
+#    Port Description: to_atAR1:te0/0/3
+#    System Name: atDR1
+#    
+#    System Description:
+#    Eltex ME5000 modular carrier router
+#    
+#    System Capabilities: Bridge, Router
+#    Enabled Capabilities: Bridge, Router
+#    Agent: 
+#    Management Address: 192.168.55.17
+#  
+#  
+#  Local Interface: Tengigabitethernet0/0/4
+#    
+#    Chassis id: a8:f9:4b:8b:92:80
+#    Port id: te 0/1/4
+#    Neighbor MAC address: a8:f9:4b:8b:92:98
+#    Port Description: to_atAR1:te0/0/4
+#    System Name: atDR1
+#    
+#    System Description:
+#    Eltex ME5000 modular carrier router
+#    
+#    System Capabilities: Bridge, Router
+#    Enabled Capabilities: Bridge, Router
+#    Agent: 
+#    Management Address: 192.168.55.17
+#Value port2 (\s+Local Interface: Tengigabitethernet0/1/4|\s+Local Interface: Tengigabitethernet0/0/2)
+#Value port3 (\s+Local Interface: Tengigabitethernet0/8/3|\s+Local Interface: Tengigabitethernet0/0/3)
+#Value port4 (\s+Local Interface: Tengigabitethernet0/8/4|\s+Local Interface: Tengigabitethernet0/0/4)

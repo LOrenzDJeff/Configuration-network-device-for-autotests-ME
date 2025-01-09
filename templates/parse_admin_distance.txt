@@ -1,0 +1,11 @@
+Value type (\w+)
+Value next_hop (\d+.\d+.\d+.\d+)
+Value interface (\S+)
+
+Start
+ ^\s+Known via ${type}
+ ^\s+${next_hop}, via ${interface}
+ ^.* -> Record
+
+
+

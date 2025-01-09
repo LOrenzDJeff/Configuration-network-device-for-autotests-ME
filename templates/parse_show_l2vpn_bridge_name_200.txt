@@ -1,0 +1,66 @@
+Value bd_name (\S+)
+Value bd_state ([Uu]p|[Dd]own)
+Value bd_type (\S+)
+Value bd_mac_learn_status (\w+)
+Value bd_ls_status (\w+)
+Value bd_fm_status (\w+)
+Value bd_uu_status (\w+)
+Value bd_mac_age_time (\d+)
+Value bd_mac_limit (\d+)
+Value bd_mac_action (\w+)
+Value bd_mtu (\d+)
+Value bd_oper_status ([Uu]p|[Dd]own)
+Value bd_ac_total_num (\d+)
+Value bd_ac_up_num (\d+)
+Value bd_pw_total_num (\d+)
+Value bd_pw_up_num (\d+)
+Value ac1 (\w+\s*\d+/\d+/\d+.\d+)
+
+Start
+  ^\s+Bridge domain:\s+${bd_name},\s+state:\s+${bd_state}, bridge type:\s+${bd_type}
+  ^\s+MAC\s+learning:\s+${bd_mac_learn_status}
+  ^\s+Local\s+switching:\s+${bd_ls_status}
+  ^\s+Flooding\s+Multicast:\s+${bd_fm_status}
+  ^\s+Unknown\s+unicast:\s+${bd_uu_status}
+  ^\s+MAC\s+aging\s+time:\s+${bd_mac_age_time}\s+s,\s+MAC\s+limit:\s+${bd_mac_limit},\s+Action:\s+${bd_mac_action},\s+MTU:\s+${bd_mtu}
+  ^\s+Oper-status:\s+${bd_oper_status}
+  ^\s+ACs:\s+${bd_ac_total_num}\s+\(${bd_ac_up_num}\s+up\)
+  ^\s+PWs:\s+${bd_pw_total_num}\s+\(${bd_pw_up_num}\s+up\)
+  ^\s+AC: ${ac1}
+  
+
+#0/FMC0:atDR1# show l2vpn mac-table bridge-domain 200
+#Sun Mar 15 21:39:29 2020
+#
+#  Total objects for this criteria: 0
+#0/FMC0:atDR1# show l2vpn bridge-domain bd-name 200
+#Sun Mar 15 21:39:41 2020
+#  MM  -- mtu mismatch            Up -- up              GUp -- going up
+#  CM  -- control-word mismatch   Dn -- down            GDn -- going down
+#  OL  -- no outgoing label       ST -- standby         Lld -- lower layer down
+#  BK  -- backup connection       Fl -- failed          Drm -- dormant
+#  SP  -- static pseudowire       SW -- switchover
+#
+#  Bridge domain: 200, state: up
+#    MAC learning: enabled
+#    Local switching: enabled
+#    Flood replication point: egress
+#    Flooding Multicast: all
+#      Unknown unicast: enabled
+#    MAC aging time: 300 s, MAC limit: 4000, Action: all, MTU: 1500
+#    Oper-status: up
+#    ACs: 1 (0 up)
+#    PWs: 2 (2 up)
+#    List of ACs:
+#
+#      AC: Tengigabitethernet0/1/5.20050
+#        AC binding status: going-up, Interface oper state: up
+#
+#    List of PWs:
+#
+#    List of VFIs:
+#
+#    List of Autodiscovery PWs:
+#
+#0/FMC0:atDR1#
+#

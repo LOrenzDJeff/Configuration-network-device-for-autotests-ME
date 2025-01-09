@@ -1,0 +1,16 @@
+Value ipv4_neighbor (\d+.\d+.\d+.\d+)
+
+Start
+  ^\s+${ipv4_neighbor}\s+\d+:\d+:\d+\s+\w+:\w+:\w+:\w+:\w+:\w+\s+Dynamic\s+\w+ -> Record
+
+# С помощью данного шаблона будем искать ipv4 адрес соседа 
+#0/ME5100:atAR2# show arp interfaces ten0/0/11.351
+#Thu Jan  9 11:20:53 2020
+#  ARP aging time is 240 minutes
+#  
+#  IP address       Age         Hardware address   State       Interface 
+#  ---------------- ----------- ------------------ ----------- ---------- 
+#  192.168.55.13    00:00:00    e0:d9:e3:df:35:2b  Interface   te0/0/11.351 
+#  192.168.55.14    01:44:10    00:05:86:71:4f:00  Dynamic     te0/0/11.351 
+#0/ME5100:atAR2# 
+#

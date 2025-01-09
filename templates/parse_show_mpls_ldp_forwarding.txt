@@ -1,0 +1,18 @@
+Value header (\s+Prefix\s+Label\(s\) out\s+Outgoing Interface\s+Next Hop\s+flags\s+)
+Value entry (\s+\d+.\d+.\d+.\d+/\d+\s+ImpNull\s+\w+\s+\d+.\d+.\d+.\d+\s+)
+
+Start
+  ^${header}
+  ^${entry} -> Record
+
+#0/ME5100:atAR1# show mpls ldp forwarding 
+#Fri Jan 10 16:15:45 2020
+#  Codes:
+#    R = Remote LFA FRR backup
+#  
+#  Prefix                Label(s) out  Outgoing Interface  Next Hop              flags  
+#  --------------------- ------------- ------------------- --------------------- ------ 
+#  1.0.0.1/32            ImpNull       bu1                 192.168.55.2                 
+#  1.0.0.2/32            ImpNull       bu2                 192.168.55.22                
+#0/ME5100:atAR1# 
+#

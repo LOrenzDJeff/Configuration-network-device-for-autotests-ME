@@ -1,0 +1,8 @@
+Value rd (\d+:\d+)
+Value prefix (\d+.\d+.\d+.\d+\/\d+)
+Value next_hop (\S*)
+Value metric (\d+)
+Value path (\S)
+
+Start
+  ^\s*\S*\s+${rd}\s+${prefix}\s+${next_hop}\s+${metric}\s+\S+\s+\S+\s+\S+\s+${path} -> Record

@@ -1,0 +1,49 @@
+Value Top (\s+Interface\s+Period, s\s+Sent,\s+Kbit/s\s+Recv,\s+Kbit/s\s+Frames sent,\s+pps\s+Frames recv,\s+pps\s+)
+Value port1 (\s+te0/0/1\s+300\s+\d+\s+\d+\s+\d+\s+\d+\s+)
+Value port2 (\s+te0/0/2\s+300\s+\d+\s+\d+\s+\d+\s+\d+\s+)
+Value port3 (\s+te0/0/3\s+300\s+\d+\s+\d+\s+\d+\s+\d+\s+)
+Value port4 (\s+te0/0/4\s+300\s+\d+\s+\d+\s+\d+\s+\d+\s+)
+Value port11 (\s+te0/0/11\s+300\s+\d+\s+\d+\s+\d+\s+\d+\s+)
+Value bu1 (\s+bu1\s+300\s+\d+\s+\d+\s+\d+\s+\d+\s+)
+Value bu2 (\s+bu2\s+300\s+\d+\s+\d+\s+\d+\s+\d+\s+)
+
+Start
+  ^${Top} -> Record
+  ^${port1} -> Record 
+  ^${port2} -> Record
+  ^${port3} -> Record
+  ^${port4} -> Record
+  ^${port11} -> Record
+  ^${bu1} -> Record
+  ^${bu2} -> Record
+
+
+#Пример вывода команды 'show interface utilization' на ME5100
+#0/ME5100:atAR1-Test2# show interfaces utilization 
+#Thu Dec 12 07:05:52 2019
+#  Interface        Period, s  Sent, Kbit/s  Recv, Kbit/s  Frames sent, pps  Frames recv, pps  
+#  ---------------- ---------- ------------- ------------- ----------------- ----------------- 
+#  te0/0/1          300        0             0             0                 0                 
+#  te0/0/2          300        0             0             0                 0                 
+#  te0/0/3          300        1             0             0                 0                 
+#  te0/0/4          300        0             0             0                 0                 
+#  te0/0/5          300        0             0             0                 0                 
+#  te0/0/6          300        0             0             0                 0                 
+#  te0/0/7          300        0             0             0                 0                 
+#  te0/0/8          300        0             0             0                 0                 
+#  te0/0/9          300        0             0             0                 0                 
+#  te0/0/10         300        0             0             0                 0                 
+#  te0/0/11         300        0             4             0                 6                 
+#  te0/0/12         300        0             0             0                 0                 
+#  te0/0/13         300        0             0             0                 0                 
+#  te0/0/14         300        0             0             0                 0                 
+#  te0/0/15         300        0             0             0                 0                 
+#  te0/0/16         300        0             0             0                 0                 
+#  te0/0/17         300        0             0             0                 0                 
+#  te0/0/18         300        0             0             0                 0                 
+#  te0/0/19         300        0             0             0                 0                 
+#  te0/0/20         300        0             0             0                 0                 
+#  bu1              300        1             0             0                 0                 
+#  bu2              300        0             0             0                 0                 
+#  lo1              0          0             0             0                 0                 
+#  mgmt0/fmc0/1     300        0             4             0                 6                 

@@ -1,0 +1,15 @@
+Value SysDescr (Eltex ME5\d00 carrier router running Network OS for ME5k ver. \d+\.\d+\.\d+\.\S+|Eltex ME5\d00M? modular carrier router running Network OS for ME5k ver. \d+\.\d+\.\d+\.\S+)
+Value SysContact (\w+\@\w+\.\w+)
+Value SysName (\S+)
+Value SysLocation (\S+)
+Value SysUptime (\d+)
+
+Start
+  ^sysDescr.0 OCTETSTR = ${SysDescr}
+  ^sysContact.0 OCTETSTR = ${SysContact}
+  ^sysName.0 OCTETSTR = ${SysName}
+  ^sysLocation.0 OCTETSTR = ${SysLocation}
+  ^sysORUpTime.1 TICKS = ${SysUptime}
+
+
+

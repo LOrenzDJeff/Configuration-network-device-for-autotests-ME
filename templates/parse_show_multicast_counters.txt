@@ -1,0 +1,21 @@
+Value Top (\s+Source Address\s+Group Address\s+Packets Recv\s+Bytes Recv\s+Status codes  Interface\s+)
+Value source_addr (46.61.193.86)
+Value group_addr (225.54.205.13[56])
+Value pkt_recv (\d+)
+Value bytes_recv (\d+)
+Value interface (\S+)
+
+Start
+  ^${Top}
+  ^\s+${source_addr}\s+${group_addr}\s+${pkt_recv}\s+${bytes_recv}\s+${interface}\s+ -> Record
+#0/FMC0:atDR1# show multicast counters 
+#Wed Apr 15 14:36:36 2020
+#  
+#  Interface status code: N - Notification, I - Ignored
+#  
+#  Source Address                           Group Address                            Packets Recv           Bytes Recv             Status codes  Interface 
+#  ---------------------------------------- ---------------------------------------- ---------------------- ---------------------- ------------- ---------- 
+#  46.61.193.86                             225.54.205.135                           12932811               17588622960                          bu1 
+#  46.61.193.86                             225.54.205.136                           15030642               20441673120                          bu1 
+#0/FMC0:atDR1# 
+#

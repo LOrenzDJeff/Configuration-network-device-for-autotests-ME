@@ -1,0 +1,4 @@
+Value MainModule (Module in slot main control panel is ME5200)
+
+Start
+  ^${MainModule}

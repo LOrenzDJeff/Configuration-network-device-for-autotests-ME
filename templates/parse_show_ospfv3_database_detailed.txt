@@ -1,0 +1,387 @@
+Value Filldown lsdb_area_number (\d+.\d+.\d+.\d+)
+Value lsa_adv_router_id (\d+.\d+.\d+.\d+)
+Value lsa_prefix (\S+)
+Value lsa_metric (\d+)
+Value lsa_ext_route_type (\d+)
+Value lsa_options (\S+\s+\S+|\S*)
+Value Filldown lsa_ext_route_tag (\S*)
+
+Start
+  ^\s+OSPF Link State Database \(Area ${lsdb_area_number}\) 
+  ^\s+Advertising Router: ${lsa_adv_router_id}
+  ^\s+Prefix: ${lsa_prefix}, Metric: ${lsa_metric}, ${lsa_options} -> Record
+  ^\s+Type\s+${lsa_ext_route_type}\s+External\s+Metric:\s+${lsa_metric} 
+  ^\s+External\s+Route\s+Tag:\s+${lsa_ext_route_tag} 
+  ^\s+${lsa_prefix},\s+${lsa_options},\s+Referenced\s+LS\s+type:\s+Unrecognized\s+\S+ 
+  ^\s+${lsa_prefix},\s+${lsa_options}\s+,\s+Referenced\s+LS\s+type:\s+Unrecognized\s+\S+ 
+  ^\s+LSA\s+type:\s+AS\s+scope\s+\S+\s+LSA\s+\S+ -> Record
+  ^\s+LSA\s+type:\s+Area\s+scope\s+\S+\s+LSA\s+\S+ -> Record
+
+
+
+#0/ME5200:atAR2# show ospfv3 vrf Customer database detailed nssa-external 
+#Mon May 13 11:17:53 2024
+#  Routing Process: 1, VRF Customer, ID 2.2.2.2
+#
+#
+#    OSPF Link State Database (Area 0.0.0.0)
+##
+#
+#    OSPF Link State Database (Area 0.0.0.1)
+#
+#      LSA type: Area scope NSSA LSA (0x2007)
+#      LS Age: 00:05:47
+#      Link State ID: 0.0.0.1
+#      Advertising Router: 2.2.2.2
+#      Sequence Number: 0x80000005
+#      Checksum: 0x54ca
+#      Length: 44
+#        Type 2 External Metric: 0
+#        beaf::3:3:3:3/128, No options, Referenced LS type: Unrecognized (0x0000)
+#
+#      LSA type: Area scope NSSA LSA (0x2007)
+#      LS Age: 00:10:00
+#      Link State ID: 0.0.0.11
+#      Advertising Router: 2.2.2.2
+#      Sequence Number: 0x80000004
+#      Checksum: 0xefb
+#      Length: 44
+#        Type 2 External Metric: 0
+#        beaf::200:200:200:200/128, Options: (DN) , Referenced LS type: Unrecognized (0x0000)
+#
+#      LSA type: Area scope NSSA LSA (0x2007)
+#      LS Age: 00:10:00
+#      Link State ID: 0.0.0.12
+#      Advertising Router: 2.2.2.2
+#      Sequence Number: 0x80000004
+#      Checksum: 0x9d66
+#      Length: 36
+#        Type 2 External Metric: 0
+#        dead:3205::/64, Options: (DN) , Referenced LS type: Unrecognized (0x0000)
+#
+#      LSA type: Area scope NSSA LSA (0x2007)
+#      LS Age: 00:10:00
+#      Link State ID: 0.0.0.13
+#      Advertising Router: 2.2.2.2
+#      Sequence Number: 0x80000004
+#      Checksum: 0x9e51
+#      Length: 36
+#        Type 2 External Metric: 0
+#        dead:3218::/64, Options: (DN) , Referenced LS type: Unrecognized (0x0000)
+#
+#      LSA type: Area scope NSSA LSA (0x2007)
+#      LS Age: 00:10:00
+#      Link State ID: 0.0.0.14
+#      Advertising Router: 2.2.2.2
+#      Sequence Number: 0x80000004
+#      Checksum: 0x1262
+#      Length: 44
+#        Type 2 External Metric: 1
+#        beaf::66:66:66:66/128, Options: (DN) , Referenced LS type: Unrecognized (0x0000)
+#
+#      LSA type: Area scope NSSA LSA (0x2007)
+#      LS Age: 00:27:31
+#      Link State ID: 0.0.0.15
+#      Advertising Router: 2.2.2.2
+#      Sequence Number: 0x80000003
+#      Checksum: 0x9377
+#      Length: 44
+#        Type 2 External Metric: 0
+#        beaf::1:1:1:1/128, Options: (DN) , Referenced LS type: Unrecognized (0x0000)
+#
+#      LSA type: Area scope NSSA LSA (0x2007)
+#      LS Age: 00:27:31
+#      Link State ID: 0.0.0.16
+#      Advertising Router: 2.2.2.2
+#      Sequence Number: 0x80000003
+#      Checksum: 0x6689
+#      Length: 36
+#        Type 2 External Metric: 0
+#        dead:3216::/64, Options: (DN) , Referenced LS type: Unrecognized (0x0000)
+#
+#      LSA type: Area scope NSSA LSA (0x2007)
+#      LS Age: 00:28:15
+#      Link State ID: 0.0.0.2
+#      Advertising Router: 11.11.11.11
+#      Sequence Number: 0x80000003
+#      Checksum: 0x6113
+#      Length: 64
+#        Type 2 External Metric: 0
+#        beaf::11:11:11:11/128, Options: (P) , Referenced LS type: Unrecognized (0x0000)
+#        Forwarding Address: dead:3210::10:0:221:1
+#        External Route Tag: 3489726555
+#0/ME5200:atAR2# show ospfv3 vrf Customer database detailed external 
+#Mon May 13 11:22:52 2024
+#  Routing Process: 1, VRF Customer, ID 2.2.2.2
+#
+#
+#    External Link States:
+#
+#      LSA type: AS scope External LSA (0x4005)
+#      LS Age: 00:10:47
+#      Link State ID: 0.0.0.1
+#      Advertising Router: 2.2.2.2
+#      Sequence Number: 0x80000005
+#      Checksum: 0x8e72
+#      Length: 44
+#        Type 2 External Metric: 0
+#        beaf::3:3:3:3/128, No options, Referenced LS type: Unrecognized (0x0000)
+#
+#      LSA type: AS scope External LSA (0x4005)
+#      LS Age: 00:15:00
+#      Link State ID: 0.0.0.11
+#      Advertising Router: 2.2.2.2
+#      Sequence Number: 0x80000004
+#      Checksum: 0x48a3
+#      Length: 44
+#        Type 2 External Metric: 0
+#        beaf::200:200:200:200/128, Options: (DN) , Referenced LS type: Unrecognized (0x0000)
+#
+#      LSA type: AS scope External LSA (0x4005)
+#      LS Age: 00:15:00
+#      Link State ID: 0.0.0.12
+#      Advertising Router: 2.2.2.2
+#      Sequence Number: 0x80000004
+#      Checksum: 0xd70e
+#      Length: 36
+#        Type 2 External Metric: 0
+#        dead:3205::/64, Options: (DN) , Referenced LS type: Unrecognized (0x0000)
+#
+#      LSA type: AS scope External LSA (0x4005)
+#      LS Age: 00:15:00
+#      Link State ID: 0.0.0.13
+#      Advertising Router: 2.2.2.2
+#      Sequence Number: 0x80000004
+#      Checksum: 0xd8f8
+#      Length: 36
+#        Type 2 External Metric: 0
+#        dead:3218::/64, Options: (DN) , Referenced LS type: Unrecognized (0x0000)
+#
+#      LSA type: AS scope External LSA (0x4005)
+#      LS Age: 00:15:00
+#      Link State ID: 0.0.0.14
+#      Advertising Router: 2.2.2.2
+#      Sequence Number: 0x80000004
+#      Checksum: 0x4c0a
+#      Length: 44
+#        Type 2 External Metric: 1
+#        beaf::66:66:66:66/128, Options: (DN) , Referenced LS type: Unrecognized (0x0000)
+#
+#      LSA type: AS scope External LSA (0x4005)
+#      LS Age: 00:02:58
+#      Link State ID: 0.0.0.15
+#      Advertising Router: 2.2.2.2
+#      Sequence Number: 0x80000004
+#      Checksum: 0xe58e
+#      Length: 64
+#        Type 2 External Metric: 0
+#        beaf::11:11:11:11/128, No options, Referenced LS type: Unrecognized (0x0000)
+#        Forwarding Address: dead:3210::10:0:221:1
+#        External Route Tag: 3489726555
+
+#      LSA type: AS scope External LSA (0x4005)
+#      LS Age: 00:02:31
+#      Link State ID: 0.0.0.16
+#      Advertising Router: 2.2.2.2
+#      Sequence Number: 0x80000004
+#      Checksum: 0xc129
+#      Length: 44
+#        Type 2 External Metric: 0
+#        beaf::1:1:1:1/128, Options: (DN) , Referenced LS type: Unrecognized (0x0000)
+
+#      LSA type: AS scope External LSA (0x4005)
+#      LS Age: 00:02:31
+#      Link State ID: 0.0.0.17
+#      Advertising Router: 2.2.2.2
+#      Sequence Number: 0x80000004
+#      Checksum: 0x943b
+#      Length: 36
+#        Type 2 External Metric: 0
+#        dead:3216::/64, Options: (DN) , Referenced LS type: Unrecognized (0x0000)
+
+#      LSA type: AS scope External LSA (0x4005)
+#      LS Age: 00:05:15
+#      Link State ID: 0.0.0.1
+#      Advertising Router: 22.22.22.22
+#      Sequence Number: 0x80000005
+#      Checksum: 0xbdad
+#      Length: 44
+#        Type 1 External Metric: 0
+#        beaf::55:55:55:55/128, No options, Referenced LS type: Unrecognized (0x0000)
+
+
+#0/ME5200:atAR2#   
+
+
+#    OSPF Link State Database (Area 0.0.0.2)
+
+
+#0/ME5200:atAR2#  
+#0/ME5200:atAR2# show ospfv3 vrf Customer database detailed inter-area prefix 
+#Mon May 13 11:23:17 2024
+#  Routing Process: 1, VRF Customer, ID 2.2.2.2
+
+
+#    OSPF Link State Database (Area 0.0.0.0)
+
+#      LSA type: Area scope Inter-Area-Prefix LSA (0x2003)
+#      LS Age: 00:10:46
+#      Link State ID: 0.0.0.1
+#      Advertising Router: 2.2.2.2
+#      Sequence Number: 0x80000005
+#      Checksum: 0x56c3
+#      Length: 36
+#        Prefix: dead:3210::/64, Metric: 1, No options
+#
+#      LSA type: Area scope Inter-Area-Prefix LSA (0x2003)
+#      LS Age: 00:10:46
+#      Link State ID: 0.0.0.2
+#      Advertising Router: 2.2.2.2
+#      Sequence Number: 0x80000005
+#      Checksum: 0x5abd
+##      Length: 36
+#        Prefix: dead:3211::/64, Metric: 1, No options
+
+#      LSA type: Area scope Inter-Area-Prefix LSA (0x2003)
+##      LS Age: 00:10:46
+#      Link State ID: 0.0.0.3
+#      Advertising Router: 2.2.2.2
+##      Sequence Number: 0x80000005
+#      Checksum: 0xa7fe
+#      Length: 44
+#        Prefix: beaf::22:22:22:22/128, Metric: 2, No options
+
+#      LSA type: Area scope Inter-Area-Prefix LSA (0x2003)
+#      LS Age: 00:15:17
+#      Link State ID: 0.0.0.15
+#      Advertising Router: 2.2.2.2
+##      Sequence Number: 0x80000004
+#      Checksum: 0xd96c
+#      Length: 44
+#        Prefix: beaf::33:33:33:33/128, Metric: 3, Options: (DN) 
+
+##      LSA type: Area scope Inter-Area-Prefix LSA (0x2003)
+#      LS Age: 00:08:14
+#      Link State ID: 0.0.0.16
+#      Advertising Router: 2.2.2.2
+#      Sequence Number: 0x80000004
+#      Checksum: 0xf10f
+#      Length: 44
+#        Prefix: beaf::44:44:44:44/128, Metric: 3, Options: (DN) 
+
+#      LSA type: Area scope Inter-Area-Prefix LSA (0x2003)
+#      LS Age: 00:02:49
+#      Link State ID: 0.0.0.17
+#      Advertising Router: 2.2.2.2
+#      Sequence Number: 0x80000004
+#      Checksum: 0x4ee4
+#      Length: 44
+#        Prefix: beaf::77:77:77:77/128, Metric: 3, Options: (DN) 
+
+
+#    OSPF Link State Database (Area 0.0.0.1)
+
+#      LSA type: Area scope Inter-Area-Prefix LSA (0x2003)
+#      LS Age: 00:11:36
+#      Link State ID: 0.0.0.1
+#      Advertising Router: 2.2.2.2
+##      Sequence Number: 0x80000005
+#      Checksum: 0x2aff
+#      Length: 44
+#        Prefix: beaf::2:2:2:2/128, Metric: 1, No options
+
+#      LSA type: Area scope Inter-Area-Prefix LSA (0x2003)
+#      LS Age: 00:10:47
+##      Link State ID: 0.0.0.2
+#      Advertising Router: 2.2.2.2
+#      Sequence Number: 0x80000005#
+#      Checksum: 0x5abd
+##      Length: 36
+#        Prefix: dead:3211::/64, Metric: 1, No options
+
+#      LSA type: Area scope Inter-Area-Prefix LSA (0x2003)
+#      LS Age: 00:10:47
+##      Link State ID: 0.0.0.3
+#      Advertising Router: 2.2.2.2
+#      Sequence Number: 0x80000005
+#      Checksum: 0xa7fe
+#      Length: 44
+#        Prefix: beaf::22:22:22:22/128, Metric: 2, No options
+
+#      LSA type: Area scope Inter-Area-Prefix LSA (0x2003)#
+#      LS Age: 00:15:18
+##      Link State ID: 0.0.0.15
+#      Advertising Router: 2.2.2.2
+#      Sequence Number: 0x80000004
+#      Checksum: 0xd96c
+#####      Length: 44
+#        Prefix: beaf::33:33:33:33/128, Metric: 3, Options: (DN) 
+#
+#      LSA type: Area scope Inter-Area-Prefix LSA (0x2003)
+##      LS Age: 00:08:15
+#      Link State ID: 0.0.0.16
+#      Advertising Router: 2.2.2.2
+###      Sequence Number: 0x80000004
+ #     Checksum: 0xf10f
+#      Length: 44
+#        Prefix: beaf::44:44:44:44/128, Metric: 3, Options: (DN) #
+#
+#      LSA type: Area scope Inter-Area-Prefix LSA (0x2003)
+#      LS Age: 00:02:50
+#      Link State ID: 0.0.0.17
+#      Advertising Router: 2.2.2.2
+#      Sequence Number: 0x80000005
+##      Checksum: 0x4ce5
+#      Length: 44
+#        Prefix: beaf::77:77:77:77/128, Metric: 3, Options: (DN) 
+
+
+#    OSPF Link State Database (Area 0.0.0.2)
+
+#      LSA type: Area scope Inter-Area-Prefix LSA (0x2003)
+##      LS Age: 00:11:36
+#      Link State ID: 0.0.0.1
+#      Advertising Router: 2.2.2.2
+##      Sequence Number: 0x80000005
+#      Checksum: 0x2aff
+#      Length: 44
+#        Prefix: beaf::2:2:2:2/128, Metric: 1, No options
+#
+#      LSA type: Area scope Inter-Area-Prefix LSA (0x2003)
+#      LS Age: 00:10:47
+#      Link State ID: 0.0.0.2
+#      Advertising Router: 2.2.2.2
+#      Sequence Number: 0x80000010
+#      Checksum: 0x36d7
+#      Length: 36
+#        Prefix: dead:3210::/64, Metric: 1, No options
+#
+#      LSA type: Area scope Inter-Area-Prefix LSA (0x2003)
+#      LS Age: 00:15:18
+#      Link State ID: 0.0.0.14
+#      Advertising Router: 2.2.2.2
+#      Sequence Number: 0x80000004
+#      Checksum: 0xe363
+#      Length: 44
+#        Prefix: beaf::33:33:33:33/128, Metric: 3, Options: (DN) 
+
+#      LSA type: Area scope Inter-Area-Prefix LSA (0x2003)
+#      LS Age: 00:08:15
+#      Link State ID: 0.0.0.15
+#      Advertising Router: 2.2.2.2
+#      Sequence Number: 0x80000007
+#      Checksum: 0xf509
+#      Length: 44
+#        Prefix: beaf::44:44:44:44/128, Metric: 3, Options: (DN) 
+#
+#      LSA type: Area scope Inter-Area-Prefix LSA (0x2003)
+#      LS Age: 00:02:50
+##      Link State ID: 0.0.0.16
+#      Advertising Router: 2.2.2.2
+#      Sequence Number: 0x80000005
+#      Checksum: 0x56dc
+#      Length: 44
+#        Prefix: beaf::77:77:77:77/128, Metric: 3, Options: (DN) #
+
+
+#0/ME5200:atAR2# 

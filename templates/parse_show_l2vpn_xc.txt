@@ -1,0 +1,29 @@
+Value group_name (\w+)
+Value xc_name (\w+)
+Value xc_status (\S+)
+Value xc_side_a (\S+)
+Value xc_side_a_status (\S+)
+Value xc_side_b (pw \d+.\d+.\d+.\d+ \d+)
+Value xc_side_b_status (\S+)
+
+Start
+  ^\s+${xc_name}\s+${xc_status}\s+${xc_side_a}\s+${xc_side_a_status}\s+${xc_side_b}\s+${xc_side_b_status} -> Record
+  ^\s+${xc_side_b}\s+${xc_side_b_status} -> Record
+
+#0/FMC0:atDR1# show l2vpn xconnect 
+#Tue Aug 22 11:09:51 2023
+#  Up  -- up            Dn  -- down               ADn -- admin down
+#  GUp -- going up      GDn -- going down         ST  -- standby
+#  Fl  -- failed        Drm -- dormant            SW -- switchover
+#  Lld -- lower layer down
+#  
+#  Group: xcgroup01
+#  XC Name           ST   Side A                      ST   Side B                      ST   
+#  ----------------- ---- --------------------------- ---- --------------------------- ---- 
+#  pw1               Up   te0/1/5.10041               Up   pw 1.0.0.3 2                Drm  
+#                                                          pw 1.0.0.2 2                Up   
+#  
+#  Total entries: 1 Up: 1
+#  
+#0/FMC0:atDR1# 
+

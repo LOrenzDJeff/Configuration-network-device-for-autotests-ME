@@ -1,0 +1,4 @@
+Value as_path (.*)
+
+Start
+  ^\s+AS path: ${as_path}

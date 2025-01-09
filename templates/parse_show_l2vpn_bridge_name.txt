@@ -1,0 +1,71 @@
+Value bd_name (\S+)
+Value bd_state ([Uu]p|[Dd]own)
+Value bd_type (\S+)
+Value bd_mac_learn_status (\w+)
+Value bd_ls_status (\w+)
+Value bd_fm_status (\w+)
+Value bd_uu_status (\w+)
+Value bd_mac_age_time (\d+)
+Value bd_mac_limit (\d+)
+Value bd_mac_action (\w+)
+Value bd_mtu (\d+)
+Value bd_oper_status ([Uu]p|[Dd]own)
+Value bd_ac_total_num (\d+)
+Value bd_ac_up_num (\d+)
+Value bd_pw_total_num (\d+)
+Value bd_pw_up_num (\d+)
+Value bd_pw_nbr_ip (\d+.\d+.\d+.\d+)
+Value bd_pw_id (\d+)
+Value bd_pw_ad_status (\S+)
+Value bd_pw_op_status (\S+)
+
+Start
+  ^\s+Bridge domain:\s+${bd_name},\s+state:\s+${bd_state}, bridge type:\s+${bd_type}
+  ^\s+MAC\s+learning:\s+${bd_mac_learn_status}
+  ^\s+Local\s+switching:\s+${bd_ls_status}
+  ^\s+Flooding\s+Multicast:\s+${bd_fm_status}
+  ^\s+Unknown\s+unicast:\s+${bd_uu_status}
+  ^\s+MAC\s+aging\s+time:\s+${bd_mac_age_time}\s+s,\s+MAC\s+limit:\s+${bd_mac_limit},\s+Action:\s+${bd_mac_action},\s+MTU:\s+${bd_mtu}
+  ^\s+Oper-status:\s+${bd_oper_status}
+  ^\s+ACs:\s+${bd_ac_total_num}\s+\(${bd_ac_up_num}\s+up\)
+  ^\s+PWs:\s+${bd_pw_total_num}\s+\(${bd_pw_up_num}\s+up\)
+  ^\s+PW:\s+Neighbor\s+${bd_pw_nbr_ip},\s+pw-id\s+${bd_pw_id},\s+admin\s+${bd_pw_ad_status},\s+oper\s+${bd_pw_op_status}\s* -> Record
+
+
+
+
+#0/FMC0:atDR1# show l2vpn bridge-domain bd-name 100
+#Thu Dec  8 00:31:04 2022
+#  MM  -- mtu mismatch            Up -- up              GUp -- going up
+#  CM  -- control-word mismatch   Dn -- down            GDn -- going down
+#  OL  -- no outgoing label       ST -- standby         Lld -- lower layer down
+#  BK  -- backup connection       Fl -- failed          Drm -- dormant
+#  SP  -- static pseudowire       SW -- switchover
+#  
+#  Bridge domain: 100, state: up, bridge type: vpls
+#    MAC learning: enabled
+#    Local switching: enabled
+#    Flood replication point: egress
+#    Flooding Multicast: enabled
+#      Unknown unicast: enabled
+#    MAC aging time: 300 s, MAC limit: 4000, Action: enabled, MTU: 1500
+#    Oper-status: up
+#    ACs: 3 (3 up)
+#    PWs: 0 (0 up)
+#    Routed interface: none
+#
+#    List of ACs:
+#    
+#      AC: Tengigabitethernet0/1/5.100
+#        AC binding status: up, Interface oper state: up
+#      AC: Tengigabitethernet0/1/5.20010
+#        AC binding status: up, Interface oper state: up
+#      AC: Tengigabitethernet0/1/5.20020
+#        AC binding status: up, Interface oper state: up
+#    
+#    List of PWs:
+#    
+#    List of VFIs:
+#  
+#    List of Autodiscovery PWs:
+#  

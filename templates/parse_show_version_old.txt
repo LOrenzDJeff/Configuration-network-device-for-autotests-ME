@@ -1,0 +1,4 @@
+Value Version (Eltex ME5\d00 carrier router running Network OS for ME5k ver. \d+\.\d+\.\d+\.\d+[RT] \(\d\d-\w+-\d\d\d\d \d\d:\d\d:\d\d\)|Eltex ME5\d00 modular carrier router running Network OS for ME5k ver. \d+\.\d+\.\d+\.\d+[RT] \(\d\d-\w+-\d\d\d\d \d\d:\d\d:\d\d\)|Eltex ME5\d00 carrier router running Network OS for ME5k ver. \d+\.\d+\.\d+\.\d+RC \(\d\d-\w+-\d\d\d\d \d\d:\d\d:\d\d\)|Eltex ME5\d00 carrier router running Network OS for ME5k ver. \d+\.\d+\.\d+\.DEVEL-BUILD \(\d\d-\w+-\d\d\d\d \d\d:\d\d:\d\d\)|Eltex ME5\d00 carrier router running Network OS for ME5k ver. \d+\.\d+\.\d+\.\S+ \(\d\d-\w+-\d\d\d\d \d\d:\d\d:\d\d\)|Eltex ME5\d00 modular carrier router running Network OS for ME5k ver. \d+\.\d+\.\d+\.\S+ \(\d\d-\w+-\d\d\d\d \d\d:\d\d:\d\d\))
+
+Start
+  ^${Version}

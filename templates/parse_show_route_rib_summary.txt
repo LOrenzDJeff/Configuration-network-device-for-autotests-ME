@@ -1,0 +1,84 @@
+Value Top (\s+Route Source\s+IPv4 Routes\s+IPv6 Routes)
+Value static_ipv4 (\d+)
+Value static_ipv6 (\d+)
+Value connected_ipv4 (\d+)
+Value connected_ipv6 (\d+)
+Value local_ipv4 (\d+)
+Value local_ipv6 (\d+)
+Value ospf_ipv4 (\d+)
+Value ospf_ipv6 (\d+)
+Value isis_ipv4 (\d+)
+Value isis_ipv6 (\d+)
+Value bgp_ipv4 (\d+)
+Value bgp_ipv6 (\d+)
+Value lfa_ipv4 (\d+)
+Value lfa_ipv6 (\d+)
+Value summary_ipv4 (\d+)
+Value summary_ipv6 (\d+)
+Value def_origin_ipv4 (\d+)
+Value def_origin_ipv6 (\d+)
+Value fib_installed_ipv4 (\d+)  
+Value fib_installed_ipv6 (\d+)
+
+Start
+  ^${Top}
+  ^\s+static\s+${static_ipv4}\s+${static_ipv6}
+  ^\s+connected\s+${connected_ipv4}\s+${connected_ipv6}
+  ^\s+local\s+${local_ipv4}\s+${local_ipv6}
+  ^\s+ospf\s+${ospf_ipv4}\s+${ospf_ipv6}
+  ^\s+isis\s+${isis_ipv4}\s+${isis_ipv6}
+  ^\s+bgp\s+${bgp_ipv4}\s+${bgp_ipv6}
+  ^\s+lfa\s+${lfa_ipv4}\s+${lfa_ipv6}
+  ^\s+summary address\s+${summary_ipv4}\s+${summary_ipv6}
+  ^\s+default origin\s+${def_origin_ipv4}\s+${def_origin_ipv6}
+  ^\s+FIB installed\s+${fib_installed_ipv4}\s+${fib_installed_ipv6}
+
+
+#0/FMC0:atDR1# show route rib summary 
+#Wed Dec 25 13:40:10 2019
+#  
+#  Route Source       IPv4 Routes    IPv6 Routes
+#  ----------------   -------------- --------------
+#  static             0              0
+#  connected          3              3
+#  local              5              4
+#  ospf               0              0
+#  isis               13             13
+#  bgp                0              0
+#  lfa                0              0
+#  summary address    0              0
+#  default origin     0              0
+#  FIB installed      14             13
+#  
+#
+#0/ME5100:atAR1# show route rib summary 
+#Wed Dec 25 13:39:21 2019
+#  
+#  Route Source       IPv4 Routes    IPv6 Routes
+#  ----------------   -------------- --------------
+#  static             0              0
+#  connected          3              3
+#  local              5              4
+#  ospf               0              0
+#  isis               13             13
+#  bgp                0              0
+#  lfa                0              0
+#  summary address    0              0
+#  default origin     0              0
+#  FIB installed      14             13
+#
+#0/ME5100:atAR2# show route rib summary
+#Wed Dec 25 13:37:38 2019
+#  
+#  Route Source       IPv4 Routes    IPv6 Routes
+#  ----------------   -------------- --------------
+#  static             1              0
+#  connected          4              3
+#  local              6              4
+#  ospf               0              0
+#  isis               13             13
+#  bgp                0              0
+#  lfa                0              0
+#  summary address    0              0
+#  default origin     0              0
+#  FIB installed      17             13

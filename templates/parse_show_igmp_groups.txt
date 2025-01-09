@@ -1,0 +1,18 @@
+Value Top (\s+Group Address\s+Interface\s+Uptime\s+Expires\s+Last Reporter\s+)
+Value group1 (225.54.205.135)
+Value group2 (225.54.205.136)
+
+Start
+  ^${Top}
+  ^\s+${group1}\s+te0/1/5.353\s+\d+[dh]\d+[hm]\d+[ms]\s+00h\d+m\d+s\s+10.1.1.254\s+
+  ^\s+${group2}\s+te0/1/5.353\s+\d+[dh]\d+[hm]\d+[ms]\s+00h\d+m\d+s\s+10.1.1.254\s+
+#0/FMC0:atDR1# show igmp groups
+#Tue Apr 14 10:32:14 2020
+#  IGMP Connected Group Membership
+#  
+#  Group Address            Interface                Uptime      Expires     Last Reporter 
+#  ------------------------ ------------------------ ----------- ----------- -------------- 
+#  225.54.205.135           te0/1/5.353              00h15m35s   00h03m30s   10.1.1.254 
+#  225.54.205.136           te0/1/5.353              00h15m35s   00h03m30s   10.1.1.254 
+#0/FMC0:atDR1# 
+##

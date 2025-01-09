@@ -1,0 +1,21 @@
+Value prefix (\d+.\d+.\d+.\d+/\d+)
+Value next_hop (\d+.\d+.\d+.\d+)
+Value metric (\[\d+/\d+\])
+Value time (\d+[dh]\d+[hm]\d+[ms])
+Value out_int (te\d+/\d+/\d+.\d+)
+Value total_count (\d+)
+
+Start
+  ^\s+S\s+${prefix}\s+via\s+${next_hop}\s+${metric},\s+${time},\s+${out_int} -> Record
+  ^\s+Total entries: ${total_count}
+
+
+#0/ME5100:atAR1# show route vrf VRF40 static
+#Wed Apr  1 12:25:58 2020
+#  Type code: S - static
+#
+#
+#  S      192.168.168.43/32    via 192.168.43.2 [1/1], 00h01m10s, te0/0/11.10043
+#
+#  Total route count: 1
+#0/ME5100:atAR1#

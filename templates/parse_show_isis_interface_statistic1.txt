@@ -1,0 +1,116 @@
+Value int_name (Bundle-ether[12]|Tengigabitethernet0/0/11.35[12]|Tengigabitethernet0/1/5.350)
+Value int_isis_pdu_lvl1_rec (\d+)
+Value int_isis_pdu_lvl1_sent (\d+)
+Value int_isis_pdu_lvl2_rec (\d+)
+Value int_isis_pdu_lvl2_sent (\d+)
+Value int_esis_pdu_lvl1_rec (\d+)
+Value int_esis_pdu_lvl1_sent (\d+)
+Value int_esis_pdu_lvl2_rec (\d+)
+Value int_esis_pdu_lvl2_sent (\d+)
+Value int_es_pdu_lvl1_rec (\d+)
+Value int_es_pdu_lvl1_sent (\d+)
+Value int_es_pdu_lvl2_rec (\d+)
+Value int_es_pdu_lvl2_sent (\d+)
+Value int_lsp_lvl1_rec (\d+)
+Value int_lsp_lvl1_sent (\d+)
+Value int_lsp_lvl2_rec (\d+)
+Value int_lsp_lvl2_sent (\d+)
+Value int_csnp_lvl1_rec (\d+)
+Value int_csnp_lvl1_sent (\d+)
+Value int_csnp_lvl2_rec (\d+)
+Value int_csnp_lvl2_sent (\d+)
+Value int_psnp_lvl1_rec (\d+)
+Value int_psnp_lvl1_sent (\d+)
+Value int_psnp_lvl2_rec (\d+)
+Value int_psnp_lvl2_sent (\d+)
+Value int_unknown_lvl1_rec (\d+)
+Value int_unknown_lvl1_sent (\d+)
+Value int_unknown_lvl2_rec (\d+)
+Value int_unknown_lvl2_sent (\d+)
+Value int_discarded_iih_lvl1_rec (\d+)
+Value int_discarded_iih_lvl1_sent (\d+)
+Value int_discarded_iih_lvl2_rec (\d+)
+Value int_discarded_iih_lvl2_sent (\d+)
+Value int_discarded_lsp_lvl1_rec (\d+)
+Value int_discarded_lsp_lvl1_sent (\d+)
+Value int_discarded_lsp_lvl2_rec (\d+)
+Value int_discarded_lsp_lvl2_sent (\d+)
+Value int_discarded_csnp_lvl1_rec (\d+)
+Value int_discarded_csnp_lvl1_sent (\d+)
+Value int_discarded_csnp_lvl2_rec (\d+)
+Value int_discarded_csnp_lvl2_sent (\d+)
+Value int_discarded_psnp_lvl1_rec (\d+)
+Value int_discarded_psnp_lvl1_sent (\d+)
+Value int_discarded_psnp_lvl2_rec (\d+)
+Value int_discarded_psnp_lvl2_sent (\d+)
+
+Start
+  ^\s+Interface:\s+${int_name} -> Counters
+
+
+Counters
+  ^\s+Hello IS-IS PDUs\s+${int_isis_pdu_lvl1_rec}\s+${int_isis_pdu_lvl1_sent}\s+${int_isis_pdu_lvl2_rec}\s+${int_isis_pdu_lvl2_sent}
+  ^\s+Hello ES-IS PDUs\s+${int_esis_pdu_lvl1_rec}\s+${int_esis_pdu_lvl1_sent}\s+${int_esis_pdu_lvl2_rec}\s+${int_esis_pdu_lvl2_sent} 
+  ^\s+Hello ES PDUs\s+${int_es_pdu_lvl1_rec}\s+${int_es_pdu_lvl1_sent}\s+${int_es_pdu_lvl2_rec}\s+${int_es_pdu_lvl2_sent}
+  ^\s+LSP\s+${int_lsp_lvl1_rec}\s+${int_lsp_lvl1_sent}\s+${int_lsp_lvl2_rec}\s+${int_lsp_lvl2_sent}
+  ^\s+CSNP\s+${int_csnp_lvl1_rec}\s+${int_csnp_lvl1_sent}\s+${int_csnp_lvl2_rec}\s+${int_csnp_lvl2_sent}
+  ^\s+PSNP\s+${int_psnp_lvl1_rec}\s+${int_psnp_lvl1_sent}\s+${int_psnp_lvl2_rec}\s+${int_psnp_lvl2_sent} 
+  ^\s+Unknown packet\s+${int_unknown_lvl1_rec}\s+${int_unknown_lvl1_sent}\s+${int_unknown_lvl2_rec}\s+${int_unknown_lvl2_sent}
+  ^\s+Discarded IIH\s+${int_discarded_iih_lvl1_rec}\s+${int_discarded_iih_lvl1_sent}\s+${int_discarded_iih_lvl2_rec}\s+${int_discarded_iih_lvl2_sent}
+  ^\s+Discarded LSP\s+${int_discarded_lsp_lvl1_rec}\s+${int_discarded_lsp_lvl1_sent}\s+${int_discarded_lsp_lvl2_rec}\s+${int_discarded_lsp_lvl2_sent}
+  ^\s+Discarded CSNP\s+${int_discarded_csnp_lvl1_rec}\s+${int_discarded_csnp_lvl1_sent}\s+${int_discarded_csnp_lvl2_rec}\s+${int_discarded_csnp_lvl2_sent}
+  ^\s+Discarded PSNP\s+${int_discarded_psnp_lvl1_rec}\s+${int_discarded_psnp_lvl1_sent}\s+${int_discarded_psnp_lvl2_rec}\s+${int_discarded_psnp_lvl2_sent} -> Record Start 
+
+
+
+
+#0/ME5100:atAR2# show  isis interfaces  statistics 
+#Mon Jul 27 16:10:09 2020
+#  IS-IS Router test
+#    
+#  Interface: Bundle-ether1
+#                              Level-1                 Level-2
+#                        Received    Sent        Received    Sent
+#      Hello IS-IS PDUs  0           0           75          219       
+#      Hello ES-IS PDUs  0           0           0           0         
+#      Hello ES PDUs     0           0           0           0         
+#      LSP               0           0           30          24        
+#      CSNP              0           0           2           59        
+#      PSNP              0           0           0           0         
+#      Unknown packet    0           0           0           0         
+#      Discarded IIH     0           0           0           0         
+#      Discarded LSP     0           0           1           0         
+#      Discarded CSNP    0           0           1           0         
+#      Discarded PSNP    0           0           0           0         
+#    
+#  Interface: Bundle-ether2
+#                              Level-1                 Level-2
+#                        Received    Sent        Received    Sent
+#      Hello IS-IS PDUs  0           0           74          74        
+#      Hello ES-IS PDUs  0           0           0           0         
+#      Hello ES PDUs     0           0           0           0         
+#      LSP               0           0           13          13        
+#      CSNP              0           0           58          57        
+#      PSNP              0           0           3           3         
+#      Unknown packet    0           0           0           0         
+#      Discarded IIH     0           0           0           0         
+#      Discarded LSP     0           0           0           0         
+#      Discarded CSNP    0           0           0           0         
+#      Discarded PSNP    0           0           0           0         
+#    
+#  Interface: Tengigabitethernet0/0/11.351
+#                              Level-1                 Level-2
+#                        Received    Sent        Received    Sent
+#      Hello IS-IS PDUs  0           0           43          74        
+#      Hello ES-IS PDUs  0           0           0           0         
+#      Hello ES PDUs     0           0           0           0         
+#      LSP               0           0           27          8         
+#      CSNP              0           0           22          57        
+#      PSNP              0           0           4           3         
+#      Unknown packet    0           0           0           0         
+#      Discarded IIH     0           0           0           0         
+#      Discarded LSP     0           0           0           0         
+#      Discarded CSNP    0           0           0           0         
+#      Discarded PSNP    0           0           0           0         
+#0/ME5100:atAR2# 
+#

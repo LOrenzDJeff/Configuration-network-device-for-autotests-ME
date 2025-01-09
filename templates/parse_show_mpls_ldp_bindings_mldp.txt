@@ -1,0 +1,3 @@
+<group name="mpls">
+  {{ LSR }}           {{ label }}       P2MP    {{ root_node }}               {{ opaque_value }}             {{ direction }}
+</group>

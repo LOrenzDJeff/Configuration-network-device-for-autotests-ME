@@ -1,0 +1,122 @@
+Value bgp_router_id (\d+.\d+.\d+.\d+)
+Value neighbor (\S+)
+Value neighbor_id (\d+.\d+.\d+.\d+)
+Value neighbor_state (\S+)
+Value last_error (\s+Last error seen is none)
+Value uptime1 (\d+)
+Value uptime2 (\d+)
+Value uptime3 (\d+) 
+Value prefix_recv (\d+)
+Value prefix_sent (\d+)
+Value bfd_status (\S+)
+Value bfd_desired (\S+)
+Value peer_group (\S+\s*\S*)
+Value vrf (\S*)
+Value l_as_numb (\d+)
+Value address_fam (\S+\s\S+)
+Value rem_as (\d+)
+Value loc_as (\d+)
+Value link_type (\w+\s\w+)
+Value orf_entr_count (\d+)
+Value grace_restart (\S+\s*\S*)
+Value conf_memb (\S+)
+Value addr_fam_status (\S+)
+Value addr_fam_state (\S+)
+Value addr_fam_orf_cap (\S+)
+Value nexthop_calc (\S+)
+Value best_path_to_adv (\d+)
+Value addit_path_cap (\S+)
+Value session_auth (\w+)
+
+
+Start
+  ^\s+BGP router identifier ${bgp_router_id},*\s*\S*\s*${vrf}, local AS number\s+${l_as_numb}
+  ^\s+BGP neighbor is ${neighbor}
+  ^\s+Remote AS ${rem_as}, local AS ${loc_as}, ${link_type}
+  ^\s+Remote router ID ${neighbor_id}
+  ^\s+BGP STATE: ${neighbor_state}, LAST EVENT: \w+
+  ^${last_error}
+  ^\s+Peer uptime is ${uptime1}h${uptime2}m${uptime3}s\s+
+  ^\s+Session authentication: ${session_auth}
+  ^\s+ORF entry count is ${orf_entr_count}
+  ^\s+Graceful restart is ${grace_restart}
+  ^\s+BFD status: ${bfd_status}
+  ^\s+BFD desired: ${bfd_desired}
+  ^\s+Confederation member: ${conf_memb} 
+  ^\s+Peer group: ${peer_group}
+  ^\s+Address Family: ${address_fam}
+  ^\s+Status: ${addr_fam_status}, state ${addr_fam_state}
+  ^\s+ORF capability: ${addr_fam_orf_cap}
+  ^\s+Nexthop calculation: ${nexthop_calc}
+  ^\s+Best paths to advertise: ${best_path_to_adv}, Additional path capability ${addit_path_cap}
+  ^\s+In prefixes: \d+, \d+ RIB stored for peer, ${prefix_recv} accepted, 0 rejected, \d+ active
+  ^\s+Out prefixes: \d+, ${prefix_sent} advertised, \d+ denied -> Record
+
+#0/FMC0:atDR1# show bgp neighbors 1.0.0.2
+#Tue Feb 11 14:20:08 2020
+#  BGP router identifier 1.0.0.1, local AS number 65100
+#    
+#    BGP neighbor is 1.0.0.2
+#    Description: 
+#     Remote AS 65100, local AS 65100, internal link
+#     Remote router ID 1.0.0.2
+#      BGP STATE: established, LAST EVENT: recv-keepalive
+#      Last read: 00h00m46s, Last update: 00h00m00s
+#      Hold time is 180 secs, keepalive interval is 60 secs
+#      Configured hold time is 180 secs, keepalive interval is 60 secs
+#      Last error seen is none
+#      Last error received is 0000, 00h00m00s ago
+#      Last error sent is 0000, 00h00m00s ago
+#      Peer uptime is 21h00m09s 
+#      Connections established 1, retried 23
+#      Local socket: 1.0.0.1:55326, remote: 1.0.0.2:179
+#      Session authentication: enabled
+#      ORF entry count is 0
+#      Graceful restart is none
+#        Stale path timeout time is 0 secs
+#        Restart time is 00h00m00s secs
+#      'idle' hold time is 0 millisecs
+#      Route refresh msg. sent 0 received 0
+#      BFD status: not-required 
+#      BFD desired: false 
+#      Confederation member: false 
+#      Reflector client: non-client
+#      Peer group: Internal
+#      Peer group description: 
+#      Established trap is true 
+#      Backward trap is true 
+#      TCP open mode: active
+#      BGP neighbor may be up to 255 hops away
+#      Capabilities sent:  mp-ipv4-unicast route-refresh route-refresh-cisco four-octet-as enhanced-route-refresh 
+#      Capabilities received:  mp-ipv4-unicast route-refresh route-refresh-cisco four-octet-as enhanced-route-refresh 
+#      Capabilities negotiated:  mp-ipv4-unicast route-refresh route-refresh-cisco four-octet-as enhanced-route-refresh 
+#      Maximum prefixes allowed: 0, restart interval: 90 secs
+#      Prefixes 0 received, 1 in out rib, 1 advertised
+#      
+#      Open         msg: received 1, transmitted 1
+#      Notification msg: received 0, transmitted 0
+#      Update       msg: received 0, transmitted 1
+#      Keepalives   msg: received 1444, transmitted 1450
+#      Refresh      msg: received 0, transmitted 0
+#      Total        msg: received 1445, transmitted 1452
+#      
+#      
+#      Address Family: IPv4 Unicast
+#        Status: enabled, state established
+#          Update group: 0
+#          Count of local AS allowed in received route: 0
+#          ORF capability: none
+#          Nexthop calculation is enabled
+#          Inbound soft-reconfiguration is disabled
+#          Route-map name: none imports, none exports
+#          Prefix lists name: none imports, none exports
+#          Best paths to advertise: 1, Additional path capability inherit
+#          In prefixes: 0, 0 RIB stored for peer, 0 accepted, 0 rejected, 0 active
+#            Denied: 0 policed, 0 martians, 0 looped AS, 0 bad nexthop, 0 AS length, 0 community, 0 locally originated
+#          Out prefixes: 1, 1 advertised, 0 denied
+#          In out RIB: 0 local RIB, 0 bests paths
+#          Flapped: 0, 0 suppressed, 0 historical
+#          Withdrawn: 0 input, 0 output, 0 explicit input, 0 explicit output
+#  
+#0/FMC0:atDR1# 
+#

@@ -1,0 +1,82 @@
+Value rd1 (\d+.\d+.\d+.\d+:\d+)
+Value rd2 (\d+.\d+.\d+.\d+:\d+)
+Value rd3 (\d+.\d+.\d+.\d+:\d+)
+Value mac_prefix1 (de:ad:be:af:00:41)
+Value mac_prefix2 (de:ad:be:af:00:42)
+Value mac_prefix3 (de:ad:be:af:00:43)
+Value nexthop1 (\d+.\d+.\d+.\d+)
+Value metric1 (\d+)
+Value loc_pref1 (\d+)
+Value weight1 (\d+)
+Value nexthop2 (\d+.\d+.\d+.\d+)
+Value metric2 (\d+)
+Value loc_pref2 (\d+)
+Value weight2 (\d+)
+Value nexthop3 (\d+.\d+.\d+.\d+)
+Value metric3 (\d+)
+Value loc_pref3 (\d+)
+Value weight3 (\d+)
+Value route_type (\d+)
+
+Start
+  ^\s+u>i\s+\[$route_type\]\[${rd1}\]\[00:00:00:00:00:00:00:00:00:00\]\[0\]\[${mac_prefix1}\]\[\d+\] -> NextHop1
+  ^\s+u>i\s+\[$route_type\]\[${rd2}\]\[00:00:00:00:00:00:00:00:00:00\]\[0\]\[${mac_prefix2}\]\[\d+\] -> NextHop2
+  ^\s+u>i\s+\[$route_type\]\[${rd3}\]\[00:00:00:00:00:00:00:00:00:00\]\[0\]\[${mac_prefix3}\]\[\d+\] -> NextHop3
+  ^\s+u>\s+\[$route_type\]\[${rd1}\]\[00:00:00:00:00:00:00:00:00:00\]\[0\]\[${mac_prefix1}\]\[\d+\]
+  ^\s+u>\s+\[$route_type\]\[${rd2}\]\[00:00:00:00:00:00:00:00:00:00\]\[0\]\[${mac_prefix2}\]\[\d+\]
+  ^\s+u>\s+\[$route_type\]\[${rd3}\]\[00:00:00:00:00:00:00:00:00:00\]\[0\]\[${mac_prefix3}\]\[\d+\]
+
+
+NextHop1
+  ^\s+${nexthop1}\s+${metric1}\s+${loc_pref1}\s+${weight1}\s+? -> Start
+
+NextHop2
+  ^\s+${nexthop2}\s+${metric2}\s+${loc_pref2}\s+${weight2}\s+? -> Start
+
+NextHop3
+  ^\s+${nexthop3}\s+${metric3}\s+${loc_pref3}\s+${weight3}\s+? -> Start
+
+
+
+#0/ME5100:atAR1# show bgp l2vpn evpn 
+#Wed Apr 26 15:56:18 2023
+#  BGP router identifier 1.0.0.3, local AS number 65100 
+#  Graceful Restart is disabled
+#  BGP table state: active
+#  BGP scan interval: 120 secs
+#  
+#  Status codes: d damped, h history, > best, S stale, * active, u untracked, i internal
+#  Origin codes: i igp, e egp, ? incomplete
+#  
+#  Network                  Next hop         Metric  LocPrf  Weight  Path
+#  ------------------------ ---------------- ------- ------- ------- -----
+#  u>i  [1][1.0.0.4:0][00:11:11:11:11:11:11:11:11:11][4294967295][0]
+#                           1.0.0.4          0       100     0       i
+#  u>i  [1][1.0.0.4:100][00:11:11:11:11:11:11:11:11:11][0][301152]
+#                           1.0.0.4          0       100     0       i
+#  u>i  [2][1.0.0.1:100][00:00:00:00:00:00:00:00:00:00][0][de:ad:be:af:00:41][22]
+#                           1.0.0.1          0       100     0       ?
+#  u>i  [2][1.0.0.2:100][00:00:00:00:00:00:00:00:00:00][0][de:ad:be:af:00:42][21]
+#                           1.0.0.2          0       100     0       ?
+#  u>   [2][1.0.0.3:100][00:00:00:00:00:00:00:00:00:00][0][de:ad:be:af:00:43][34]
+#                                            0       100     0       ?
+#  u>i  [3][1.0.0.1:100][0][1.0.0.1]
+#                           1.0.0.1          0       100     0       ?
+#  u>i  [3][1.0.0.2:100][0][1.0.0.2]
+#                           1.0.0.2          0       100     0       ?
+#  u>i  [3][1.0.0.2:200][0][1.0.0.2]
+#                           1.0.0.2          0       100     0       ?
+#  u>   [3][1.0.0.3:100][0][1.0.0.3]
+#                                            0       100     0       ?
+#  u>   [3][1.0.0.3:200][0][1.0.0.3]
+#                           1.0.0.3          0       100     0       ?
+#  u>i  [3][1.0.0.4:100][10][1.0.0.4]
+#                           1.0.0.4          0       100     0       i
+#  u>i  [3][1.0.0.4:100][20][1.0.0.4]
+#                           1.0.0.4          0       100     0       i
+#  u>i  [4][1.0.0.4:0][00:11:11:11:11:11:11:11:11:11][1.0.0.4]
+#                           1.0.0.4          0       100     0       i
+#  
+#  Total entries: 13
+#0/ME5100:atAR1# 
+

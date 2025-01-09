@@ -1,0 +1,28 @@
+Value Top (\s+Interface\s+Area\s+State\s+Address\s+Metric\s+Mode\s+GR\s+BFD\s+)
+Value int_name (bu[12]|lo10|te0/1/5.350|te0/0/11.35[12])
+Value int_area (\d+.\d+.\d+.\d+)
+Value int_state (P2P|BDR|DR|Loop|Down)
+Value int_addr (\d+.\d+.\d+.\d+/\d+)
+Value int_metric (\d+)
+Value int_mode (Active|Passive)
+Value int_GR (Y|N)
+Value int_BFD (Y|N)
+
+Start
+  ^${Top}
+  ^\s+${int_name}\s+${int_area}\s+${int_state}\s+${int_addr}\s+${int_metric}\s+${int_mode}\s+${int_GR}\s+${int_BFD}\s+ -> Record
+
+
+#0/FMC0:atDR1# show ospfv2 interfaces 
+#Tue Jan  5 17:14:39 2021
+#  Routing Process: test, with ID 1.0.0.1
+#    Router is not an area border router
+#
+#  Interface             Area             State  Address             Metric        Mode      GR   BFD 
+#  --------------------- ---------------- ------ ------------------- ------------- --------- ---- ---- 
+#  bu1                   0.0.0.0          P2P    192.168.55.2/30     1             Active    N    N 
+#  bu2                   0.0.0.0          BDR    192.168.55.5/30     1             Active    N    N 
+#  lo10                  0.0.0.0          Loop   1.0.0.1/32          1             Active    N    N 
+#  te0/1/5.350           0.0.0.0          P2P    192.168.55.17/30    1             Active    N    N 
+#  
+#0/FMC0:atDR1# 

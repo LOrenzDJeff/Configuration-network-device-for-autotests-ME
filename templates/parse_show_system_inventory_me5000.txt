@@ -1,0 +1,178 @@
+Value ChassisType (ME5000)
+Value ChassisSerial (ME\d+)
+Value HardVersion (\d+v\d+)
+Value HardRev (\d+)
+Value MAC (\w\w:\w\w:\w\w:\w\w:\w\w:\w\w)
+Value SlotFMC0 (FMC16|FMC32|not present)
+Value FMC0_Serial (ME\d+)
+Value FMC0_HardVersion (\d+v\d+)
+Value FMC0_HardRev (\d+)
+Value SlotFMC1 (FMC16|FMC32|not present)
+Value FMC1_Serial (ME\d+)
+Value FMC1_HardVersion (\d+v\d+)
+Value FMC1_HardRev (\d+)
+Value Slot0 (LC8XLGE|LC20XGE|LC18XGE|not present)
+Value Slot1 (LC8XLGE|LC20XGE|LC18XGE|not present)
+Value Slot1_Serial (ME\d+)
+Value Slot1_HardVersion (\d+v\d+)
+Value Slot1_HardRev (\d+)
+Value Slot1_SM_STAT_board (\w+\s+\w+-\w+-\w+)
+Value Slot1_Serial_number (ME\w+)
+Value Slot1_Hardware_version (\d+v\d+)
+Value Slot2 (LC8XLGE|LC20XGE|LC18XGE|not present)
+Value Slot3 (LC8XLGE|LC20XGE|LC18XGE|not present)
+Value Slot4 (LC8XLGE|LC20XGE|LC18XGE|not present)
+Value Slot5 (LC8XLGE|LC20XGE|LC18XGE|not present)
+Value Slot6 (LC8XLGE|LC20XGE|LC18XGE|not present)
+Value Slot7 (LC8XLGE|LC20XGE|LC18XGE|not present)
+Value Slot8 (LC8XLGE|LC20XGE|LC18XGE|not present)
+Value Slot8_Serial (ME\d+)
+Value Slot8_HardVersion (\d+v\d+)
+Value Slot8_HardRev (\d+)
+Value Slot9 (LC8XLGE|LC20XGE|LC18XGE|not present)
+Value Slot10 (LC8XLGE|LC20XGE|LC18XGE|not present)
+Value Slot11 (LC8XLGE|LC20XGE|LC18XGE|not present)
+Value FanTop (present|not present)
+Value FanBottom (present|not present)
+Value Slot8_SM_STAT_board (\w+\s+\w+-\w+-\w+)
+Value Slot8_Serial_number (ME\w+)
+Value Slot8_Hardware_version (\d+v\d+)
+
+Start
+  ^\s+Module in slot main control panel is ${ChassisType}
+  ^\s+Serial number:\s+${ChassisSerial}
+  ^\s+Hardware version:\s+${HardVersion}
+  ^\s+Hardware revision:\s+${HardRev}
+  ^\s+MAC address:\s+${MAC}
+  ^\s+Module in slot FMC0 is ${SlotFMC0} -> FMC0
+  ^\s+Module in slot FMC1 is ${SlotFMC1} -> FMC1
+  ^\s+Module in slot 0 is ${Slot0}
+  ^\s+Module in slot 1 is ${Slot1} -> Slot1
+  ^\s+Module in slot 2 is ${Slot2}
+  ^\s+Module in slot 3 is ${Slot3}
+  ^\s+Module in slot 4 is ${Slot4}
+  ^\s+Module in slot 5 is ${Slot5}
+  ^\s+Module in slot 6 is ${Slot6}
+  ^\s+Module in slot 7 is ${Slot7}
+  ^\s+Module in slot 8 is ${Slot8} -> Slot8
+  ^\s+Module in slot 9 is ${Slot9}
+  ^\s+Module in slot 10 is ${Slot10}
+  ^\s+Module in slot 11 is ${Slot11}
+  ^\s+Module in slot fan tray top is ${FanTop}
+  ^\s+Module in slot fan tray bottom is ${FanBottom}
+
+FMC0
+  ^\s+Serial number:\s+${FMC0_Serial}
+  ^\s+Hardware version:\s+${FMC0_HardVersion}
+  ^\s+Hardware revision:\s+${FMC0_HardRev} -> Start
+
+FMC1
+  ^\s+Serial number:\s+${FMC1_Serial}
+  ^\s+Hardware version:\s+${FMC1_HardVersion}
+  ^\s+Hardware revision:\s+${FMC1_HardRev} -> Start
+
+Slot1
+  ^\s+Serial number:\s+${Slot1_Serial}
+  ^\s+Hardware version:\s+${Slot1_HardVersion}
+  ^\s+Hardware revision:\s+${Slot1_HardRev}
+  ^\s+SM-STAT board:\s+${Slot1_SM_STAT_board} -> Slot1_SM_STAT_board
+  
+Slot1_SM_STAT_board
+  ^\s+Serial number:\s+${Slot1_Serial_number} 
+  ^\s+Hardware version:\s+${Slot1_Hardware_version} -> Start
+
+Slot8
+  ^\s+Serial number:\s+${Slot8_Serial}
+  ^\s+Hardware version:\s+${Slot8_HardVersion}
+  ^\s+Hardware revision:\s+${Slot8_HardRev} 
+  ^\s+SM-STAT board:\s+${Slot8_SM_STAT_board} -> Slot8_SM_STAT_board
+  
+Slot8_SM_STAT_board
+  ^\s+Serial number:\s+${Slot8_Serial_number} 
+  ^\s+Hardware version:\s+${Slot8_Hardware_version} -> Start
+
+
+#0/FMC0:atDR1# show system inventory 
+#Mon Dec  9 10:55:44 2019
+#  Hardware inventory information for chassis 0
+#  
+#   Module in slot main control panel is ME5000 <-Проверяем эту строчку
+#    Serial number:      ME04000030
+#    Hardware version:   1v2
+#    Hardware revision:  0
+#    MAC address:        a8:f9:4b:8b:92:80
+#  
+#   Module in slot FMC0 is FMC16 <-Проверяем эту строчку
+#    Serial number:      ME01000036
+#    Hardware version:   1v4
+#    Hardware revision:  0
+#    Installed RAM:      8 GB
+#      Bank 0:           Kingston 9965526-020.A00LF
+#        Capacity:       4 GB
+#        Serial number:  5456239
+#      Bank 1:           Kingston 9965526-020.A00LF
+#        Capacity:       4 GB
+#        Serial number:  555ab39
+#    Storage:
+#      Device model:   WDC WD3200LPCX-00VHAT0
+#      Serial number:  WD-WXC1AC5KVECS
+#      Capacity:       320 GB
+#  
+#   Module in slot FMC1 is FMC16 <-Проверяем эту строчку
+#    Serial number:      ME01000042
+#    Hardware version:   1v4
+#    Hardware revision:  0
+#    Installed RAM:      8 GB
+#      Bank 0:           Kingston 9965526-017.A00LF
+#        Capacity:       4 GB
+#        Serial number:  54d46a
+#      Bank 1:           Kingston 9965526-017.A00LF
+#        Capacity:       4 GB
+#        Serial number:  56d36a
+#    Storage:
+#      Device model:   WDC WD3200LPCX-00VHAT0
+#      Serial number:  WD-WXT1E75C039K
+#      Capacity:       320 GB
+#  
+#   Module in slot 0 is not present
+#  
+#   Module in slot 1 is LC18XGE
+#    Serial number:      ME02000037
+#    Hardware version:   1v3
+#    Hardware revision:  0
+#    Installed RAM:      4 GB
+#      Bank 0:           Kingston 9965526-020.A00LF
+#        Capacity:       4 GB
+#        Serial number:  626c4f6
+#  
+#   Module in slot 2 is not present
+#  
+#   Module in slot 3 is not present
+#  
+#   Module in slot 4 is not present
+#  
+#   Module in slot 5 is not present
+#  
+#   Module in slot 6 is not present
+#  
+#   Module in slot 7 is not present
+#  
+#   Module in slot 8 is LC18XGE
+#    Serial number:      ME02000041
+#    Hardware version:   1v3
+#    Hardware revision:  1
+#    Installed RAM:      4 GB
+#      Bank 0:           Kingston 9965526-017.A00LF
+#        Capacity:       4 GB
+#        Serial number:  53e414
+#  
+#   Module in slot 9 is not present
+#  
+#   Module in slot 10 is not present
+#  
+#   Module in slot 11 is not present
+#  
+#   Module in slot fan tray top is present
+#  
+#   Module in slot fan tray bottom is present
+

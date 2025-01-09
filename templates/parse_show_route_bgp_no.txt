@@ -1,0 +1,4 @@
+Value route (10.0.0.52/32|2003:0:52:52::52/128 )
+
+Start
+  ^\s+\S\s\S+\s+${route}\s -> Record

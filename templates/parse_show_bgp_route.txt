@@ -1,0 +1,8 @@
+Value net (\S+)
+Value code (\S+\s\S+)
+Value via_ip (\S+)
+Value metric (\[\d+/\d+\])
+Value interface (\S+)
+
+Start
+  ^\s+${code}\s+${net}\s+via\s${via_ip}\s+${metric},\s+\S+\s+${interface} -> Record

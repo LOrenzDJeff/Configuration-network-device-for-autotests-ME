@@ -1,0 +1,34 @@
+Value prefix (\d+.\d+.\d+.\d+/\d+|\d+:\d+:\d+:\d+::\d+/\d+)
+Value nexthop (\d+.\d+.\d+.\d+)
+Value out_interface (Tengigabitethernet0/0/11.4019|Bundle-ether1)
+Value src_mac (\w+:\w+:\w+:\w+:\w+:\w+)
+Value dst_mac (\w+:\w+:\w+:\w+:\w+:\w+)
+Value out_vid (\d+)
+Value in_vid (\d+)
+Value mtu (\d+)
+Value out_label (\d+)
+Value in_label (\d+)
+
+Start
+  ^\s+Subnet: ${prefix} Nexthop: ${nexthop}
+  ^\s+Interface: ${out_interface}
+  ^\s+Src MAC: ${src_mac}
+  ^\s+Dst MAC: ${dst_mac}
+  ^\s+Outer VID: ${out_vid} Inner VID: ${in_vid}
+  ^\s+MTU: ${mtu}
+  ^\s+Outgoing label: ${out_label}/${in_label}
+
+#0/ME5200:atAR2# show l3forwarding vrf as200 100.0.0.100
+#Wed Oct 13 09:30:22 2021
+#  
+#  Subnet: 100.0.0.100/32 Nexthop: 192.168.19.4 
+#  Interface: Tengigabitethernet0/0/11.4019
+#  Src MAC: e0:d9:e3:ff:48:8b
+#  Dst MAC: 50:00:00:02:00:02
+#  Outer VID: 4019 Inner VID: 0
+#  MTU: 1500
+#  Outgoing label: 311920/18
+#  HW information:
+#    FEC: 0x2000100e, ECMP FEC: 0x00000000, encap-id: 0x40008016
+#0/ME5200:atAR2# 
+

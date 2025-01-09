@@ -1,0 +1,30 @@
+Value route_flags (\S+)
+Value route_rd (\d+:\d+)
+Value route_ip_prefix (\S+)
+Value route_next_hop (\S+)
+Value route_metric (\d+)
+Value route_labels (\S+)
+Value route_locpref (\d+)
+Value route_weight (\d+)
+Value route_path (\S+)
+Value total_entries (\d+)
+
+Start
+  ^\s+${route_flags}\s+${route_rd}\s+${route_ip_prefix}\s+${route_metric}\s+${route_labels}\s+${route_locpref}\s+${route_weight}\s+${route_path} -> Record
+  ^\s+Total\s+entries:\s+${total_entries}
+
+# show bgp vpnv4 unicast
+#Thu Oct 17 11:44:30 2024
+#  BGP router identifier 10.0.0.52, local AS number 64052 
+#  Graceful Restart is disabled
+#  BGP table state: active
+#  
+#  Status codes: d damped, h history, > best, b backup, S stale, * active, u untracked, i internal
+#  Origin codes: i igp, e egp, ? incomplete
+#  
+#  Route Distinguisher        IP Prefix             Next hop         Metric  Rcvd/Lcl label  LocPrf  Weight  Path 
+#  -------------------------- --------------------- ---------------- ------- --------------- ------- ------- ----- 
+#  u>   123:123               10.0.0.4/32                            0       -/29            100     32768   ? 
+#
+#  Total entries: 1
+#0/ME5200:atAR2# 

@@ -1,0 +1,61 @@
+Value relay_agent_name (\w+)
+Value helper_addr (\w+:\w+:\w+:\w+::\w+)
+Value vrf_name (\w+)
+Value dhcp_solicit (\d+)
+Value dhcp_adv (\d+)
+Value dhcp_reply (\d+)
+
+Start
+  ^\s+Relay agent name:\s+${relay_agent_name}
+  ^\s+IPv6 helper-address:\s+${helper_addr}
+  ^\s+VRF name:\s+${vrf_name}
+  ^\s+Solicit:\s+${dhcp_solicit}
+  ^\s+Advertise:\s+${dhcp_adv}
+  ^\s+Reply:\s+${dhcp_reply}
+
+#0/ME5200:atAR2# show relay-agent counters ipv6
+#Thu Apr 15 16:32:14 2021
+#  
+#  Relay agent name:         test
+#    IPv4 helper-address:    192.168.70.1
+#      VRF name:             default
+#    IPv6 helper-address:    2001:db8:100:15a::1
+#      VRF name:             default
+#    Interface:              te0/0/11.10042
+#      Interface oper state: up
+#    IPv6 Counters
+#      DHCP Packets:
+#        Solicit:              15
+#        Advertise:            5
+#        Request:              0
+#        Confirm:              0
+#        Renew:                9
+#        Rebind:               0
+#        Release:              4
+#        Reply:                10
+#        Decline:              0
+#        Reconfigure:          0
+#        Information request:  0
+#        Relay forward:        0
+#        Relay reply:          0
+#        Lease query:          0
+#        Lease query reply:    0
+#        Lease query done:     0
+#        Lease query data:     0
+#        Lease query request:  0
+#        Reconfigure reply:    0
+#        Query:                0
+#        Response:             0
+#      Failed packets
+#        Unknown type:           0
+#        To interface w/o IPv6:  0
+#        TTL expired:            0
+#        Unexpected type:        0
+#        Receive packet fail:    2
+#        Send packet fail:       0
+#        Bad length:             0
+#        Msg w/o relay options:  0
+#        Unknown interface:      0
+#  
+#0/ME5200:atAR2# 
+

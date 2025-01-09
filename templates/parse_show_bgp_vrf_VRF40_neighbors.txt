@@ -1,0 +1,76 @@
+  BGP router identifier {{ bgp_router_id }}, vrf VRF40, local AS number 65100
+    BGP neighbor is {{ neighbor }}
+     Remote router ID {{ neighbor_id }}
+      BGP STATE: {{ neighbor_state }}, LAST EVENT: {{ ignore }}
+      Last error seen is {{ last_error }}
+      Peer uptime is {{ uptime | re("\d+[dh]\d+[hm]\d+[ms]") }}
+          In prefixes: {{ ignore }}, {{ ignore }} RIB stored for peer, {{ prefix_recv }} accepted, 0 rejected, {{ ignore }} active
+          Out prefixes: {{ ignore }}, {{ prefix_sent }} advertised, {{ ignore }} denied
+
+
+#0/ME5100:atAR2# show bgp vrf VRF40 neighbors 
+#Wed Apr  1 14:55:22 2020
+#  BGP router identifier 192.168.42.1, vrf VRF40, local AS number 65100
+#    
+#    BGP neighbor is 192.168.42.2
+#    Description: 
+#     Remote AS 65042, local AS 65100, external link
+#     Remote router ID 192.168.168.42
+#      BGP STATE: established, LAST EVENT: recv-keepalive
+#      Last read: 00h00m06s, Last update: 00h51m29s
+#      Hold time is 180 secs, keepalive interval is 60 secs
+#      Configured hold time is 180 secs, keepalive interval is 60 secs
+#      Last error seen is none
+#      Last error received is 0000, 00h00m00s ago
+#      Last error sent is 0000, 00h00m00s ago
+#      Peer uptime is 00h51m29s 
+#      Connections established 1, retried 2
+#      Local socket: 192.168.42.1:58725, remote: 192.168.42.2:179
+#      Session authentication: disabled
+#      ORF entry count is 0
+#      Graceful restart is aware-only
+#        Stale path timeout time is 0 secs
+#        Restart time is 00h00m00s secs
+#      'idle' hold time is 0 millisecs
+#      Route refresh msg. sent 0 received 0
+#      BFD status: not-required 
+#      BFD desired: false 
+#      Confederation member: false 
+#      Reflector client: non-client
+#      Peer group: not set
+#      Peer group description: 
+#      Established trap is true 
+#      Backward trap is true 
+#      TCP open mode: active
+#      BGP neighbor may be up to 1 hops away
+#      Capabilities sent:  mp-ipv4-unicast route-refresh route-refresh-cisco four-octet-as enhanced-route-refresh 
+#      Capabilities received:  mp-ipv4-unicast route-refresh graceful-restart four-octet-as enhanced-route-refresh 
+#      Capabilities negotiated:  mp-ipv4-unicast route-refresh four-octet-as enhanced-route-refresh 
+#      Maximum prefixes allowed: 0, restart interval: 90 secs
+#      Prefixes 1 received, 4 in out rib, 4 advertised
+#      
+#      Open         msg: received 1, transmitted 1
+#      Notification msg: received 0, transmitted 0
+#      Update       msg: received 2, transmitted 1
+#      Keepalives   msg: received 61, transmitted 59
+#      Refresh      msg: received 0, transmitted 0
+#      Total        msg: received 64, transmitted 61
+#      
+#      Address Family: IPv4 Unicast
+#        Status: enabled, state established
+#          Count of local AS allowed in received route: 0
+#          ORF capability: none
+#          Nexthop calculation is enabled
+#          Inbound soft-reconfiguration is disabled
+#          Route-map name: none imports, none exports
+#          Prefix lists name: none imports, none exports
+#          Best paths to advertise: 1, Additional path capability inherit
+#          In prefixes: 1, 1 RIB stored for peer, 1 accepted, 0 rejected, 1 active
+#            Denied: 0 policed, 0 martians, 0 looped AS, 0 bad nexthop, 0 AS length, 0 community, 0 locally originated
+#          Out prefixes: 4, 4 advertised, 0 denied
+#          In out RIB: 1 local RIB, 1 bests paths
+#          Flapped: 0, 0 suppressed, 0 historical
+#          Withdrawn: 0 input, 0 output, 0 explicit input, 0 explicit output
+#  
+#0/ME5100:atAR2# 
+#

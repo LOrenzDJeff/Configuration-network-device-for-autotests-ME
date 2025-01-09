@@ -1,0 +1,31 @@
+Value igmp_int (Tengigabitethernet0/1/5.353)
+Value igmp_status (IGMP is enabled on interface)
+Value igmp_version ([23])
+Value igmp_query_timer (125)
+Value igmp_response_timer (10)
+Value Querier (10.1.1.1)
+
+
+Start
+  ^\s+${igmp_int} IGMP status is up
+  ^\s+${igmp_status}
+  ^\s+Current IGMP version is ${igmp_version}
+  ^\s+Query interval is ${igmp_query_timer} seconds
+  ^\s+Query response interval is ${igmp_response_timer} seconds
+  ^\s+Querying router is ${Querier} \(this system\)
+  
+#0/FMC0:atDR1# show igmp interfaces 
+#Tue Apr 14 11:29:52 2020
+#  Tengigabitethernet0/1/5.353 IGMP status is up
+#    IGMP is enabled on interface
+#    Promiscuous mode is enabled
+#    Current IGMP version is 2
+#    Robustness is 2
+#    Query interval is 125 seconds
+#    Query timeout is 0 seconds
+#    Query response interval is 10 seconds
+#    Last member query interval is 1 seconds
+#    Querying router is 10.1.1.1 (this system)
+#  
+#0/FMC0:atDR1# 
+#

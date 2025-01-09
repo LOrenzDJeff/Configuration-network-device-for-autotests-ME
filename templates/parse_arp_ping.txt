@@ -1,0 +1,6 @@
+Value success_rate (\d+|\d+.\d+)
+
+
+Start
+  ^Success\s+rate\s+is\s+${success_rate}\s+percent\s+\(\d+/\d+\)
+

@@ -1,0 +1,28 @@
+Value process_name (\S+)
+Value process_id (\d+.\d+.\d+.\d+)
+Value nbr_id (\d+.\d+.\d+.\d+)
+Value nbr_area_id (\d+.\d+.\d+.\d+)
+Value nbr_priority (\d+)
+Value nbr_state (\S+)
+Value nbr_bfd (\S+)
+Value nbr_dead_timer (\d+:\d+:\d+)
+Value nbr_last_change (\S+)
+Value nbr_addr (\S+)
+Value nbr_int (\S+)
+
+Start
+  ^\s+Routing\s+Process:\s+${process_name},\s+ID\s+${process_id}
+  ^\s+${nbr_id}\s+${nbr_area_id}\s+${nbr_priority}\s+${nbr_state}\s+${nbr_bfd}\s+${nbr_dead_timer}\s+${nbr_last_change}\s+${nbr_addr}\s+${nbr_int} -> Record
+
+
+#Mon Feb 12 03:59:18 2024
+#  Routing Process: 1, ID 1.0.0.3
+#    Router is not an area border router  
+#    
+#  Neighbor ID      Area ID          Pri  State               BFD           Dead Time  Last state change  Address                                  Interface   
+# ---------------- ---------------- ---- ------------------- ------------- ---------- ------------------ ---------------------------------------- ----------
+#  1.0.0.2          0.0.0.0          1    exchange-start      not-required  00:00:39   00h00m00s          fe80::e2d9:e3ff:fedf:6eb3                bu2.3210   
+#  
+#  
+#  
+#

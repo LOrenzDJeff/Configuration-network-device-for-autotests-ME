@@ -1,0 +1,11 @@
+Value state (\S+)
+Value refl_client (\S+)
+Value peer_gr (\S+\s*\S*)
+Value peer_gr_descr (.*)
+
+
+Start
+  ^\s+BGP STATE: ${state}\S
+  ^\s+Reflector client: ${refl_client}
+  ^\s+Peer group: ${peer_gr}
+  ^\s+Peer group description: ${peer_gr_descr} -> Record

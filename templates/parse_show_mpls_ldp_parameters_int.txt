@@ -1,0 +1,53 @@
+Value Interface (\s+Interfaces:)
+Value Int_name (\s+Interface Bundle-ether \d+\s+|\s+Interface Tengigabitethernet0/\d+/\d+.\d+)
+Value Int_bfd (\s+BFD status: disabled|\s+BFD status: enabled)
+Value Int_hold_timer (\s+Holdtime interval: \d+ sec)
+Value Int_hello_timer (\s+Hello interval: \d+ sec)
+
+Start
+  ^${Int_name}
+  ^${Int_bfd}  
+  ^${Int_hold_timer}
+  ^${Int_hello_timer} -> Record 
+
+#
+#0/ME5100:atAR1# show mpls ldp parameters 
+#Fri Jan 10 17:19:44 2020
+#  LDP Parameters:
+#    Router ID: 1.0.0.3
+#    LSR ID: 1.0.0.3
+#    Transport address: 1.0.0.3
+#  Graceful Restart:
+#    Status: disabled
+#    Reconnect Timeout: 200 sec, Forwarding State Holdtime: 200 sec
+#  
+#  Neighbors:
+#  
+#    Peer address: 1.0.0.1 
+#      BFD status: disabled
+#      Holdtime interval: 40 sec
+#      Hello interval: 0 sec
+#  
+#    Peer address: 1.0.0.2 
+#      BFD status: disabled
+#      Holdtime interval: 40 sec
+#      Hello interval: 0 sec
+#  
+#  Interfaces:
+#  
+#    Interface Tengigabitethernet0/0/11.352 
+#      BFD status: disabled
+#      Holdtime interval: 40 sec
+#      Hello interval: 15 sec
+#  
+#    Interface Bundle-ether 1 
+#      BFD status: disabled
+#      Holdtime interval: 40 sec
+#      Hello interval: 15 sec
+#  
+#    Interface Bundle-ether 2 
+#      BFD status: disabled
+#      Holdtime interval: 40 sec
+#      Hello interval: 15 sec
+#0/ME5100:atAR1# 
+#

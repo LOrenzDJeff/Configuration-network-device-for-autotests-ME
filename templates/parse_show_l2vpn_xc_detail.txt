@@ -1,0 +1,70 @@
+Value group_name (\w+)
+Value xc_name (\w+)
+Value xc_mtu (\d+)
+Value xc_status (\w+|\w+\s+\w+)
+Value ac_bind_status (\w+)
+Value ac_int_status (\w+)
+Value pw_neighbor_ip (\d+.\d+.\d+.\d+)
+Value pw_id (\d+)
+Value pw_admin_status (\w+)
+Value pw_oper_status (\w+)
+Value pw (\s+PW: Neighbor \d+.\d+.\d+.\d+, pw-id \d+, admin Up, oper Up|\s+PW: Neighbor \d+.\d+.\d+.\d+, pw-id \d+, admin Up, oper ST)
+Value type (ethernet|ethernet-tagged)
+Value cw (control-word-present|control-word-not-present)
+Value label_local (\d+)
+Value label_remote (\d+)
+
+Start
+  ^\s+Group ${group_name}, XC ${xc_name}, mtu ${xc_mtu}, state ${xc_status}
+  ^\s+AC binding status: ${ac_bind_status}, Interface oper state: ${ac_int_status}
+  ^\s+PW: Neighbor ${pw_neighbor_ip}, pw-id ${pw_id}, admin ${pw_admin_status}, oper ${pw_oper_status}
+  ^\s+PW class: pwclasstest01, type: ${type}, signaling: pseudowire-id-fec-signaling
+  ^\s+PSN type: mpls, encapsulation: MPLS, control word: ${cw}
+  ^\s+Label\s+${label_local}\s+${label_remote}
+
+#0/ME5100:atAR2# show l2vpn xconnect detail 
+#Wed May 18 15:08:22 2022
+#  MM  -- mtu mismatch            Up -- up              GUp -- going up
+#  CM  -- control-word mismatch   Dn -- down            GDn -- going down
+#  OL  -- no outgoing label       ST -- standby         Lld -- lower layer down
+#  BK  -- backup connection       Fl -- failed          Drm -- dormant
+#  SP  -- static pseudowire       SW -- switchover
+#  
+#  Group xcgroup02, XC pw2, mtu 1500, state Administrative active
+#      
+#      AC: Tengigabitethernet0/0/11.12
+#        AC binding status: up, Interface oper state: up
+#      
+#    PW: Neighbor 1.0.0.1, pw-id 2, admin Up, oper Up
+#    Status codes: 
+#      PW class: pwclass01, type: ethernet, signaling: pseudowire-id-fec-signaling
+#      PSN type: mpls, encapsulation: MPLS, control word: control-word-not-present
+#      Redundancy state active
+#      Vpn index: 1, type: ws
+#      Created: 2022-05-18 15:05:57, last state change: 00h01m03s ago
+#      
+#                                              Local                     Remote
+#      Label                                   19                        18
+#      Group ID                                0                         0
+#      MTU                                     1500                      1500
+#      Forwarding                              true                      true
+#      Customer-facing (ingress) recv fault    false                     false
+#      Customer-facing (egress) send fault     false                     false
+#      Local PSN-facing (ingress) recv fault   false                     false
+#      Local PSN-facing (egress) send fault    false                     false
+#      Switchover                              false                     false
+#      Interface description string rcv: 
+#      Remote capabilities:
+#        VC status can be signaled: false
+#        VCCV ID can be signaled  : false
+#          Remote Control Channel (CC) supported: none
+#          Remote Connectivity Verification (CV) supported: none
+#      Remote node capability:
+#        Manually set PW: false
+#        Protocol has not yet finished cap. determination: false
+#        Signaling the pseudowire: true
+#        Sending the pseudowire: false
+#  
+#    List of Autodiscovery PWs:
+#  
+#0/ME5200:atAR2# 

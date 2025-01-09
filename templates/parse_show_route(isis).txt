@@ -1,0 +1,78 @@
+Value line1 (\s+Codes: C - connected, S - static, O - OSPF, B - BGP, L - local)
+Value line2 (\s+IA - OSPF inter area, EA - OSPF intra area)
+Value line3 (\s+N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2)
+Value line4 (\s+E1 - OSPF external type 1, E2 - OSPF external type 2)
+Value line5 (\s+i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2,)
+Value line6 (\s+LE1 - IS-IS level1 external, LE2 - IS-IS level2 external)
+Value line7 (\s+BI - BGP internal, BE - BGP external, BV - BGP vpn)
+Value route1_ipv4 (1.0.0.1/32\s+via \d+.\d+.\d+.\d+ \[116/10\], \d+[wdh]\d+[dhm]\d+[hms],|1.0.0.1/32\s+is directly connected, \d+[wdh]\d+[dhm]\d+[hms],) 
+Value route2_ipv4 (1.0.0.2/32\s+via \d+.\d+.\d+.\d+ \[116/10\], \d+[wdh]\d+[dhm]\d+[hms],|1.0.0.2/32\s+is directly connected, \d+[wdh]\d+[dhm]\d+[hms],)
+Value route3_ipv4 (1.0.0.3/32\s+via \d+.\d+.\d+.\d+ \[116/10\], \d+[wdh]\d+[dhm]\d+[hms],|1.0.0.3/32\s+is directly connected, \d+[wdh]\d+[dhm]\d+[hms],)
+Value route4_ipv4 (1.0.0.4/32\s+via \d+.\d+.\d+.\d+ \[116/10\], \d+[wdh]\d+[dhm]\d+[hms],)
+Value route1_ipv6 (2001:0:10:1::1/128\s+via \w+::\w+:\w+:\w+:\w+ \[116/10\], \d+[wdh]\d+[dhm]\d+[hms],|2001:0:10:1::1/128\s+is directly connected, \d+[wdh]\d+[dhm]\d+[hms],)
+Value route2_ipv6 (2002:0:10:1::2/128\s+via \w+::\w+:\w+:\w+:\w+ \[116/10\], \d+[wdh]\d+[dhm]\d+[hms],|2002:0:10:1::2/128\s+is directly connected, \d+[wdh]\d+[dhm]\d+[hms],)
+Value route3_ipv6 (2003:0:10:1::3/128\s+via \w+::\w+:\w+:\w+:\w+ \[116/10\], \d+[wdh]\d+[dhm]\d+[hms],|2003:0:10:1::3/128\s+is directly connected, \d+[wdh]\d+[dhm]\d+[hms],)
+Value total_count (\d+)
+
+Start
+  ^${line1} -> Record
+  ^${line2} -> Record
+  ^${line3} -> Record
+  ^${line4} -> Record
+  ^${line5} -> Record
+  ^${line6} -> Record
+  ^${line7} -> Record
+  ^\s+i L[12]\s+${route1_ipv4} bu[12] -> Record
+  ^\s+L\s+${route1_ipv4} lo10 -> Record
+  ^\s+i L[12]\s+${route2_ipv4} bu[12] -> Record
+  ^\s+L\s+${route2_ipv4} lo10 -> Record
+  ^\s+i L[12]\s+${route3_ipv4} bu[12] -> Record
+  ^\s+L\s+${route3_ipv4} lo10 -> Record
+  ^\s+i L[12]\s+${route4_ipv4} te0/[01]/\d+.\d+ -> Record
+  ^\s+i L[12]\s+${route1_ipv6} bu1 -> Record
+  ^\s+L\s+${route1_ipv6} lo10 -> Record
+  ^\s+i L[12]\s+${route2_ipv6} bu[12] -> Record
+  ^\s+L\s+${route2_ipv6} lo10 -> Record
+  ^\s+i L[12]\s+${route3_ipv6} bu[12] -> Record
+  ^\s+L\s+${route3_ipv6} lo10 -> Record
+  ^\s+Total entries: ${total_count} -> Record
+
+#0/ME5100:atAR1# show route
+#Tue Dec 24 09:19:03 2019
+#  Codes: C - connected, S - static, O - OSPF, B - BGP, L - local
+#      IA - OSPF inter area, EA - OSPF intra area
+#      N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+#      E1 - OSPF external type 1, E2 - OSPF external type 2
+#      i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2,
+#      LE1 - IS-IS level1 external, LE2 - IS-IS level2 external
+#      BI - BGP internal, BE - BGP external, BV - BGP vpn
+#  
+#  
+#  i L2   1.0.0.1/32    via 192.168.55.2 [116/10], 04d21h41m, bu1
+#  i L2   1.0.0.2/32    via 192.168.55.22 [116/10], 04d21h41m, bu2
+#  L      1.0.0.3/32     is directly connected, 04d22h03m, lo10
+#  i L2   1.0.0.4/32    via 192.168.55.10 [116/10], 00h01m28s, te0/0/11.352
+#  L      172.16.1.1/32     is directly connected, 01w03d14h, lo1
+#  C      192.168.55.0/30     is directly connected, 01w03d14h, bu1
+#  L      192.168.55.1/32     is directly connected, 01w03d14h, bu1
+#  i L2   192.168.55.4/30    via 192.168.55.2 [116/20], 04d21h41m, bu1
+#  C      192.168.55.8/30     is directly connected, 01w03d14h, te0/0/11.352
+#  L      192.168.55.9/32     is directly connected, 01w03d14h, te0/0/11.352
+#  i L2   192.168.55.12/30    via 192.168.55.22 [116/20], 00h01m28s, bu2
+#  i L2   192.168.55.16/30    via 192.168.55.2 [116/20], 00h01m28s, bu1
+#  C      192.168.55.20/30     is directly connected, 01w03d14h, bu2
+#  L      192.168.55.21/32     is directly connected, 01w03d14h, bu2
+#  i L2   2001:0:10:1::1/128    via fe80::aaf9:4bff:fe8b:9372 [116/10], 04d17h12m, bu1
+#  i L2   2001:db8:cafe:a001::/64    via fe80::e2d9:e3ff:fedf:3537 [116/20], 04d17h12m, bu2
+#  C      2001:db8:cafe:a002::/64     is directly connected, 04d17h47m, bu2
+#  L      2001:db8:cafe:a002::2/128     is directly connected, 04d17h47m, bu2
+#  C      2001:db8:cafe:a003::/64     is directly connected, 04d17h45m, bu1
+#  L      2001:db8:cafe:a003::2/128     is directly connected, 04d17h45m, bu1
+#  i L2   2001:db8:cafe:a011::/64    via fe80::aaf9:4bff:fe8b:9372 [116/20], 04d17h11m, bu1
+#  i L2   2001:db8:cafe:a012::/64    via fe80::e2d9:e3ff:fedf:3537 [116/20], 04d17h22m, bu2
+#  C      2001:db8:cafe:a013::/64     is directly connected, 04d17h44m, te0/0/11.352
+#  L      2001:db8:cafe:a013::2/128     is directly connected, 04d17h44m, te0/0/11.352
+#  i L2   2002:0:10:1::2/128    via fe80::e2d9:e3ff:fedf:3537 [116/10], 04d17h22m, bu2
+#  L      2003:0:10:1::3/128     is directly connected, 04d17h50m, lo10
+#  
+#  Total route count: 26

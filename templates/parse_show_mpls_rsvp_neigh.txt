@@ -1,0 +1,5 @@
+Value neighbor (\d+.\d+.\d+.\d+)
+Value int (\S+)
+
+Start
+  ^\s+${neighbor}\s+\S+\s+\d+h\d+m\d+s\s+${int} -> Record

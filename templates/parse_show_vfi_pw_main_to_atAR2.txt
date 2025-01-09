@@ -1,0 +1,155 @@
+Value bd_name (\w+)
+Value bd_state ([Uu]p|[Dd]own|[Ii]nit)
+Value bd_type (vpls|evpn-mpls|evpn-vxlan)
+Value mac_learn_status (enabled|disabled|all)
+Value local_switch_status (enabled|disabled|all)
+Value flood_replication (egress|ingress)
+Value flood_multicast (enabled|disabled|all)
+Value unknown_unicast (enabled|disabled|all)
+Value mac_age_time (\d+)
+Value mac_limit (\d+)
+Value mac_action (enabled|disabled|all)
+Value bd_mtu (\d+)
+Value oper_status ([Uu]p|[Dd]own|[Ii]nit)
+Value ac_total_num (\d+)
+Value ac_up_num (\d+)
+Value pw_total_num (\d+)
+Value pw_up_num (\d+)
+Value ac1 (\w+\d+/\d+/\d+.100)
+Value ac2 (\w+\d+/\d+/\d+.20010)
+Value ac3 (\w+\d+/\d+/\d+.20020)
+Value vfi (\S+)
+Value PW1_neighbor_ip (1.0.0.2) 
+Value PW1_id (\d+)
+Value PW1_admin_status ([Uu]p|[Dd]own|[Ii]nit)
+Value PW1_oper_status ([Uu]p|[Dd]own|[Ii]nit|[Ss][Tt])
+Value PW1_label_local (\d+)  
+Value PW1_label_remote (\d+)
+Value PW2_neighbor_ip (1.0.0.3) 
+Value PW2_id (\d+)
+Value PW2_admin_status ([Uu]p|[Dd]own|[Ii]nit)
+Value PW2_oper_status ([Uu]p|[Dd]own|[Ii]nit|[Ss][Tt])
+Value PW2_label_local (\d+)
+Value PW2_label_remote (\d+)
+
+Start
+  ^\s+Bridge\s+domain:\s+${bd_name},\s+state:\s+${bd_state},\s+bridge\s+type:\s+${bd_type}
+  ^\s+MAC\s+learning:\s+${mac_learn_status}
+  ^\s+Local\s+switching:\s+${local_switch_status}
+  ^\s+Flood\s+replication\s+point:\s+${flood_replication}
+  ^\s+Flooding Multicast:\s+${flood_multicast}
+  ^\s+Unknown unicast:\s+${unknown_unicast}
+  ^\s+MAC\s+aging\s+time:\s+${mac_age_time}\s+s,\s+MAC\s+limit:\s+${mac_limit},\s+Action:\s+${mac_action},\s+MTU:\s+${bd_mtu}
+  ^\s+Oper-status:\s+${oper_status}
+  ^\s+ACs:\s+${ac_total_num}\s+\(${ac_up_num}\s+up\)
+  ^\s+PWs:\s+${pw_total_num}\s+\(${pw_up_num}\s+up\)
+  ^\s+AC:\s+${ac1}
+  ^\s+AC:\s+${ac2}
+  ^\s+AC:\s+${ac3}
+  ^\s+VFI\s+${vfi}
+  ^\s+PW:\s+Neighbor\s+1.0.0.2,\s+pw-id ${PW1_id},\s+admin\s+${PW1_admin_status},\s+oper\s+${PW1_oper_status} -> pw1labels
+  ^\s+PW:\s+Neighbor\s+1.0.0.3,\s+pw-id ${PW2_id},\s+admin\s+${PW2_admin_status},\s+oper\s+${PW2_oper_status} -> pw2labels
+
+pw1labels
+  ^\s+Label\s+${PW1_label_local}\s+${PW1_label_remote} -> Start
+  
+pw2labels  
+  ^\s+Label\s+${PW2_label_local}\s+${PW2_label_remote} -> Record
+
+#show l2vpn bridge-domain detail
+#Fri Dec 23 14:21:22 2022
+#  MM  -- mtu mismatch            Up -- up              GUp -- going up
+#  CM  -- control-word mismatch   Dn -- down            GDn -- going down
+#  OL  -- no outgoing label       ST -- standby         Lld -- lower layer down
+#  BK  -- backup connection       Fl -- failed          Drm -- dormant
+#  SP  -- static pseudowire       SW -- switchover
+#  
+#  Bridge domain: 100, state: up, bridge type: vpls
+#    MAC learning: enabled
+#    Local switching: enabled
+#    Flood replication point: egress
+#    Flooding Multicast: enabled
+#      Unknown unicast: enabled
+#    MAC aging time: 300 s, MAC limit: 4000, Action: enabled, MTU: 1500
+#    Oper-status: up
+#    ACs: 3 (3 up)
+#    PWs: 1 (1 up)
+#    Routed interface: none
+#
+#    List of ACs:
+#    
+#      AC: Tengigabitethernet0/1/5.100
+#        AC binding status: up, Interface oper state: up
+#      AC: Tengigabitethernet0/1/5.20010
+#        AC binding status: up, Interface oper state: up
+#      AC: Tengigabitethernet0/1/5.20020
+#        AC binding status: up, Interface oper state: up
+#    
+#    List of PWs:
+#    
+#    List of VFIs:
+#    
+#     VFI vfi100
+#       
+#      PW: Neighbor 1.0.0.2, pw-id 2, admin Up, oper Up
+#      Status codes: 
+#        PW class: pwclass01, type: ethernet, signaling: pseudowire-id-fec-signaling
+#        PSN type: mpls, encapsulation: MPLS, control word: control-word-not-present
+#        Redundancy state active
+#        Vpn index: 1, type: ls
+#        Created: 2022-12-23 13:52:11, last state change: 00h12m59s ago
+#        
+#        MPLS                                    Local                     Remote
+#        Label                                   38                        30
+#        Group ID                                0                         0
+#        MTU                                     1500                      1500
+#        Forwarding                              true                      true
+#        Customer-facing (ingress) recv fault    false                     false
+#        Customer-facing (egress) send fault     false                     false
+#        Local PSN-facing (ingress) recv fault   false                     false
+#        Local PSN-facing (egress) send fault    false                     false
+#        Switchover                              false                     false
+#        Interface description string rcv: none
+#        Remote capabilities:
+#          VC status can be signaled: false
+#          VCCV ID can be signaled  : false
+#            Remote Control Channel (CC) supported: none
+#            Remote Connectivity Verification (CV) supported: none
+#        Remote node capability:
+#          Manually set PW: false
+#          Protocol has not yet finished cap. determination: false
+#          Signaling the pseudowire: true
+#          Sending the pseudowire: false
+#      Backup PW:
+#      PW: Neighbor 1.0.0.3, pw-id 2, admin Up, oper ST
+#      Status codes: BK
+#        Backup for neighbor 1.0.0.2, pw-id 2
+#        PW class: pwclass01, type: ethernet, signaling: pseudowire-id-fec-signaling
+#        PSN type: mpls, encapsulation: MPLS, control word: control-word-not-present
+#        Redundancy state standby
+#        Vpn index: 1, type: ls
+#        Created: 2022-12-23 13:52:11, last state change: 00h12m59s ago
+#        
+#        MPLS                                    Local                     Remote
+#        Label                                   29                        25
+#        Group ID                                0                         0
+#        MTU                                     1500                      1500
+#        Forwarding                              true                      true
+#        Customer-facing (ingress) recv fault    false                     false
+#        Customer-facing (egress) send fault     false                     false
+#        Local PSN-facing (ingress) recv fault   false                     false
+#        Local PSN-facing (egress) send fault    false                     false
+#        Switchover                              false                     false
+#        Interface description string rcv: none
+#        Remote capabilities:
+#          VC status can be signaled: false
+#          VCCV ID can be signaled  : false
+#        Remote node capability:
+#          Manually set PW: false
+#          Protocol has not yet finished cap. determination: false
+#          Signaling the pseudowire: true
+#          Sending the pseudowire: false
+#  
+#    List of Autodiscovery PWs:
+#  
+#0/FMC0:atDR1# 

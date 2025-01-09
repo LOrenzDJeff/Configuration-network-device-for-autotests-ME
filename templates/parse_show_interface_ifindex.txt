@@ -1,0 +1,31 @@
+Value if_index (\d+)
+
+Start
+  ^\s+Interface index is ${if_index}
+
+
+#0/FMC0:atDR1# show interfaces tengigabitethernet 0/1/5.100
+#Fri Jun  5 13:46:56 2020
+#  Tengigabitethernet0/1/5.100 is Up
+#    Interface index is 275
+#    Hardware is Tengigabitethernet, address is a8:f9:4b:8b:92:99
+#    Encapsulation: 802.1Q(0x8100) outer vid 100
+#    Rewrite ingress: pop one tag
+#    Rewrite egress: push outer vid 100 type 8100, inner type 8100
+#    Link is up for 1 hours, 42 minutes, 23 seconds
+#    Description: to_labr02:gi1/0/2
+#    No IPv4 address assigned
+#    No IPv6 address assigned
+#    Interface is bound to VRF default
+#    Interface is in layer2 forwarding mode
+#    ARP aging time is 240 minutes
+#    Interface MTU is 1518
+#    20 seconds input rate is 0 bit/s
+#    20 seconds output rate is 64 bit/s
+#    20 seconds input rate is 0 pps
+#    20 seconds output rate is 0 pps
+#      350 packets input, 30882 bytes received
+#      390 packets output, 33616 bytes sent
+#  
+#0/FMC0:atDR1# 
+#

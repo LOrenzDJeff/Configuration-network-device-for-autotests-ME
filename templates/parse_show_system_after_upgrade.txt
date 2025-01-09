@@ -1,0 +1,53 @@
+Value SysType (Eltex ME5\d00 carrier router|Eltex ME5000 modular carrier router)
+Value SysName (\S+)
+Value SysVersion (\d+\.\d+\.\d+\.\d+[RT]C?)
+Value SysUptime (0 hours, \d+ minutes, \d+ seconds)
+Value SysRestartTime (\w+ \w+  *\d+ \d+\:\d+\:\d+ \d)
+Value SysMac (\w\w:\w\w:\w\w:\w\w:\w\w:\w\w)
+Value SysPSM1 (not present|present, status ON|present, status OFF|Not connected|DC feeder, status ON)
+Value SysPSM2 (not present|present, status ON|present, status OFF|Not connected|DC feeder, status ON)
+
+
+Start
+  ^\s+System type:\s+${SysType}
+  ^\s+System name:\s+${SysName}
+  ^\s+System software:\s+Eltex Network OS for ME5k version\s+${SysVersion}
+  ^\s+System uptime:\s+${SysUptime}
+  ^\s+System restarted at:\s+${SysRestartTime}
+  ^\s+System MAC address:\s+${SysMac}
+  ^\s+Power supply 1 is\s+${SysPSM1}
+  ^\s+Power supply 2 is\s+${SysPSM2} -> Record
+
+
+
+
+
+#0/ME5100:atAR1# show system 
+#Thu Feb 27 10:27:26 2020
+#  System type:            Eltex ME5100 carrier router
+#  System name:            atAR1
+#  System software:        Eltex Network OS for ME5k version 2.3.0.301T
+#  System uptime:          0 hours, 6 minutes, 59 seconds
+#  System restarted at:    Thu Feb 27 10:20:27 2020
+#  System MAC address:     e0:d9:e3:df:34:a0
+#  
+#  Power supply 1 is    not present
+#  Power supply 2 is    present, status ON
+#  
+#  System has no active/unconfirmed alarms
+#  
+#0/FMC0:atDR1# show system
+#Thu Feb 27 17:28:01 2020
+#  System type:            Eltex ME5000 modular carrier router
+#  System name:            atDR1
+#  System software:        Eltex Network OS for ME5k version 2.3.0.299T
+#  System uptime:          6 hours, 45 minutes, 50 seconds
+#  System restarted at:    Thu Feb 27 10:42:12 2020
+#  System MAC address:     a8:f9:4b:8b:92:80
+#  
+#  Power supply 1 is    Not connected
+#  Power supply 2 is    DC feeder, status ON
+#  
+#  SYSTEM HAS ACTIVE ALARMS
+#0/FMC0:atDR1# 
+#

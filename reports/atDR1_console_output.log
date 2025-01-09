@@ -1,0 +1,739 @@
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+
+corebo Tue Sep 13 06:30:56 UTC 2022 romstage starting (log ot-1956fa1 Tue Sep 13 06:30:56 UTC 2022 romstage starting (log level: 5)...
+
+
+coreboot-1956fa1 Tue Sep 13 06:30:56 UTC 2022 romstage starting (log level: 5)...
+
+
+coreboot-1956fa1 Tue Sep 13 06:30:56 UTC 2022 romstage starting (log level: 5)...
+Not a DDR4 SPD!
+Not a DDR4 SPD!
+
+
+coreboot-1956fa1 Tue Sep 13 06:30:56 UTC 2022 ramstage starting (log level: 5)...
+PCI: Leftover static devices:
+PCI: 00:19.0
+PCI: 00:1f.5
+PCI: Check your devicetree.cb.
+
+
+U-Boot 2022.04 (Nov 15 2022 - 06:29:24 +0000)
+
+CPU: x86_64, vendor Intel, device 50663h
+DRAM:  64 GiB
+Core:  12 devices, 12 uclasses, devicetree: separate
+WDT:   Started iTCO with servicing (30s timeout)
+MMC:   
+Loading Environment from SPIFlash... SF: Detected mx25l12805d with page size 256 Bytes, erase size 4 KiB, total 16 MiB
+OK
+Vendor: Eltex
+Model: SM-CPU-D1500
+BIOS Version: 1956fa1
+BIOS date: 09/13/2022
+Reading factory settings...
+SPI flash mx25l12805d: read 116 byte from offset 0x400000 to buffer 0x7eb8e49c
+Factory settings:
+  factory_type:   <FMC32>
+  factory_sn:     <ME16000030>
+  factory_mac:    <A8:F9:4B:00:00:00>
+  factory_rev:    <0>
+  factory_hw_ver: <1v2>
+Net:   e1000: a8:f9:4b:00:00:00
+       eth0: e1000#0e1000: a8:f9:4b:00:00:00
+       , eth1: e1000#1
+Bus xhci_pci: Register 15000820 NbrPorts 21
+Starting the controller
+USB XHCI 1.00
+Bus ehci_pci: USB EHCI 1.00
+Bus ehci_pci: USB EHCI 1.00
+scanning bus xhci_pci for devices... 1 USB Device(s) found
+scanning bus ehci_pci for devices... 2 USB Device(s) found
+scanning bus ehci_pci for devices... 3 USB Device(s) found
+Finalizing coreboot
+Enter to command line available now
+Read image from offset 0x430000
+
+Reboot reason is "Reload by admin from 192.168.16.89 telnet"
+Succeeded to do reboot reason (read)
+Storing image to offset 0x430000
+
+Storing image to offset 0x430000
+
+Succeeded to do reboot reason (write)
+Loading firmware (kernel at 0x01000000)...
+Read image from offset 0x410000
+
+MTD sector at 0x410000, format 4 is OK
+Read image from offset 0x410000
+
+Read image from offset 0x420000
+
+MTD sector at 0x420000, format 4 is OK
+Read image from offset 0x420000
+
+State: CURRENT (old_version=0x0, new_version=0x0)
+Loading firmware (version=0x0)...
+Loading /boot/bzImage...
+Loading file /boot/bzImage from sata 0:1 (addr=0x01000000)
+Scsi scan
+scanning bus for devices...
+Target spinup took 0 ms.
+SATA link 1 timeout.
+SATA link 2 timeout.
+SATA link 3 timeout.
+SATA link 4 timeout.
+SATA link 5 timeout.
+AHCI 0001.0300 32 slots 6 ports 6 Gbps 0x3f impl SATA mode
+flags: 64bit ncq pm led clo pio slum part ems apst 
+  Device 0: (0:0) Vendor: ATA Prod.: Patriot Burst El Rev: SN09
+            Type: Hard Disk
+            Capacity: 114473.4 MB = 111.7 GB (234441648 x 512)
+Try to boot: iface: scsi, part_id: 0:1, addr: 0x01000000, file: /boot/bzImage
+11517904 bytes read in 181 ms (60.7 MiB/s)
+/boot/bzImage loaded.
+Got reboot reason env: "Reload by admin from 192.168.16.89 telnet"
+Firmware loaded (version 0x0).
+Booting firmware (version 0x0)...
+Valid Boot Flag
+Magic signature found
+Linux kernel version 4.14.1 (user@046bb0937315) #2 SMP Fri Dec 20 12:32:55 UTC 2024
+Building boot_params at 0x00090000
+Loading bzImage at address 100000 (11502032 bytes)
+Kernel command line: "root=/dev/sda1 rootwait log_buf_len=2M pcie_aspm=off intel-spi.writeable=1 mtdparts=intel-spi:4m(descriptor),64k(factory),64k(bootinfo0),64k(bootinfo1),1600k(critlog),256k(env),2m(reserved),8m(coreboot) reboot_reason.reason="Reload by admin from 192.168.16.89 telnet""
+Kernel loaded at 00100000, setup_base=00090000
+
+Starting kernel ...
+
+
+version 3.9.7.17RC
+EOS login: 
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+
+coreboot-1956fa1 Tue Sep 13 06:30:56 UTC 2022 romstage startig (log level: 5)...
+
+coreboot-1956fa1 Tue Sep 13 06:30:56 UTC 2022 romstage startinlog level: 5)...
+coreboot-1956fa1 Tue Sep 13 06:30:56 UTC 2022 romstage starting (ll: 5)...
+!
+
+Not a DDR4 SPD!
+1 Tue Sep 13 06:30:56 UTC 2022 ramstage starting (log level: 5)..tic dev0:1e.cb.
+f.5
+PCI: Check your devicetree.cb.
+29:2vice 50663h
+DRAM:  64 GiB
+separate
+)
+MMC:   
+Loading Environment from SPIFlash... SF: Detected mx25, total 16 MiB
+956PI flash mx25l12805d: read 116 byte from offset 0x400000 to buffer 0x7eb8e49c
+Factory sett30ings:
+  factory_type:   <FMC32>
+  factory_sn:     <ME16000030>
+  factory_mac:    <A8:F9:4B:00:00:00>
+  factory_rev:    <0>
+  factory_hw_ver: <1v2>
+Net:   e1000: a8:f9:4b:00:00:00
+       eth0: e1000#0e1000: a8:f9:4b:00:00:00
+       , eth1: e1000#1
+Bus xhci_pci: Register 15000820 NbrPorts 21
+Starting the controller
+USB XHCI 1.00
+Bus ehci_pci: USB EHCI 1.00
+Bus ehci_pci: USB EHCI 1.00
+scanning bus xhci_pci for devices... 1 USB Device(s) found
+scanning bus ehci_pci for devices... 2 USB Device(s) found
+scanning bus ehci_pci for devices... 3 USB Device(s) found
+Finalizing coreboot
+Enter to command line available now
+Read image from offset 0x430000
+
+Reboot reason is "Reload by admin from 192.168.16.89 telnet"
+Succeeded to do reboot reason (read)
+Storing image to offset 0x430000
+
+Storing image to offset 0x430000
+
+Succeeded to do reboot reason (write)
+Loading firmware (kernel at 0x01000000)...
+Read image from offset 0x410000
+
+MTD sector at 0x410000, format 4 is OK
+Read image from offset 0x410000
+
+Read image from offset 0x420000
+
+MTD sector at 0x420000, format 4 is OK
+Read image from offset 0x420000
+
+State: CURRENT (old_version=0x0, new_version=0x0)
+Loading firmware (version=0x0)...
+Loading /boot/bzImage...
+Loading file /boot/bzImage from sata 0:1 (addr=0x01000000)
+Scsi scan
+scanning bus for devices...
+Target spinup took 0 ms.
+SATA link 1 timeout.
+SATA link 2 timeout.
+SATA link 3 timeout.
+SATA link 4 timeout.
+SATA link 5 timeout.
+AHCI 0001.0300 32 slots 6 ports 6 Gbps 0x3f impl SATA mode
+flags: 64bit ncq pm led clo pio slum part ems apst 
+  Device 0: (0:0) Vendor: ATA Prod.: Patriot Burst El Rev: SN09
+            Type: Hard Disk
+            Capacity: 114473.4 MB = 111.7 GB (234441648 x 512)
+Try to boot: iface: scsi, part_id: 0:1, addr: 0x01000000, file: /boot/bzImage
+11517904 bytes read in 181 ms (60.7 MiB/s)
+/boot/bzImage loaded.
+Got reboot reason env: "Reload by admin from 192.168.16.89 telnet"
+Firmware loaded (version 0x0).
+Booting firmware (version 0x0)...
+Valid Boot Flag
+Magic signature found
+Linux kernel version 4.14.1 (user@046bb0937315) #2 SMP Fri Dec 20 12:32:55 UTC 2024
+Building boot_params at 0x00090000
+Loading bzImage at address 100000 (11502032 bytes)
+Kernel command line: "root=/dev/sda1 rootwait log_buf_len=2M pcie_aspm=off intel-spi.writeable=1 mtdparts=intel-spi:4m(descriptor),64k(factory),64k(bootinfo0),64k(bootinfo1),1600k(critlog),256k(env),2m(reserved),8m(coreboot) reboot_reason.reason="Reload by admin from 192.168.16.89 telnet""
+Kernel loaded at 00100000, setup_base=00090000
+
+Starting kernel ...
+
+
+version 3.9.7.17RC
+EOS login: 
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+
+cot-1956fa1 Tue Sep 13 06:30:56 UTC 2022 romstage starting oreboot-1956fa1 Tue Sep 13 06:30:56 UTC 2022 romstage starting (log level: 5)...
+
+
+coreboot-1956fa1 Tue Sep 13 06:30:56 UTC 2022 romstage starting (log level: 5)...
+
+
+coreboot-1956fa1 Tue Sep 13 06:30:56 UTC 2022 romstage starting (log level: 5)...
+Not a DDR4 SPD!
+Not a DDR4 SPD!
+
+
+coreboot-1956fa1 Tue Sep 13 06:30:56 UTC 2022 ramstage starting (log level: 5)...
+PCI: Leftover static devices:
+PCI: 00:19.0
+PCI: 00:1f.5
+PCI: Check your devicetree.cb.
+
+
+U-Boot 2022.04 (Nov 15 2022 - 06:29:24 +0000)
+
+CPU: x86_64, vendor Intel, device 50663h
+DRAM:  64 GiB
+Core:  12 devices, 12 uclasses, devicetree: separate
+WDT:   Started iTCO with servicing (30s timeout)
+MMC:   
+Loading Environment from SPIFlash... SF: Detected mx25l12805d with page size 256 Bytes, erase size 4 KiB, total 16 MiB
+OK
+Vendor: Eltex
+Model: SM-CPU-D1500
+BIOS Version: 1956fa1
+BIOS date: 09/13/2022
+Reading factory settings...
+SPI flash mx25l12805d: read 116 byte from offset 0x400000 to buffer 0x7eb8e49c
+Factory settings:
+  factory_type:   <FMC32>
+  factory_sn:     <ME16000030>
+  factory_mac:    <A8:F9:4B:00:00:00>
+  factory_rev:    <0>
+  factory_hw_ver: <1v2>
+Net:   e1000: a8:f9:4b:00:00:00
+       eth0: e1000#0e1000: a8:f9:4b:00:00:00
+       , eth1: e1000#1
+Bus xhci_pci: Register 15000820 NbrPorts 21
+Starting the controller
+USB XHCI 1.00
+Bus ehci_pci: USB EHCI 1.00
+Bus ehci_pci: USB EHCI 1.00
+scanning bus xhci_pci for devices... 1 USB Device(s) found
+scanning bus ehci_pci for devices... 2 USB Device(s) found
+scanning bus ehci_pci for devices... 3 USB Device(s) found
+Finalizing coreboot
+Enter to command line available now
+Read image from offset 0x430000
+
+Reboot reason is "Reload by admin from 192.168.16.89 telnet"
+Succeeded to do reboot reason (read)
+Storing image to offset 0x430000
+
+Storing image to offset 0x430000
+
+Succeeded to do reboot reason (write)
+Loading firmware (kernel at 0x01000000)...
+Read image from offset 0x410000
+
+MTD sector at 0x410000, format 4 is OK
+Read image from offset 0x410000
+
+Read image from offset 0x420000
+
+MTD sector at 0x420000, format 4 is OK
+Read image from offset 0x420000
+
+State: CURRENT (old_version=0x0, new_version=0x0)
+Loading firmware (version=0x0)...
+Loading /boot/bzImage...
+Loading file /boot/bzImage from sata 0:1 (addr=0x01000000)
+Scsi scan
+scanning bus for devices...
+Target spinup took 0 ms.
+SATA link 1 timeout.
+SATA link 2 timeout.
+SATA link 3 timeout.
+SATA link 4 timeout.
+SATA link 5 timeout.
+AHCI 0001.0300 32 slots 6 ports 6 Gbps 0x3f impl SATA mode
+flags: 64bit ncq pm led clo pio slum part ems apst 
+  Device 0: (0:0) Vendor: ATA Prod.: Patriot Burst El Rev: SN09
+            Type: Hard Disk
+            Capacity: 114473.4 MB = 111.7 GB (234441648 x 512)
+Try to boot: iface: scsi, part_id: 0:1, addr: 0x01000000, file: /boot/bzImage
+11517904 bytes read in 182 ms (60.4 MiB/s)
+/boot/bzImage loaded.
+Got reboot reason env: "Reload by admin from 192.168.16.89 telnet"
+Firmware loaded (version 0x0).
+Booting firmware (version 0x0)...
+Valid Boot Flag
+Magic signature found
+Linux kernel version 4.14.1 (user@046bb0937315) #2 SMP Fri Dec 20 12:32:55 UTC 2024
+Building boot_params at 0x00090000
+Loading bzImage at address 100000 (11502032 bytes)
+Kernel command line: "root=/dev/sda1 rootwait log_buf_len=2M pcie_aspm=off intel-spi.writeable=1 mtdparts=intel-spi:4m(descriptor),64k(factory),64k(bootinfo0),64k(bootinfo1),1600k(critlog),256k(env),2m(reserved),8m(coreboot) reboot_reason.reason="Reload by admin from 192.168.16.89 telnet""
+Kernel loaded at 00100000, setup_base=00090000
+
+Starting kernel ...
+
+
+version 3.9.7.17RC
+EOS login: 
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+
+coreboot-1956fa1 Tue Sep 13 06:30:56 UTC 2022 romstage starting (log)...
+ level: 5)...
+56fa1 Tue Setage starting (log level: 5)...
+p 13 06:30:56 UTC 2022 romstage starting (log level: 5)...
+tarting (log level: 5)...
+Not a DDR4 SPD!
+Not a DDR4 SPD!
+
+
+coreboot-1956fa1 Tue Sep 13 06:30:56 UTC 2022 ramstage starting (log level: 5)...
+PCI: Leftover static devices:
+PCI: 00:19.0
+PCI: 00:1f.5
+PCI: Check your devicetree.cb.
+
+
+U-Boot 2022.04 (Nov 15 2022 - 06:29:24 +0000)
+
+CPU: x86_64, vendor Intel, device 50663h
+DRAM:  64 GiB
+Core:  12 devices, 12 uclasses, devicetree: separate
+WDT:   Started iTCO with servicing (30s timeout)
+MMC:   
+Loading Environment from SPIFlash... SF: Detected mx25l12805d with page size 256 Bytes, erase size 4 KiB, total 16 MiB
+OK
+Vendor: Eltex
+Model: SM-CPU-D1500
+BIOS Version: 1956fa1
+BIOS date: 09/13/2022
+Reading factory settings...
+SPI flash mx25l12805d: read 116 byte from offset 0x400000 to buffer 0x7eb8e49c
+Factory settings:
+  factory_type:   <FMC32>
+  factory_sn:     <ME16000030>
+  factory_mac:    <A8:F9:4B:00:00:00>
+  factory_rev:    <0>
+  factory_hw_ver: <1v2>
+Net:   e1000: a8:f9:4b:00:00:00
+       eth0: e1000#0e1000: a8:f9:4b:00:00:00
+       , eth1: e1000#1
+Bus xhci_pci: Register 15000820 NbrPorts 21
+Starting the controller
+USB XHCI 1.00
+Bus ehci_pci: USB EHCI 1.00
+Bus ehci_pci: USB EHCI 1.00
+scanning bus xhci_pci for devices... 1 USB Device(s) found
+scanning bus ehci_pci for devices... 2 USB Device(s) found
+scanning bus ehci_pci for devices... 3 USB Device(s) found
+Finalizing coreboot
+Enter to command line available now
+Read image from offset 0x430000
+
+Reboot reason is "Reload by admin from 192.168.16.89 telnet"
+Succeeded to do reboot reason (read)
+Storing image to offset 0x430000
+
+Storing image to offset 0x430000
+
+Succeeded to do reboot reason (write)
+Loading firmware (kernel at 0x01000000)...
+Read image from offset 0x410000
+
+MTD sector at 0x410000, format 4 is OK
+Read image from offset 0x410000
+
+Read image from offset 0x420000
+
+MTD sector at 0x420000, format 4 is OK
+Read image from offset 0x420000
+
+State: CURRENT (old_version=0x0, new_version=0x0)
+Loading firmware (version=0x0)...
+Loading /boot/bzImage...
+Loading file /boot/bzImage from sata 0:1 (addr=0x01000000)
+Scsi scan
+scanning bus for devices...
+Target spinup took 0 ms.
+SATA link 1 timeout.
+SATA link 2 timeout.
+SATA link 3 timeout.
+SATA link 4 timeout.
+SATA link 5 timeout.
+AHCI 0001.0300 32 slots 6 ports 6 Gbps 0x3f impl SATA mode
+flags: 64bit ncq pm led clo pio slum part ems apst 
+  Device 0: (0:0) Vendor: ATA Prod.: Patriot Burst El Rev: SN09
+            Type: Hard Disk
+            Capacity: 114473.4 MB = 111.7 GB (234441648 x 512)
+Try to boot: iface: scsi, part_id: 0:1, addr: 0x01000000, file: /boot/bzImage
+11517904 bytes read in 181 ms (60.7 MiB/s)
+/boot/bzImage loaded.
+Got reboot reason env: "Reload by admin from 192.168.16.89 telnet"
+Firmware loaded (version 0x0).
+Booting firmware (version 0x0)...
+Valid Boot Flag
+Magic signature found
+Linux kernel version 4.14.1 (user@046bb0937315) #2 SMP Fri Dec 20 12:32:55 UTC 2024
+Building boot_params at 0x00090000
+Loading bzImage at address 100000 (11502032 bytes)
+Kernel command line: "root=/dev/sda1 rootwait log_buf_len=2M pcie_aspm=off intel-spi.writeable=1 mtdparts=intel-spi:4m(descriptor),64k(factory),64k(bootinfo0),64k(bootinfo1),1600k(critlog),256k(env),2m(reserved),8m(coreboot) reboot_reason.reason="Reload by admin from 192.168.16.89 telnet""
+Kernel loaded at 00100000, setup_base=00090000
+
+Starting kernel ...
+
+
+version 3.9.7.17RC
+EOS login: 
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+
+coreboot-1956fa1 Tue Sep 13 06:30:56 UTC 2022 romstage startig (log level: 5)...
+
+coreboot-1956fa1 Tue Sep 13 06:30:56 UTC 2022 romstage starting (log level: 5)...
+1 Tue Sep 13 06:30:56 UTC 2022 romstage star
+
+coreboot-1956fa1 Tue Sep 13 06:30:56 UTC 2022 romstage starting (log level: 5)...
+Not a DDR4 SPD!
+Not a DDR4 SPD!
+
+
+coreboot-1956fa1 Tue Sep 13 06:30:56 UTC 2022 ramstage starting (log level: 5)...
+PCI: Leftover static devices:
+PCI: 00:19.0
+PCI: 00:1f.5
+PCI: Check your devicetree.cb.
+
+
+U-Boot 2022.04 (Nov 15 2022 - 06:29:24 +0000)
+
+CPU: x86_64, vendor Intel, device 50663h
+DRAM:  64 GiB
+Core:  12 devices, 12 uclasses, devicetree: separate
+WDT:   Started iTCO with servicing (30s timeout)
+MMC:   
+Loading Environment from SPIFlash... SF: Detected mx25l12805d with page size 256 Bytes, erase size 4 KiB, total 16 MiB
+OK
+Vendor: Eltex
+Model: SM-CPU-D1500
+BIOS Version: 1956fa1
+BIOS date: 09/13/2022
+Reading factory settings...
+SPI flash mx25l12805d: read 116 byte from offset 0x400000 to buffer 0x7eb8e49c
+Factory settings:
+  factory_type:   <FMC32>
+  factory_sn:     <ME16000030>
+  factory_mac:    <A8:F9:4B:00:00:00>
+  factory_rev:    <0>
+  factory_hw_ver: <1v2>
+Net:   e1000: a8:f9:4b:00:00:00
+       eth0: e1000#0e1000: a8:f9:4b:00:00:00
+       , eth1: e1000#1
+Bus xhci_pci: Register 15000820 NbrPorts 21
+Starting the controller
+USB XHCI 1.00
+Bus ehci_pci: USB EHCI 1.00
+Bus ehci_pci: USB EHCI 1.00
+scanning bus xhci_pci for devices... 1 USB Device(s) found
+scanning bus ehci_pci for devices... 2 USB Device(s) found
+scanning bus ehci_pci for devices... 3 USB Device(s) found
+Finalizing coreboot
+Enter to command line available now
+Read image from offset 0x430000
+
+Reboot reason is "Reload by admin from 192.168.16.89 telnet"
+Succeeded to do reboot reason (read)
+Storing image to offset 0x430000
+
+Storing image to offset 0x430000
+
+Succeeded to do reboot reason (write)
+Loading firmware (kernel at 0x01000000)...
+Read image from offset 0x410000
+
+MTD sector at 0x410000, format 4 is OK
+Read image from offset 0x410000
+
+Read image from offset 0x420000
+
+MTD sector at 0x420000, format 4 is OK
+Read image from offset 0x420000
+
+State: CURRENT (old_version=0x0, new_version=0x0)
+Loading firmware (version=0x0)...
+Loading /boot/bzImage...
+Loading file /boot/bzImage from sata 0:1 (addr=0x01000000)
+Scsi scan
+scanning bus for devices...
+Target spinup took 0 ms.
+SATA link 1 timeout.
+SATA link 2 timeout.
+SATA link 3 timeout.
+SATA link 4 timeout.
+SATA link 5 timeout.
+AHCI 0001.0300 32 slots 6 ports 6 Gbps 0x3f impl SATA mode
+flags: 64bit ncq pm led clo pio slum part ems apst 
+  Device 0: (0:0) Vendor: ATA Prod.: Patriot Burst El Rev: SN09
+            Type: Hard Disk
+            Capacity: 114473.4 MB = 111.7 GB (234441648 x 512)
+Try to boot: iface: scsi, part_id: 0:1, addr: 0x01000000, file: /boot/bzImage
+11517904 bytes read in 181 ms (60.7 MiB/s)
+/boot/bzImage loaded.
+Got reboot reason env: "Reload by admin from 192.168.16.89 telnet"
+Firmware loaded (version 0x0).
+Booting firmware (version 0x0)...
+Valid Boot Flag
+Magic signature found
+Linux kernel version 4.14.1 (user@046bb0937315) #2 SMP Fri Dec 20 12:32:55 UTC 2024
+Building boot_params at 0x00090000
+Loading bzImage at address 100000 (11502032 bytes)
+Kernel command line: "root=/dev/sda1 rootwait log_buf_len=2M pcie_aspm=off intel-spi.writeable=1 mtdparts=intel-spi:4m(descriptor),64k(factory),64k(bootinfo0),64k(bootinfo1),1600k(critlog),256k(env),2m(reserved),8m(coreboot) reboot_reason.reason="Reload by admin from 192.168.16.89 telnet""
+Kernel loaded at 00100000, setup_base=00090000
+
+Starting kernel ...
+
+
+version 3.9.7.17RC
+EOS login: 
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+
+
+ser2net port 2001 device /dev/ttyUSB1 [115200 N81] (Debian GNU/Linux)
+

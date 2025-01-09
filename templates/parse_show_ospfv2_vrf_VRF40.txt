@@ -1,0 +1,52 @@
+  Routing Process: {{ routing_process | re("40,\s+VRF VRF40,\s+ID 0.0.0.40") }}
+    Graceful restart: {{ ospf_gr | re("not-restarting, remaining time: 0, reason: none") }}
+    OSPF traffic engineering: {{ ospf_te | ORPHRASE | re("\w+") }}
+    Number of packets received have been dropped: {{ ospf_drop | re("[0-9]") }}
+    Packets dropped by unknown reason: {{ ospf_drop | re("[0-9]") }}
+      Area 0.0.0.0, {{ ospf_area | re("\w+") }}
+        Number of interfaces in this area is: {{ ospf_int | re("[0-9]") }}
+        Number of interfaces in this area: {{ ospf_int | re("[0-9]") }}
+
+
+#0/FMC0:atDR1# show ospfv2 vrf VRF40
+#Fri Mar 20 17:12:25 2020
+#  Routing Process: 40, VRF40, with ID 0.0.0.40
+#    Router is an area border router
+#    Graceful restart: not-restarting, remaining time: 0, reason: none
+#    OSPF traffic engineering: not supported
+#    The maximum delay before the Routing Table is recalculated: 5000
+#    Route max equal cost paths are stored: 5
+#    External lsa refresh interval: 1800
+#    LSA timers (ms): 5000 min interval, 1000 min arrival, 0 hold interval, 0 max interval
+#    Number of new LSA originated: 109
+#    Number of new LSA received: 31
+#    Number of external LSA (LS type 5): 4, checksum: 0x0002F2D9
+#    Number of type-11 LSAs in the external database (opaque): 0, checksum: 0x00000000
+#    Number of LSA in LSD at checksum checked: 0
+#    Number of updates 0 pending, 0 merged
+#    Number errors:
+#        instance id: 0, bad IP header length: 0
+#        header length: 0, bad IP header length: 0
+#        no virtual link: 0, version: 0
+#        bad source: 0, resource errors: 0
+#    Number of packets received have been dropped: 0
+#        
+#      Area 0.0.0.0, up
+#        Area can carry data traffic: false
+#        SPF algorithm executed 7 times
+#        Number of number of area border routers: 1, Autonomous routers: 1
+#        Number of Translator State changes: 0
+#        NSSA Border router state: disabled
+#        Number of LSA (LS type-1) count: 2, checksum: 0x00009266
+#        Number of LSA with LS type-2 count: 1
+#        Number of LSA with LS type-3 count: 0, checksum: 0x00000000
+#        Number of LSA with LS type-4 count: 0, checksum: 0x00000000
+#        Number of LSA with LS type-7 (NSSA) count: 0, checksum: 0x00000000
+#        Number of LSA with LS type-10 (opaque) count: 1, checksum: 0x00001205
+#        Number of with LS type-7 (NSSA): 0, checksum: 0x00000000
+#        Total number of LSA: 4, checksum: 0x00011616
+#        
+#        Number of interfaces in this area is: 1
+#  
+#0/FMC0:atDR1# 
+#

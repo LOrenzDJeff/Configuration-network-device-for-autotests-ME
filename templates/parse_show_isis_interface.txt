@@ -1,0 +1,32 @@
+Value Top1 (Interface\s+Oper\s+Last Up\s+Adjcs\s+Metric\s+Priority\s+PDU\s+Mode\s+BFD)
+Value Top2 (State\s+L1/L2\s+L1/L2\s+L1/L2\s+IPv4/v6\s+)
+Value int_name (bu[12]|te0/1/5.350|te0/0/11.35[12]|lo10)
+Value int_oper_state (up|down)
+Value int_last_up (\d+[dh]\d+[hm]\d+[ms]|never)
+Value int_l1_adj (-|\d+)
+Value int_l2_adj (-|\d+)
+Value int_l1_metric (-|\d+)
+Value int_l2_metric (-|\d+)
+Value int_l1_priority (-|\d+)
+Value int_l2_priority (-|\d+)
+Value int_pdu (\d+)
+Value int_mode (active|passive)
+Value int_bfd_4 (Y|N)
+Value int_bfd_6 (Y|N)
+
+Start 
+  ^\s+${Top1}
+  ^\s+${Top2}
+  ^\s+${int_name}\s+${int_oper_state}\s+${int_last_up}\s+${int_l1_adj}/${int_l2_adj}\s+${int_l1_metric}/${int_l2_metric}\s+${int_l1_priority}/${int_l2_priority}\s+${int_pdu}\s+${int_mode}\s+${int_bfd_4}/${int_bfd_6} -> Record
+
+#0/FMC0:atDR1# show isis interfaces 
+#Mon Dec 28 18:05:44 2020
+#  IS-IS Router test interface:
+#  Interface        Oper   Last Up     Adjcs   Metric  Priority  PDU    Mode      BFD       
+#                   State              L1/L2   L1/L2   L1/L2                      IPv4/v6   
+#  ---------------- ------ ----------- ------- ------- --------- ------ --------- --------- 
+#  bu1              up     00h12m28s   -/1     -/10    -/64      1500   active    Y/N       
+#  bu2              up     00h12m28s   -/1     -/10    -/64      1500   active    Y/N       
+#  lo10             up     never       -/-     -/-     -/-       1492   passive   N/N       
+#  te0/1/5.350      up     00h12m28s   -/1     -/10    -/64      1500   active    N/N       
+#0/FMC0:atDR1# 

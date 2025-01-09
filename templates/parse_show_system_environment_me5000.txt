@@ -1,0 +1,143 @@
+Value FMC0 (FMC16|FMC32)
+Value FMC0_CpuTemp_int (\d+)
+Value FMC0_CpuTemp_ext (\d+)
+Value FMC0_FabricTemp_int (\d+)
+Value FMC0_FabricTemp_ext (\d+)
+Value FMC0_Board_Temp (\d+)
+Value FMC1 (FMC16|FMC32)
+Value FMC1_CpuTemp_int (\d+)
+Value FMC1_CpuTemp_ext (\d+)
+Value FMC1_FabricTemp_int (\d+)
+Value FMC1_FabricTemp_ext (\d+)
+Value FMC1_Board_Temp (\d+)
+Value Slot1 (LC18XGE|LC20XGE|LC8XLGE)
+Value Slot1_CpuTemp_int (\d+)
+Value Slot1_CpuTemp_ext (\d+)
+Value Slot1_Switch_Temp_int (\d+)
+Value Slot1_Switch_Temp_ext (\d+)
+Value Slot1_Lookup_Temp_int (\d+)
+Value Slot1_Lookup_Temp_ext (\d+)
+Value Slot1_SMSTAT_Temp_int (\d+)
+Value Slot1_SMSTAT_Temp_ext (\d+)
+Value Slot1_Board_Temp (\d+)
+Value Slot8 (LC18XGE|LC20XGE|LC8XLGE)
+Value Slot8_CpuTemp_int (\d+)
+Value Slot8_CpuTemp_ext (\d+)
+Value Slot8_Switch_Temp_int (\d+)
+Value Slot8_Switch_Temp_ext (\d+)
+Value Slot8_Lookup_Temp_int (\d+)
+Value Slot8_Lookup_Temp_ext (\d+)
+Value Slot8_SMSTAT_Temp_int (\d+)
+Value Slot8_SMSTAT_Temp_ext (\d+)
+Value Slot8_Board_Temp (\d+)
+Value FanTop (\d+)
+Value Fan1Top (\d+)
+Value Fan2Top (\d+)
+Value Fan3Top (\d+)
+Value Fan4Top (\d+)
+Value Fan5Top (\d+)
+Value Fan6Top (\d+)
+Value FanBottom (\d+)
+Value Fan1Bottom (\d+)
+Value Fan2Bottom (\d+)
+Value Fan3Bottom (\d+)
+Value Fan4Bottom (\d+)
+Value Fan5Bottom (\d+)
+Value Fan6Bottom (\d+)
+
+Start
+  ^\s+Module in slot FMC0 is ${FMC0} -> FMC0
+  ^\s+Module in slot FMC1 is ${FMC1} -> FMC1
+  ^\s+Module in slot 1 is ${Slot1} -> Slot1
+  ^\s+Module in slot 8 is ${Slot8} -> Slot8
+  ^\s+Fan array 1 \(top\) is set to ${FanTop}% -> FanTop
+  ^\s+Fan array 2 \(bottom\) is set to ${FanBottom}% -> FanBottom
+
+
+FMC0
+  ^\s+CPU temperature \(int/ext\):\s+${FMC0_CpuTemp_int}\s+C\s+/\s+${FMC0_CpuTemp_ext}\s+C
+  ^\s+Fabric engine temperature \(int/ext\):\s+${FMC0_FabricTemp_int}\s+C\s+/\s+${FMC0_FabricTemp_ext}\s+C
+  ^\s+Board sensor \(inlet\) temperature:\s+${FMC0_Board_Temp}\s+C -> Start
+
+
+FMC1
+  ^\s+CPU temperature \(int/ext\):\s+${FMC1_CpuTemp_int}\s+C\s+/\s+${FMC1_CpuTemp_ext}\s+C
+  ^\s+Fabric engine temperature \(int/ext\):\s+${FMC1_FabricTemp_int}\s+C\s+/\s+${FMC1_FabricTemp_ext}\s+C
+  ^\s+Board sensor \(inlet\) temperature:\s+${FMC1_Board_Temp}\s+C -> Start
+
+Slot1
+  ^\s+CPU temperature \(int/ext\):\s+${Slot1_CpuTemp_int}\s+C\s+/\s+${Slot1_CpuTemp_ext}\s+C
+  ^\s+Switching engine temperature \(int/ext\):\s+${Slot1_Switch_Temp_int}\s+C\s+/\s+${Slot1_Switch_Temp_ext}\s+C
+  ^\s+Lookup engine temperature \(int/ext\):\s+${Slot1_Lookup_Temp_int}\s+C\s+/\s+${Slot1_Lookup_Temp_ext}\s+C
+  ^\s+SM-STAT engine temperature \(int/ext\):\s+${Slot1_SMSTAT_Temp_int}\s+C\s+/\s+${Slot1_SMSTAT_Temp_ext}\s+C
+  ^\s+Board sensor \(inlet\) temperature:\s+${Slot1_Board_Temp}\s+C -> Start
+
+Slot8
+  ^\s+CPU temperature \(int/ext\):\s+${Slot8_CpuTemp_int}\s+C\s+/\s+${Slot8_CpuTemp_ext}\s+C
+  ^\s+Switching engine temperature \(int/ext\):\s+${Slot8_Switch_Temp_int}\s+C\s+/\s+${Slot8_Switch_Temp_ext}\s+C
+  ^\s+Lookup engine temperature \(int/ext\):\s+${Slot8_Lookup_Temp_int}\s+C\s+/\s+${Slot8_Lookup_Temp_ext}\s+C
+  ^\s+SM-STAT engine temperature \(int/ext\):\s+${Slot8_SMSTAT_Temp_int}\s+C\s+/\s+${Slot8_SMSTAT_Temp_ext}\s+C
+  ^\s+Board sensor \(inlet\) temperature:\s+${Slot8_Board_Temp}\s+C -> Start
+
+FanTop
+  ^\s+Fan 1: ${Fan1Top} RPM
+  ^\s+Fan 2: ${Fan2Top} RPM
+  ^\s+Fan 3: ${Fan3Top} RPM
+  ^\s+Fan 4: ${Fan4Top} RPM
+  ^\s+Fan 5: ${Fan5Top} RPM
+  ^\s+Fan 6: ${Fan6Top} RPM -> Start
+
+FanBottom
+  ^\s+Fan 1: ${Fan1Bottom} RPM
+  ^\s+Fan 2: ${Fan2Bottom} RPM
+  ^\s+Fan 3: ${Fan3Bottom} RPM
+  ^\s+Fan 4: ${Fan4Bottom} RPM
+  ^\s+Fan 5: ${Fan5Bottom} RPM
+  ^\s+Fan 6: ${Fan6Bottom} RPM -> Start
+
+#Пример вывода команды 'show system environment' на ME5000 
+#0/FMC0:atDR1# show system environment 
+#Tue Dec 10 09:52:02 2019
+#  Hardware environment information for chassis 0
+#  
+#  Module in slot FMC0 is FMC16
+#    CPU temperature (int/ext):              45 C /  40 C
+#    Fabric engine temperature (int/ext):    58 C /  36 C
+#    Board sensor (inlet) temperature:       40 C
+#  
+#  Module in slot FMC1 is FMC16
+#    CPU temperature (int/ext):              48 C /  44 C
+#    Fabric engine temperature (int/ext):    67 C /  42 C
+#    Board sensor (inlet) temperature:       45 C
+#  
+#  Module in slot 1 is LC18XGE
+#    CPU temperature (int/ext):              44 C /  37 C
+#    Switching engine temperature (int/ext): 56 C /  45 C
+#    Lookup engine temperature (int/ext):    58 C /  45 C
+#    Board sensor (inlet) temperature:       34 C
+#  
+#  Module in slot 8 is LC18XGE
+#    CPU temperature (int/ext):              41 C /  34 C
+#    Switching engine temperature (int/ext): 54 C /  41 C
+#    Lookup engine temperature (int/ext):    56 C /  41 C
+#    Board sensor (inlet) temperature:       34 C
+#  
+#   Fan array 1 (top) is set to 48%
+#    Current fan speeds:
+#     Fan 1: 3420 RPM
+#     Fan 2: 3360 RPM
+#     Fan 3: 3420 RPM
+#     Fan 4: 3480 RPM
+#     Fan 5: 3420 RPM
+#     Fan 6: 3420 RPM
+#  
+#   Fan array 2 (bottom) is set to 48%
+#    Current fan speeds:
+#     Fan 1: 3480 RPM
+#     Fan 2: 3480 RPM
+#     Fan 3: 3180 RPM
+#     Fan 4: 3480 RPM
+#     Fan 5: 3420 RPM
+#     Fan 6: 3420 RPM
+
+

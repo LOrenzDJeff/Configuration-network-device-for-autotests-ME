@@ -1,0 +1,60 @@
+Value Lldp_Chassis_Type (\S+\s+\S+)
+Value Lldp_Chassis_Id (\S+)
+Value Lldp_Sys_name (at[AD]R[12])
+Value Lldp_Sys_descr (\S+\s+ME\d+\s+\S+\s+\S+|\S+\s+ME\d+M\s+\S+\s+\S+\s+\S+)
+Value Lldp_Mgmt_addr (\d+.\d+.\d+.\d+)
+Value Lldp_Capabilities (\S+,\s+\S+)
+Value Lldp_int_name (\S+)
+Value Lldp_int_status (\S+)
+Value Lldp_int_descr (\S+)
+Value Lldp_int_index (\d+)
+Value Lldp_int_mac (\S+)
+Value Lldp_int_agent_type (\S+)
+
+Start
+  ^\s+Chassis\s+type\s+:\s+${Lldp_Chassis_Type}
+  ^\s+Chassis\s+ID\s+:\s+${Lldp_Chassis_Id}
+  ^\s+System\s+name\s+:\s+${Lldp_Sys_name} 
+  ^\s+System\s+description\s+:\s+${Lldp_Sys_descr}
+  ^\s+Management\s+address\s+:\s+${Lldp_Mgmt_addr}
+  ^\s+Capabilities\s+Available\s+:\s+${Lldp_Capabilities}
+  ^Interface\s+:\s+${Lldp_int_name}
+  ^\s+Status\s+:\s+${Lldp_int_status}
+  ^\s+Interface\s+description\s+:\s+${Lldp_int_descr}
+  ^\s+Interface\s+index\s+:\s+${Lldp_int_index}
+  ^\s+MAC\s+address\s+:\s+${Lldp_int_mac}
+  ^\s+Agent\s+type\s+:\s+${Lldp_int_agent_type}
+
+
+#0/ME5100:atAR1# show lldp interface te0/0/1
+#Fri Jul 26 14:42:15 2024
+#System information:
+#      Chassis type           : MAC address
+#      Chassis ID             : e0:d9:e3:df:35:80
+#      System name            : atAR1
+#      System description     : Eltex ME5100 carrier router
+#      Management address     : 172.16.1.1
+#      Capabilities Available : Bridge, Router
+#  
+#Interface                    : Tengigabitethernet0/0/1
+#      Status                 : up
+#      Interface description  : to_atAR2:te0/0/1
+#      Interface index        : 2
+#      MAC address            : e0:d9:e3:df:35:81
+#  
+#  Agent type                 : nearest-bridge
+#      Port-id type           : interface-name
+#      Neighbor limit         : 100
+#      Management address     : 172.16.1.1
+#      Tx                     : enabled
+#      Rx                     : enabled
+#      Notification tables    : enabled
+#      Notification device    : enabled
+#  
+#    Optional TLV
+#      Management address     : enabled
+#      Interface description  : enabled
+#      System capabilities    : enabled
+#      System description     : enabled
+#      System name            : enabled
+#0/ME5100:atAR1# 

@@ -1,0 +1,41 @@
+
+*** These modified files were found in JOE when it aborted on Sun Dec  8 02:52:31 2019
+*** JOE was aborted because the terminal closed
+
+*** Файл '(БезИмени)'
+/etc/hosts
+/home/pryakhin-alex/me-config-guide/.git/COMMIT_EDITMSG
+/etc/hosts
+/etc/hosts
+./snmp.conf
+* Build Log *
+/etc/snmp/snmp.conf
+/etc/snmp/snmp.conf
+./parse_show_system_inventory_me5100.txt
+./parse_show_system_inventory_me5000.txt
+./parse_show_system_inventory_me5100.txt
+
+*** Файл '* Startup Log *'
+Обработка '/etc/joe/joerc'...Обработка '/etc/joe/ftyperc'...Finished processing /etc/joe/ftyperc
+Finished processing /etc/joe/joerc
+
+*** These modified files were found in JOE when it aborted on Sun Dec  8 02:54:42 2019
+*** JOE was aborted because the terminal closed
+
+*** Файл '(БезИмени)'
+./function_test.py
+./function_test.py
+./parse_show_system_inventory_me5200.txt
+./parse_show_system_inventory_me5200.txt
+./parse_show_system_inventory_me5200.txt
+./parse_show_system_inventory_me5200.txt
+./parse_show_system_inventory_me5200.txt
+./parse_show_system_inventory_me5200.txt
+./parse_show_system_inventory_me5200.txt
+./parse_show_system_inventory_me5200.txt
+./parse_show_system_inventory_me5000.txt
+./parse_show_system_inventory_me5000.txt
+
+*** Файл '* Startup Log *'
+Обработка '/etc/joe/joerc'...Обработка '/etc/joe/ftyperc'...Finished processing /etc/joe/ftyperc
+Finished processing /etc/joe/joerc

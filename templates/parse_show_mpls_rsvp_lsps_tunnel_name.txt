@@ -1,0 +1,53 @@
+Value tun_name (\S+)
+Value tun_id (\d+)
+Value lsp_name (\S+)
+Value lsp_signal_name (\S+)
+Value lsp_id (\d+)
+Value lsp_src (\d+.\d+.\d+.\d+)
+Value lsp_dst (\d+.\d+.\d+.\d+)
+Value lsp_state (up|down)
+Value plr_id (\d+.\d+.\d+.\d+)
+Value lsp_signal_int (\S+)
+Value hop_number (hop\d+)
+Value incoming_ERO (\d+.\d+.\d+.\d+/32)
+Value outgoing_ERO (\d+.\d+.\d+.\d+/32)
+
+Start
+  ^\s+Tunnel: ${tun_name}, id: ${tun_id}
+  ^\s+LSP name: ${lsp_name}, signaled-name: ${lsp_signal_name}, id: ${lsp_id}, Source: ${lsp_src}, Destination: ${lsp_dst}
+  ^\s+State: ${lsp_state}
+  ^\s+LSP repaired at:\s+${plr_id}
+  ^\s+Signaling interface: ${lsp_signal_int}
+  ^\s+${hop_number}\s+${incoming_ERO}\s+${outgoing_ERO}? -> Record 
+
+#0/FMC0:atDR1# show mpls rsvp lsps tunnel to_vMX-1
+#Wed Jan 13 09:18:45 2021
+#  Tunnel: to_vMX-1, id: 1
+#    LSP name: from_atDR1_to_vMX-1, signaled-name: to_vMX-1@from_atDR1_to_vMX-1, id: 1, Source: 1.0.0.1, Destination: 1.0.0.4
+#      State: up, Resource status: primary, Protection role: working
+#      Direction: ingress, Node protect: disabled, Bandwidth protection requirement: disabled
+#      Carrying the normal traffic after protection switching: no
+#      Protected by a fast reroute: none 
+#      Downstream repaired: yes
+#      Path recording is not desired
+#      SE Style is desired
+#      LSP rerouting is none
+#      OAM MEP entities are not desired
+#      OAM MIP entities are not desired
+#        Downstream information:
+#          Next hop: 192.168.55.1
+#          Signaling interface: Bundle-ether1
+#          Neighbor: 192.168.55.1
+#          Label: 520, type: mpls-label
+# 
+#                           Incoming ERO                 Outgoing ERO
+#                   ---------------------------- ----------------------------
+#          hop0     192.168.55.2/32              192.168.55.1/32              
+#          hop1     192.168.55.1/32              192.168.55.21/32             
+#          hop2     192.168.55.21/32             192.168.55.22/32             
+#          hop3     192.168.55.22/32             192.168.55.13/32             
+#          hop4     192.168.55.13/32             192.168.55.14/32             
+#          hop5     192.168.55.14/32                                          
+#  
+#0/FMC0:atDR1# 
+

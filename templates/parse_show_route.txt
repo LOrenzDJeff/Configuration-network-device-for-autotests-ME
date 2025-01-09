@@ -1,0 +1,16 @@
+Value type (\w+)
+Value next_hop (\S+)
+Value interface (\S+)
+Value exact_type (\w+)
+Value time (\S+)
+Value dest_add (\S+)
+Value ad_dist (\d+)
+Value metric (\d+)
+
+
+Start
+ ^\s*${type}\s+${dest_add}\s+${next_hop},\s+${time},\s+${interface} -> Record
+ ^\s*${type}\s+${dest_add}\s+via\s+${next_hop}\s+\[${ad_dist}/${metric}\],\s+${time},\s+${interface} -> Record
+ ^\s*${type}\s+${exact_type}\s+${dest_add}\s+via\s+${next_hop}\s+\[${ad_dist}/${metric}\],\s+${time},\s+${interface} -> Record
+
+

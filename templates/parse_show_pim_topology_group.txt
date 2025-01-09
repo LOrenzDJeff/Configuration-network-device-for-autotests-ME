@@ -1,0 +1,58 @@
+Value S_G (\d+.\d+.\d+.\d+, \d+.\d+.\d+.\d+)
+Value S_G_tree_type (RPT|RPT pruned|SPT)
+Value S_G_model_type (asm|ssm)
+Value S_G_uptime (\d+[dh]\d+[hm]\d+[ms])
+Value Star_G (\*, \d+.\d+.\d+.\d+)
+Value Star_G_model_type (asm|ssm)
+Value Star_G_uptime (\d+[dh]\d+[hm]\d+[ms])
+Value Star_G_RP (\d+.\d+.\d+.\d+ is local|\d+.\d+.\d+.\d+ is not local)
+Value JP (not-joined \(never\)|joined \(never\)|joined \(\d+[dh]\d+[hm]\d+[ms]\))
+Value RPF_int (Bundle-ether[12]|Tengigabitethernet0/0/9.30|unknown)
+Value RPF_addr (\d+.\d+.\d+.\d+)
+
+
+Start
+  ^\s+\(${S_G}\)\s+${S_G_tree_type},?\s+${S_G_model_type},?\s+Up:\s+${S_G_uptime} -> Additional_params
+  ^\s+\(${S_G}\)\s+${S_G_model_type},\s+Up:\s+${S_G_uptime} -> Additional_params
+  ^\s+\(${Star_G}\)\s+${Star_G_model_type},\s+Up:\s+${Star_G_uptime}, RP: ${Star_G_RP} \(config\) -> Additional_params
+
+
+Additional_params
+  ^\s+JP: ${JP}, RPF: ${RPF_int}, \(${RPF_addr}\) -> Record Start
+
+#0/FMC0:atDR1# show pim topology group 225.54.205.135
+#Fri Jan 15 17:21:57 2021
+#  IP PIM Multicast Topology Table
+#  Entry state: (*/S,G)[RPT/SPT] Mode, Protocol, Uptime, Info
+#  Interface state: Name, Uptime, Fwd, Info
+#    
+#    (46.61.193.86, 225.54.205.135) SPT, asm, Up: 00h27m15s
+#    JP: joined (00h00m38s), RPF: Bundle-ether1, (192.168.55.1)
+#      No interfaces in immediate olist
+#    
+#    (46.61.193.86, 225.54.205.135) RPT pruned, Up: 00h00m00s 
+#      No interfaces in immediate olist
+#    
+#    
+#    (*, 225.54.205.135) asm, Up: 00h28m05s, RP: 1.0.0.2 is not local (config)
+#    JP: joined (00h00m54s), RPF: Bundle-ether2, (192.168.55.6)
+#      te0/1/5.353 asm, Up: 00h28m05s is local
+
+#0/ME5200:atAR2# show pim topology group 225.54.205.135
+#Fri Jan 15 17:27:27 2021
+#  IP PIM Multicast Topology Table
+#  Entry state: (*/S,G)[RPT/SPT] Mode, Protocol, Uptime, Info
+#  Interface state: Name, Uptime, Fwd, Info
+#    
+#    (46.61.193.86, 225.54.205.135) asm, Up: 00h44m03s
+#    JP: not-joined (never), RPF: Bundle-ether2, (192.168.55.21)
+#      No interfaces in immediate olist
+#    
+#    (46.61.193.86, 225.54.205.135) RPT pruned, Up: 00h00m00s 
+#      bu1 Up: 00h31m51s is not local
+#    
+#    
+#    (*, 225.54.205.135) asm, Up: 00h33m35s, RP: 1.0.0.2 is local (config)
+#    JP: joined (never), RPF: unknown, (0.0.0.0)
+#      bu1 asm, Up: 00h33m35s is not local
+

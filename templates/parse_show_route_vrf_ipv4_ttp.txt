@@ -1,0 +1,15 @@
+  Routing entry for {{ route_to_ipv4 }}
+
+    Last update: {{ time }}
+
+    Routing Descriptor Blocks
+
+      {{ end }}
+
+      Known via {{ protocol }}, distance 200, metric 0
+
+        type {{ type }}, protection none, route-type remote
+
+  
+
+  Entries: {{ entries }}

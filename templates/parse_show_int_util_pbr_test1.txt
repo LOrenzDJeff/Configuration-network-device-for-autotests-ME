@@ -1,0 +1,22 @@
+Value int1_name (te0/1/5|te0/0/11)
+Value int1_sent (\d+)
+Value int1_recv (\d+)
+Value int2_name (bu1)
+Value int2_sent (\d+)
+Value int2_recv (\d+)
+Value int3_name (bu2)
+Value int3_sent (\d+)
+Value int3_recv (\d+)
+
+Start
+  ^\s+${int1_name}\s+\d+\s+${int1_sent}\s+${int1_recv}\s+\d+\s+\d+
+  ^\s+${int2_name}\s+\d+\s+${int2_sent}\s+${int2_recv}\s+\d+\s+\d+
+  ^\s+${int3_name}\s+\d+\s+${int3_sent}\s+${int3_recv}\s+\d+\s+\d+
+#show interfaces utilization | incl "21 | Interf"
+#Mon Jun 21 13:19:44 2021
+#  Interface        Period, s  Sent, Kbit/s  Recv, Kbit/s  Frames sent, pps  Frames recv, pps  
+#  te0/1/5          21         52897         158697        4547              13647             
+#  bu1              21         13            7             20                9                 
+#  bu2              21         39833         39830         3462              3452              
+#0/FMC0:atDR1# 
+

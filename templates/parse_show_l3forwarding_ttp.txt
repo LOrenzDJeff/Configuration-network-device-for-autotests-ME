@@ -1,0 +1,9 @@
+  Subnet: {{ subnet }} Nexthop: {{ next_hop }} 
+  Interface: {{ interface }}
+  Src MAC: {{ src_mac }}
+  Dst MAC: {{ dst_mac }}
+  Outer VID: {{ Ovid }} Inner VID: {{ Ivid }}
+  MTU: {{ mtu }}
+  Outgoing label: {{ label }}
+  HW information:
+    FEC: {{ fec }}, ECMP FEC: {{ ecmp_fec }}, encap-id: {{ id }}

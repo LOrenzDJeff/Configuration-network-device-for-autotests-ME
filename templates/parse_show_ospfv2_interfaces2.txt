@@ -1,0 +1,108 @@
+Value int1 (Bundle-ether1)
+Value int1_state (point-to-point|designated-router)
+Value int1_metric (\d+)
+Value int1_DR_status (\d+.\d+.\d+.\d+)
+Value int1_BDR_status (\d+.\d+.\d+.\d+)
+Value int1_mask (255.255.255.252)
+Value int1_te (disabled|enabled)
+Value int2 (Bundle-ether2)
+Value int2_state (point-to-point|backup-designated-router)
+Value int2_metric (\d+)
+Value int2_DR_status (\d+.\d+.\d+.\d+)
+Value int2_BDR_status (\d+.\d+.\d+.\d+)
+Value int2_mask (255.255.255.252)
+Value int2_te (disabled|enabled)
+Value int3 (Loopback10)
+Value int3_state (other-designated-router)
+Value int3_metric (\d+)
+Value int3_DR_status (\d+.\d+.\d+.\d+)
+Value int3_BDR_status (\d+.\d+.\d+.\d+)
+Value int3_mask (255.255.255.255)
+Value int3_te (disabled|enabled)
+Value int4 (Tengigabitethernet0/1/5.350|Tengigabitethernet0/0/11.35[12])
+Value int4_state (point-to-point)
+Value int4_metric (\d+)
+Value int4_DR_status (\d+.\d+.\d+.\d+)
+Value int4_BDR_status (\d+.\d+.\d+.\d+)
+Value int4_mask (255.255.255.252)
+Value int4_te (disabled|enabled)
+
+Start
+  ^\s+Interface ${int1}, state: ${int1_state}, status: up -> Interface1
+  ^\s+Interface ${int2}, state: ${int2_state}, status: up -> Interface2
+  ^\s+Interface ${int3}, state: ${int3_state}, status: up -> Interface3
+  ^\s+Interface ${int4}, state: ${int4_state}, status: up -> Interface4
+  
+Interface1
+  ^\s+Area 0.0.0.0, metric: ${int1_metric}
+  ^\s+Designated Router IP addr: ${int1_DR_status}
+  ^\s+Backup Designated Router IP addr: ${int1_BDR_status}
+  ^\s+Subnet mask: ${int1_mask}
+  ^\s+Traffic Engineering: ${int1_te} -> Start
+  
+Interface2
+  ^\s+Area 0.0.0.0, metric: ${int2_metric}
+  ^\s+Designated Router IP addr: ${int2_DR_status}
+  ^\s+Backup Designated Router IP addr: ${int2_BDR_status}
+  ^\s+Subnet mask: ${int2_mask}
+  ^\s+Traffic Engineering: ${int2_te} -> Start
+
+Interface3
+  ^\s+Area 0.0.0.0, metric: ${int3_metric}
+  ^\s+Designated Router IP addr: ${int3_DR_status}
+  ^\s+Backup Designated Router IP addr: ${int3_BDR_status}
+  ^\s+Subnet mask: ${int3_mask}
+  ^\s+Traffic Engineering: ${int3_te} -> Start
+
+Interface4
+  ^\s+Area 0.0.0.0, metric: ${int4_metric}
+  ^\s+Designated Router IP addr: ${int4_DR_status}
+  ^\s+Backup Designated Router IP addr: ${int4_BDR_status}
+  ^\s+Subnet mask: ${int4_mask}
+  ^\s+Traffic Engineering: ${int4_te} -> Start
+
+
+#0/FMC0:atDR1# show ospfv2 interfaces 
+#Wed Apr 29 09:39:42 2020
+#  Routing Process: test, with ID 1.0.0.1
+#    Router is not an area border router
+#  
+#      Interface Bundle-ether1, state: point-to-point, status: up
+#        Area 0.0.0.0, metric: 1
+#        Changed state: 1 time, Administrative group 0
+#        Designated Router IP addr: 0.0.0.0
+#        Backup Designated Router IP addr: 0.0.0.0
+#        Subnet mask: 255.255.255.252
+#        Remote peer index: 0
+#        Number of LSA count: 0, checksum: 0x00000000
+#        Traffic Engineering: disabled
+#  
+#      Interface Bundle-ether2, state: backup-designated-router, status: up
+#        Area 0.0.0.0, metric: 1
+#        Changed state: 2 time, Administrative group 0
+#        Designated Router IP addr: 192.168.55.6
+#        Backup Designated Router IP addr: 192.168.55.5
+#        Subnet mask: 255.255.255.252
+#        Remote peer index: 0
+#        Number of LSA count: 0, checksum: 0x00000000
+#        Traffic Engineering: disabled
+#  
+#      Interface Loopback10, state: other-designated-router, status: up
+#        Area 0.0.0.0, metric: 1
+#        Changed state: 1 time, Administrative group 0
+#        Designated Router IP addr: 0.0.0.0
+#        Backup Designated Router IP addr: 0.0.0.0
+#        Subnet mask: 255.255.255.255
+#        Remote peer index: 0
+#        Number of LSA count: 0, checksum: 0x00000000
+#        Traffic Engineering: disabled
+#  
+#      Interface Tengigabitethernet0/1/5.350, state: point-to-point, status: up
+#        Area 0.0.0.0, metric: 1
+#        Changed state: 1 time, Administrative group 0
+#        Designated Router IP addr: 0.0.0.0
+#        Backup Designated Router IP addr: 0.0.0.0
+#        Subnet mask: 255.255.255.252
+#        Remote peer index: 0
+#        Number of LSA count: 0, checksum: 0x00000000
+#        Traffic Engineering: disabled

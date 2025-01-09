@@ -1,0 +1,16 @@
+Value name ((\S+\s){0,5}\S+)
+Value value ((\S+\s){0,9}\S+)
+
+
+Start
+ ^\s+${name}:\s*${value}\s+msec -> Record
+ ^\s+${name}:\s*${value} -> Record
+
+
+
+
+
+
+
+
+

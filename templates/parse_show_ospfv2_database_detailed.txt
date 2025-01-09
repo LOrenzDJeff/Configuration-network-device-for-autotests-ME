@@ -1,0 +1,66 @@
+Value lsa_area (\d+.\d+.\d+.\d+)
+Value lsa_id (\d+.\d+.\d+.\d+)
+Value lsa_router_id (\d+.\d+.\d+.\d+)
+Value lsa_age (\d+:\d+:\d+)
+Value lsa_seq (\wx\w+)
+Value lsa_checksum (\wx\w+)
+Value lsa_type (\S+)
+Value lsa_options (\S+\s+\S+|\S*)
+Value lsa_network_mask (\d+.\d+.\d+.\d+)
+Value lsa_ext_metric_type (\d+)
+Value lsa_metric (\d+)
+Value lsa_tos (\d+)
+Value lsa_metrics (\d+)
+Value lsa_ext_route_tag (\S*)
+
+
+Start
+  ^\s+Area:\s+${lsa_area} 
+  ^\s+LSA ID:\s+${lsa_id}
+  ^\s+Router-id:\s+${lsa_router_id}
+  ^\s+Age:\s+${lsa_age}
+  ^\s+Seq#:\s+${lsa_seq}
+  ^\s+Checksum:\s+${lsa_checksum}
+  ^\s+Type:\s+${lsa_type}
+  ^\s+Options:\s+${lsa_options}
+  ^\s+Network\s+Mask:\s+${lsa_network_mask}
+  ^\s+External\s+metric\s+type:\s+Type\s+${lsa_ext_metric_type}
+  ^\s+Metric:\s+${lsa_metric}
+  ^\s+External\s+Route\s+Tag:\s+${lsa_ext_route_tag} -> Record
+  ^\s+TOS\s+${lsa_tos}\s+Metrics:\s+${lsa_metrics} -> Record
+#  ^\s+*External*\s+*Route\s+*Tag*:*\s+\*${lsa_ext_route_tag} -> Record
+
+#RT_TAG
+#  ^\s+External Route Tag:\s+${lsa_ext_route_tag} -> Start
+
+
+#0/ME5200:atAR2# show ospfv2 vrf Customer database detailed summary 
+#Mon Apr 15 08:29:58 2024
+#  Routing Process: 1, VRF Customer, ID 2.2.2.2
+#
+#  Area Link State Database:
+#      Area: 0.0.0.0
+#      LSA ID: 10.0.221.0
+#      Router-id: 2.2.2.2
+#      Age: 00:27:53
+#      Seq#: 0x80000003
+#      Checksum: 0x1855
+#      Type: summary-lsa
+#      Options: E
+#        LSA type: Summary link (IP network)
+#        Length: 28
+#          Network Mask: 255.255.255.252
+#            TOS 0 Metrics: 1
+#      Area: 0.0.0.0
+#      LSA ID: 10.0.222.0
+#      Router-id: 2.2.2.2
+#      Age: 00:27:53
+#      Seq#: 0x80000003
+#      Checksum: 0x0d5f
+#      Type: summary-lsa
+#      Options: E
+#        LSA type: Summary link (IP network)
+#        Length: 28
+#          Network Mask: 255.255.255.252
+#            TOS 0 Metrics: 1
+

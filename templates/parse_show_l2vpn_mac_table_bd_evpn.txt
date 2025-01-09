@@ -1,0 +1,51 @@
+Value Top (MAC address\s+Type\s+Learned from\s+LC\/location\s+Bridge-domain name)
+Value CE_MAC (\w\w:\w\w:\w\w:\w\w:\w\w:\w\w)
+Value MAC_type (\S+)
+Value learned_int (te\d+/\d+/\d+.\d+|pw\s+1.0.0.[12]\s+123|evi \d.\d.\d.\d)
+Value LC_loc (0/[018])
+Value BD_name (\S+)
+
+Start
+  ^\s+${Top} -> Record
+  ^\s+${CE_MAC}\s+${MAC_type}\s+${learned_int}\s+${LC_loc}\s+${BD_name}\s+ -> Record  
+  ^\s+${CE_MAC}\s+${MAC_type}\s+${learned_int}\s+label \d+\s+${LC_loc}\s+${BD_name}\s+ -> Record
+  ^\s+${CE_MAC}\s+${MAC_type}\s+${learned_int}\s+vni \d+\s+${LC_loc}\s+${BD_name}\s+ -> Record
+
+
+#0/ME5200:atAR2# show l2vpn mac-table bridge-domain test_1
+#Wed Apr 26 13:37:05 2023
+#  MAC address        Type     Learned from                               LC/location     Bridge-domain name 
+#  ------------------ -------- ------------------------------------------ --------------- ------------------- 
+#  de:ad:be:af:00:41  Evpn     evi 1.0.0.1 label 22                       0/0             test_1 
+#  de:ad:be:af:00:42  Dynamic  te0/0/11.10042                             0/0             test_1 
+#  de:ad:be:af:00:43  Evpn     evi 1.0.0.3 label 34                       0/0             test_1 
+#
+#  Total entries: 3
+#0/ME5200:atAR2# 
+
+
+#0/FMC0:atDR1# show l2vpn mac-table bridge-domain test_1
+#Wed Apr 26 12:54:22 2023
+#  MAC address        Type     Learned from                               LC/location     Bridge-domain name 
+#  ------------------ -------- ------------------------------------------ --------------- ------------------- 
+#  de:ad:be:af:00:41  Dynamic  te0/1/5.10041                              0/1             test_1 
+#  de:ad:be:af:00:41  Dynamic  te0/1/5.10041                              0/8             test_1 
+#  de:ad:be:af:00:42  Evpn     evi 1.0.0.2 label 21                       0/1             test_1 
+#  de:ad:be:af:00:42  Evpn     evi 1.0.0.2 label 21                       0/8             test_1 
+#  de:ad:be:af:00:43  Evpn     evi 1.0.0.3 label 34                       0/1             test_1 
+#  de:ad:be:af:00:43  Evpn     evi 1.0.0.3 label 34                       0/8             test_1 
+#
+#  Total entries: 6
+#0/FMC0:atDR1# 
+
+#Вывод команды в сценарии использования VxLAN вместо MPLS
+# show l2vpn mac-table bridge-domain test_2
+#Wed May 24 16:30:18 2023
+#  MAC address        Type     Learned from                               LC/location     Bridge-domain name 
+#  ------------------ -------- ------------------------------------------ --------------- ------------------- 
+#  de:ad:be:af:00:41  Evpn     evi 1.0.0.1 vni 222                        0/0             test_2 
+#  de:ad:be:af:00:42  Evpn     evi 1.0.0.2 vni 222                        0/0             test_2 
+#  de:ad:be:af:00:43  Dynamic  te0/0/11.10043                             0/0             test_2 
+#
+#  Total entries: 3
+#0/ME5100:atAR1# 

@@ -1,0 +1,138 @@
+Value bd_name (\s+Bridge domain: 100, state: up)
+Value mac_learn (\s+MAC learning: enabled)
+Value local_switch (\s+Local switching: enabled)
+Value flood_replication (\s+Flood replication point: egress)
+Value flood_multicast (\s+Flooding Multicast: enabled)
+Value unknown_unicast (\s+Unknown unicast: enabled)
+Value mac_age_time (\s+MAC aging time: \d+ s, MAC limit: \d+, Action: enabled, MTU: \d+)
+Value oper_status (\s+Oper-status: up)
+Value ac (\s+ACs: 3 \(3 up\))
+Value pw (\s+PWs: 1 \(1 up\))
+Value ac1 (\s+AC:\s+\w+\d+/\d+/\d+.100)
+Value ac2 (\s+AC:\s+\w+\d+/\d+/\d+.20010)
+Value ac3 (\s+AC:\s+\w+\d+/\d+/\d+.20020)
+Value vfi (\s+VFI vfi100)
+Value PW1 (\s+PW: Neighbor 1.0.0.2, pw-id 2, admin Up, oper Up)
+Value PW1_label (\s+Label\s+\d+\s+\d+)
+Value PW2 (\s+PW: Neighbor 1.0.0.3, pw-id 2, admin Up, oper ST)
+Value PW2_label (\s+Label\s+\d+\s+\d+)
+
+Start
+  ^${bd_name}
+  ^${mac_learn}
+  ^${local_switch}
+  ^${flood_replication}
+  ^${flood_multicast}
+  ^${unknown_unicast}
+  ^${mac_age_time}
+  ^${oper_status}
+  ^${ac}
+  ^${pw}
+  ^${ac1}
+  ^${ac2}
+  ^${ac3}
+  ^${vfi}
+  ^${PW1} -> pw1labels
+  ^${PW2} -> pw2labels
+
+pw1labels
+  ^${PW1_label} -> Start
+  
+pw2labels  
+  ^${PW2_label} -> Record
+
+#0/FMC0:atDR1# show l2vpn bridge-domain detail 
+#Tue Jan 28 09:58:54 2020
+#  MM  -- mtu mismatch            Up -- up              GUp -- going up
+#  CM  -- control-word mismatch   Dn -- down            GDn -- going down
+#  OL  -- no outgoing label       ST -- standby         Lld -- lower layer down
+#  BK  -- backup connection       Fl -- failed          Drm -- dormant
+#  SP  -- static pseudowire       SW -- switchover
+#  
+#  Bridge domain: 100, state: up
+#    MAC learning: enabled
+#    Local switching: enabled
+#    Flood replication point: egress
+#    Flooding Multicast: all
+#      Unknown unicast: enabled
+#    MAC aging time: 300 s, MAC limit: 4000, Action: all, MTU: 1500
+#    Oper-status: up
+#    ACs: 3 (3 up)
+#    PWs: 1 (1 up)
+#    List of ACs:
+#    
+#      AC: Tengigabitethernet0/1/5.100
+#        AC binding status: up, Interface oper state: up
+#      AC: Tengigabitethernet0/1/5.20010
+#        AC binding status: up, Interface oper state: up
+#      AC: Tengigabitethernet0/1/5.20020
+#        AC binding status: up, Interface oper state: up
+#    
+#    List of PWs:
+#    
+#    List of VFIs:
+#    
+#     VFI vfi100
+#       
+#      PW: Neighbor 1.0.0.2, pw-id 2, admin Up, oper Up
+#      Status codes: 
+#        PW class: pwclass01, type: ethernet, signaling: pseudowire-id-fec-signaling
+#        PSN type: mpls, encapsulation: MPLS, control word: control-word-not-present
+#        Redundancy state active
+#        Vpn index: 3, type: ls
+#        Created: 2020-01-28 07:39:21, last state change: 00h05m06s ago
+#        
+#        MPLS                                    Local                     Remote
+#        Label                                   19                        21
+#        Group ID                                0                         0
+#        MTU                                     1500                      1500
+#        Forwarding                              true                      true
+#        Customer-facing (ingress) recv fault    false                     false
+#        Customer-facing (egress) send fault     false                     false
+#        Local PSN-facing (ingress) recv fault   false                     false
+#        Local PSN-facing (egress) send fault    false                     false
+#        Switchover                              false                     false
+#        Interface description string rcv: none
+#        Remote capabilities:
+#          VC status can be signaled: false
+#          VCCV ID can be signaled  : false
+#            Remote Control Channel (CC) supported: none
+#            Remote Connectivity Verification (CV) supported: none
+#        Remote node capability:
+#          Manually set PW: false
+#          Protocol has not yet finished cap. determination: false
+#          Signaling the pseudowire: true
+#          Sending the pseudowire: false
+#      Backup PW:
+#      PW: Neighbor 1.0.0.3, pw-id 2, admin Up, oper ST
+#      Status codes: BK
+#        Backup for neighbor 1.0.0.2, pw-id 2
+#        PW class: pwclass01, type: ethernet, signaling: pseudowire-id-fec-signaling
+#        PSN type: mpls, encapsulation: MPLS, control word: control-word-not-present
+#        Redundancy state standby
+#        Vpn index: 3, type: ls
+#        Created: 2020-01-28 07:39:20, last state change: 00h05m07s ago
+#        
+#        MPLS                                    Local                     Remote
+#        Label                                   16                        17
+#        Group ID                                0                         0
+#        MTU                                     1500                      1500
+#        Forwarding                              true                      true
+#        Customer-facing (ingress) recv fault    false                     false
+#        Customer-facing (egress) send fault     false                     false
+#        Local PSN-facing (ingress) recv fault   false                     false
+#        Local PSN-facing (egress) send fault    false                     false
+#        Switchover                              false                     false
+#        Interface description string rcv: none
+#        Remote capabilities:
+#          VC status can be signaled: false
+#          VCCV ID can be signaled  : false
+#        Remote node capability:
+#          Manually set PW: false
+#          Protocol has not yet finished cap. determination: false
+#          Signaling the pseudowire: true
+#          Sending the pseudowire: false
+#  
+#    List of Autodiscovery PWs:
+#  
+#0/FMC0:atDR1# 

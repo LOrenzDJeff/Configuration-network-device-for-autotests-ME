@@ -1,0 +1,50 @@
+    The destination Internet address prefix: {{ dest_prefix | re("\d+.\d+.\d+.\d+/\d+") }}
+
+
+#0/ME5100:atAR1# show ospfv2 fast-reroute 
+#Tue Apr  7 07:34:21 2020
+#  OSPFv2 Router test
+#
+#    The destination Internet address prefix: 1.0.0.1/32
+#      Reason: tie-router-id, providing-protection is false, primary-excluded is false, candidate-excluded is false, loop-free is true, overloaded is false, primary is false, remote-lfa is false, node-protecting is false
+#      The router ID of the next hop router on this path: 1.0.0.4, metric 1002
+#      Primary next hop:
+#          router address: 192.168.55.2
+#          local network interface: Bundle-ether1
+#      Candidate:
+#          LFA router address: 192.168.55.10
+#          local network interface: Tengigabitethernet0/0/11.352
+#      Attached:
+#          router ID: 
+#          local network interface: 
+#      
+#    The destination Internet address prefix: 1.0.0.1/32
+#      Reason: best-candidate, providing-protection is true, primary-excluded is false, candidate-excluded is false, loop-free is true, overloaded is false, primary is false, remote-lfa is false, node-protecting is false
+#      The router ID of the next hop router on this path: 1.0.0.2, metric 1002
+#      Primary next hop:
+#          router address: 192.168.55.2
+#          local network interface: Bundle-ether1
+#      Candidate:
+#          LFA router address: 192.168.55.22
+#          local network interface: Bundle-ether2
+#      Attached:
+#          router ID: 
+#          local network interface: 
+
+
+#0/ME5100:atAR2# show ospfv2 fast-reroute 
+#Tue Apr  7 07:40:42 2020
+#  OSPFv2 Router test
+#
+#    The destination Internet address prefix: 1.0.0.1/32
+#      Reason: , providing-protection is false, primary-excluded is , candidate-excluded is , loop-free is , overloaded is , primary is , remote-lfa is , node-protecting is 
+#      The router ID of the next hop router on this path: , metric 
+#      Primary next hop:
+#          router address: 192.168.55.14
+#          local network interface: Tengigabitethernet0/0/11.351
+#      Candidate:
+#          LFA router address: 192.168.55.21
+#          local network interface: Bundle-ether2
+#      Attached:
+#          router ID: 
+#          local network interface: 

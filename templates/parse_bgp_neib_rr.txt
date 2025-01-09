@@ -1,0 +1,20 @@
+Value bgp_router_id (\S+)
+Value local_as_numb (\d+)
+Value atr (\S*)
+Value net (\S+/\d+)
+Value next_hop (\S*)
+Value metric (\d+)
+Value loc_pref (\d+)
+Value weight (\d+)
+Value path (\S+\s*\S*\s*\S*\s*\S*\s*\S*)
+Value vrf (\S*)
+Value rec_from_neigh (\S+)
+Value grace_restart (\S+\s*\S*)
+Value table_st (\S+)
+
+Start
+  ^\s+BGP router identifier ${bgp_router_id},*\s*\S*\s*${vrf}*, local AS number\s+${local_as_numb}
+  ^\s+Graceful Restart ${grace_restart}
+  ^\s+BGP table state: ${table_st}
+  ^\s+Received bgp routes from neighbor: ${rec_from_neigh}
+  ^\s*${atr}\s+${net}\s+${next_hop}\s+${metric}\s+${loc_pref}\s+${weight}\s+${path}\s -> Record

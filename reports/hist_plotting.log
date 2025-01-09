@@ -1,0 +1,14 @@
+Общее количество тестов - 1665
+
+Общее количество PASSED тестов - 1463
+
+Общее количество SELECTED тестов - 1665
+
+Общее количество FAILED тестов - 112
+
+Общее количество SKIPPED тестов - 80
+
+Общее количество ERROR тестов - 12
+
+Ветка ПО - 3.9.7
+200 OK b'{"ok":true,"result":{"message_id":3542,"from":{"id":1334793558,"is_bot":true,"first_name":"ME_function_avtotests","username":"ME_func_avtotest_bot"},"chat":{"id":-453239384,"title":"ME-Avtotest-1","type":"group","all_members_are_administrators":true},"date":1735003419,"photo":[{"file_id":"AgACAgIAAxkDAAIN1mdqDRs_ZhKiuJGAmZwYjUE4gdL2AALq4jEbsYFQSxMvPNYi04J9AQADAgADcwADNgQ","file_unique_id":"AQAD6uIxG7GBUEt4","file_size":1752,"width":90,"height":66},{"file_id":"AgACAgIAAxkDAAIN1mdqDRs_ZhKiuJGAmZwYjUE4gdL2AALq4jEbsYFQSxMvPNYi04J9AQADAgADbQADNgQ","file_unique_id":"AQAD6uIxG7GBUEty","file_size":19698,"width":320,"height":234},{"file_id":"AgACAgIAAxkDAAIN1mdqDRs_ZhKiuJGAmZwYjUE4gdL2AALq4jEbsYFQSxMvPNYi04J9AQADAgADeAADNgQ","file_unique_id":"AQAD6uIxG7GBUEt9","file_size":62754,"width":800,"height":584},{"file_id":"AgACAgIAAxkDAAIN1mdqDRs_ZhKiuJGAmZwYjUE4gdL2AALq4jEbsYFQSxMvPNYi04J9AQADAgADeQADNgQ","file_unique_id":"AQAD6uIxG7GBUEt-","file_size":110447,"width":1280,"height":935},{"file_id":"AgACAgIAAxkDAAIN1mdqDRs_ZhKiuJGAmZwYjUE4gdL2AALq4jEbsYFQSxMvPNYi04J9AQADAgADdwADNgQ","file_unique_id":"AQAD6uIxG7GBUEt8","file_size":161034,"width":1863,"height":1361}]}}'

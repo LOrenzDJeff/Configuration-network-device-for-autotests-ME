@@ -1,0 +1,51 @@
+Value Top (\s+MAC address\s+Type\s+Learned from\s+LC/location\s+Bridge-domain name)
+Valuew interface (te0/1/5.20050|pw 1.0.0.2 65100:200 2)
+Value MAC1 (a8:f9:4b:aa:d8:85)
+Value MAC2 (a8:f9:4b:35:ac:40)
+
+Start
+  ^${Top}
+  ^${MAC1}\s+Dynamic\s+${interface}\s+0/\d\s+200\s+ ->Record
+#0/FMC0:atDR1# show l2vpn mac-table bridge-domain 200
+#Mon Mar  9 19:20:10 2020
+#  MAC address        Type     Learned from                               LC/location     Bridge-domain name
+#  ------------------ -------- ------------------------------------------ --------------- -------------------
+#  00:04:5f:93:21:92  Dynamic  pw 1.0.0.2 65100:200 2                     0/1             200
+#  00:05:86:71:0d:00  Dynamic  pw 1.0.0.2 65100:200 2                     0/1             200
+#  00:13:80:83:36:71  Dynamic  pw 1.0.0.2 65100:200 2                     0/1             200
+#  00:1d:7d:73:f0:f3  Dynamic  pw 1.0.0.2 65100:200 2                     0/1             200
+#  00:22:0d:c6:2c:18  Dynamic  pw 1.0.0.2 65100:200 2                     0/1             200
+#  00:25:9e:b2:41:76  Dynamic  pw 1.0.0.2 65100:200 2                     0/1             200
+#  00:a0:a5:5c:04:f7  Dynamic  pw 1.0.0.2 65100:200 2                     0/1             200
+#  00:d0:c9:c3:4a:91  Dynamic  pw 1.0.0.2 65100:200 2                     0/1             200
+#  00:e0:52:fe:62:3d  Dynamic  pw 1.0.0.2 65100:200 2                     0/1             200
+#  3c:1e:04:46:97:5a  Dynamic  pw 1.0.0.2 65100:200 2                     0/1             200
+#  44:2b:03:69:30:21  Dynamic  pw 1.0.0.2 65100:200 2                     0/1             200
+#  50:3e:aa:02:0b:5d  Dynamic  pw 1.0.0.2 65100:200 2                     0/1             200
+#  50:3e:aa:05:31:8d  Dynamic  pw 1.0.0.2 65100:200 2                     0/1             200
+#  a8:f9:4b:30:92:00  Dynamic  pw 1.0.0.2 65100:200 2                     0/1             200
+#  a8:f9:4b:35:ac:40  Dynamic  pw 1.0.0.2 65100:200 2                     0/1             200
+#  a8:f9:4b:3c:36:80  Dynamic  pw 1.0.0.2 65100:200 2                     0/1             200
+#  a8:f9:4b:3d:86:80  Dynamic  pw 1.0.0.2 65100:200 2                     0/1             200
+#  a8:f9:4b:3d:fa:40  Dynamic  pw 1.0.0.2 65100:200 2                     0/1             200
+#  a8:f9:4b:80:e1:80  Dynamic  pw 1.0.0.2 65100:200 2                     0/1             200
+#  a8:f9:4b:83:52:c0  Dynamic  pw 1.0.0.2 65100:200 2                     0/1             200
+#  a8:f9:4b:8b:95:16  Dynamic  pw 1.0.0.2 65100:200 2                     0/1             200
+#  a8:f9:4b:8b:bc:21  Dynamic  pw 1.0.0.2 65100:200 2                     0/1             200
+#  a8:f9:4b:90:4a:80  Dynamic  pw 1.0.0.2 65100:200 2                     0/1             200
+#  a8:f9:4b:9a:d9:40  Dynamic  pw 1.0.0.2 65100:200 2                     0/1             200
+#  a8:f9:4b:9a:da:c0  Dynamic  pw 1.0.0.2 65100:200 2                     0/1             200
+#  a8:f9:4b:a6:4e:40  Dynamic  pw 1.0.0.2 65100:200 2                     0/1             200
+#  a8:f9:4b:aa:d5:a3  Dynamic  pw 1.0.0.2 65100:200 2                     0/1             200
+#  a8:f9:4b:aa:d8:85  Dynamic  te0/1/5.20050                              0/8             200
+#  a8:f9:4b:fd:00:40  Dynamic  pw 1.0.0.2 65100:200 2                     0/1             200
+#  c4:e9:84:04:7e:d6  Dynamic  pw 1.0.0.2 65100:200 2                     0/1             200
+#  e0:d9:e3:a1:6e:00  Dynamic  pw 1.0.0.2 65100:200 2                     0/1             200
+#  e0:d9:e3:b5:d0:40  Dynamic  pw 1.0.0.2 65100:200 2                     0/1             200
+#  e0:d9:e3:df:35:2b  Dynamic  pw 1.0.0.2 65100:200 2                     0/1             200
+#  ec:10:69:81:ec:10  Dynamic  pw 1.0.0.2 65100:200 2                     0/1             200
+#  f4:6d:04:7a:22:6b  Dynamic  pw 1.0.0.2 65100:200 2                     0/1             200
+#  f4:f2:6d:03:3a:f3  Dynamic  pw 1.0.0.2 65100:200 2                     0/1             200
+#
+#More? Enter - next line; Space - next page; Q - quit; R - show the rest.
+#

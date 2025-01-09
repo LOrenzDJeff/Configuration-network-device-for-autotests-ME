@@ -1,0 +1,17 @@
+Value ipv6_neighbor (fe80::\w+:\w+:\w+:\w+)
+
+Start
+  ^\s+${ipv6_neighbor}\s+\d+:\d+:\d+\s+\w+:\w+:\w+:\w+:\w+:\w+\s+Dynamic \(Stale\)\s+\w+\s+\w+ -> Record
+
+# С помощью данного шаблона будем определять link-local адрес ipv6 соседа
+#0/ME5100:atAR2# show ipv6 neighbors interfaces te0/0/11.351
+#Thu Jan  9 11:00:44 2020
+#  NDP aging time is 240 minutes
+#  
+#  IP address                               Age         Hardware address   State                 Router   Interface 
+#  ---------------------------------------- ----------- ------------------ --------------------- -------- ---------- 
+#  2001:db8:cafe:a012::2                    00:00:00    e0:d9:e3:df:35:2b  Interface             no       te0/0/11.351 
+#  fe80::205:8601:5f71:4f00                 00:17:56    00:05:86:71:4f:00  Dynamic (Stale)       no       te0/0/11.351 
+#  fe80::e2d9:e3ff:fedf:352b                00:00:00    e0:d9:e3:df:35:2b  Interface             no       te0/0/11.351 
+#0/ME5100:atAR2# 
+#

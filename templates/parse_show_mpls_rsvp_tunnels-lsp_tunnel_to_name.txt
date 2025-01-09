@@ -1,0 +1,60 @@
+Value State (up|down)
+Value Signaling_int (Bundle-ether[12]|Tengigabitethernet0/0/11.351|)
+Value ERO_hop (192.168.55.\d+/32)
+
+
+Start
+  ^\s+State: ${State}, Resource status: primary, Protection role: working
+  ^\s+Signaling interface:\s+${Signaling_int}
+  ^\s+Explicit route hop prefix: ${ERO_hop}\s+ -> Record
+
+
+#Mon Aug 10 17:31:43 2020
+#  Tunnel: to_vMX-1, id: 1
+#    LSP name: from_atDR1_to_vMX-1, signaled-name: to_vMX-1@from_atDR1_to_vMX-1, id: 1, Source: 1.0.0.1, Destination: 1.0.0.4
+#      State: up, Resource status: primary, Protection role: working
+#      Direction: ingress, Node protect: disabled, Bandwidth protection requirement: disabled
+#      Carrying the normal traffic after protection switching: no
+#      Protected by a fast reroute: none 
+#      Downstream repaired: yes
+#      Path recording is not desired
+#      SE Style is desired
+#      LSP rerouting is none
+#      OAM MEP entities are not desired
+#      OAM MIP entities are not desired
+#        Upstream information:
+#          Previous hop: 224.0.0.0
+#        Downstream information:
+#          Next hop: 192.168.55.1
+#          Signaling interface: Bundle-ether1
+#          Neighbor: 192.168.55.1
+#          Label: 520, type: mpls-label
+#        Incoming explicit route hops:
+#          Index identifying a particular hop: 1, excluded: no
+#            Explicit route hop prefix: 224.0.0.0/32 
+#          Index identifying a particular hop: 2, excluded: no
+#            Explicit route hop prefix: 192.168.55.2/32 
+#          Index identifying a particular hop: 3, excluded: no
+#            Explicit route hop prefix: 192.168.55.1/32 
+#          Index identifying a particular hop: 4, excluded: no
+#            Explicit route hop prefix: 192.168.55.21/32 
+#          Index identifying a particular hop: 5, excluded: no
+#            Explicit route hop prefix: 192.168.55.22/32 
+#          Index identifying a particular hop: 6, excluded: no
+#            Explicit route hop prefix: 192.168.55.13/32 
+#          Index identifying a particular hop: 7, excluded: no
+#            Explicit route hop prefix: 192.168.55.14/32 
+#        Outgoing explicit route hops:
+#          Index identifying a particular hop: 1, excluded: no
+#            Explicit route hop prefix: 192.168.55.1/32 
+#          Index identifying a particular hop: 2, excluded: no
+#            Explicit route hop prefix: 192.168.55.21/32 
+#          Index identifying a particular hop: 3, excluded: no
+#            Explicit route hop prefix: 192.168.55.22/32 
+#          Index identifying a particular hop: 4, excluded: no
+#            Explicit route hop prefix: 192.168.55.13/32 
+#          Index identifying a particular hop: 5, excluded: no
+#            Explicit route hop prefix: 192.168.55.14/32 
+#  
+#0/FMC0:atDR1# 
+#

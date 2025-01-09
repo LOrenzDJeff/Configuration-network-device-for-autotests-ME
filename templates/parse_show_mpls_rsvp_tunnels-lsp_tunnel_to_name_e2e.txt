@@ -1,0 +1,128 @@
+Value lsp_name (\S+)
+Value lsp_signal_name (\S+@\S+)
+Value lsp_id (\d+)
+Value lsp_src (\d+.\d+.\d+.\d+)
+Value lsp_dst (\d+.\d+.\d+.\d+)
+Value lsp_state (up|down)
+Value lsp_status (\S+)
+Value lsp_protect_role (\S+)
+Value lsp_signal_int (Bundle-ether[12])
+Value incoming_ERH (\d+.\d+.\d+.\d+)
+
+Start
+  ^\s+LSP name: ${lsp_name}, signaled-name: ${lsp_signal_name}, id: ${lsp_id}, Source: ${lsp_src}, Destination: ${lsp_dst} -> LSP_parameters
+
+LSP_parameters
+  ^\s+State: ${lsp_state}, Resource status: ${lsp_status}, Protection role: ${lsp_protect_role} 
+  ^\s+Signaling interface: ${lsp_signal_int} -> Hopper_Popper
+
+Hopper_Popper
+  ^\s+Explicit route hop prefix: ${incoming_ERH}/32 -> Record
+  ^\s+Outgoing explicit route hops: -> Start
+
+#0/FMC0:atDR1# show mpls rsvp tunnels-lsp tunnel to_atAR2
+#Thu Aug 27 11:37:16 2020
+#  Tunnel: to_atAR2, id: 1
+#    LSP name: backup, signaled-name: to_atAR2@backup, id: 2, Source: 1.0.0.1, Destination: 1.0.0.2
+#      State: up, Resource status: secondary, Protection role: protecting
+#      Direction: ingress, Node protect: disabled, Bandwidth protection requirement: disabled
+#      Carrying the normal traffic after protection switching: no
+#      Protected by a fast reroute: none (protecting)
+#      Downstream repaired: yes
+#      Path recording is desired
+#      SE Style is desired
+#      LSP rerouting is end-to-end-rerouting
+#      OAM MEP entities are not desired
+#      OAM MIP entities are not desired
+#        Upstream information:
+#          Previous hop: 224.0.0.0
+#        Downstream information:
+#          Next hop: 192.168.55.1
+#          Signaling interface: Bundle-ether1
+#          Neighbor: 192.168.55.1
+#          Label: 19, type: mpls-label
+#        Incoming explicit route hops:
+#          Index identifying a particular hop: 1, excluded: no
+#            Explicit route hop prefix: 224.0.0.0/32 
+#          Index identifying a particular hop: 2, excluded: no
+#            Explicit route hop prefix: 192.168.55.2/32 
+#          Index identifying a particular hop: 3, excluded: no
+#            Explicit route hop prefix: 192.168.55.1/32 
+#          Index identifying a particular hop: 4, excluded: no
+#            Explicit route hop prefix: 192.168.55.21/32 
+#          Index identifying a particular hop: 5, excluded: no
+#            Explicit route hop prefix: 192.168.55.22/32 
+#        Outgoing explicit route hops:
+#          Index identifying a particular hop: 1, excluded: no
+#            Explicit route hop prefix: 192.168.55.1/32 
+#          Index identifying a particular hop: 2, excluded: no
+#            Explicit route hop prefix: 192.168.55.21/32 
+#          Index identifying a particular hop: 3, excluded: no
+#            Explicit route hop prefix: 192.168.55.22/32 
+#        RSVP incoming recorded route object information:
+#          Index identifying a particular hop: 0
+#            The address of this recorded route hop: 192.168.55.1, IP prefix flag: none
+#          Index identifying a particular hop: 1
+#            Label 19, Type mpls-label
+#              Is a reverse direction label, Flags: globallabel
+#          Index identifying a particular hop: 2
+#            The address of this recorded route hop: 192.168.55.22, IP prefix flag: none
+#          Index identifying a particular hop: 3
+#            Label 3, Type mpls-label
+#              Is a reverse direction label, Flags: globallabel
+#        RSVP outgoing recorded route object information:
+#          Index identifying a particular hop: 0
+#            The address of this recorded route hop: 192.168.55.1, IP prefix flag: none
+#          Index identifying a particular hop: 1
+#            Label 19, Type mpls-label
+#              Is a reverse direction label, Flags: globallabel
+#          Index identifying a particular hop: 2
+#            The address of this recorded route hop: 192.168.55.22, IP prefix flag: none
+#          Index identifying a particular hop: 3
+#            Label 3, Type mpls-label
+#              Is a reverse direction label, Flags: globallabel
+#  
+#  Tunnel: to_atAR2, id: 1
+#    LSP name: main, signaled-name: to_atAR2@main, id: 1, Source: 1.0.0.1, Destination: 1.0.0.2
+#      State: up, Resource status: primary, Protection role: working
+#      Direction: ingress, Node protect: disabled, Bandwidth protection requirement: disabled
+#      Carrying the normal traffic after protection switching: no
+#      Protected by a fast reroute: none 
+#      Downstream repaired: yes
+#      Path recording is desired
+#      SE Style is desired
+#      LSP rerouting is end-to-end-rerouting
+#      OAM MEP entities are not desired
+#      OAM MIP entities are not desired
+#        Upstream information:
+#          Previous hop: 224.0.0.0
+#        Downstream information:
+#          Next hop: 192.168.55.6
+#          Signaling interface: Bundle-ether2
+#          Neighbor: 192.168.55.6
+#          Label: 3, type: mpls-label
+#        Incoming explicit route hops:
+#          Index identifying a particular hop: 1, excluded: no
+#            Explicit route hop prefix: 224.0.0.0/32 
+#          Index identifying a particular hop: 2, excluded: no
+#            Explicit route hop prefix: 192.168.55.5/32 
+#          Index identifying a particular hop: 3, excluded: no
+#            Explicit route hop prefix: 192.168.55.6/32 
+#        Outgoing explicit route hops:
+#          Index identifying a particular hop: 1, excluded: no
+#            Explicit route hop prefix: 192.168.55.6/32 
+#        RSVP incoming recorded route object information:
+#          Index identifying a particular hop: 0
+#            The address of this recorded route hop: 192.168.55.6, IP prefix flag: none
+#          Index identifying a particular hop: 1
+#            Label 3, Type mpls-label
+#              Is a reverse direction label, Flags: globallabel
+#        RSVP outgoing recorded route object information:
+#          Index identifying a particular hop: 0
+#            The address of this recorded route hop: 192.168.55.6, IP prefix flag: none
+#          Index identifying a particular hop: 1
+#            Label 3, Type mpls-label
+#              Is a reverse direction label, Flags: globallabel
+#  
+#0/FMC0:atDR1# 
+#

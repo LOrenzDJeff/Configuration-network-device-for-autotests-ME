@@ -1,0 +1,6 @@
+Value network (\S*132\S*)
+Value path (.*)
+Value origin ([i|?|e])
+
+Start
+  ^\s*\S*\s*${network}\s+\S+\s+\d+\s+\d+\s+\d+\s+${path}\s${origin}

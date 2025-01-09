@@ -1,0 +1,15 @@
+  PIM process for vrf '{{ vrf }}' 
+  PIM {{state}} State Counters
+    Keepalive period is {{ keepalive }} sec
+    Register suppression time is {{ suppression_time }} sec, probe time is {{ probe_time }} sec
+    PIM multipath mode is highest-neighbor ({{ multipath_mode }})
+    Interface state change traps are {{ int_state_change }}
+      Backstop timer:     {{ backstop_timer }} sec (0 remaining)
+      Join startup timer: {{ startup_timer }} sec (0 remaining)
+    Different sources/RPs: {{ diff_sources }}/{{ RPs }}
+    Groups now/max: (*,G): {{ g*G_now }}/{{ g*G_max | PHRASE}}   (S,G): {{ gSG_now }}/{{ gSG_max | PHRASE}}
+                  (*,G,I): {{ g*GI_now }}/{{ g*GI_max | PHRASE}} (S,G,I): {{ gSGI_now }}/{{ gSGI_max | PHRASE}}
+
+
+
+

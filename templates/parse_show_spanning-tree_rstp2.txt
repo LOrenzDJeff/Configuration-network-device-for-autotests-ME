@@ -1,0 +1,42 @@
+Value line1 (\s+RSTP operates in 802.1D bridge mode)
+Value line2 (\s+Configured hello time is 2 sec, maximum age is default)
+Value line3 (\s+operational 200/600, forward delay is 15 sec.)
+Value RootMAC (E0:D9:E3:DF:35:20)
+Value BridgeMAC (e0:d9:e3:df:35:20)
+Value Top (\s+interface\s+prio.nbr\s+cost\s+state\s+role\s+type\s+)
+Value port9 (te0/0/9)
+Value port10 (te0/0/10)
+
+Start
+  ^${line1}
+  ^${line2}
+  ^${line3}
+  ^\s+Root ID\s+Address\s+${RootMAC}
+  ^\s+Bridge ID\s+Address\s+${BridgeMAC}
+  ^${Top}
+  ^\s+${port9}\s+128.9\s+2000\s+fwd\s+Dsgn\s+p2p\s+
+  ^\s+${port10}\s+128.10\s+2000\s+fwd\s+Dsgn\s+p2p\s+edge\s+
+
+
+#0/ME5100:atAR2# show spanning-tree 
+#Tue Mar  3 18:59:44 2020
+#  RSTP operates in 802.1D bridge mode
+#  Configured hello time is 2 sec, maximum age is default
+#  operational 200/600, forward delay is 15 sec.
+#    Root ID         Address    E0:D9:E3:DF:35:20
+#                    Priority   0
+#                    Root hops  0
+#                    Path cost  0
+#    Bridge ID       Address    e0:d9:e3:df:35:20
+#                    Priority   0
+#  Number of topology changes 1, last occurred 1656 sec ago.
+#  
+#  interface                prio.nbr  cost         state   role      type 
+#  ------------------------ --------- ------------ ------- --------- ----- 
+#  te0/0/9                  128.10    20000        fwd     Dsgn       p2p 
+#  te0/0/10                 128.11    20000        fwd     Dsgn       p2p edge 
+#  
+#  STP: disabled
+#  
+#  MSTP: disabled
+#0/ME5100:atAR2# 

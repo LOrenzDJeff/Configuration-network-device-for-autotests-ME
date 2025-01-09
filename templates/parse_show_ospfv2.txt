@@ -1,0 +1,53 @@
+Value router_process_name (\S+)
+Value router_id (\d+.\d+.\d+.\d+)
+Value ospf_te (\S+)
+Value header_length_error (\d+)
+Value header_error (\d+)
+Value version_field_error (\d+)
+Value resource_error (\d+)
+Value packets_dropped (\d+)
+Value vrf (\S+)
+
+Start
+  ^\s+Routing [\S]rocess: ${router_process_name}, ID ${router_id}
+  ^\s+Routing Process: ${router_process_name}, VRF ${vrf}, ID ${router_id}
+  ^\s+OSPF traffic engineering: ${ospf_te}
+  ^\s+Header length errors:\s+${header_length_error}
+  ^\s+Header errors:\s+${header_error}
+  ^\s+Version field is invalid:\s+${version_field_error}
+  ^\s+Resource errors:\s+${resource_error}
+  ^\s+Packets dropped by unknown reason:\s+${packets_dropped}
+
+#0/ME5200:atAR2# show ospfv2
+#Thu May 11 06:27:08 2023
+#  Routing process: 1, ID 172.16.0.2
+#  Routing Process: 1, VRF test_1, ID 10.0.0.222 <= На atAR2 будет так
+#    Router is not an area border router
+#    Graceful restart: not-restarting, remaining time: 0, reason: none
+#    OSPF traffic engineering: disabled
+#    Traffic engineering disabled, router ID: 1.0.0.2
+#    The maximum delay before the Routing Table is recalculated: 5000
+#    Route max equal cost paths are stored: 5
+#    External LSA refresh interval: 1800 secs
+#    Full SPF calculation: 02h15m41s ago
+#    LSA timers:
+#      Minimum time between originations: 5000 msec
+#      Minimum time between receptions: 1000 msec
+#      Time to increase minimum originations interval: 0 msec
+#      Maximum time to delay originations: 0 msec
+#    Number of new LSA originated: 0
+#    Number of new LSA received: 0
+#    Number of AS-External LSA (type 5): 0, checksum: 0x00000000
+#    Number of AS-Opaque LSA  (type 11): 0, checksum: 0x00000000
+#    Number of LSA in LSDB at checksum check: 0
+#    Number of updates: 0 pending, 0 merged
+#    Errors count:
+#      Header length errors:            0
+#      Header errors:                   0
+#      No interface for virtual link:   0
+#      Version field is invalid:        0
+#      Invalid or unrecognized address: 0
+#      Resource errors:                 0
+#    Packets dropped by unknown reason: 0
+#  
+#0/ME5200:atAR2# 

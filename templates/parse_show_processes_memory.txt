@@ -1,0 +1,8 @@
+Value MODULE_LOCATION (\S+)
+Value PROCESS (\S+)
+Value ALLOCATED_kB (\d+)
+Value USED_kB (\d+)
+Value USED_per (\S+)
+
+Start
+  ^\s*${MODULE_LOCATION}\s+${PROCESS}\s+${ALLOCATED_kB}\s+${USED_kB}\s+${USED_per}\s*$$ -> Record

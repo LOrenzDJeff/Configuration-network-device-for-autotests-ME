@@ -1,0 +1,12 @@
+Value acl_entr_current (\d+)
+Value acl_entr_conf (\d+)
+Value acl_entr_used (\d+)
+
+Start
+  ^\s+ACL\s+entries\s+${acl_entr_current}\s+${acl_entr_conf}\s+N/S\s+${acl_entr_used} 
+
+#0/FMC0:atDR1# show hw-module maximum  | incl "IPv4 acl-entries"
+#Tue Jun 29 17:26:47 2021
+#  IPv4 acl-entries        64           64           N/S           0 
+#0/FMC0:atDR1# 
+

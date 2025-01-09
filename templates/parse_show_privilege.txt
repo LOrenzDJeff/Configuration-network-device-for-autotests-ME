@@ -1,0 +1,9 @@
+Value lvl (\d+)
+
+Start
+  ^\s+Current privilege level is ${lvl} -> Record
+
+#0/ME5100:atAR1# show privilege 
+#Fri Dec 13 11:58:11 2019
+#  Current privilege level is 15
+#0/ME5100:atAR1# 

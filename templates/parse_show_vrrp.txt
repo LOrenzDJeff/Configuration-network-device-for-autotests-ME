@@ -1,0 +1,21 @@
+Value int_name (te0/0/11.\d+|te0/1/5.\d+|bu[12])
+Value vrrp_id (\d+)
+Value vrrp_pri (\d+)
+Value virt_ip (\d+.\d+.\d+.\d+)
+Value vrrp_state (\w+)
+Value vrrp_role (\w+)
+
+Start
+  ^\s+${int_name}\s+${vrrp_id}\s+${vrrp_pri}\s+${virt_ip}\s+${vrrp_state}\s+${vrrp_role} -> Record
+
+#0/ME5200:atAR2# show vrrp
+#Mon Sep 13 06:53:43 2021
+#  Interface                VRRP ID   Priority  Virtual IP                      State                 Role                  
+#  ------------------------ --------- --------- ------------------------------- --------------------- --------------------- 
+#  te0/0/11.100410          10        250       172.22.45.10                    running               master                
+#  te0/0/11.420             20        250       172.22.46.10                    running               master                
+#  te0/0/11.430             40        250       172.22.47.10                    running               master                
+#  bu1                      30        250       172.22.40.10                    running               master                
+#0/ME5200:atAR2# 
+
+

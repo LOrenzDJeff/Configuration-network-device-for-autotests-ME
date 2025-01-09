@@ -1,0 +1,40 @@
+Value bgp_router_id (\S+)
+Value vrf (\S*)
+Value path (\S\d+)
+Value local_as_numb (\d+)
+Value bgp_rt_entry (\S+)
+Value as_path (\d+\s*\d*\s*\d*\s*\d*\s*\d*)
+Value next_hop (\S+\sfrom\s\S+\s\S+)
+Value origin (\S+)
+Value metric (\d+)
+Value local_pref (\d+)
+Value weight (\d+)
+Value status (active|inactive)
+Value type (external|internal)
+Value is_best (best)
+Value addr_fam (\S+)
+Value NLRI_path_id (\d+)
+Value aggr_as (\d+)
+Value aggr_addr (\S+)
+Value atomic_aggr (\S+)
+Value rflap_penalty (\d+)
+Value flap (\d+)
+Value suppr (\w*\s*\w*\ssuppressed)
+Value rflap_time_start (\S+)
+Value is_ecmp (\w*\s*\w*\sECMP)
+
+Start
+  ^\s+BGP router identifier ${bgp_router_id},*\s*\S*\s*${vrf}*, local AS number\s+${local_as_numb}
+  ^\s+BGP routing table entry for ${bgp_rt_entry}
+  ^\s+Path ${path}
+  ^\s+AS path: ${as_path}\s
+  ^\s+${next_hop}
+  ^\s+Origin ${origin}, metric ${metric}, local-pref ${local_pref}, weight ${weight},*\s*${status}*,*\s*${type}*,*\s*${is_best}*
+  ^\s+Address family: ${addr_fam}
+  ^\s+NLRI pathID: ${NLRI_path_id}
+  ^\s+Aggregator AS: ${aggr_as}, Address: ${aggr_addr}, Atomic aggregate: ${atomic_aggr}
+  ^\s+Is not stale, is not history
+  ^\s+Route flap penalty: ${rflap_penalty}, flap count ${flap}, ${suppr}
+  ^\s+\w+\s\w+\s\w+\s\S+\s+\S+\stime start: ${rflap_time_start}
+  ^\s+Route ${is_ecmp} -> Record
+

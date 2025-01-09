@@ -1,0 +1,6 @@
+Value metric (\d+)
+Value as_path (.*)
+Value origin ([ei?])
+
+Start
+  ^\s*\S+\s+\S+\s+${metric}\s+\d+\s+\S+\s+\S+\s+${as_path}\s+${origin} -> Record

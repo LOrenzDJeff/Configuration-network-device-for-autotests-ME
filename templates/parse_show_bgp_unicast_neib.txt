@@ -1,0 +1,22 @@
+Value path ((\d+.\d+.\d+.\d+|\d+:\d+:\d+:\d+:\d*:\d+)\sfrom\s\S+\s\S+)
+Value as_path (\d*)
+Value cluster_list (\S*\s*\S*)
+Value orig_id (\S*)
+Value orig (\S+)
+Value metric (\d+)
+Value loc_pref (\d+)
+Value weight (\d+)
+Value status (\S+)
+Value type (\w+)
+Value status1 (\S*)
+Value rec_from (Received*\s*from*\s*\w*\s*\S*)
+
+Start
+  ^\s+AS path: ${as_path}
+  ^\s+${path}
+  ^\s+Origin\s${orig}\S\s\S+\s${metric}\S\s\S+\s${loc_pref}\S\s\S+\s${weight}\S\s${status}\S\s${type}\S*\s*${status1}
+  ^\s*${rec_from}
+  ^\s*Cluster*\s*List:*\s*${cluster_list}
+  ^\s*Originator*\s*ID:*\s*${orig_id}
+  ^\s+Route -> Record
+

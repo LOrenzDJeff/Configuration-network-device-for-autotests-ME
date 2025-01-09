@@ -1,0 +1,66 @@
+Value pim_int (Bundle-ether[12]|Tengigabitethernet0/0/11.35[12]|Tengigabitethernet0/1/5.35[03]|Tengigabitethernet0/0/9.30)
+Value pim_assert (\s+PIM Assert msg sent:\s+0\s+0)
+Value pim_JP (\d+)
+Value pim_hello (\d+)
+Value pim_recv_err (\s+PIM Hello msg recv err:\s+0\s+0)
+Value pim_unknown_opt (\s+PIM Hello unknown options:\s+0\s+0)
+Value pim_unknown_neighbor (\s+PIM unknown neighbor msg recv:\s+0\s+0)
+Value pim_boot (\s+PIM Bootstrap Router messages sent:\s+0\s+0)
+
+
+Start
+  ^\s+Interface ${pim_int} -> Packet_type
+
+Packet_type
+  ^${pim_assert}
+  ^\s+PIM Join/Prune msg sent:\s+${pim_JP}\s+0
+  ^\s+PIM Hello msg sent:\s+${pim_hello}\s+0
+  ^${pim_recv_err}
+  ^${pim_unknown_opt}
+  ^${pim_unknown_neighbor}
+  ^${pim_boot} -> Record Start
+
+#0/ME5100:atAR1# show pim traffic interfaces 
+#Mon Apr 13 16:35:56 2020
+#  Interface Bundle-ether1
+#                                            IPv4                        IPv6
+#    PIM Assert msg sent:                    0                           0
+#    PIM Join/Prune msg sent:                0                           0
+#    PIM Hello msg sent:                     637                         0
+#    PIM Hello msg recv err:                 0                           0
+#    PIM Hello unknown options:              0                           0
+#    PIM unknown neighbor msg recv:          0                           0
+#    PIM Bootstrap Router messages sent:     0                           0
+#    
+#  Interface Bundle-ether2
+#                                            IPv4                        IPv6
+#    PIM Assert msg sent:                    0                           0
+#    PIM Join/Prune msg sent:                1                           0
+#    PIM Hello msg sent:                     636                         0
+#    PIM Hello msg recv err:                 0                           0
+#    PIM Hello unknown options:              0                           0
+#    PIM unknown neighbor msg recv:          0                           0
+#    PIM Bootstrap Router messages sent:     0                           0
+#    
+#  Interface Tengigabitethernet0/0/11.352
+#                                            IPv4                        IPv6
+#    PIM Assert msg sent:                    0                           0
+#    PIM Join/Prune msg sent:                0                           0
+#    PIM Hello msg sent:                     636                         0
+#    PIM Hello msg recv err:                 0                           0
+#    PIM Hello unknown options:              0                           0
+#    PIM unknown neighbor msg recv:          0                           0
+#    PIM Bootstrap Router messages sent:     0                           0
+#    
+#  Interface Tengigabitethernet0/0/9.30
+#                                            IPv4                        IPv6
+#    PIM Assert msg sent:                    0                           0
+#    PIM Join/Prune msg sent:                0                           0
+#    PIM Hello msg sent:                     0                           0
+#    PIM Hello msg recv err:                 0                           0
+#    PIM Hello unknown options:              0                           0
+#    PIM unknown neighbor msg recv:          0                           0
+#    PIM Bootstrap Router messages sent:     0                           0
+#    
+#0/ME5100:atAR1# 
+#

@@ -1,0 +1,66 @@
+Value MainModule (ME5100)
+Value ChassisSerial (ME\d+)
+Value HardVersion (\d+v\d+)
+Value HardRevision (\d+)
+Value MAC (\w\w:\w\w:\w\w:\w\w:\w\w:\w\w)
+Value RAM (\d+ GB)
+Value StorageModel (\d+GB SATA Flash Drive)
+Value PSM1 (not present|PM350-220/12:rev.B)
+Value PSM1_Serial (PM\d+)
+Value PSM1_HardVer (\d+v\d+)
+Value PSM2 (not present|PM350-220/12:rev.B)
+Value PSM2_Serial (PM\d+)
+Value PSM2_HardVer (\d+v\d+)
+Value SM_STAT (\w+\s+\w+-\w+-\w+)
+Value SM_STAT_Serial_number (ME\w+)
+Value SM_STAT_Hardware_version (\d+v\d+)
+
+
+Start
+  ^\s+Main system module is ${MainModule}
+  ^\s+Serial number:\s+${ChassisSerial} 
+  ^\s+Hardware version:\s+${HardVersion}
+  ^\s+Hardware revision:\s+${HardRevision}
+  ^\s+MAC address:\s+${MAC}
+  ^\s+Installed RAM:\s+${RAM}
+  ^\s+Device model:\s+${StorageModel} -> Record 
+  ^\s+SM-STAT board:\s+${SM_STAT} -> SM_STAT
+  ^\s+Serial number:\s+${SM_STAT_Serial_number} 
+  ^\s+Hardware version:\s+${SM_STAT_Hardware_version}
+  ^\s+Module in slot power supply 1 is ${PSM1} 
+  ^\s+Module in slot power supply 2 is ${PSM2} -> PSM2
+
+SM_STAT
+  ^\s+Serial number:\s+${SM_STAT_Serial_number} 
+  ^\s+Hardware version:\s+${SM_STAT_Hardware_version} -> Start
+  
+PSM2
+  ^\s+Serial number:\s+${PSM2_Serial}
+  ^\s+Hardware version:\s+${PSM2_HardVer} -> Start
+
+
+
+#Пример вывода команды 'show system inventory' на ME5100
+#  0/ME5100:atAR1# show system inventory 
+#Fri Dec  6 16:39:19 2019
+#  Hardware inventory information for chassis 0
+#  
+#   Main system module is ME5100
+#    Serial number:      ME09000051
+#    Hardware version:   3v2
+#    Hardware revision:  0
+#    MAC address:        e0:d9:e3:df:34:a0
+#    Installed RAM:      8 GB
+#      Bank 0:           Kingston 9965527-029.A00LF
+#        Capacity:       8 GB
+#        Serial number:  55cf0fb
+#    Storage:
+#      Device model:   8GB SATA Flash Drive
+#      Serial number:  67F40776052400268291
+#      Capacity:       8.01 GB
+#  
+#   Module in slot power supply 1 is not present
+#  
+#   Module in slot power supply 2 is PM350-220/12:rev.B
+#    Serial number:      PM26000667
+#    Hardware version:   2v7

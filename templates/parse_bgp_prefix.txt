@@ -1,0 +1,15 @@
+Value as_p (.*)
+Value origin (igp|egp)
+Value metric (\d+)
+Value lp (\d+)
+Value weight (\d+)
+Value community (.*)
+Value ext_comm (.*)
+
+Start
+  ^\s+AS path: ${as_p}
+  ^\s+Origin ${origin},\s\S+\s${metric},\s\S+\s${lp},\s\S+\s${weight}
+  ^\s+Community: ${community}
+  ^\s+Extended Community: ${ext_comm}
+
+

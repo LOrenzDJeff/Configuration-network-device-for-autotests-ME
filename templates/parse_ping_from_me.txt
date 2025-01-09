@@ -1,0 +1,10 @@
+Value success_rate (\d+|\d+.\d+)
+Value rtt_min (\d+.\d+)
+Value rtt_avg (\d+.\d+)
+Value rtt_max (\d+.\d+)
+Value send_pkt (\d+)
+Value recv_pkt (\d+)
+
+Start
+  ^Success\s+rate\s+is\s+${success_rate}\s+percent\s+\(${send_pkt}/${recv_pkt}\),\s+round-trip min/avg/max = ${rtt_min}/${rtt_avg}/${rtt_max} ms
+  ^Success rate is ${success_rate} percent \(${send_pkt}/${recv_pkt}\)

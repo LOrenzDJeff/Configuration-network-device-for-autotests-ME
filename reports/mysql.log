@@ -1,0 +1,1675 @@
+Общее количество тестов - 1665
+
+Общее количество PASSED тестов - 1463
+
+Общее количество SELECTED тестов - 1665
+
+Общее количество FAILED тестов - 112
+
+Общее количество SKIPPED тестов - 80
+
+Общее количество ERROR тестов - 12
+
+Soft version is 3.9.7.17RC
+Недели - 0
+Дни - 0
+Часы - 0
+Минуты - 24
+1 record inserted into table function_tests_summary_info.
+Провальный Тест №0 - test_show_system_inventory_part2,  Причина - AssertionError: БП1 устройства должен иметь статус present, вместо этого он определился как not present
+Провальный Тест №1 - test_show_system_environment_part2,  Причина - AssertionError: Внутренний температурный датчик PLL показывает значение - 61, что больше порогового значения 60 градусов С
+Провальный Тест №2 - test_show_system_environment_part2,  Причина - AssertionError: Скорость вращения корпусных вентиляторов превысила 52 % и составила - 58 %
+Провальный Тест №3 - test_session_limit_part2,  Причина - AssertionError: Протокол ssh, получено 9 успешных подключений при лимите = 10
+Провальный Тест №4 - test_show_lldp_neighbors_part3,  Причина - AssertionError: В выводе команды show lldp neighbors не обнаружен Local port te0/8/4
+Провальный Тест №5 - test_show_lldp_neighbors_detail_part3,  Причина - AssertionError: Chassis ID соседа обнаруженного на порту Tengigabitethernet0/8/4 равен не ожидаемому e0:d9:e3:ff:48:80, а
+Провальный Тест №6 - test_lfa_protect_disable_part4_4,  Причина - AssertionError: Маршрут к IPv6 префиксу 1 2001:db8:cafe:a013::/64 через nexthop fe80::e65a:d4ff:fede:c8a2 и исходящий интерфейс bu1 не соответсвует шаблону. Ожидаемые значения: prefix - 2001:db8:cafe:a013::/64, nexthop - fe80::e2d9:e3ff:fedf:34b6, outgoing interface - bu1
+Провальный Тест №7 - test_show_isis_fast_reroute_part4_4,  Причина - AssertionError:  Маршрут к префиксу 2001:db8:cafe:a003::/64 через основной nexthop - fe80::e65a:d4ff:fede:c8a3 и через резервный nexthop - fe80::aaf9:4bff:fe8b:9403 не соответсвует шаблону. Ожидаемые значения основного nexthop-a - fe80::e2d9:e3ff:fedf:34b7, резервного nexthop-a - fe80::aaf9:4bff:fe8b:9403
+Провальный Тест №8 - test_show_isis_fast_reroute_part4_4,  Причина - AssertionError:  Маршрут к префиксу 2001:db8:cafe:a002::/64 через основной nexthop - fe80::e2d9:e3ff:feff:48b2 и через резервный nexthop - fe80::e65a:d4ff:fede:c8a2 не соответсвует шаблону. Ожидаемые значения основного nexthop-a - fe80::e2d9:e3ff:feff:48b2 , резервного nexthop-a - fe80::e2d9:e3ff:fedf:34b6
+Провальный Тест №9 - test_ping_over_ISIS_MI_part4_9,  Причина - AssertionError: Обнаружены потери пакетов между CE2 и CE3 в размере 100
+Провальный Тест №10 - test_prefix_filter_between_ISIS_MI_part4_9,  Причина - AssertionError: Обнаружены потери пакетов между CE2 и CE3 в размере 100
+Провальный Тест №11 - test_prefix_list_filter_between_ISIS_MI_part4_9,  Причина - AssertionError: Обнаружены потери пакетов между CE2 и CE3 в размере 100
+Провальный Тест №12 - test_bgp_local_as_mode2_atAR1_7_3_2_2,  Причина - Exscript.protocols.exception.TimeoutException: Buffer: '\r\nSuccessfully connected to klish server\r\n'
+Провальный Тест №13 - test_bgp_prefix_bgp_conn_status_7_3_6_1,  Причина - Exscript.protocols.exception.TimeoutException: Buffer: '\r\nSuccessfully connected to klish server\r\n'
+Провальный Тест №14 - test_bgp_connection_atDR1_7_3_8_1,  Причина - AssertionError: Некорректное значение атрибута prefRcd1_4: вместо 1 получаем
+Провальный Тест №15 - test_bgp_connection_atAR2_7_3_8_2,  Причина - AssertionError: Некорректное значение атрибута prefRcd2_3: вместо 1 получаем
+Провальный Тест №16 - test_bgp_redistribute_manual_7_3_10_2_test3,  Причина - AssertionError: Количество vpnv4 префиксов вместо 0 равно 5
+Провальный Тест №17 - test_ospf_redistribution_7_3_10_3_test7,  Причина - AssertionError: Количество vpnv4 префиксов вместо 3 равно 0
+Провальный Тест №18 - test_isis_redistribution_7_3_10_4_test5,  Причина - AssertionError: Некорректное количество vpnv4 префиксов
+Провальный Тест №19 - test_rip_redistribution_7_3_10_5_test5,  Причина - AssertionError: Некорректное количество vpnv4 префиксов
+Провальный Тест №20 - test_redistribution_local_7_3_10_8_test5,  Причина - AssertionError: Некорректное количество vpnv4 префиксов
+Провальный Тест №21 - test_show_bgp_neighbors_one_way_auth_part7_3_11,  Причина - AssertionError: В выводе команды show bgp vrf Auth neighbors 172.22.1.50 значение параметра BGP STATE должно быть равно connect, а не active
+Провальный Тест №22 - test_show_bgp_vrf_summary_auth_no_misconfig_part7_3_11,  Причина - Failed: Error in execute_command: Buffer: '\r\nSuccessfully connected to klish server\r\n'
+Провальный Тест №23 - test_show_bgp_ip_unic_neib_advert_routes_rr_add_path_part7_3_12,  Причина - Failed: Error in execute_command: Error while waiting for response from device
+Провальный Тест №24 - test_show_spanning_tree_part8,  Причина - AssertionError: Отображение порта te0/0/10 не прошло парсинг по шаблону
+Провальный Тест №25 - test_show_spanning_tree_part8_1,  Причина - AssertionError: Отображение порта te0/0/10 не прошло парсинг по шаблону
+Провальный Тест №26 - test_ping_ipv4_over_BVI_L3VPN_part9_4_1,  Причина - AssertionError: Обнаружены потери ICMP пакетов между CE1 и CE3 в размере 100 %
+Провальный Тест №27 - test_ping_ipv6_over_BVI_L3VPN_part9_4_1,  Причина - AssertionError: Обнаружены потери ICMPv6 пакетов между CE1 и CE3 в размере 100 %
+Провальный Тест №28 - test_l3vpn_balance_9_6_1,  Причина - AssertionError: atAR1: На интерфейсе te0/0/1 отсутствует исходящий трафик
+Провальный Тест №29 - test_l3vpn_balance_9_6_2,  Причина - AssertionError: atAR1: На интерфейсе te0/0/3 отсутсвует исходящий траифк
+Провальный Тест №30 - test_l3vpn_balance_9_6_3,  Причина - AssertionError: atDR1: На интерфейсе te0/8/3 отсутствует входящий трафик
+Провальный Тест №31 - test_ospfv2_neighbor_relationship_part10_7_3_1,  Причина - IndexError: list index out of range
+Провальный Тест №32 - test_ospfv2_neighbor_relationship_part10_7_3_4,  Причина - AssertionError: Шаг2: Авария Hello packet received from router 1.0.0.1 which disagrees on area type. не обнаружена на atAR1
+Провальный Тест №33 - test_ospfv2_Ext_Comm_Attributes_test10_part10_20,  Причина - EOFError: telnet connection closed
+Провальный Тест №34 - test_snmp_protect_part12_2,  Причина - AssertionError: Получен ответ от маршрутизатора atAR1 на попытку опросить его по SNMP, хотя Control Plane protection запрещает это
+Провальный Тест №35 - test_snmp_protect_part12_2,  Причина - AssertionError: Получен SNMP ответ от маршрутизатора atAR2, хотя Control Plane protection запрещает это
+Провальный Тест №36 - test_ntp_protect_part12_2,  Причина - AssertionError: Получен ответ от маршрутизатора atAR1 на попытку синхронизовать время по NTP, хотя Control Plane protection запрещает это
+Провальный Тест №37 - test_ntp_protect_part12_2,  Причина - AssertionError: Получен NTP ответ от маршрутизатора atAR2, хотя Control Plane protection запрещает это
+Провальный Тест №38 - test_max_resv_bandwidth_cspf_part14_3,  Причина - AssertionError: Парсинг вывода команды вернул пустой результат
+Провальный Тест №39 - test_switching_l2vpn_over_rsvp_lsp_part14_4,  Причина - AssertionError: В выводе четвертой команды ping 172.16.70.2 vrf CE1 count 10 наблюдаются потери пакетов. Успешный обмен ICMP пакетами - 0.0 %
+Провальный Тест №40 - test_show_l2vpn_mac_table_bd_part14_4,  Причина - AssertionError: MAC адрес e0:d9:e3:df:34:b6 не обнаружен в результатх парсинга
+Провальный Тест №41 - test_show_l2vpn_mac_table_bd_part14_4,  Причина - AssertionError: MAC адрес e0:d9:e3:df:34:b6 не обнаружен в результатх парсинга
+Провальный Тест №42 - test_show_mpls_rsvp_tunnels_lsp_tunnel_e2e_part14_5,  Причина - AssertionError: Параметр Resource status у RSVP LSP to_atAR2@main не равен ожидаемому значению standby, вместо этого он равен active
+Провальный Тест №43 - test_switching_L3VPN_TE_FRR_Faclity_NHOP_protection_atDR1_part14_7,  Причина - AssertionError: Шаг2. Парсинг вывода команды show mpls rsvp lsps tunnel to_atAR2 вернул пустой результат
+Провальный Тест №44 - test_switching_L3VPN_TE_FRR_Faclity_NHOP_protection_atAR1_part14_7,  Причина - AssertionError: Шаг2. Парсинг вывода команды show mpls rsvp lsps tunnel to_atAR2 вернул пустой результат
+Провальный Тест №45 - test_switching_L3VPN_TE_FRR_Faclity_NNHOP_protection_atDR1_part14_9,  Причина - AssertionError: Шаг2. В выводе команды show mpls rsvp lsps tunnel to_atAR2 параметр Signalling interface не равен ожидаемому значению Tunnel-rsvpbypass@bypass, а равен - Bundle-ether1
+Провальный Тест №46 - test_switching_L3VPN_TE_FRR_Faclity_NNHOP_protection_atAR1_part14_9,  Причина - AssertionError: Шаг2. В выводе команды show mpls rsvp lsps tunnel to_atAR2 параметр PLR (LSP repaired at) не равен ожидаемому значению 1.0.0.3, а равен - 1.0.0.1
+Провальный Тест №47 - test_mpls_te_autobandwidth_test1_part14_11,  Причина - AssertionError: Шаг2. Сигнальный интерфейс для RSVP LSP в выводе команды не соответсвует ожидаемому Bundle-ether1, вместо этого значение равно Bundle-ether2
+Провальный Тест №48 - test_mpls_te_autobandwidth_test1_part14_11,  Причина - AssertionError: Шаг2. Сигнальный интерфейс для RSVP LSP в выводе команды не соответсвует ожидаемому Bundle-ether1, вместо этого значение равно Bundle-ether2
+Провальный Тест №49 - test_mpls_te_autobandwidth_overflow_test2_part14_11,  Причина - AssertionError: Шаг2. Сигнальный интерфейс для RSVP LSP в выводе команды не соответсвует ожидаемому Bundle-ether1, вместо этого значение равно Bundle-ether2
+Провальный Тест №50 - test_mpls_te_autobandwidth_overflow_test2_part14_11,  Причина - AssertionError: Шаг2. Сигнальный интерфейс для RSVP LSP в выводе команды не соответсвует ожидаемому Bundle-ether1, вместо этого значение равно Bundle-ether2
+Провальный Тест №51 - test_mpls_te_autobandwidth_over_under_flow_test3_part14_11,  Причина - AssertionError: Шаг2. Сигнальный интерфейс для RSVP LSP в выводе команды не соответсвует ожидаемому Bundle-ether1, вместо этого значение равно Bundle-ether2
+Провальный Тест №52 - test_mpls_te_autobandwidth_over_under_flow_test3_part14_11,  Причина - AssertionError: Шаг2. Сигнальный интерфейс для RSVP LSP в выводе команды не соответсвует ожидаемому Bundle-ether1, вместо этого значение равно Bundle-ether2
+Провальный Тест №53 - test_icmp_connectivity_over_vrrp_part15_2,  Причина - AssertionError: Параметр VRRP State для te0/0/11.100410 не равен ожидаемому значению stopping, а равен - stopped
+Провальный Тест №54 - test_ip_addr_owner_vrrp_part15_2,  Причина - AssertionError: Шаг7: Входящая загрузка интерфейса bu1 (на atAR1) отличается от ожидаемой 20,8 Mbit/s более чем на 2 Mbit/s и составила 19616080 bit/s
+Провальный Тест №55 - test_pbr_test1_part15_4_3,  Причина - AssertionError: Количество нечётного трафика отправленного через интерфейс bu1 больше ожидаемого порога 20 kbps и составило 20
+Провальный Тест №56 - test_counters_telnet_part15_5,  Причина - AssertionError: Увеличение счетчика пакетов в правиле 20 ACL не равно ожидаемому значение 1, а равно 13
+Провальный Тест №57 - test_permit_deny_acl_ipv6_part15_5,  Причина - AssertionError: Обнаружены потери icmp пакетов между CE2 и CE1, которые составили -100 %
+Провальный Тест №58 - test_counters_icmp_ipv6_part15_5,  Причина - AssertionError: Увеличение счетчика пакетов в правиле 10 ACL не равно ожидаемому значение 160, а равно 164
+Провальный Тест №59 - test_counters_telnet_ipv6_part15_5,  Причина - AssertionError: Увеличение счетчика пакетов в правиле 20 ACL не равно ожидаемому значение 1, а равно 34
+Провальный Тест №60 - test_counters_telnet_ipv6_part15_5,  Причина - AssertionError: Увеличение счетчика пакетов в правиле 20 ACL не равно ожидаемому значение 1, а равно 9
+Провальный Тест №61 - test_radius_on_local_passw,  Причина - AssertionError: Аутентификация не удалась "Login incorrect", ответ роутера:  
+Провальный Тест №62 - test_tac_on_local_passw,  Причина - AssertionError: Аутентификация не удалась "Login incorrect", ответ роутера: 
+Провальный Тест №63 - test_tac_aaa_auth_command_part18_2_2,  Причина - Failed: Error set_aaa_authorization: Login failed
+Провальный Тест №64 - test_tac_off_aaa_auth_command_part18_2_2,  Причина - Exscript.protocols.exception.LoginFailure: Login failed
+Провальный Тест №65 - test_show_bgp_l2vpn_evpn_part19_1,  Причина - AssertionError: MAC адрес de:ad:be:af:00:41 не обнаружен в результатх парсинга
+Провальный Тест №66 - test_ip_sla_param_comparison_part20_2,  Причина - AssertionError: Тест 4: Значение Sender->Responder average delay в выводе команды show ip-sla results, равное 4, не совпадает с соответствующим значением, полученным по SNMP, равным 3
+Провальный Тест №67 - test_ECMP_isis_balance_21_1,  Причина - AssertionError: atAR1: На интерфейсе te0/0/1 отсутсвует исходящий трафик
+Провальный Тест №68 - test_ECMP_isis_balance_21_1,  Причина - AssertionError: atAR2: На интерфейсе te0/0/3 отсутсвует исходящий трафик
+Провальный Тест №69 - test_ECMP_isis_balance_21_1,  Причина - AssertionError: atDR1: На интерфейсе te0/1/13 отсутсвует исходящий трафик
+Провальный Тест №70 - test_ECMP_isis_upstair_21_1,  Причина - AssertionError: atAR1: На интерфейсе te0/0/1 отсутсвует исходящий трафик тест закончился на этапе 1
+Провальный Тест №71 - test_ECMP_isis_upstair_21_1,  Причина - AssertionError: atAR2: На интерфейсе te0/0/3 отсутсвует исходящий трафик тест закончился на этапе 1
+Провальный Тест №72 - test_ECMP_isis_upstair_21_1,  Причина - AssertionError: atDR1: На интерфейсе te0/1/13 отсутсвует исходящий трафик тест закончился на этапе 1
+Провальный Тест №73 - test_base_function_ECMP_part21_2,  Причина - AssertionError: ECMP FEC равен 0x20000003, а должен быть 0x20000002
+Провальный Тест №74 - test_ECMP_ospf_balance_21_2,  Причина - AssertionError: atAR1: На интерфейсе te0/0/1 отсутсвует исходящий трафик
+Провальный Тест №75 - test_ECMP_ospf_balance_21_2,  Причина - AssertionError: atAR2: На интерфейсе te0/0/3 отсутсвует исходящий трафик
+Провальный Тест №76 - test_ECMP_ospf_balance_21_2,  Причина - AssertionError: atDR1: На интерфейсе te0/1/13 отсутсвует исходящий трафик
+Провальный Тест №77 - test_atAR1_ECMP_ospf_upstair_21_2_step_1,  Причина - AssertionError: Assertion failed
+Провальный Тест №78 - test_atAR1_ECMP_ospf_upstair_21_2_step_2,  Причина - AssertionError: Assertion failed
+Провальный Тест №79 - test_atAR1_ECMP_ospf_upstair_21_2_step_3,  Причина - AssertionError: Assertion failed
+Провальный Тест №80 - test_atAR1_ECMP_ospf_upstair_21_2_step_4,  Причина - AssertionError: Assertion failed
+Провальный Тест №81 - test_atAR2_ECMP_ospf_upstair_21_2_step_1,  Причина - AssertionError: Assertion failed
+Провальный Тест №82 - test_atAR2_ECMP_ospf_upstair_21_2_step_2,  Причина - AssertionError: Assertion failed
+Провальный Тест №83 - test_atAR2_ECMP_ospf_upstair_21_2_step_3,  Причина - AssertionError: Assertion failed
+Провальный Тест №84 - test_atAR2_ECMP_ospf_upstair_21_2_step_4,  Причина - AssertionError: Assertion failed
+Провальный Тест №85 - test_atDR1_ECMP_ospf_upstair_21_2_step_1,  Причина - AssertionError: Assertion failed
+Провальный Тест №86 - test_atDR1_ECMP_ospf_upstair_21_2_step_2,  Причина - AssertionError: Assertion failed
+Провальный Тест №87 - test_atDR1_ECMP_ospf_upstair_21_2_step_3,  Причина - AssertionError: Assertion failed
+Провальный Тест №88 - test_atDR1_ECMP_ospf_upstair_21_2_step_4,  Причина - AssertionError: Assertion failed
+Провальный Тест №89 - test_ECMP_L3VPN_balance_21_3,  Причина - AssertionError: atAR1: На интерфейсе te0/0/1 отсутсвует исходящий трафик
+Провальный Тест №90 - test_ECMP_L3VPN_balance_21_3,  Причина - AssertionError: atAR2: На интерфейсе te0/0/3 отсутсвует исходящий трафик
+Провальный Тест №91 - test_ECMP_L3VPN_balance_21_3,  Причина - AssertionError: atDR1: На интерфейсе te0/1/13 отсутсвует исходящий трафик
+Провальный Тест №92 - test_atAR1_ECMP_L3VPN_upstair_21_3_step_1,  Причина - ZeroDivisionError: division by zero
+Провальный Тест №93 - test_atAR1_ECMP_L3VPN_upstair_21_3_step_2,  Причина - ZeroDivisionError: division by zero
+Провальный Тест №94 - test_atAR1_ECMP_L3VPN_upstair_21_3_step_3,  Причина - ZeroDivisionError: division by zero
+Провальный Тест №95 - test_atAR1_ECMP_L3VPN_upstair_21_3_step_4,  Причина - ZeroDivisionError: division by zero
+Провальный Тест №96 - test_atAR2_ECMP_L3VPN_upstair_21_3_step_1,  Причина - ZeroDivisionError: division by zero
+Провальный Тест №97 - test_atAR2_ECMP_L3VPN_upstair_21_3_step_2,  Причина - ZeroDivisionError: division by zero
+Провальный Тест №98 - test_atAR2_ECMP_L3VPN_upstair_21_3_step_3,  Причина - ZeroDivisionError: division by zero
+Провальный Тест №99 - test_atAR2_ECMP_L3VPN_upstair_21_3_step_4,  Причина - ZeroDivisionError: division by zero
+Провальный Тест №100 - test_atDR1_ECMP_L3VPN_upstair_21_3_step_1,  Причина - ZeroDivisionError: division by zero
+Провальный Тест №101 - test_atDR1_ECMP_L3VPN_upstair_21_3_step_2,  Причина - AssertionError: atDR1: Балансировка IP трафика в te0/1/13 плохая т.к. отклонение равно или превысило 40% и равно - 50%
+Провальный Тест №102 - test_atDR1_ECMP_L3VPN_upstair_21_3_step_3,  Причина - ZeroDivisionError: division by zero
+Провальный Тест №103 - test_atDR1_ECMP_L3VPN_upstair_21_3_step_4,  Причина - ZeroDivisionError: division by zero
+Провальный Тест №104 - test_span_local_part23,  Причина - AssertionError: Шаг1. Количество полученных icmp reply пакетов равно не ожидаемым 9, а 7
+Провальный Тест №105 - test_rspan_local_part23,  Причина - AssertionError: Шаг1. Количество полученных icmp-request пакетов равно не ожидаемым 9, а 8
+Провальный Тест №106 - test_QoS_TC_test1_25_1,  Причина - AssertionError: В очереди класса AF41 трафик вышел за пределы ожидаемых значений и равен 0 kbps
+Провальный Тест №107 - test_QoS_TC_test1_25_1,  Причина - AssertionError: В очереди класса AF41 трафик вышел за пределы ожидаемых значений и равен 0 kbps
+Провальный Тест №108 - test_QoS_TC_test1_25_1,  Причина - AssertionError: В очереди класса AF41 трафик вышел за пределы ожидаемых значений и равен 0 kbps
+Провальный Тест №109 - test_show_lacp_bu_part913_3_1,  Причина - AssertionError: В разделе Local information для bu1, параметр Port не соответсвует значению te0/0/2, а равен -
+Провальный Тест №110 - test_show_lacp_bu_part913_3_1,  Причина - AssertionError: В разделе MC-LAG: для bu2, параметр Mbr-id не соответсвует значению  10000003, а равен -
+Провальный Тест №111 - test_show_lacp_bu_part913_3_1,  Причина - AssertionError: Параметр Aggregarion status для bu2 не соответсвует значению mc-lag-standby, а равен -
+Успешный Тест № 112 - test_atDR1_backup_status, длительность - 2
+Успешный Тест № 113 - test_DUT_offline_status, длительность - 0
+Успешный Тест № 114 - test_DUT_offline_status, длительность - 0
+Успешный Тест № 115 - test_me_init_config0_upload, длительность - 0
+Успешный Тест № 116 - test_me_init_config0_upload, длительность - 0
+Успешный Тест № 117 - test_me_init_config0_upload, длительность - 0
+Успешный Тест № 118 - test_upgrade_me, длительность - 0
+Успешный Тест № 119 - test_mes_init_config_reboot_part0, длительность - 0
+Успешный Тест № 120 - test_me_init_config_upload_part1, длительность - 0
+Успешный Тест № 121 - test_me_init_config_upload_part1, длительность - 0
+Успешный Тест № 122 - test_me_init_config_upload_part1, длительность - 0
+Успешный Тест № 123 - test_junos_init_config_upload_part1, длительность - 0
+Успешный Тест № 124 - test_telnet_login_part1, длительность - 0
+Успешный Тест № 125 - test_telnet_login_part1, длительность - 0
+Успешный Тест № 126 - test_telnet_login_part1, длительность - 0
+Успешный Тест № 127 - test_ssh_login_part1, длительность - 1
+Успешный Тест № 128 - test_ssh_login_part1, длительность - 1
+Успешный Тест № 129 - test_ssh_login_part1, длительность - 1
+Успешный Тест № 130 - test_ping_neighbors_part1, длительность - 4
+Успешный Тест № 131 - test_ping_neighbors_part1, длительность - 4
+Успешный Тест № 132 - test_ping_neighbors_part1, длительность - 3
+Успешный Тест № 133 - test_me_init_config_upload_part2, длительность - 0
+Успешный Тест № 134 - test_me_init_config_upload_part2, длительность - 0
+Успешный Тест № 135 - test_me_init_config_upload_part2, длительность - 0
+Успешный Тест № 136 - test_backup_part2, длительность - 32
+Успешный Тест № 137 - test_backup_part2, длительность - 31
+Успешный Тест № 138 - test_backup_part2, длительность - 31
+Успешный Тест № 139 - test_syslog_part2, длительность - 11
+Успешный Тест № 140 - test_syslog_part2, длительность - 11
+Успешный Тест № 141 - test_syslog_part2, длительность - 13
+Успешный Тест № 142 - test_ntp_part2, длительность - 30
+Успешный Тест № 143 - test_ntp_part2, длительность - 30
+Успешный Тест № 144 - test_ntp_part2, длительность - 30
+Успешный Тест № 145 - test_snmp_part2, длительность - 0
+Успешный Тест № 146 - test_snmp_part2, длительность - 0
+Успешный Тест № 147 - test_snmp_part2, длительность - 0
+Успешный Тест № 148 - test_show_system_part2, длительность - 0
+Успешный Тест № 149 - test_show_system_part2, длительность - 0
+Успешный Тест № 150 - test_show_system_part2, длительность - 0
+Успешный Тест № 151 - test_show_system_inventory_part2, длительность - 0
+Успешный Тест № 152 - test_show_system_inventory_part2, длительность - 0
+Успешный Тест № 153 - test_show_system_environment_part2, длительность - 0
+Успешный Тест № 154 - test_show_version, длительность - 0
+Успешный Тест № 155 - test_show_version, длительность - 0
+Успешный Тест № 156 - test_show_version, длительность - 0
+Успешный Тест № 157 - test_show_interface_description, длительность - 0
+Успешный Тест № 158 - test_show_interface_description, длительность - 0
+Успешный Тест № 159 - test_show_interface_description, длительность - 0
+Успешный Тест № 160 - test_show_interface_status, длительность - 0
+Успешный Тест № 161 - test_show_interface_status, длительность - 0
+Успешный Тест № 162 - test_show_interface_status, длительность - 0
+Успешный Тест № 163 - test_show_interface_utilization, длительность - 0
+Успешный Тест № 164 - test_show_interface_utilization, длительность - 0
+Успешный Тест № 165 - test_show_interface_utilization, длительность - 0
+Успешный Тест № 166 - test_show_firmware_part2, длительность - 0
+Успешный Тест № 167 - test_show_firmware_part2, длительность - 0
+Успешный Тест № 168 - test_show_firmware_part2, длительность - 0
+Успешный Тест № 169 - test_show_privilege, длительность - 0
+Успешный Тест № 170 - test_show_privilege, длительность - 0
+Успешный Тест № 171 - test_show_privilege, длительность - 0
+Успешный Тест № 172 - test_show_users, длительность - 0
+Успешный Тест № 173 - test_show_users, длительность - 0
+Успешный Тест № 174 - test_show_users, длительность - 0
+Успешный Тест № 175 - test_arp_part2, длительность - 0
+Успешный Тест № 176 - test_arp_part2, длительность - 0
+Успешный Тест № 177 - test_arp_part2, длительность - 0
+Успешный Тест № 178 - test_arp_age, длительность - 35
+Успешный Тест № 179 - test_arp_age, длительность - 35
+Успешный Тест № 180 - test_arp_age, длительность - 35
+Успешный Тест № 181 - test_arp_proxy_off, длительность - 7
+Успешный Тест № 182 - test_arp_proxy_off, длительность - 7
+Успешный Тест № 183 - test_arp_proxy_on, длительность - 1
+Успешный Тест № 184 - test_arp_proxy_on, длительность - 4
+Успешный Тест № 185 - test_login_banner, длительность - 3
+Успешный Тест № 186 - test_login_banner, длительность - 3
+Успешный Тест № 187 - test_login_banner, длительность - 3
+Успешный Тест № 188 - test_banner_login, длительность - 0
+Успешный Тест № 189 - test_banner_login, длительность - 0
+Успешный Тест № 190 - test_banner_login, длительность - 0
+Успешный Тест № 191 - test_banner_login_tacacs, длительность - 0
+Успешный Тест № 192 - test_banner_login_tacacs, длительность - 0
+Успешный Тест № 193 - test_banner_login_tacacs, длительность - 0
+Успешный Тест № 194 - test_session_limit_part2, длительность - 112
+Успешный Тест № 195 - test_session_limit_part2, длительность - 121
+Успешный Тест № 196 - test_show_processes_memory_part2, длительность - 0
+Успешный Тест № 197 - test_show_processes_memory_part2, длительность - 0
+Успешный Тест № 198 - test_show_processes_memory_part2, длительность - 0
+Успешный Тест № 199 - test_show_process_cpu_part2, длительность - 0
+Успешный Тест № 200 - test_show_process_cpu_part2, длительность - 0
+Успешный Тест № 201 - test_show_process_cpu_part2, длительность - 0
+Успешный Тест № 202 - test_me_init_config_upload_part3, длительность - 0
+Успешный Тест № 203 - test_me_init_config_upload_part3, длительность - 0
+Успешный Тест № 204 - test_me_init_config_upload_part3, длительность - 0
+Успешный Тест № 205 - test_show_lldp_part3, длительность - 0
+Успешный Тест № 206 - test_show_lldp_part3, длительность - 1
+Успешный Тест № 207 - test_show_lldp_part3, длительность - 0
+Успешный Тест № 208 - test_show_lldp_stat_part3, длительность - 0
+Успешный Тест № 209 - test_show_lldp_stat_part3, длительность - 1
+Успешный Тест № 210 - test_show_lldp_stat_part3, длительность - 0
+Успешный Тест № 211 - test_show_lldp_neighbors_part3, длительность - 0
+Успешный Тест № 212 - test_show_lldp_neighbors_part3, длительность - 1
+Успешный Тест № 213 - test_show_lldp_neighbors_detail_part3, длительность - 0
+Успешный Тест № 214 - test_show_lldp_neighbors_detail_part3, длительность - 1
+Успешный Тест № 215 - test_show_lldp_interface_part3, длительность - 0
+Успешный Тест № 216 - test_show_lldp_interface_part3, длительность - 1
+Успешный Тест № 217 - test_show_lldp_interface_part3, длительность - 0
+Успешный Тест № 218 - test_me_init_config_upload_part4_2, длительность - 0
+Успешный Тест № 219 - test_me_init_config_upload_part4_2, длительность - 0
+Успешный Тест № 220 - test_me_init_config_upload_part4_2, длительность - 0
+Успешный Тест № 221 - test_junos_init_config_upload_part4_2, длительность - 0
+Успешный Тест № 222 - test_show_isis_neighbor_part4_2, длительность - 20
+Успешный Тест № 223 - test_show_isis_neighbor_part4_2, длительность - 20
+Успешный Тест № 224 - test_show_isis_neighbor_part4_2, длительность - 20
+Успешный Тест № 225 - test_show_isis_interface_part4_2, длительность - 0
+Успешный Тест № 226 - test_show_isis_interface_part4_2, длительность - 0
+Успешный Тест № 227 - test_show_isis_interface_part4_2, длительность - 0
+Успешный Тест № 228 - test_show_isis_interface_stat_part4_2, длительность - 0
+Успешный Тест № 229 - test_show_isis_interface_stat_part4_2, длительность - 0
+Успешный Тест № 230 - test_show_isis_interface_stat_part4_2, длительность - 0
+Успешный Тест № 231 - test_show_route_part4_2, длительность - 0
+Успешный Тест № 232 - test_show_route_part4_2, длительность - 0
+Успешный Тест № 233 - test_show_route_part4_2, длительность - 0
+Успешный Тест № 234 - test_show_route_isis_ipv6_part4_2, длительность - 0
+Успешный Тест № 235 - test_show_route_isis_ipv6_part4_2, длительность - 0
+Успешный Тест № 236 - test_show_route_isis_ipv6_part4_2, длительность - 0
+Успешный Тест № 237 - test_show_route_rib_summary_part4_2, длительность - 0
+Успешный Тест № 238 - test_show_route_rib_summary_part4_2, длительность - 0
+Успешный Тест № 239 - test_show_route_rib_summary_part4_2, длительность - 0
+Успешный Тест № 240 - test_me_init_config_upload_part4_4, длительность - 0
+Успешный Тест № 241 - test_me_init_config_upload_part4_4, длительность - 0
+Успешный Тест № 242 - test_me_init_config_upload_part4_4, длительность - 0
+Успешный Тест № 243 - test_junos_init_config_upload_part4_4, длительность - 0
+Успешный Тест № 244 - test_show_route_isis_part4_4, длительность - 0
+Успешный Тест № 245 - test_show_route_isis_part4_4, длительность - 0
+Успешный Тест № 246 - test_show_route_isis_part4_4, длительность - 0
+Успешный Тест № 247 - test_lfa_protect_disable_part4_4, длительность - 1
+Успешный Тест № 248 - test_lfa_protect_disable_part4_4, длительность - 2
+Успешный Тест № 249 - test_lfa_exclude_part4_4, длительность - 1
+Успешный Тест № 250 - test_lfa_exclude_part4_4, длительность - 2
+Успешный Тест № 251 - test_lfa_exclude_part4_4, длительность - 3
+Успешный Тест № 252 - test_show_isis_fast_reroute_part4_4, длительность - 0
+Успешный Тест № 253 - test_me_init_config_upload_part4_6, длительность - 0
+Успешный Тест № 254 - test_me_init_config_upload_part4_6, длительность - 0
+Успешный Тест № 255 - test_me_init_config_upload_part4_6, длительность - 0
+Успешный Тест № 256 - test_show_mpls_ldp_neighbor_part4_6, длительность - 15
+Успешный Тест № 257 - test_show_mpls_ldp_neighbor_part4_6, длительность - 15
+Успешный Тест № 258 - test_show_mpls_ldp_neighbor_part4_6, длительность - 15
+Успешный Тест № 259 - test_show_mpls_ldp_bind_local_part4_6, длительность - 0
+Успешный Тест № 260 - test_show_mpls_ldp_bind_local_part4_6, длительность - 0
+Успешный Тест № 261 - test_show_mpls_ldp_bind_local_part4_6, длительность - 0
+Успешный Тест № 262 - test_show_mpls_ldp_bind_remote_part4_6, длительность - 0
+Успешный Тест № 263 - test_show_mpls_ldp_bind_remote_part4_6, длительность - 0
+Успешный Тест № 264 - test_show_mpls_ldp_bind_remote_part4_6, длительность - 0
+Успешный Тест № 265 - test_show_mpls_ldp_forward_part4_6, длительность - 0
+Успешный Тест № 266 - test_show_mpls_ldp_forward_part4_6, длительность - 0
+Успешный Тест № 267 - test_show_mpls_ldp_forward_part4_6, длительность - 0
+Успешный Тест № 268 - test_show_mpls_ldp_param_part4_6, длительность - 0
+Успешный Тест № 269 - test_show_mpls_ldp_param_part4_6, длительность - 0
+Успешный Тест № 270 - test_show_mpls_ldp_param_part4_6, длительность - 0
+Успешный Тест № 271 - test_mpls_ldp_auth_md5_part4_6_1, длительность - 94
+Успешный Тест № 272 - test_mpls_ldp_auth_md5_part4_6_1, длительность - 0
+Успешный Тест № 273 - test_mpls_ldp_auth_md5_part4_6_1, длительность - 0
+Успешный Тест № 274 - test_mpls_ldp_auth_md5_part4_6_1, длительность - 0
+Успешный Тест № 275 - test_mpls_ldp_auth_change_key_part4_6_1, длительность - 94
+Успешный Тест № 276 - test_mpls_ldp_auth_none_part4_6_1, длительность - 94
+Успешный Тест № 277 - test_me_init_config_upload_part4_7, длительность - 0
+Успешный Тест № 278 - test_me_init_config_upload_part4_7, длительность - 0
+Успешный Тест № 279 - test_me_init_config_upload_part4_7, длительность - 0
+Успешный Тест № 280 - test_esr_init_config_upload_part4_7, длительность - 0
+Успешный Тест № 281 - test_junos_init_config_upload_part4_7, длительность - 0
+Успешный Тест № 282 - test_ldporsvp_P_PE_part4_7, длительность - 0
+Успешный Тест № 283 - test_ldporsvp_P_PE_part4_7, длительность - 0
+Успешный Тест № 284 - test_ldporsvp_P_PE_part4_7, длительность - 0
+Успешный Тест № 285 - test_ldporsvp_P_P_part4_7, длительность - 0
+Успешный Тест № 286 - test_ldporsvp_route_to_CE_part4_7, длительность - 0
+Успешный Тест № 287 - test_ldporsvp_route_to_CE_part4_7, длительность - 0
+Успешный Тест № 288 - test_ldporsvp_ping_CE1_CE2_part4_7, длительность - 5
+Успешный Тест № 289 - test_me_init_config_upload_part4_8, длительность - 0
+Успешный Тест № 290 - test_me_init_config_upload_part4_8, длительность - 0
+Успешный Тест № 291 - test_me_init_config_upload_part4_8, длительность - 0
+Успешный Тест № 292 - test_junos_init_config_upload_part4_8, длительность - 0
+Успешный Тест № 293 - test_set_overload_bit_persist_part4_8, длительность - 32
+Успешный Тест № 294 - test_set_overload_bit_on_startup_part4_8, длительность - 363
+Успешный Тест № 295 - test_me_init_config_upload_part4_9, длительность - 0
+Успешный Тест № 296 - test_me_init_config_upload_part4_9, длительность - 0
+Успешный Тест № 297 - test_me_init_config_upload_part4_9, длительность - 0
+Успешный Тест № 298 - test_esr_init_config_upload_part4_9, длительность - 0
+Успешный Тест № 299 - test_me_init_config_upload_part4_9_2, длительность - 0
+Успешный Тест № 300 - test_me_init_config_upload_part4_9_2, длительность - 0
+Успешный Тест № 301 - test_me_init_config_upload_part4_9_2, длительность - 0
+Успешный Тест № 302 - test_esr_init_config_upload_part4_9_2, длительность - 0
+Успешный Тест № 303 - test_junos_init_config_upload_part4_9_2, длительность - 0
+Успешный Тест № 304 - test_me_init_config_upload_part5, длительность - 0
+Успешный Тест № 305 - test_me_init_config_upload_part5, длительность - 0
+Успешный Тест № 306 - test_me_init_config_upload_part5, длительность - 0
+Успешный Тест № 307 - test_esr_init_config_upload_part5, длительность - 0
+Успешный Тест № 308 - test_show_l2vpn_bd_name_part5_2_1, длительность - 0
+Успешный Тест № 309 - test_show_l2vpn_bd_detail_part5_2_1, длительность - 0
+Успешный Тест № 310 - test_switching_in_bd_part5_2_1, длительность - 68
+Успешный Тест № 311 - test_counters_on_subif_part5_2_1, длительность - 31
+Успешный Тест № 312 - test_unknown_unicast_flood_part5_2_1, длительность - 70
+Успешный Тест № 313 - test_flooding_mac_learn_disable_part5_2_1, длительность - 106
+Успешный Тест № 314 - test_esr_init_config_upload_part5_2, длительность - 0
+Успешный Тест № 315 - test_me_init_config_upload_part5_2, длительность - 0
+Успешный Тест № 316 - test_multicast_flood_part5_2_2, длительность - 52
+Успешный Тест № 317 - test_esr_init_config_upload_part6, длительность - 0
+Успешный Тест № 318 - test_me_init_config_upload_part6, длительность - 0
+Успешный Тест № 319 - test_me_init_config_upload_part6, длительность - 0
+Успешный Тест № 320 - test_me_init_config_upload_part6, длительность - 0
+Успешный Тест № 321 - test_switching_in_VPLS_part6, длительность - 58
+Успешный Тест № 322 - test_switchover_in_VPLS_part6, длительность - 83
+Успешный Тест № 323 - test_show_l2vpn_bd_and_xconnect_part6, длительность - 0
+Успешный Тест № 324 - test_show_l2vpn_bd_and_xconnect_part6, длительность - 0
+Успешный Тест № 325 - test_show_l2vpn_bd_and_xconnect_part6, длительность - 0
+Успешный Тест № 326 - test_switchover2_in_VPLS_part6, длительность - 202
+Успешный Тест № 327 - test_switchover3_in_VPLS_part6, длительность - 203
+Успешный Тест № 328 - test_esr_init_config_upload_part6_2_1, длительность - 0
+Успешный Тест № 329 - test_me_init_config_upload_part6_2_1, длительность - 0
+Успешный Тест № 330 - test_me_init_config_upload_part6_2_1, длительность - 0
+Успешный Тест № 331 - test_me_init_config_upload_part6_2_1, длительность - 0
+Успешный Тест № 332 - test_switching_in_VPWS_part6_2, длительность - 49
+Успешный Тест № 333 - test_me_init_config_upload_part6_2_2, длительность - 0
+Успешный Тест № 334 - test_me_init_config_upload_part6_2_2, длительность - 0
+Успешный Тест № 335 - test_me_init_config_upload_part6_2_2, длительность - 0
+Успешный Тест № 336 - test_switching_in_VPWS_vlan_part6_2_2, длительность - 1
+Успешный Тест № 337 - test_show_l2vpn_xc_vlan_part6_2_2, длительность - 0
+Успешный Тест № 338 - test_show_l2vpn_xc_vlan_part6_2_2, длительность - 0
+Успешный Тест № 339 - test_switching_in_VPWS_ethernet_part6_2_2, длительность - 64
+Успешный Тест № 340 - test_show_l2vpn_xc_eth_part6_2_2, длительность - 0
+Успешный Тест № 341 - test_show_l2vpn_xc_eth_part6_2_2, длительность - 0
+Успешный Тест № 342 - test_esr_init_config_upload_part6_3_1, длительность - 0
+Успешный Тест № 343 - test_me_init_config_upload_part6_3_1, длительность - 0
+Успешный Тест № 344 - test_me_init_config_upload_part6_3_1, длительность - 0
+Успешный Тест № 345 - test_me_init_config_upload_part6_3_1, длительность - 0
+Успешный Тест № 346 - test_PW_down_with_any_ac_in_VPLS_part6_3_1, длительность - 165
+Успешный Тест № 347 - test_PW_down_with_last_ac_in_VPLS_part6_3_1, длительность - 220
+Успешный Тест № 348 - test_PW_always_on_in_VPLS_part6_3_1, длительность - 220
+Успешный Тест № 349 - test_VPLS_local_switching_disable_part6_3_1, длительность - 228
+Успешный Тест № 350 - test_esr_init_config_upload_part6_4_1, длительность - 0
+Успешный Тест № 351 - test_me_init_config_upload_part6_4_1, длительность - 0
+Успешный Тест № 352 - test_me_init_config_upload_part6_4_1, длительность - 0
+Успешный Тест № 353 - test_me_init_config_upload_part6_4_1, длительность - 0
+Успешный Тест № 354 - test_VPLS_MAC_Limit_atAR2_part6_4_1, длительность - 101
+Успешный Тест № 355 - test_VPLS_MAC_Limit_atAR2_part6_4_1, длительность - 71
+Успешный Тест № 356 - test_VPLS_MAC_Limit_atAR1_part6_4_1, длительность - 70
+Успешный Тест № 357 - test_VPLS_MAC_Limit_atAR1_part6_4_1, длительность - 71
+Успешный Тест № 358 - test_VPLS_MAC_Limit_atDR1_part6_4_1, длительность - 72
+Успешный Тест № 359 - test_VPLS_MAC_Limit_atDR1_part6_4_1, длительность - 66
+Успешный Тест № 360 - test_esr_init_config_upload_part6_5_1, длительность - 0
+Успешный Тест № 361 - test_junos_init_config_upload_part1, длительность - 0
+Успешный Тест № 362 - test_me_init_config_upload_part6_5_1, длительность - 0
+Успешный Тест № 363 - test_me_init_config_upload_part6_5_1, длительность - 0
+Успешный Тест № 364 - test_me_init_config_upload_part6_5_1, длительность - 0
+Успешный Тест № 365 - test_HVPLS_test1_part6_5_1, длительность - 37
+Успешный Тест № 366 - test_HVPLS_test2_part6_5_1, длительность - 0
+Успешный Тест № 367 - test_HVPLS_test2_part6_5_1, длительность - 0
+Успешный Тест № 368 - test_HVPLS_test3_part6_5_1, длительность - 0
+Успешный Тест № 369 - test_HVPLS_test3_part6_5_1, длительность - 0
+Успешный Тест № 370 - test_HVPLS_redundancy_test1_part6_5_1, длительность - 29
+Успешный Тест № 371 - test_HVPLS_redundancy_test2_part6_5_1, длительность - 94
+Успешный Тест № 372 - test_esr_init_config_upload_part7_1_2, длительность - 0
+Успешный Тест № 373 - test_junos_init_config_upload_part7_1_2, длительность - 0
+Успешный Тест № 374 - test_me_init_config_upload_part7_1_2, длительность - 0
+Успешный Тест № 375 - test_me_init_config_upload_part7_1_2, длительность - 0
+Успешный Тест № 376 - test_me_init_config_upload_part7_1_2, длительность - 0
+Успешный Тест № 377 - test_show_bgp_summary_part7_1_2, длительность - 60
+Успешный Тест № 378 - test_show_bgp_summary_part7_1_2, длительность - 61
+Успешный Тест № 379 - test_show_bgp_summary_part7_1_2, длительность - 60
+Успешный Тест № 380 - test_show_route_192_168_168_30_part7_1_2, длительность - 0
+Успешный Тест № 381 - test_show_route_192_168_168_30_part7_1_2, длительность - 0
+Успешный Тест № 382 - test_show_route_192_168_168_30_part7_1_2, длительность - 0
+Успешный Тест № 383 - test_show_route_192_168_168_30_part7_1_2, длительность - 30
+Успешный Тест № 384 - test_show_bgp_neighbors_part7_1_2, длительность - 0
+Успешный Тест № 385 - test_show_bgp_neighbors_part7_1_2, длительность - 1
+Успешный Тест № 386 - test_show_bgp_neighbors_part7_1_2, длительность - 0
+Успешный Тест № 387 - test_show_bgp_neighbors_part7_1_2, длительность - 30
+Успешный Тест № 388 - test_traceroute_192_168_168_30_part7_1_2, длительность - 1
+Успешный Тест № 389 - test_traceroute_192_168_168_30_part7_1_2, длительность - 1
+Успешный Тест № 390 - test_traceroute_192_168_168_30_part7_1_2, длительность - 36
+Успешный Тест № 391 - test_me_init_config_upload_part7_2_2, длительность - 0
+Успешный Тест № 392 - test_me_init_config_upload_part7_2_2, длительность - 0
+Успешный Тест № 393 - test_me_init_config_upload_part7_2_2, длительность - 0
+Успешный Тест № 394 - test_esr_init_config_upload_part7_2_2, длительность - 0
+Успешный Тест № 395 - test_junos_init_config_upload_part7_2_2, длительность - 0
+Успешный Тест № 396 - test_ebgp_conn_status_7_2_2, длительность - 212
+Успешный Тест № 397 - test_ebgp_conn_status_7_2_2, длительность - 212
+Успешный Тест № 398 - test_ebgp_conn_status_7_2_2, длительность - 214
+Успешный Тест № 399 - test_ebgp_neig_det_7_2_2, длительность - 1
+Успешный Тест № 400 - test_ebgp_neig_det_7_2_2, длительность - 2
+Успешный Тест № 401 - test_ebgp_neig_det_7_2_2, длительность - 0
+Успешный Тест № 402 - test_ebgp_neighbor_det_status_atDR1_7_2_2, длительность - 1
+Успешный Тест № 403 - test_ebgp_neighbor_det_status_atAR1_7_2_2, длительность - 1
+Успешный Тест № 404 - test_ebgp_neighbor_det_status_atAR2_7_2_2, длительность - 4
+Успешный Тест № 405 - test_ebgp_adv_atDR1_bgp_7_2_2, длительность - 0
+Успешный Тест № 406 - test_ebgp_adv_atAR1_bgp_7_2_2, длительность - 0
+Успешный Тест № 407 - test_ebgp_adv_atAR2_bgp_7_2_2, длительность - 0
+Успешный Тест № 408 - test_ebgp_rec_atDR1_bgp_7_2_2, длительность - 0
+Успешный Тест № 409 - test_ebgp_rec_atAR1_bgp_7_2_2, длительность - 0
+Успешный Тест № 410 - test_ebgp_rec_atAR2_bgp_7_2_2, длительность - 0
+Успешный Тест № 411 - test_ebgp_labr01_labr02_ping_7_2_2, длительность - 9
+Успешный Тест № 412 - test_ebgp_atDR1_7_2_3, длительность - 0
+Успешный Тест № 413 - test_ebgp_atAR1_7_2_3, длительность - 0
+Успешный Тест № 414 - test_ebgp_atAR2_7_2_3, длительность - 0
+Успешный Тест № 415 - test_ebgp_atDR1_rib_7_2_3, длительность - 1
+Успешный Тест № 416 - test_ebgp_atAR1_rib_7_2_3, длительность - 1
+Успешный Тест № 417 - test_ebgp_atAR2_rib_7_2_3, длительность - 4
+Успешный Тест № 418 - test_ebgp_atDR1_fib_7_2_3, длительность - 0
+Успешный Тест № 419 - test_ebgp_atAR1_fib_7_2_3, длительность - 0
+Успешный Тест № 420 - test_ebgp_atAR2_fib_7_2_3, длительность - 0
+Успешный Тест № 421 - test_ebgp_atDR1_route_7_2_3, длительность - 0
+Успешный Тест № 422 - test_ebgp_atAR1_route_7_2_3, длительность - 0
+Успешный Тест № 423 - test_ebgp_atAR2_route_7_2_3, длительность - 0
+Успешный Тест № 424 - test_ebgp_atAR2_circle_7_2_3, длительность - 2
+Успешный Тест № 425 - test_ebgp_atAR2_circle_7_2_3, длительность - 9
+Успешный Тест № 426 - test_me_init_config_upload_part7_3_1, длительность - 0
+Успешный Тест № 427 - test_me_init_config_upload_part7_3_1, длительность - 0
+Успешный Тест № 428 - test_me_init_config_upload_part7_3_1, длительность - 0
+Успешный Тест № 429 - test_esr_init_config_upload_part7_3_1, длительность - 0
+Успешный Тест № 430 - test_bgp_route_map_atAR1_7_3_1, длительность - 200
+Успешный Тест № 431 - test_bgp_route_map_atAR2_7_3_1, длительность - 1
+Успешный Тест № 432 - test_bgp_route_map_atDR1_7_3_1, длительность - 0
+Успешный Тест № 433 - test_prefix_list_atAR1_7_3_1, длительность - 0
+Успешный Тест № 434 - test_me_init_config_upload_part7_3_2_1, длительность - 0
+Успешный Тест № 435 - test_me_init_config_upload_part7_3_2_1, длительность - 0
+Успешный Тест № 436 - test_me_init_config_upload_part7_3_2_1, длительность - 0
+Успешный Тест № 437 - test_esr_init_config_upload_part7_3_2_1, длительность - 0
+Успешный Тест № 438 - test_bgp_connection_7_3_2_1, длительность - 360
+Успешный Тест № 439 - test_bgp_connection_7_3_2_1, длительность - 1
+Успешный Тест № 440 - test_bgp_connection_7_3_2_1, длительность - 0
+Успешный Тест № 441 - test_me_init_config_upload_part7_3_2_2, длительность - 0
+Успешный Тест № 442 - test_me_init_config_upload_part7_3_2_2, длительность - 0
+Успешный Тест № 443 - test_me_init_config_upload_part7_3_2_2, длительность - 0
+Успешный Тест № 444 - test_esr_init_config_upload_part7_3_2_2, длительность - 0
+Успешный Тест № 445 - test_bgp_local_as_mode2_prefix_7_3_2_2, длительность - 101
+Успешный Тест № 446 - test_bgp_local_as_mode2_prefix_7_3_2_2, длительность - 1
+Успешный Тест № 447 - test_bgp_local_as_mode2_prefix_7_3_2_2, длительность - 0
+Успешный Тест № 448 - test_bgp_local_as_mode2_atDR1_7_3_2_2, длительность - 0
+Успешный Тест № 449 - test_bgp_local_as_mode2_atAR2_7_3_2_2, длительность - 2
+Успешный Тест № 450 - test_bgp_local_as_mode2_as_path_7_3_2_2, длительность - 0
+Успешный Тест № 451 - test_me_init_config_upload_part7_3_2_3, длительность - 0
+Успешный Тест № 452 - test_me_init_config_upload_part7_3_2_3, длительность - 0
+Успешный Тест № 453 - test_me_init_config_upload_part7_3_2_3, длительность - 0
+Успешный Тест № 454 - test_esr_init_config_upload_part7_3_2_3, длительность - 0
+Успешный Тест № 455 - test_bgp_local_as_mode3_prefix_7_3_2_3, длительность - 81
+Успешный Тест № 456 - test_bgp_local_as_mode3_prefix_7_3_2_3, длительность - 1
+Успешный Тест № 457 - test_bgp_local_as_mode3_prefix_7_3_2_3, длительность - 0
+Успешный Тест № 458 - test_bgp_local_as_mode3_atAR1_7_3_2_3, длительность - 0
+Успешный Тест № 459 - test_bgp_local_as_mode3_atAR2_7_3_2_3, длительность - 2
+Успешный Тест № 460 - test_bgp_local_as_mode3_atDR1_7_3_2_3, длительность - 0
+Успешный Тест № 461 - test_bgp_local_as_mode3_as_path_atAR1_7_3_2_3, длительность - 0
+Успешный Тест № 462 - test_me_init_config_upload_part7_3_2_4, длительность - 0
+Успешный Тест № 463 - test_me_init_config_upload_part7_3_2_4, длительность - 0
+Успешный Тест № 464 - test_me_init_config_upload_part7_3_2_4, длительность - 0
+Успешный Тест № 465 - test_esr_init_config_upload_part7_3_2_4, длительность - 0
+Успешный Тест № 466 - test_bgp_local_as_mode4_prefix_7_3_2_4, длительность - 81
+Успешный Тест № 467 - test_bgp_local_as_mode4_prefix_7_3_2_4, длительность - 1
+Успешный Тест № 468 - test_bgp_local_as_mode4_prefix_7_3_2_4, длительность - 0
+Успешный Тест № 469 - test_bgp_local_as_mode4_atAR1_7_3_2_4, длительность - 0
+Успешный Тест № 470 - test_bgp_local_as_mode4_atAR2_7_3_2_4, длительность - 2
+Успешный Тест № 471 - test_bgp_local_as_mode4_atDR1_7_3_2_4, длительность - 0
+Успешный Тест № 472 - test_bgp_local_as_mode4_as_path_atAR1, длительность - 81
+Успешный Тест № 473 - test_me_init_config_upload_part7_3_2_5, длительность - 0
+Успешный Тест № 474 - test_me_init_config_upload_part7_3_2_5, длительность - 0
+Успешный Тест № 475 - test_me_init_config_upload_part7_3_2_5, длительность - 0
+Успешный Тест № 476 - test_esr_init_config_upload_part7_3_2_5, длительность - 0
+Успешный Тест № 477 - test_bgp_local_as_mode1_prefix_7_3_2_5, длительность - 503
+Успешный Тест № 478 - test_bgp_local_as_mode1_prefix_7_3_2_5, длительность - 0
+Успешный Тест № 479 - test_bgp_local_as_mode1_prefix_7_3_2_5, длительность - 0
+Успешный Тест № 480 - test_bgp_local_as_mode1_atAR1_7_3_2_5, длительность - 0
+Успешный Тест № 481 - test_bgp_local_as_mode1_atAR2_7_3_2_5, длительность - 2
+Успешный Тест № 482 - test_bgp_local_as_mode1_atDR1_7_3_2_5, длительность - 0
+Успешный Тест № 483 - test_bgp_local_as_mode1_as_path_atAR1_7_3_2_5, длительность - 0
+Успешный Тест № 484 - test_me_init_config_upload_part7_3_3_1, длительность - 0
+Успешный Тест № 485 - test_me_init_config_upload_part7_3_3_1, длительность - 0
+Успешный Тест № 486 - test_me_init_config_upload_part7_3_3_1, длительность - 0
+Успешный Тест № 487 - test_esr_init_config_upload_part7_3_3_1, длительность - 0
+Успешный Тест № 488 - test_junos_init_config_upload_part7_3_3_1, длительность - 0
+Успешный Тест № 489 - test_bgp_allow_as_prefix_7_3_3_1, длительность - 0
+Успешный Тест № 490 - test_bgp_allow_as_prefix_7_3_3_1, длительность - 1
+Успешный Тест № 491 - test_bgp_allow_as_prefix_7_3_3_1, длительность - 0
+Успешный Тест № 492 - test_me_init_config_upload_part7_3_3_2, длительность - 0
+Успешный Тест № 493 - test_me_init_config_upload_part7_3_3_2, длительность - 0
+Успешный Тест № 494 - test_me_init_config_upload_part7_3_3_2, длительность - 0
+Успешный Тест № 495 - test_bgp_allowas_in_7_3_3_2, длительность - 0
+Успешный Тест № 496 - test_bgp_allowas_in_7_3_3_2, длительность - 1
+Успешный Тест № 497 - test_bgp_allow_as_in_7_3_3_2, длительность - 0
+Успешный Тест № 498 - test_bgp_allow_as_in_7_3_3_2, длительность - 0
+Успешный Тест № 499 - test_bgp_allow_as_in_7_3_3_2, длительность - 0
+Успешный Тест № 500 - test_bgp_allow_as_in_atAR2_as_path_7_3_3_2, длительность - 1
+Успешный Тест № 501 - test_me_init_config_upload_part7_3_3_3, длительность - 0
+Успешный Тест № 502 - test_bgp_allow_as_in_7_3_3_3, длительность - 25
+Успешный Тест № 503 - test_bgp_allow_as_in_7_3_3_3, длительность - 25
+Успешный Тест № 504 - test_me_init_config_upload_part7_3_3_4, длительность - 0
+Успешный Тест № 505 - test_me_init_config_upload_part7_3_3_4, длительность - 0
+Успешный Тест № 506 - test_bgp_allow_as_in_7_3_3_4, длительность - 0
+Успешный Тест № 507 - test_bgp_allow_as_in_7_3_3_4, длительность - 0
+Успешный Тест № 508 - test_bgp_allow_as_in_atAR1_as_path_7_3_3_4, длительность - 0
+Успешный Тест № 509 - test_me_init_config_upload_part7_3_4_1, длительность - 0
+Успешный Тест № 510 - test_me_init_config_upload_part7_3_4_1, длительность - 0
+Успешный Тест № 511 - test_me_init_config_upload_part7_3_4_1, длительность - 0
+Успешный Тест № 512 - test_esr_init_config_upload_part7_3_4_1, длительность - 0
+Успешный Тест № 513 - test_junos_init_config_upload_part7_3_4_1, длительность - 0
+Успешный Тест № 514 - test_ospf_links_7_3_4_1, длительность - 1
+Успешный Тест № 515 - test_me_init_config_upload_part7_3_4_2, длительность - 0
+Успешный Тест № 516 - test_me_init_config_upload_part7_3_4_2, длительность - 0
+Успешный Тест № 517 - test_me_init_config_upload_part7_3_4_2, длительность - 0
+Успешный Тест № 518 - test_bgp_no_ebgp_multihop_7_3_4_2, длительность - 0
+Успешный Тест № 519 - test_me_init_config_upload_part7_3_4_3, длительность - 0
+Успешный Тест № 520 - test_me_init_config_upload_part7_3_4_3, длительность - 0
+Успешный Тест № 521 - test_me_init_config_upload_part7_3_4_3, длительность - 0
+Успешный Тест № 522 - test_bgp_ebgp_multihop_prefix_7_3_4_3, длительность - 61
+Успешный Тест № 523 - test_bgp_ebgp_multihop_prefix_7_3_4_3, длительность - 1
+Успешный Тест № 524 - test_bgp_ebgp_multihop_prefix_7_3_4_3, длительность - 0
+Успешный Тест № 525 - test_bgp_ebgp_multihop_hops_atDR1_7_3_4_3, длительность - 0
+Успешный Тест № 526 - test_bgp_prefix_atAR1_7_3_4_3, длительность - 1
+Успешный Тест № 527 - test_bgp_prefix_atAR2_7_3_4_3, длительность - 3
+Успешный Тест № 528 - test_me_init_config_upload_part7_3_5, длительность - 0
+Успешный Тест № 529 - test_me_init_config_upload_part7_3_5, длительность - 0
+Успешный Тест № 530 - test_me_init_config_upload_part7_3_5, длительность - 0
+Успешный Тест № 531 - test_esr_init_config_upload_part7_3_5, длительность - 0
+Успешный Тест № 532 - test_bgp_prefix_bgp_conn_status_7_3_5, длительность - 132
+Успешный Тест № 533 - test_bgp_prefix_bgp_conn_status_7_3_5, длительность - 62
+Успешный Тест № 534 - test_bgp_prefix_bgp_conn_status_7_3_5, длительность - 60
+Успешный Тест № 535 - test_bgp_prefix_atDR1_7_3_5, длительность - 1
+Успешный Тест № 536 - test_bgp_prefix_atAR1_7_3_5, длительность - 0
+Успешный Тест № 537 - test_bgp_prefix_atAR2_7_3_5, длительность - 3
+Успешный Тест № 538 - test_me_init_config_upload_part7_3_6_1, длительность - 0
+Успешный Тест № 539 - test_me_init_config_upload_part7_3_6_1, длительность - 0
+Успешный Тест № 540 - test_me_init_config_upload_part7_3_6_1, длительность - 0
+Успешный Тест № 541 - test_junos_init_config_upload_part7_3_6_1, длительность - 0
+Успешный Тест № 542 - test_bgp_prefix_bgp_conn_status_7_3_6_1, длительность - 2
+Успешный Тест № 543 - test_bgp_prefix_bgp_conn_status_7_3_6_1, длительность - 0
+Успешный Тест № 544 - test_bgp_neighbors_passive_atDR1_7_3_6_1, длительность - 1
+Успешный Тест № 545 - test_bgp_neighbors_passive_atAR1_7_3_6_1, длительность - 2
+Успешный Тест № 546 - test_bgp_neighbors_passive_atAR2_7_3_6_1, длительность - 5
+Успешный Тест № 547 - test_me_init_config_upload_part7_3_6_2, длительность - 0
+Успешный Тест № 548 - test_me_init_config_upload_part7_3_6_2, длительность - 0
+Успешный Тест № 549 - test_me_init_config_upload_part7_3_6_2, длительность - 0
+Успешный Тест № 550 - test_junos_init_config_upload_part7_3_6_2, длительность - 0
+Успешный Тест № 551 - test_bgp_neighbors_no_passive_atDR1_7_3_6_2, длительность - 2
+Успешный Тест № 552 - test_bgp_neighbors_no_passive_atAR1_7_3_6_2, длительность - 2
+Успешный Тест № 553 - test_bgp_neighbors_no_passive_atAR2_7_3_6_2, длительность - 5
+Успешный Тест № 554 - test_me_init_config_upload_part7_3_7_1, длительность - 0
+Успешный Тест № 555 - test_me_init_config_upload_part7_3_7_1, длительность - 0
+Успешный Тест № 556 - test_me_init_config_upload_part7_3_7_1, длительность - 0
+Успешный Тест № 557 - test_esr_init_config_upload_part7_3_7_1, длительность - 0
+Успешный Тест № 558 - test_junos_init_config_upload_part7_3_7_1, длительность - 0
+Успешный Тест № 559 - test_bgp_timers_hold_keepalive_atDR1_7_3_7_1, длительность - 266
+Успешный Тест № 560 - test_bgp_timers_hold_keepalive_atAR1_7_3_7_1, длительность - 4
+Успешный Тест № 561 - test_bgp_timers_hold_keepalive_atAR2_7_3_7_1, длительность - 211
+Успешный Тест № 562 - test_me_init_config_upload_part7_3_7_2, длительность - 0
+Успешный Тест № 563 - test_bgp_timers_ad2_wint2_atDR1_7_3_7_2, длительность - 51
+Успешный Тест № 564 - test_bgp_timers_ad2_wint2_atAR1_7_3_7_2, длительность - 2
+Успешный Тест № 565 - test_me_init_config_upload_part7_3_7_3, длительность - 0
+Успешный Тест № 566 - test_me_init_config_upload_part7_3_7_3, длительность - 0
+Успешный Тест № 567 - test_bgp_timers_atAR1_atAR2_7_3_7_3, длительность - 51
+Успешный Тест № 568 - test_bgp_timers_atAR1_atAR2_7_3_7_3, длительность - 53
+Успешный Тест № 569 - test_me_init_config_upload_part7_3_7_4, длительность - 0
+Успешный Тест № 570 - test_bgp_timers_atAR1_7_3_7_4, длительность - 52
+Успешный Тест № 571 - test_bgp_timers_atAR2_7_3_7_4, длительность - 5
+Успешный Тест № 572 - test_me_init_config_upload_part7_3_7_5, длительность - 0
+Успешный Тест № 573 - test_me_init_config_upload_part7_3_7_5, длительность - 0
+Успешный Тест № 574 - test_bgp_timers_atDR1_atAR2_7_3_7_5, длительность - 50
+Успешный Тест № 575 - test_bgp_timers_atDR1_atAR2_7_3_7_5, длительность - 52
+Успешный Тест № 576 - test_me_init_config_upload_part7_3_8_1, длительность - 0
+Успешный Тест № 577 - test_me_init_config_upload_part7_3_8_1, длительность - 0
+Успешный Тест № 578 - test_me_init_config_upload_part7_3_8_1, длительность - 0
+Успешный Тест № 579 - test_esr_init_config_upload_part7_3_8_1, длительность - 0
+Успешный Тест № 580 - test_junos_init_config_upload_part7_3_8_1, длительность - 0
+Успешный Тест № 581 - test_bgp_neighbors_atDR1_7_3_8_1, длительность - 3
+Успешный Тест № 582 - test_bgp_prefix_atAR2_atDR1_7_3_8_1, длительность - 0
+Успешный Тест № 583 - test_bgp_prefix_atDR1_7_3_8_1, длительность - 0
+Успешный Тест № 584 - test_bgp_prefix_atDR1_7_3_8_1, длительность - 0
+Успешный Тест № 585 - test_bgp_prefix_atAR2_7_3_8_1, длительность - 2
+Успешный Тест № 586 - test_bgp_prefix_atDR1_7_3_8_1, длительность - 0
+Успешный Тест № 587 - test_me_init_config_upload_part7_3_8_2, длительность - 0
+Успешный Тест № 588 - test_me_init_config_upload_part7_3_8_2, длительность - 0
+Успешный Тест № 589 - test_me_init_config_upload_part7_3_8_2, длительность - 0
+Успешный Тест № 590 - test_esr_init_config_upload_part7_3_8_2, длительность - 0
+Успешный Тест № 591 - test_junos_init_config_upload_part7_3_8_2, длительность - 0
+Успешный Тест № 592 - test_bgp_neighbors_atDR1_7_3_8_2, длительность - 8
+Успешный Тест № 593 - test_bgp_prefix_atDR1_7_3_8_2, длительность - 0
+Успешный Тест № 594 - test_bgp_prefix_atDR1_atAR1_7_3_8_2, длительность - 0
+Успешный Тест № 595 - test_bgp_prefix_atDR1_atAR2_7_3_8_2, длительность - 0
+Успешный Тест № 596 - test_bgp_prefix_atAR1_7_3_8_2, длительность - 1
+Успешный Тест № 597 - test_bgp_prefix_atAR1_7_3_8_2, длительность - 1
+Успешный Тест № 598 - test_bgp_prefix_atAR2_7_3_8_2, длительность - 3
+Успешный Тест № 599 - test_me_init_config_upload_part7_3_8_3, длительность - 0
+Успешный Тест № 600 - test_me_init_config_upload_part7_3_8_3, длительность - 0
+Успешный Тест № 601 - test_me_init_config_upload_part7_3_8_3, длительность - 0
+Успешный Тест № 602 - test_esr_init_config_upload_part7_3_8_3, длительность - 0
+Успешный Тест № 603 - test_junos_init_config_upload_part7_3_8_3, длительность - 0
+Успешный Тест № 604 - test_bgp_prefix_atAR1_7_3_8_3, длительность - 70
+Успешный Тест № 605 - test_me_init_config_upload_part7_3_9_1, длительность - 0
+Успешный Тест № 606 - test_me_init_config_upload_part7_3_9_1, длительность - 0
+Успешный Тест № 607 - test_me_init_config_upload_part7_3_9_1, длительность - 0
+Успешный Тест № 608 - test_esr_init_config_upload_part7_3_9_1, длительность - 0
+Успешный Тест № 609 - test_junos_init_config_upload_part7_3_9_1, длительность - 0
+Успешный Тест № 610 - test_bgp_bfd_single_hop_7_3_9_1, длительность - 60
+Успешный Тест № 611 - test_bgp_bfd_single_hop_7_3_9_1, длительность - 61
+Успешный Тест № 612 - test_bgp_bfd_single_hop_7_3_9_1, длительность - 60
+Успешный Тест № 613 - test_bgp_bfd_7_3_9_1_single_hop, длительность - 121
+Успешный Тест № 614 - test_bgp_bfd_7_3_9_1_single_hop, длительность - 122
+Успешный Тест № 615 - test_bgp_bfd_7_3_9_1_single_hop, длительность - 60
+Успешный Тест № 616 - test_bgp_bfd_7_3_9_1_single_hop, длительность - 60
+Успешный Тест № 617 - test_bgp_bfd_7_3_9_1_single_hop, длительность - 60
+Успешный Тест № 618 - test_bgp_bfd_7_3_9_1_single_hop, длительность - 60
+Успешный Тест № 619 - test_bgp_bfd_7_3_9_1_single_hop, длительность - 60
+Успешный Тест № 620 - test_bgp_bfd_7_3_9_1_single_hop, длительность - 121
+Успешный Тест № 621 - test_bgp_bfd_7_3_9_1_single_hop, длительность - 123
+Успешный Тест № 622 - test_bgp_bfd_7_3_9_1_single_hop, длительность - 121
+Успешный Тест № 623 - test_bgp_bfd_7_3_9_1_single_hop, длительность - 121
+Успешный Тест № 624 - test_bgp_bfd_7_3_9_1_single_hop, длительность - 122
+Успешный Тест № 625 - test_me_init_config_upload_part7_3_9_2, длительность - 0
+Успешный Тест № 626 - test_me_init_config_upload_part7_3_9_2, длительность - 0
+Успешный Тест № 627 - test_me_init_config_upload_part7_3_9_2, длительность - 0
+Успешный Тест № 628 - test_esr_init_config_upload_part7_3_9_2, длительность - 0
+Успешный Тест № 629 - test_junos_init_config_upload_part7_3_9_2, длительность - 0
+Успешный Тест № 630 - test_bgp_bfd_7_3_9_2_multi_hop, длительность - 60
+Успешный Тест № 631 - test_bgp_bfd_7_3_9_2_multi_hop, длительность - 60
+Успешный Тест № 632 - test_bgp_bfd_7_3_9_2_multi_hop, длительность - 60
+Успешный Тест № 633 - test_bgp_bfd_7_3_9_2_multi_hop, длительность - 120
+Успешный Тест № 634 - test_bgp_bfd_7_3_9_2_multi_hop, длительность - 121
+Успешный Тест № 635 - test_bgp_bfd_7_3_9_2_multi_hop, длительность - 60
+Успешный Тест № 636 - test_bgp_bfd_7_3_9_2_multi_hop, длительность - 60
+Успешный Тест № 637 - test_bgp_bfd_7_3_9_2_multi_hop, длительность - 60
+Успешный Тест № 638 - test_bgp_bfd_7_3_9_2_multi_hop, длительность - 60
+Успешный Тест № 639 - test_bgp_bfd_7_3_9_2_multi_hop, длительность - 61
+Успешный Тест № 640 - test_bgp_bfd_7_3_9_2_multi_hop, длительность - 60
+Успешный Тест № 641 - test_bgp_bfd_7_3_9_2_multi_hop, длительность - 61
+Успешный Тест № 642 - test_bgp_bfd_7_3_9_2_multi_hop, длительность - 60
+Успешный Тест № 643 - test_bgp_bfd_7_3_9_2_multi_hop, длительность - 121
+Успешный Тест № 644 - test_bgp_bfd_7_3_9_2_multi_hop, длительность - 122
+Успешный Тест № 645 - test_me_init_config_upload_part7_3_10_2, длительность - 0
+Успешный Тест № 646 - test_me_init_config_upload_part7_3_10_2, длительность - 0
+Успешный Тест № 647 - test_me_init_config_upload_part7_3_10_2, длительность - 0
+Успешный Тест № 648 - test_esr_init_config_upload_part7_3_10_2, длительность - 0
+Успешный Тест № 649 - test_junos_init_config_upload_part7_3_10_2, длительность - 0
+Успешный Тест № 650 - test_bgp_redistribution_7_3_10_2_test1, длительность - 60
+Успешный Тест № 651 - test_bgp_redistribution_7_3_10_2_test1, длительность - 60
+Успешный Тест № 652 - test_bgp_redistribution_7_3_10_2_test1, длительность - 60
+Успешный Тест № 653 - test_bgp_redistribution_7_3_10_2_test2, длительность - 30
+Успешный Тест № 654 - test_bgp_redistribute_manual_7_3_10_2_test3, длительность - 2
+Успешный Тест № 655 - test_bgp_redistribute_manual_7_3_10_2_test3, длительность - 5
+Успешный Тест № 656 - test_bgp_redistribution_7_3_10_2_test4, длительность - 30
+Успешный Тест № 657 - test_bgp_redistribution_7_3_10_2_test5, длительность - 30
+Успешный Тест № 658 - test_bgp_redistribution_7_3_10_2_test6, длительность - 30
+Успешный Тест № 659 - test_bgp_redistribution_7_3_10_2_test7, длительность - 30
+Успешный Тест № 660 - test_bgp_redistribution_7_3_10_2_test8, длительность - 30
+Успешный Тест № 661 - test_bgp_redistribution_7_3_10_2_test9, длительность - 30
+Успешный Тест № 662 - test_bgp_redistribution_7_3_10_2_test10, длительность - 30
+Успешный Тест № 663 - test_bgp_redistribution_7_3_10_2_test10, длительность - 30
+Успешный Тест № 664 - test_bgp_redistribution_7_3_10_2_test10, длительность - 30
+Успешный Тест № 665 - test_me_init_config_upload_part7_3_10_3, длительность - 0
+Успешный Тест № 666 - test_me_init_config_upload_part7_3_10_3, длительность - 0
+Успешный Тест № 667 - test_me_init_config_upload_part7_3_10_3, длительность - 0
+Успешный Тест № 668 - test_esr_init_config_upload_part7_3_10_3, длительность - 0
+Успешный Тест № 669 - test_junos_init_config_upload_part7_3_10_3, длительность - 0
+Успешный Тест № 670 - test_ospf_redistribution_7_3_10_3_test1, длительность - 60
+Успешный Тест № 671 - test_ospf_redistribution_7_3_10_3_test1, длительность - 60
+Успешный Тест № 672 - test_ospf_redistribution_7_3_10_3_test1, длительность - 60
+Успешный Тест № 673 - test_ospf_redistribution_7_3_10_3_test2, длительность - 37
+Успешный Тест № 674 - test_ospf_redistribution_7_3_10_3_test3, длительность - 7
+Успешный Тест № 675 - test_bgp_redistribution_7_3_10_3_test4, длительность - 37
+Успешный Тест № 676 - test_ospf_redistribution_7_3_10_3_test5, длительность - 30
+Успешный Тест № 677 - test_ospf_redistribution_7_3_10_3_test6, длительность - 231
+Успешный Тест № 678 - test_ospf_redistribution_7_3_10_3_test8, длительность - 137
+Успешный Тест № 679 - test_ospf_redistribution_7_3_10_3_test9, длительность - 30
+Успешный Тест № 680 - test_ospf_redistribution_7_3_10_3_test10, длительность - 134
+Успешный Тест № 681 - test_ospf_redistribution_7_3_10_3_test11, длительность - 30
+Успешный Тест № 682 - test_ospf_redistribution_7_3_10_3_test11, длительность - 30
+Успешный Тест № 683 - test_ospf_redistribution_7_3_10_3_test11, длительность - 30
+Успешный Тест № 684 - test_ospf_redistribution_7_3_10_3_test12, длительность - 30
+Успешный Тест № 685 - test_ospf_redistribution_7_3_10_3_test12, длительность - 30
+Успешный Тест № 686 - test_ospf_redistribution_7_3_10_3_test13, длительность - 0
+Успешный Тест № 687 - test_ospf_redistribution_7_3_10_3_test13, длительность - 0
+Успешный Тест № 688 - test_ospf_redistribution_7_3_10_3_test13, длительность - 0
+Успешный Тест № 689 - test_me_init_config_upload_part7_3_10_4, длительность - 0
+Успешный Тест № 690 - test_me_init_config_upload_part7_3_10_4, длительность - 0
+Успешный Тест № 691 - test_me_init_config_upload_part7_3_10_4, длительность - 0
+Успешный Тест № 692 - test_esr_init_config_upload_part7_3_10_4, длительность - 0
+Успешный Тест № 693 - test_junos_init_config_upload_part7_3_10_4, длительность - 0
+Успешный Тест № 694 - test_isis_redistribution_7_3_10_4_test1, длительность - 0
+Успешный Тест № 695 - test_isis_redistribution_7_3_10_4_test1, длительность - 0
+Успешный Тест № 696 - test_isis_redistribution_7_3_10_4_test1, длительность - 0
+Успешный Тест № 697 - test_isis_redistribution_7_3_10_4_test2, длительность - 0
+Успешный Тест № 698 - test_isis_redistribution_7_3_10_4_test3, длительность - 0
+Успешный Тест № 699 - test_isis_redistribution_7_3_10_4_test4, длительность - 0
+Успешный Тест № 700 - test_isis_redistribution_7_3_10_4_test6, длительность - 0
+Успешный Тест № 701 - test_isis_redistribution_7_3_10_4_test7, длительность - 0
+Успешный Тест № 702 - test_isis_redistribution_7_3_10_4_test8, длительность - 0
+Успешный Тест № 703 - test_isis_redistribution_7_3_10_4_test9, длительность - 0
+Успешный Тест № 704 - test_isis_redistribution_7_3_10_4_test9, длительность - 0
+Успешный Тест № 705 - test_isis_redistribution_7_3_10_4_test9, длительность - 0
+Успешный Тест № 706 - test_isis_redistribution_7_3_10_4_test10, длительность - 0
+Успешный Тест № 707 - test_isis_redistribution_7_3_10_4_test10, длительность - 0
+Успешный Тест № 708 - test_isis_redistribution_7_3_10_4_test10, длительность - 0
+Успешный Тест № 709 - test_me_init_config_upload_part7_3_10_5, длительность - 0
+Успешный Тест № 710 - test_me_init_config_upload_part7_3_10_5, длительность - 0
+Успешный Тест № 711 - test_me_init_config_upload_part7_3_10_5, длительность - 0
+Успешный Тест № 712 - test_esr_init_config_upload_part7_3_10_5, длительность - 0
+Успешный Тест № 713 - test_junos_init_config_upload_part7_3_10_5, длительность - 0
+Успешный Тест № 714 - test_rip_redistribution_7_3_10_5_test1, длительность - 60
+Успешный Тест № 715 - test_rip_redistribution_7_3_10_5_test1, длительность - 60
+Успешный Тест № 716 - test_rip_redistribution_7_3_10_5_test1, длительность - 60
+Успешный Тест № 717 - test_rip_redistribution_7_3_10_5_test2, длительность - 0
+Успешный Тест № 718 - test_rip_redistribution_7_3_10_5_test3, длительность - 0
+Успешный Тест № 719 - test_rip_redistribution_7_3_10_5_test4, длительность - 0
+Успешный Тест № 720 - test_rip_redistribution_7_3_10_5_test6, длительность - 0
+Успешный Тест № 721 - test_rip_redistribution_7_3_10_5_test7, длительность - 0
+Успешный Тест № 722 - test_rip_redistribution_7_3_10_5_test8, длительность - 0
+Успешный Тест № 723 - test_rip_redistribution_7_3_10_5_test9, длительность - 0
+Успешный Тест № 724 - test_rip_redistribution_7_3_10_5_test9, длительность - 0
+Успешный Тест № 725 - test_rip_redistribution_7_3_10_5_test9, длительность - 0
+Успешный Тест № 726 - test_me_init_config_upload_part7_3_10_6, длительность - 0
+Успешный Тест № 727 - test_me_init_config_upload_part7_3_10_6, длительность - 0
+Успешный Тест № 728 - test_me_init_config_upload_part7_3_10_6, длительность - 0
+Успешный Тест № 729 - test_esr_init_config_upload_part7_3_10_6, длительность - 0
+Успешный Тест № 730 - test_junos_init_config_upload_part7_3_10_6, длительность - 0
+Успешный Тест № 731 - test_redistribution_static_7_3_10_6_test1, длительность - 0
+Успешный Тест № 732 - test_redistribution_static_7_3_10_6_test1, длительность - 0
+Успешный Тест № 733 - test_redistribution_static_7_3_10_6_test1, длительность - 0
+Успешный Тест № 734 - test_redistribution_static_7_3_10_6_test2, длительность - 0
+Успешный Тест № 735 - test_redistribution_static_7_3_10_6_test3, длительность - 0
+Успешный Тест № 736 - test_redistribution_static_7_3_10_6_test4, длительность - 0
+Успешный Тест № 737 - test_redistribution_static_7_3_10_6_test5, длительность - 0
+Успешный Тест № 738 - test_redistribution_static_7_3_10_6_test6, длительность - 0
+Успешный Тест № 739 - test_redistribution_static_7_3_10_6_test7, длительность - 0
+Успешный Тест № 740 - test_redistribution_static_7_3_10_6_test8, длительность - 0
+Успешный Тест № 741 - test_redistribution_static_7_3_10_6_test9, длительность - 0
+Успешный Тест № 742 - test_redistribution_static_7_3_10_6_test9, длительность - 0
+Успешный Тест № 743 - test_redistribution_static_7_3_10_6_test9, длительность - 0
+Успешный Тест № 744 - test_me_init_config_upload_part7_3_10_7, длительность - 0
+Успешный Тест № 745 - test_me_init_config_upload_part7_3_10_7, длительность - 0
+Успешный Тест № 746 - test_me_init_config_upload_part7_3_10_7, длительность - 0
+Успешный Тест № 747 - test_esr_init_config_upload_part7_3_10_7, длительность - 0
+Успешный Тест № 748 - test_junos_init_config_upload_part7_3_10_7, длительность - 0
+Успешный Тест № 749 - test_redistribution_connected_7_3_10_7_test1, длительность - 100
+Успешный Тест № 750 - test_redistribution_connected_7_3_10_7_test1, длительность - 100
+Успешный Тест № 751 - test_redistribution_connected_7_3_10_7_test1, длительность - 100
+Успешный Тест № 752 - test_redistribution_connected_7_3_10_7_test2, длительность - 0
+Успешный Тест № 753 - test_redistribution_connected_7_3_10_7_test3, длительность - 0
+Успешный Тест № 754 - test_redistribution_connected_7_3_10_7_test4, длительность - 0
+Успешный Тест № 755 - test_redistribution_connected_7_3_10_7_test5, длительность - 0
+Успешный Тест № 756 - test_redistribution_connected_7_3_10_7_test6, длительность - 0
+Успешный Тест № 757 - test_redistribution_connected_7_3_10_7_test7, длительность - 0
+Успешный Тест № 758 - test_redistribution_connected_7_3_10_7_test8, длительность - 0
+Успешный Тест № 759 - test_redistribution_connected_7_3_10_7_test9, длительность - 0
+Успешный Тест № 760 - test_redistribution_connected_7_3_10_7_test9, длительность - 0
+Успешный Тест № 761 - test_redistribution_connected_7_3_10_7_test9, длительность - 0
+Успешный Тест № 762 - test_me_init_config_upload_part7_3_10_8, длительность - 0
+Успешный Тест № 763 - test_me_init_config_upload_part7_3_10_8, длительность - 0
+Успешный Тест № 764 - test_me_init_config_upload_part7_3_10_8, длительность - 0
+Успешный Тест № 765 - test_esr_init_config_upload_part7_3_10_8, длительность - 0
+Успешный Тест № 766 - test_junos_init_config_upload_part7_3_10_8, длительность - 0
+Успешный Тест № 767 - test_redistribution_local_7_3_10_8_test1, длительность - 0
+Успешный Тест № 768 - test_redistribution_local_7_3_10_8_test1, длительность - 0
+Успешный Тест № 769 - test_redistribution_local_7_3_10_8_test1, длительность - 0
+Успешный Тест № 770 - test_redistribution_local_7_3_10_8_test2, длительность - 0
+Успешный Тест № 771 - test_redistribution_local_7_3_10_8_test3, длительность - 0
+Успешный Тест № 772 - test_redistribution_local_7_3_10_8_test4, длительность - 0
+Успешный Тест № 773 - test_redistribution_local_7_3_10_8_test6, длительность - 0
+Успешный Тест № 774 - test_redistribution_connected_7_3_10_8_test7, длительность - 0
+Успешный Тест № 775 - test_redistribution_local_7_3_10_8_test8, длительность - 0
+Успешный Тест № 776 - test_redistribution_local_7_3_10_8_test9, длительность - 0
+Успешный Тест № 777 - test_redistribution_local_7_3_10_8_test9, длительность - 0
+Успешный Тест № 778 - test_redistribution_local_7_3_10_8_test9, длительность - 0
+Успешный Тест № 779 - TestInitConfigs::test_me_init_config_upload_part7_3_11, длительность - 0
+Успешный Тест № 780 - TestInitConfigs::test_me_init_config_upload_part7_3_11, длительность - 0
+Успешный Тест № 781 - TestInitConfigs::test_me_init_config_upload_part7_3_11, длительность - 0
+Успешный Тест № 782 - TestInitConfigs::test_esr_init_config_upload_part7_3_11, длительность - 0
+Успешный Тест № 783 - TestInitConfigs::test_junos_init_config_upload_part7_3_11, длительность - 0
+Успешный Тест № 784 - TestInitConfigs::test_mes_init_config_upload_part7_3_11, длительность - 0
+Успешный Тест № 785 - test_show_bgp_summary_grt_part7_3_11, длительность - 31
+Успешный Тест № 786 - test_show_bgp_summary_grt_part7_3_11, длительность - 33
+Успешный Тест № 787 - test_show_bgp_summary_grt_part7_3_11, длительность - 31
+Успешный Тест № 788 - test_show_bgp_vrf_summary_part7_3_11, длительность - 0
+Успешный Тест № 789 - test_show_bgp_vrf_summary_part7_3_11, длительность - 2
+Успешный Тест № 790 - test_show_bgp_vrf_summary_part7_3_11, длительность - 0
+Успешный Тест № 791 - test_show_bgp_neighbors_part7_3_11, длительность - 3
+Успешный Тест № 792 - test_show_bgp_neighbors_part7_3_11, длительность - 5
+Успешный Тест № 793 - test_show_bgp_neighbors_part7_3_11, длительность - 2
+Успешный Тест № 794 - test_show_bgp_summary_grt_one_way_auth_part7_3_11, длительность - 31
+Успешный Тест № 795 - test_show_bgp_summary_grt_one_way_auth_part7_3_11, длительность - 33
+Успешный Тест № 796 - test_show_bgp_summary_grt_one_way_auth_part7_3_11, длительность - 31
+Успешный Тест № 797 - test_show_bgp_vrf_summary_one_way_auth_part7_3_11, длительность - 0
+Успешный Тест № 798 - test_show_bgp_vrf_summary_one_way_auth_part7_3_11, длительность - 1
+Успешный Тест № 799 - test_show_bgp_vrf_summary_one_way_auth_part7_3_11, длительность - 0
+Успешный Тест № 800 - test_show_bgp_neighbors_one_way_auth_part7_3_11, длительность - 5
+Успешный Тест № 801 - test_show_bgp_neighbors_one_way_auth_part7_3_11, длительность - 3
+Успешный Тест № 802 - test_show_bgp_summary_grt_two_way_auth_part7_3_11, длительность - 41
+Успешный Тест № 803 - test_show_bgp_summary_grt_two_way_auth_part7_3_11, длительность - 43
+Успешный Тест № 804 - test_show_bgp_summary_grt_two_way_auth_part7_3_11, длительность - 41
+Успешный Тест № 805 - test_show_bgp_vrf_summary_two_way_auth_part7_3_11, длительность - 0
+Успешный Тест № 806 - test_show_bgp_vrf_summary_two_way_auth_part7_3_11, длительность - 2
+Успешный Тест № 807 - test_show_bgp_vrf_summary_two_way_auth_part7_3_11, длительность - 0
+Успешный Тест № 808 - test_show_bgp_neighbors_two_way_auth_part7_3_11, длительность - 4
+Успешный Тест № 809 - test_show_bgp_neighbors_two_way_auth_part7_3_11, длительность - 5
+Успешный Тест № 810 - test_show_bgp_neighbors_two_way_auth_part7_3_11, длительность - 2
+Успешный Тест № 811 - test_show_bgp_summary_grt_auth_misconfig_part7_3_11, длительность - 41
+Успешный Тест № 812 - test_show_bgp_summary_grt_auth_misconfig_part7_3_11, длительность - 43
+Успешный Тест № 813 - test_show_bgp_summary_grt_auth_misconfig_part7_3_11, длительность - 41
+Успешный Тест № 814 - test_show_bgp_vrf_summary_auth_misconfig_part7_3_11, длительность - 0
+Успешный Тест № 815 - test_show_bgp_vrf_summary_auth_misconfig_part7_3_11, длительность - 1
+Успешный Тест № 816 - test_show_bgp_vrf_summary_auth_misconfig_part7_3_11, длительность - 0
+Успешный Тест № 817 - test_show_bgp_neighbors_auth_misconfig_part7_3_11, длительность - 3
+Успешный Тест № 818 - test_show_bgp_neighbors_auth_misconfig_part7_3_11, длительность - 5
+Успешный Тест № 819 - test_show_bgp_neighbors_auth_misconfig_part7_3_11, длительность - 2
+Успешный Тест № 820 - test_show_bgp_summary_grt_auth_no_misconfig_part7_3_11, длительность - 41
+Успешный Тест № 821 - test_show_bgp_summary_grt_auth_no_misconfig_part7_3_11, длительность - 43
+Успешный Тест № 822 - test_show_bgp_summary_grt_auth_no_misconfig_part7_3_11, длительность - 41
+Успешный Тест № 823 - test_show_bgp_vrf_summary_auth_no_misconfig_part7_3_11, длительность - 2
+Успешный Тест № 824 - test_show_bgp_vrf_summary_auth_no_misconfig_part7_3_11, длительность - 0
+Успешный Тест № 825 - test_show_bgp_neighbors_auth_no_misconfig_part7_3_11, длительность - 4
+Успешный Тест № 826 - test_show_bgp_neighbors_auth_no_misconfig_part7_3_11, длительность - 5
+Успешный Тест № 827 - test_show_bgp_neighbors_auth_no_misconfig_part7_3_11, длительность - 5
+Успешный Тест № 828 - TestInitConfigs::test_me_init_config_upload_part7_3_12, длительность - 0
+Успешный Тест № 829 - TestInitConfigs::test_me_init_config_upload_part7_3_12, длительность - 0
+Успешный Тест № 830 - TestInitConfigs::test_me_init_config_upload_part7_3_12, длительность - 0
+Успешный Тест № 831 - TestInitConfigs::test_esr_init_config_upload_part7_3_12, длительность - 0
+Успешный Тест № 832 - TestInitConfigs::test_junos_init_config_upload_part7_3_12, длительность - 0
+Успешный Тест № 833 - test_show_bgp_summary_rr_no_add_path_part7_3_12, длительность - 31
+Успешный Тест № 834 - test_show_bgp_ip_unicast_rr_no_add_path_part7_3_12, длительность - 0
+Успешный Тест № 835 - test_show_bgp_ip_unic_neib_advert_routes_rr_no_add_path_part7_3_12, длительность - 0
+Успешный Тест № 836 - test_show_bgp_neighbors_rr_no_add_path_part7_3_12, длительность - 0
+Успешный Тест № 837 - test_show_bgp_summary_dut_no_add_path_part7_3_12, длительность - 1
+Успешный Тест № 838 - test_show_bgp_ip_unicast_dut_no_add_path_part7_3_12, длительность - 0
+Успешный Тест № 839 - test_show_route_bgp_dut_no_add_path_part7_3_12, длительность - 0
+Успешный Тест № 840 - test_show_l3forwarding_dut_no_add_path_part7_3_12, длительность - 0
+Успешный Тест № 841 - test_show_bgp_ip_unic_neib_routes_dut_no_add_path_part7_3_12, длительность - 0
+Успешный Тест № 842 - test_show_bgp_neighbors_rr_add_path_part7_3_12, длительность - 0
+Успешный Тест № 843 - test_show_bgp_ip_unic_neib_routes_dut_add_path_part7_3_12, длительность - 0
+Успешный Тест № 844 - test_show_bgp_neighbors_dut_add_path_part7_3_12, длительность - 1
+Успешный Тест № 845 - test_show_bgp_ip_unic_dut_add_path_part7_3_12, длительность - 0
+Успешный Тест № 846 - test_show_bgp_prefix_dut_add_path_part7_3_12, длительность - 2
+Успешный Тест № 847 - test_show_route_bgp_dut_add_path_part7_3_12, длительность - 0
+Успешный Тест № 848 - test_show_l3forwarding_dut_add_path_part7_3_12, длительность - 0
+Успешный Тест № 849 - test_mes_init_config_upload_part8, длительность - 0
+Успешный Тест № 850 - test_me_init_config_upload_part8, длительность - 0
+Успешный Тест № 851 - test_mes_init_config_upload_part8_1, длительность - 0
+Успешный Тест № 852 - test_me_init_config_upload_part8_1, длительность - 0
+Успешный Тест № 853 - test_me_init_config_upload_part9_1_2, длительность - 0
+Успешный Тест № 854 - test_me_init_config_upload_part9_1_2, длительность - 0
+Успешный Тест № 855 - test_me_init_config_upload_part9_1_2, длительность - 0
+Успешный Тест № 856 - test_mes_init_config_upload_part9_1_2, длительность - 0
+Успешный Тест № 857 - test_esr_init_config_upload_part9_1_2, длительность - 0
+Успешный Тест № 858 - test_bgp_vpls_switching_part9_1_2, длительность - 10
+Успешный Тест № 859 - test_show_mac_table_in_bgp_vpls_part9_1_2, длительность - 35
+Успешный Тест № 860 - test_show_mac_table_in_bgp_vpls_part9_1_2, длительность - 35
+Успешный Тест № 861 - test_counters_AC_PW_bgp_vpls_part9_1_2, длительность - 115
+Успешный Тест № 862 - test_counters_AC_PW_bgp_vpls_part9_1_2, длительность - 115
+Успешный Тест № 863 - test_show_bgp_l2vpn_part9_1_2, длительность - 15
+Успешный Тест № 864 - test_show_bgp_l2vpn_part9_1_2, длительность - 15
+Успешный Тест № 865 - test_show_bgp_l2vpn_part9_1_2, длительность - 15
+Успешный Тест № 866 - test_show_l2vpn_bd_name_200_part9_1_2, длительность - 0
+Успешный Тест № 867 - test_esr_init_config_upload_part9_2_2, длительность - 0
+Успешный Тест № 868 - test_me_init_config_upload_part9_2_2, длительность - 0
+Успешный Тест № 869 - test_me_init_config_upload_part9_2_2, длительность - 0
+Успешный Тест № 870 - test_me_init_config_upload_part9_2_2, длительность - 0
+Успешный Тест № 871 - test_ping_over_L3VPN_VRF40_part9_2_2, длительность - 117
+Успешный Тест № 872 - test_show_ip_route_vrf_part9_2_2, длительность - 31
+Успешный Тест № 873 - test_show_ip_route_vrf_part9_2_2, длительность - 31
+Успешный Тест № 874 - test_show_ip_route_vrf_part9_2_2, длительность - 31
+Успешный Тест № 875 - test_show_ospfv2_vrf_VRF40_part9_2_2, длительность - 0
+Успешный Тест № 876 - test_show_ospfv2_vrf_VRF40_int_part9_2_2, длительность - 0
+Успешный Тест № 877 - test_show_ospfv2_vrf_VRF40_database_part9_2_2, длительность - 0
+Успешный Тест № 878 - test_show_bgp_vrf_VRF40_summary_part9_2_2, длительность - 0
+Успешный Тест № 879 - test_show_bgp_vrf_VRF40_neighbors_part9_2_2, длительность - 0
+Успешный Тест № 880 - test_show_bgp_vrf_VRF40_192_168_42_2, длительность - 0
+Успешный Тест № 881 - test_show_bgp_vrf_VRF40_part9_2_2, длительность - 0
+Успешный Тест № 882 - test_show_route_vrf_VRF40_bgp_part9_2_2, длительность - 0
+Успешный Тест № 883 - test_show_route_vrf_VRF40_static_part9_2_2, длительность - 0
+Успешный Тест № 884 - test_me_init_config_upload_part9_2_3, длительность - 0
+Успешный Тест № 885 - test_me_init_config_upload_part9_2_3, длительность - 0
+Успешный Тест № 886 - test_me_init_config_upload_part9_2_3, длительность - 0
+Успешный Тест № 887 - test_esr_init_config_upload_part9_2_3, длительность - 0
+Успешный Тест № 888 - test_junos_init_config_upload_part9_2_3, длительность - 0
+Успешный Тест № 889 - test_vpnv4_vpnv6_9_2_3, длительность - 70
+Успешный Тест № 890 - test_vpnv4_vpnv6_9_2_3, длительность - 70
+Успешный Тест № 891 - test_vpnv4_vpnv6_9_2_3, длительность - 70
+Успешный Тест № 892 - test_CE_CE_ping_9_2_3_atDR1, длительность - 10
+Успешный Тест № 893 - test_me_init_config_upload_part9_3, длительность - 0
+Успешный Тест № 894 - test_me_init_config_upload_part9_3, длительность - 0
+Успешный Тест № 895 - test_me_init_config_upload_part9_3, длительность - 0
+Успешный Тест № 896 - test_esr_init_config_upload_part9_3, длительность - 0
+Успешный Тест № 897 - test_junos_init_config_upload_part9_3, длительность - 0
+Успешный Тест № 898 - test_icmpv6_over_LDP_LSP_part9_3, длительность - 33
+Успешный Тест № 899 - test_me_init_config_upload_part9_4_1, длительность - 0
+Успешный Тест № 900 - test_me_init_config_upload_part9_4_1, длительность - 0
+Успешный Тест № 901 - test_me_init_config_upload_part9_4_1, длительность - 0
+Успешный Тест № 902 - test_esr_init_config_upload_part9_4_1, длительность - 0
+Успешный Тест № 903 - test_me_init_config_upload_part9_4_2, длительность - 0
+Успешный Тест № 904 - test_me_init_config_upload_part9_4_2, длительность - 0
+Успешный Тест № 905 - test_me_init_config_upload_part9_4_2, длительность - 0
+Успешный Тест № 906 - test_esr_init_config_upload_part9_4_2, длительность - 0
+Успешный Тест № 907 - test_dhcp_renew_part9_4_2, длительность - 46
+Успешный Тест № 908 - test_dhcp_renew_part9_4_2, длительность - 46
+Успешный Тест № 909 - test_dhcp_renew_part9_4_2, длительность - 18
+Успешный Тест № 910 - test_me_init_config_upload_part9_6, длительность - 0
+Успешный Тест № 911 - test_me_init_config_upload_part9_6, длительность - 0
+Успешный Тест № 912 - test_me_init_config_upload_part9_6, длительность - 0
+Успешный Тест № 913 - test_me_init_config_upload_part10_1, длительность - 0
+Успешный Тест № 914 - test_me_init_config_upload_part10_1, длительность - 0
+Успешный Тест № 915 - test_me_init_config_upload_part10_4, длительность - 0
+Успешный Тест № 916 - test_me_init_config_upload_part10_4, длительность - 0
+Успешный Тест № 917 - test_me_init_config_upload_part10_5, длительность - 0
+Успешный Тест № 918 - test_me_init_config_upload_part10_5, длительность - 0
+Успешный Тест № 919 - test_me_init_config_upload_part10_6, длительность - 0
+Успешный Тест № 920 - test_me_init_config_upload_part10_6, длительность - 0
+Успешный Тест № 921 - test_me_init_config_upload_part10_7_2, длительность - 0
+Успешный Тест № 922 - test_me_init_config_upload_part10_7_2, длительность - 0
+Успешный Тест № 923 - test_ospfv2_neighbor_relationship_part10_7_3_2, длительность - 38
+Успешный Тест № 924 - test_ospfv2_neighbor_relationship_part10_7_3_3, длительность - 118
+Успешный Тест № 925 - test_me_init_config_upload_part10_7_3_4, длительность - 0
+Успешный Тест № 926 - test_me_init_config_upload_part10_7_3_4, длительность - 0
+Успешный Тест № 927 - test_me_init_config_upload_part10_7_3_4, длительность - 0
+Успешный Тест № 928 - test_ospfv2_neighbor_relationship_part10_7_3_4, длительность - 62
+Успешный Тест № 929 - test_ospfv2_neighbor_relationship_part10_7_3_4, длительность - 60
+Успешный Тест № 930 - test_me_init_config_upload_part10_7_3_4, длительность - 0
+Успешный Тест № 931 - test_me_init_config_upload_part10_7_3_4, длительность - 0
+Успешный Тест № 932 - test_ospfv2_neighbor_relationship_part10_7_3_5_1, длительность - 72
+Успешный Тест № 933 - test_me_init_config_upload_part10_8_1, длительность - 0
+Успешный Тест № 934 - test_me_init_config_upload_part10_8_1, длительность - 0
+Успешный Тест № 935 - test_ospfv2_mtu_default_part10_8_1, длительность - 61
+Успешный Тест № 936 - test_ospfv2_mtu_manually_part10_8_1, длительность - 61
+Успешный Тест № 937 - test_ospfv2_different_mtu_part10_8_2, длительность - 45
+Успешный Тест № 938 - test_me_init_config_upload_part10_9, длительность - 0
+Успешный Тест № 939 - test_me_init_config_upload_part10_9, длительность - 0
+Успешный Тест № 940 - test_me_init_config_upload_part10_9, длительность - 0
+Успешный Тест № 941 - test_ospfv2_priority_in_hello_packet_part10_9_1, длительность - 50
+Успешный Тест № 942 - test_ospfv2_dr_bdr_point_to_point_part10_9_2, длительность - 10
+Успешный Тест № 943 - test_ospfv2_dr_bdr_broadcast_priority_part10_9_3, длительность - 63
+Успешный Тест № 944 - test_ospfv2_dr_bdr_broadcast_router_id_part10_9_4, длительность - 52
+Успешный Тест № 945 - test_me_init_config_upload_part10_10, длительность - 0
+Успешный Тест № 946 - test_me_init_config_upload_part10_10, длительность - 0
+Успешный Тест № 947 - test_me_init_config_upload_part10_10, длительность - 0
+Успешный Тест № 948 - test_ospfv2_backbone_zone_part10_10_1, длительность - 60
+Успешный Тест № 949 - test_ospfv2_regular_zone_part10_10_2, длительность - 50
+Успешный Тест № 950 - test_ospfv2_stub_zone_part10_10_3, длительность - 57
+Успешный Тест № 951 - test_ospfv2_no_summary_totally_stub_part10_10_3, длительность - 0
+Успешный Тест № 952 - test_ospfv2_nssa_zone_part10_10_4, длительность - 57
+Успешный Тест № 953 - test_ospfv2_no_summary_totally_nssa_part10_10_4, длительность - 1
+Успешный Тест № 954 - test_me_init_config_upload_part10_11_1, длительность - 0
+Успешный Тест № 955 - test_me_init_config_upload_part10_11_1, длительность - 0
+Успешный Тест № 956 - test_me_init_config_upload_part10_11_1, длительность - 0
+Успешный Тест № 957 - test_ospfv2_auth_SP_without_key_chain_part10_11_1, длительность - 64
+Успешный Тест № 958 - test_ospfv2_auth_md5_without_key_chain_part10_11_1, длительность - 64
+Успешный Тест № 959 - test_ospfv2_auth_hmacsha1_without_key_chain_part10_11_1, длительность - 64
+Успешный Тест № 960 - test_ospfv2_auth_hmacsha256_without_key_chain_part10_11_1, длительность - 64
+Успешный Тест № 961 - test_ospfv2_auth_hmacsha384_without_key_chain_part10_11_1, длительность - 64
+Успешный Тест № 962 - test_ospfv2_auth_hmacsha512_without_key_chain_part10_11_1, длительность - 64
+Успешный Тест № 963 - test_ospfv2_auth_key_id_without_key_chain_part10_11_1, длительность - 83
+Успешный Тест № 964 - test_me_init_config_upload_part10_11_2, длительность - 0
+Успешный Тест № 965 - test_me_init_config_upload_part10_11_2, длительность - 0
+Успешный Тест № 966 - test_me_init_config_upload_part10_11_2, длительность - 0
+Успешный Тест № 967 - test_ospfv2_auth_with_key_chain_elapsed_lifetime_part10_11_2, длительность - 20
+Успешный Тест № 968 - test_ospfv2_auth_with_key_chain_the_time_has_not_come_part10_11_2, длительность - 20
+Успешный Тест № 969 - test_ospfv2_auth_with_key_chain_current_lifetime_part10_11_2, длительность - 42
+Успешный Тест № 970 - test_me_init_config_upload_part10_12, длительность - 0
+Успешный Тест № 971 - test_me_init_config_upload_part10_12, длительность - 0
+Успешный Тест № 972 - test_me_init_config_upload_part10_12, длительность - 0
+Успешный Тест № 973 - test_ospfv2_bfd_p2p_part10_12_1, длительность - 22
+Успешный Тест № 974 - test_ospfv2_bfd_broadcast_part10_12_2, длительность - 52
+Успешный Тест № 975 - test_me_init_config_upload_part10_13, длительность - 0
+Успешный Тест № 976 - test_ospfv3_router_id_part10_13, длительность - 0
+Успешный Тест № 977 - test_me_init_config_upload_part10_14, длительность - 0
+Успешный Тест № 978 - test_me_init_config_upload_part10_14, длительность - 0
+Успешный Тест № 979 - test_me_init_config_upload_part10_14, длительность - 0
+Успешный Тест № 980 - test_ospfv3_hello_analysis_part10_14_1, длительность - 50
+Успешный Тест № 981 - test_ospfv3_hello_analysis_part10_14_1, длительность - 40
+Успешный Тест № 982 - test_ospfv3_hello_analysis_part10_14_1, длительность - 60
+Успешный Тест № 983 - test_ospfv3_hello_interval_part10_14_2_1, длительность - 42
+Успешный Тест № 984 - test_ospfv3_dead_interval_part10_14_2_2, длительность - 42
+Успешный Тест № 985 - test_ospfv3_area_number_part10_14_2_3, длительность - 42
+Успешный Тест № 986 - test_ospfv3_e_and_n_flags_part10_14_2_4, длительность - 83
+Успешный Тест № 987 - test_ospfv3_router_id_part10_14_2_5, длительность - 43
+Успешный Тест № 988 - test_me_init_config_upload_part10_15, длительность - 0
+Успешный Тест № 989 - test_me_init_config_upload_part10_15, длительность - 0
+Успешный Тест № 990 - test_ospfv3_different_mtu_part10_15, длительность - 74
+Успешный Тест № 991 - test_me_init_config_upload_part10_16, длительность - 0
+Успешный Тест № 992 - test_me_init_config_upload_part10_16, длительность - 0
+Успешный Тест № 993 - test_me_init_config_upload_part10_16, длительность - 0
+Успешный Тест № 994 - test_ospfv3_priority_in_hello_packet_part10_16_1, длительность - 50
+Успешный Тест № 995 - test_ospfv3_dr_bdr_point_to_point_part10_16_2, длительность - 40
+Успешный Тест № 996 - test_ospfv3_dr_bdr_broadcast_priority_part10_16_3, длительность - 83
+Успешный Тест № 997 - test_ospfv3_dr_bdr_broadcast_router_id_part10_16_4, длительность - 52
+Успешный Тест № 998 - test_me_init_config_upload_part10_17, длительность - 0
+Успешный Тест № 999 - test_me_init_config_upload_part10_17, длительность - 0
+Успешный Тест № 1000 - test_me_init_config_upload_part10_17, длительность - 0
+Успешный Тест № 1001 - test_ospfv3_backbone_zone_part10_17_1, длительность - 66
+Успешный Тест № 1002 - test_ospfv3_regular_zone_part10_17_2, длительность - 50
+Успешный Тест № 1003 - test_ospfv3_stub_zone_part10_17_3, длительность - 57
+Успешный Тест № 1004 - test_ospfv3_no_summary_totally_stub_part10_17_3, длительность - 0
+Успешный Тест № 1005 - test_ospfv3_nssa_zone_part10_17_4, длительность - 57
+Успешный Тест № 1006 - test_ospfv3_no_summary_totally_nssa_part10_17_4, длительность - 1
+Успешный Тест № 1007 - test_me_init_config_upload_part10_18_1, длительность - 0
+Успешный Тест № 1008 - test_me_init_config_upload_part10_18_1, длительность - 0
+Успешный Тест № 1009 - test_me_init_config_upload_part10_18_1, длительность - 0
+Успешный Тест № 1010 - test_ospfv3_auth_md5_without_key_chain_part10_18_1_1, длительность - 64
+Успешный Тест № 1011 - test_ospfv3_auth_hmacsha1_without_key_chain_part10_18_1_2, длительность - 64
+Успешный Тест № 1012 - test_ospfv3_auth_hmacsha256_without_key_chain_part10_18_1_3, длительность - 64
+Успешный Тест № 1013 - test_ospfv3_auth_hmacsha384_without_key_chain_part10_18_1_4, длительность - 65
+Успешный Тест № 1014 - test_ospfv3_auth_hmacsha512_without_key_chain_part10_18_1_5, длительность - 64
+Успешный Тест № 1015 - test_ospfv3_auth_key_id_without_key_chain_part10_18_1_6, длительность - 93
+Успешный Тест № 1016 - test_me_init_config_upload_part10_18_2, длительность - 0
+Успешный Тест № 1017 - test_me_init_config_upload_part10_18_2, длительность - 0
+Успешный Тест № 1018 - test_me_init_config_upload_part10_18_2, длительность - 0
+Успешный Тест № 1019 - test_ospfv3_auth_with_key_chain_elapsed_lifetime_part10_18_2_1, длительность - 20
+Успешный Тест № 1020 - test_ospfv3_auth_with_key_chain_the_time_has_not_come_part10_18_2_2, длительность - 20
+Успешный Тест № 1021 - test_ospfv3_auth_with_key_chain_current_lifetime_part10_18_2_3, длительность - 42
+Успешный Тест № 1022 - test_me_init_config_upload_part10_19, длительность - 0
+Успешный Тест № 1023 - test_me_init_config_upload_part10_19, длительность - 0
+Успешный Тест № 1024 - test_me_init_config_upload_part10_19, длительность - 0
+Успешный Тест № 1025 - test_ospfv2_multi_area_point_to_point_part10_19, длительность - 51
+Успешный Тест № 1026 - test_ospfv2_multi_area_multi_access_part10_19, длительность - 82
+Успешный Тест № 1027 - test_me_init_config_upload_part10_20, длительность - 0
+Успешный Тест № 1028 - test_me_init_config_upload_part10_20, длительность - 0
+Успешный Тест № 1029 - test_me_init_config_upload_part10_20, длительность - 0
+Успешный Тест № 1030 - test_ospfv2_domain_id_part10_20, длительность - 92
+Успешный Тест № 1031 - test_ospfv2_domain_id_part10_20, длительность - 31
+Успешный Тест № 1032 - test_ospfv2_domain_id_part10_20, длительность - 32
+Успешный Тест № 1033 - test_ospfv2_domain_id_part10_20, длительность - 31
+Успешный Тест № 1034 - test_ospfv2_route_type_part10_20, длительность - 0
+Успешный Тест № 1035 - test_ospfv2_route_type_part10_20, длительность - 0
+Успешный Тест № 1036 - test_ospfv2_route_type_part10_20, длительность - 0
+Успешный Тест № 1037 - test_ospfv2_route_type_part10_20, длительность - 0
+Успешный Тест № 1038 - test_ospfv2_route_type_part10_20, длительность - 0
+Успешный Тест № 1039 - test_ospfv2_route_type_part10_20, длительность - 0
+Успешный Тест № 1040 - test_ospfv2_DN_bit_part10_20, длительность - 0
+Успешный Тест № 1041 - test_ospfv2_DN_bit_part10_20, длительность - 0
+Успешный Тест № 1042 - test_ospfv2_DN_bit_part10_20, длительность - 0
+Успешный Тест № 1043 - test_ospfv2_DN_bit_part10_20, длительность - 0
+Успешный Тест № 1044 - test_ospfv2_DN_bit_part10_20, длительность - 0
+Успешный Тест № 1045 - test_ospfv2_DN_bit_part10_20, длительность - 0
+Успешный Тест № 1046 - test_ospfv2_DN_bit_part10_20, длительность - 0
+Успешный Тест № 1047 - test_ospfv2_DN_bit_part10_20, длительность - 0
+Успешный Тест № 1048 - test_ospfv2_DN_bit_part10_20, длительность - 0
+Успешный Тест № 1049 - test_ospfv2_DN_bit_part10_20, длительность - 0
+Успешный Тест № 1050 - test_ospfv2_Ext_Comm_Attributes_test1_part10_20, длительность - 0
+Успешный Тест № 1051 - test_ospfv2_Ext_Comm_Attributes_test2_part10_20, длительность - 0
+Успешный Тест № 1052 - test_ospfv2_Ext_Comm_Attributes_test3_part10_20, длительность - 0
+Успешный Тест № 1053 - test_ospfv2_Ext_Comm_Attributes_test4_part10_20, длительность - 0
+Успешный Тест № 1054 - test_ospfv2_Ext_Comm_Attributes_test5_part10_20, длительность - 0
+Успешный Тест № 1055 - test_ospfv2_Ext_Comm_Attributes_test6_part10_20, длительность - 0
+Успешный Тест № 1056 - test_ospfv2_Ext_Comm_Attributes_test7_part10_20, длительность - 0
+Успешный Тест № 1057 - test_ospfv2_Ext_Comm_Attributes_test8_part10_20, длительность - 0
+Успешный Тест № 1058 - test_ospfv2_Ext_Comm_Attributes_test9_part10_20, длительность - 0
+Успешный Тест № 1059 - test_ospfv2_Ext_Comm_Attributes_test2_part10_20, длительность - 0
+Успешный Тест № 1060 - test_ospfv2_Ext_Comm_Attributes_test3_part10_20, длительность - 0
+Успешный Тест № 1061 - test_ospfv2_Ext_Comm_Attributes_test13_part10_20, длительность - 0
+Успешный Тест № 1062 - test_ospfv2_Ext_Comm_Attributes_test14_part10_20, длительность - 0
+Успешный Тест № 1063 - test_ospfv2_Ext_Comm_Attributes_test15_part10_20, длительность - 0
+Успешный Тест № 1064 - test_ospfv2_Ext_Comm_Attributes_test16_part10_20, длительность - 0
+Успешный Тест № 1065 - test_ospfv2_Ext_Comm_Attributes_test17_part10_20, длительность - 0
+Успешный Тест № 1066 - test_ospfv2_Ext_Comm_Attributes_test18_part10_20, длительность - 0
+Успешный Тест № 1067 - test_ospfv2_Ext_Comm_Attributes_test19_part10_20, длительность - 0
+Успешный Тест № 1068 - test_ospfv2_Ext_Comm_Attributes_test20_part10_20, длительность - 0
+Успешный Тест № 1069 - test_ospfv2_Ext_Comm_Attributes_test21_part10_20, длительность - 0
+Успешный Тест № 1070 - test_ospfv2_DN_bit_test1_part10_20, длительность - 0
+Успешный Тест № 1071 - test_ospfv2_DN_bit_test1_part10_20, длительность - 0
+Успешный Тест № 1072 - test_ospfv2_DN_bit_test2_part10_20, длительность - 0
+Успешный Тест № 1073 - test_ospfv3_domain_id_part10_21, длительность - 31
+Успешный Тест № 1074 - test_ospfv3_domain_id_part10_21, длительность - 32
+Успешный Тест № 1075 - test_ospfv3_domain_id_part10_21, длительность - 31
+Успешный Тест № 1076 - test_ospfv3_route_type_part10_21, длительность - 0
+Успешный Тест № 1077 - test_ospfv3_route_type_part10_21, длительность - 0
+Успешный Тест № 1078 - test_ospfv3_route_type_part10_21, длительность - 0
+Успешный Тест № 1079 - test_ospfv3_route_type_part10_21, длительность - 0
+Успешный Тест № 1080 - test_ospfv3_route_type_part10_21, длительность - 0
+Успешный Тест № 1081 - test_ospfv3_route_type_part10_21, длительность - 0
+Успешный Тест № 1082 - test_ospfv3_DN_bit_part10_21, длительность - 0
+Успешный Тест № 1083 - test_ospfv3_DN_bit_part10_21, длительность - 0
+Успешный Тест № 1084 - test_ospfv3_DN_bit_part10_21, длительность - 0
+Успешный Тест № 1085 - test_ospfv3_DN_bit_part10_21, длительность - 0
+Успешный Тест № 1086 - test_ospfv3_DN_bit_part10_21, длительность - 1
+Успешный Тест № 1087 - test_ospfv3_DN_bit_part10_21, длительность - 0
+Успешный Тест № 1088 - test_ospfv3_DN_bit_part10_21, длительность - 0
+Успешный Тест № 1089 - test_ospfv3_DN_bit_part10_21, длительность - 0
+Успешный Тест № 1090 - test_ospfv3_DN_bit_part10_21, длительность - 0
+Успешный Тест № 1091 - test_ospfv3_DN_bit_part10_21, длительность - 0
+Успешный Тест № 1092 - test_ospfv3_Ext_Comm_Attributes_test1_part10_21, длительность - 0
+Успешный Тест № 1093 - test_ospfv3_Ext_Comm_Attributes_test2_part10_21, длительность - 1
+Успешный Тест № 1094 - test_ospfv3_Ext_Comm_Attributes_test3_part10_21, длительность - 0
+Успешный Тест № 1095 - test_ospfv3_Ext_Comm_Attributes_test4_part10_21, длительность - 0
+Успешный Тест № 1096 - test_ospfv3_Ext_Comm_Attributes_test5_part10_21, длительность - 0
+Успешный Тест № 1097 - test_ospfv3_Ext_Comm_Attributes_test6_part10_21, длительность - 0
+Успешный Тест № 1098 - test_ospfv3_Ext_Comm_Attributes_test7_part10_21, длительность - 0
+Успешный Тест № 1099 - test_ospfv3_Ext_Comm_Attributes_test8_part10_21, длительность - 0
+Успешный Тест № 1100 - test_ospfv3_Ext_Comm_Attributes_test9_part10_21, длительность - 0
+Успешный Тест № 1101 - test_ospfv3_Ext_Comm_Attributes_test10_part10_21, длительность - 0
+Успешный Тест № 1102 - test_ospfv3_Ext_Comm_Attributes_test11_part10_21, длительность - 0
+Успешный Тест № 1103 - test_ospfv3_Ext_Comm_Attributes_test12_part10_21, длительность - 0
+Успешный Тест № 1104 - test_ospfv3_Ext_Comm_Attributes_test13_part10_21, длительность - 1
+Успешный Тест № 1105 - test_ospfv3_Ext_Comm_Attributes_test14_part10_21, длительность - 0
+Успешный Тест № 1106 - test_ospfv3_Ext_Comm_Attributes_test15_part10_21, длительность - 0
+Успешный Тест № 1107 - test_ospfv3_Ext_Comm_Attributes_test16_part10_21, длительность - 0
+Успешный Тест № 1108 - test_ospfv3_Ext_Comm_Attributes_test17_part10_21, длительность - 0
+Успешный Тест № 1109 - test_ospfv3_Ext_Comm_Attributes_test18_part10_21, длительность - 1
+Успешный Тест № 1110 - test_ospfv3_Ext_Comm_Attributes_test19_part10_21, длительность - 0
+Успешный Тест № 1111 - test_ospfv3_Ext_Comm_Attributes_test20_part10_21, длительность - 0
+Успешный Тест № 1112 - test_ospfv3_Ext_Comm_Attributes_test21_part10_21, длительность - 0
+Успешный Тест № 1113 - test_ospfv3_DN_bit_test1_part10_21_6, длительность - 0
+Успешный Тест № 1114 - test_ospfv3_DN_bit_test1_part10_21_6, длительность - 0
+Успешный Тест № 1115 - test_ospfv3_DN_bit_test2_part10_21_6, длительность - 0
+Успешный Тест № 1116 - test_me_init_config_upload_part10_22, длительность - 0
+Успешный Тест № 1117 - test_me_init_config_upload_part10_22, длительность - 0
+Успешный Тест № 1118 - test_me_init_config_upload_part10_22, длительность - 0
+Успешный Тест № 1119 - test_ospfv2_CE_CE_forwarding_part10_22, длительность - 31
+Успешный Тест № 1120 - test_ospfv2_CE_CE_forwarding_part10_22, длительность - 0
+Успешный Тест № 1121 - test_ospfv2_CE_CE_forwarding_part10_22, длительность - 0
+Успешный Тест № 1122 - test_ospfv2_neighbors_part10_22, длительность - 20
+Успешный Тест № 1123 - test_ospfv2_neighbors_part10_22, длительность - 22
+Успешный Тест № 1124 - test_ospfv2_neighbors_part10_22, длительность - 22
+Успешный Тест № 1125 - test_ospfv3_CE_CE_forwarding_part10_23, длительность - 0
+Успешный Тест № 1126 - test_ospfv3_CE_CE_forwarding_part10_23, длительность - 0
+Успешный Тест № 1127 - test_ospfv3_CE_CE_forwarding_part10_23, длительность - 0
+Успешный Тест № 1128 - test_ospfv3_neighbors_part10_23, длительность - 0
+Успешный Тест № 1129 - test_ospfv3_neighbors_part10_23, длительность - 1
+Успешный Тест № 1130 - test_ospfv3_neighbors_part10_23, длительность - 0
+Успешный Тест № 1131 - test_me_init_config_upload_part11_2, длительность - 0
+Успешный Тест № 1132 - test_me_init_config_upload_part11_2, длительность - 0
+Успешный Тест № 1133 - test_me_init_config_upload_part11_2, длительность - 0
+Успешный Тест № 1134 - test_junos_init_config_upload_part11_2, длительность - 0
+Успешный Тест № 1135 - test_mes_init_config_upload_reload_part11_2, длительность - 0
+Успешный Тест № 1136 - test_show_pim_neighbors_part11_2, длительность - 0
+Успешный Тест № 1137 - test_show_pim_neighbors_part11_2, длительность - 0
+Успешный Тест № 1138 - test_show_pim_neighbors_part11_2, длительность - 0
+Успешный Тест № 1139 - test_show_pim_interfaces_part11_1, длительность - 0
+Успешный Тест № 1140 - test_show_pim_interfaces_part11_1, длительность - 0
+Успешный Тест № 1141 - test_show_pim_interfaces_part11_1, длительность - 0
+Успешный Тест № 1142 - test_show_pim_topology_part11_1, длительность - 0
+Успешный Тест № 1143 - test_show_pim_topology_part11_1, длительность - 0
+Успешный Тест № 1144 - test_show_pim_topology_part11_1, длительность - 0
+Успешный Тест № 1145 - test_show_pim_topology_group_part11_1, длительность - 0
+Успешный Тест № 1146 - test_show_pim_topology_group_part11_1, длительность - 0
+Успешный Тест № 1147 - test_show_pim_topology_group_part11_1, длительность - 0
+Успешный Тест № 1148 - test_show_pim_topology_group_part11_1, длительность - 0
+Успешный Тест № 1149 - test_show_pim_topology_group_part11_1, длительность - 0
+Успешный Тест № 1150 - test_show_pim_topology_group_part11_1, длительность - 0
+Успешный Тест № 1151 - test_show_pim_interfaces_stat_part11_1, длительность - 0
+Успешный Тест № 1152 - test_show_pim_interfaces_stat_part11_1, длительность - 0
+Успешный Тест № 1153 - test_show_pim_interfaces_stat_part11_1, длительность - 0
+Успешный Тест № 1154 - test_show_pim_summary_part11_1, длительность - 0
+Успешный Тест № 1155 - test_show_pim_summary_part11_1, длительность - 0
+Успешный Тест № 1156 - test_show_pim_summary_part11_1, длительность - 0
+Успешный Тест № 1157 - test_show_igmp_groups_part11_1, длительность - 0
+Успешный Тест № 1158 - test_show_igmp_interfaces_part11_1, длительность - 0
+Успешный Тест № 1159 - test_igmp_filter_part11_1, длительность - 126
+Успешный Тест № 1160 - test_subscribers_leave_part11_1, длительность - 131
+Успешный Тест № 1161 - test_multicast_switchover_part11_2, длительность - 80
+Успешный Тест № 1162 - test_me_init_config_upload_part11_3, длительность - 0
+Успешный Тест № 1163 - test_me_init_config_upload_part11_3, длительность - 0
+Успешный Тест № 1164 - test_me_init_config_upload_part12_2, длительность - 0
+Успешный Тест № 1165 - test_snmp_protect_part12_2, длительность - 3
+Успешный Тест № 1166 - test_ntp_protect_part12_2, длительность - 3
+Успешный Тест № 1167 - test_me_init_config_upload_part14_1, длительность - 0
+Успешный Тест № 1168 - test_me_init_config_upload_part14_1, длительность - 0
+Успешный Тест № 1169 - test_me_init_config_upload_part14_1, длительность - 0
+Успешный Тест № 1170 - test_junos_init_config_upload_part14_1, длительность - 0
+Успешный Тест № 1171 - test_mes_init_config_upload_reload_part14_1, длительность - 0
+Успешный Тест № 1172 - test_show_rsvp_tunnel_part14_1, длительность - 20
+Успешный Тест № 1173 - test_show_rsvp_tunnel_part14_1, длительность - 20
+Успешный Тест № 1174 - test_show_rsvp_tunnel_part14_1, длительность - 20
+Успешный Тест № 1175 - test_show_rsvp_tunnel_name_part14_1, длительность - 0
+Успешный Тест № 1176 - test_show_rsvp_tunnel_name_part14_1, длительность - 0
+Успешный Тест № 1177 - test_show_rsvp_tunnel_name_part14_1, длительность - 0
+Успешный Тест № 1178 - test_show_rsvp_tunnel_lsp_part14_1, длительность - 0
+Успешный Тест № 1179 - test_show_rsvp_tunnel_lsp_part14_1, длительность - 0
+Успешный Тест № 1180 - test_show_rsvp_tunnel_lsp_part14_1, длительность - 0
+Успешный Тест № 1181 - test_show_rsvp_tunnel_lsp_int_part14_1, длительность - 0
+Успешный Тест № 1182 - test_show_rsvp_tunnel_lsp_int_part14_1, длительность - 0
+Успешный Тест № 1183 - test_show_rsvp_tunnel_lsp_int_part14_1, длительность - 0
+Успешный Тест № 1184 - test_me_init_config_upload_part14_2, длительность - 0
+Успешный Тест № 1185 - test_me_init_config_upload_part14_2, длительность - 0
+Успешный Тест № 1186 - test_me_init_config_upload_part14_2, длительность - 0
+Успешный Тест № 1187 - test_junos_init_config_upload_part14_2, длительность - 0
+Успешный Тест № 1188 - test_esr_init_config_upload_part14_2, длительность - 0
+Успешный Тест № 1189 - test_show_route_VRF40_part14_2, длительность - 30
+Успешный Тест № 1190 - test_show_route_VRF40_part14_2, длительность - 30
+Успешный Тест № 1191 - test_show_route_VRF40_part14_2, длительность - 30
+Успешный Тест № 1192 - test_ping_over_L3VPN_VRF40_part14_2, длительность - 55
+Успешный Тест № 1193 - test_me_init_config_upload_part14_3, длительность - 0
+Успешный Тест № 1194 - test_me_init_config_upload_part14_3, длительность - 0
+Успешный Тест № 1195 - test_me_init_config_upload_part14_3, длительность - 0
+Успешный Тест № 1196 - test_junos_init_config_upload_part14_3, длительность - 0
+Успешный Тест № 1197 - test_max_resv_bandwidth_cspf_part14_3, длительность - 52
+Успешный Тест № 1198 - test_max_resv_bandwidth_cspf_part14_3, длительность - 51
+Успешный Тест № 1199 - test_show_mpls_rsvp_te_int_part14_3, длительность - 0
+Успешный Тест № 1200 - test_show_mpls_rsvp_te_int_part14_3, длительность - 0
+Успешный Тест № 1201 - test_show_mpls_rsvp_te_int_part14_3, длительность - 0
+Успешный Тест № 1202 - test_change_max_resv_band_transit_part14_3, длительность - 25
+Успешный Тест № 1203 - test_change_max_resv_band_transit_part14_3, длительность - 25
+Успешный Тест № 1204 - test_change_max_resv_band_transit_part14_3, длительность - 11
+Успешный Тест № 1205 - test_me_init_config_upload_part14_4, длительность - 11
+Успешный Тест № 1206 - test_me_init_config_upload_part14_4, длительность - 11
+Успешный Тест № 1207 - test_me_init_config_upload_part14_4, длительность - 71
+Успешный Тест № 1208 - test_junos_init_config_upload_part14_4, длительность - 0
+Успешный Тест № 1209 - test_me_init_config_upload_part14_5, длительность - 0
+Успешный Тест № 1210 - test_me_init_config_upload_part14_5, длительность - 0
+Успешный Тест № 1211 - test_me_init_config_upload_part14_5, длительность - 0
+Успешный Тест № 1212 - test_junos_init_config_upload_part14_5, длительность - 0
+Успешный Тест № 1213 - test_me_init_config_upload_part14_6, длительность - 0
+Успешный Тест № 1214 - test_me_init_config_upload_part14_6, длительность - 0
+Успешный Тест № 1215 - test_me_init_config_upload_part14_6, длительность - 0
+Успешный Тест № 1216 - test_esr_init_config_upload_part14_6, длительность - 0
+Успешный Тест № 1217 - test_manual_switchover_e2e_protection_part14_6, длительность - 137
+Успешный Тест № 1218 - test_auto_switchover_e2e_protection_part14_6, длительность - 359
+Успешный Тест № 1219 - test_me_init_config_upload_part14_7, длительность - 0
+Успешный Тест № 1220 - test_me_init_config_upload_part14_7, длительность - 0
+Успешный Тест № 1221 - test_me_init_config_upload_part14_7, длительность - 0
+Успешный Тест № 1222 - test_junos_init_config_upload_part14_7, длительность - 0
+Успешный Тест № 1223 - test_esr_init_config_upload_part14_7, длительность - 0
+Успешный Тест № 1224 - test_me_init_config_upload_part14_8, длительность - 0
+Успешный Тест № 1225 - test_me_init_config_upload_part14_8, длительность - 0
+Успешный Тест № 1226 - test_me_init_config_upload_part14_8, длительность - 0
+Успешный Тест № 1227 - test_esr_init_config_upload_part14_8, длительность - 0
+Успешный Тест № 1228 - test_GRT_traffic_over_RSVP_LSP_by_static_routes_part14_8, длительность - 106
+Успешный Тест № 1229 - test_me_init_config_upload_part14_9, длительность - 0
+Успешный Тест № 1230 - test_me_init_config_upload_part14_9, длительность - 0
+Успешный Тест № 1231 - test_me_init_config_upload_part14_9, длительность - 0
+Успешный Тест № 1232 - test_esr_init_config_upload_part14_9, длительность - 0
+Успешный Тест № 1233 - test_junos_init_config_upload_part14_9, длительность - 0
+Успешный Тест № 1234 - test_me_init_config_upload_part14_10, длительность - 0
+Успешный Тест № 1235 - test_me_init_config_upload_part14_10, длительность - 0
+Успешный Тест № 1236 - test_me_init_config_upload_part14_10, длительность - 0
+Успешный Тест № 1237 - test_junos_init_config_upload_part14_10, длительность - 0
+Успешный Тест № 1238 - test_affinity_part14_10, длительность - 20
+Успешный Тест № 1239 - test_affinity_part14_10, длительность - 23
+Успешный Тест № 1240 - test_affinity_part14_10, длительность - 21
+Успешный Тест № 1241 - test_me_init_config_upload_part14_11, длительность - 0
+Успешный Тест № 1242 - test_me_init_config_upload_part14_11, длительность - 0
+Успешный Тест № 1243 - test_me_init_config_upload_part14_11, длительность - 0
+Успешный Тест № 1244 - test_me_init_config_upload_part14_12, длительность - 0
+Успешный Тест № 1245 - test_me_init_config_upload_part14_12, длительность - 0
+Успешный Тест № 1246 - test_me_init_config_upload_part14_12, длительность - 0
+Успешный Тест № 1247 - test_junos_init_config_upload_part14_12, длительность - 0
+Успешный Тест № 1248 - test_rsvp_auth_part14_12, длительность - 0
+Успешный Тест № 1249 - test_rsvp_auth_part14_12, длительность - 0
+Успешный Тест № 1250 - test_rsvp_auth_part14_12, длительность - 0
+Успешный Тест № 1251 - test_rsvp_auth_part14_12, длительность - 95
+Успешный Тест № 1252 - test_rsvp_auth_part14_12, длительность - 95
+Успешный Тест № 1253 - test_rsvp_auth_part14_12, длительность - 95
+Успешный Тест № 1254 - test_rsvp_auth_part14_12, длительность - 95
+Успешный Тест № 1255 - test_rsvp_auth_part14_12, длительность - 96
+Успешный Тест № 1256 - test_rsvp_auth_part14_12, длительность - 95
+Успешный Тест № 1257 - test_rsvp_auth_part14_12, длительность - 95
+Успешный Тест № 1258 - test_rsvp_auth_part14_12, длительность - 93
+Успешный Тест № 1259 - test_rsvp_auth_part14_12, длительность - 95
+Успешный Тест № 1260 - test_rsvp_auth_part14_12, длительность - 96
+Успешный Тест № 1261 - test_rsvp_auth_part14_12, длительность - 94
+Успешный Тест № 1262 - test_me_init_config_upload_part15_1, длительность - 0
+Успешный Тест № 1263 - test_me_init_config_upload_part15_1, длительность - 0
+Успешный Тест № 1264 - test_me_init_config_upload_part15_1, длительность - 0
+Успешный Тест № 1265 - test_esr_init_config_upload_part15_1, длительность - 0
+Успешный Тест № 1266 - test_mes_init_config_upload_reload_part15_1, длительность - 0
+Успешный Тест № 1267 - test_ipv4_unnumbered_part15_1, длительность - 2
+Успешный Тест № 1268 - test_ipv4_unnumbered_part15_1, длительность - 2
+Успешный Тест № 1269 - test_ipv4_unnumbered_part15_1, длительность - 2
+Успешный Тест № 1270 - test_arp_proxy_ipv4_part15_1, длительность - 127
+Успешный Тест № 1271 - test_ipv6_unnumbered_part15_1, длительность - 5
+Успешный Тест № 1272 - test_ipv6_unnumbered_part15_1, длительность - 5
+Успешный Тест № 1273 - test_ipv6_unnumbered_part15_1, длительность - 5
+Успешный Тест № 1274 - test_ipv4_unnumbered_vrf_part15_1, длительность - 9
+Успешный Тест № 1275 - test_me_init_config_upload_part15_2, длительность - 0
+Успешный Тест № 1276 - test_me_init_config_upload_part15_2, длительность - 0
+Успешный Тест № 1277 - test_me_init_config_upload_part15_2, длительность - 0
+Успешный Тест № 1278 - test_esr_init_config_upload_part15_2, длительность - 0
+Успешный Тест № 1279 - test_junos_init_config_upload_part15_2, длительность - 0
+Успешный Тест № 1280 - test_check_vrrp_shutdown_part15_2, длительность - 37
+Успешный Тест № 1281 - test_check_vrrp_switchover_part15_2, длительность - 384
+Успешный Тест № 1282 - test_show_vrrp_part15_2, длительность - 0
+Успешный Тест № 1283 - test_show_vrrp_part15_2, длительность - 0
+Успешный Тест № 1284 - test_show_vrrp_part15_2, длительность - 0
+Успешный Тест № 1285 - test_vrrp_priority_change_part15_2, длительность - 265
+Успешный Тест № 1286 - test_me_init_config_upload_part15_3, длительность - 0
+Успешный Тест № 1287 - test_me_init_config_upload_part15_3, длительность - 0
+Успешный Тест № 1288 - test_me_init_config_upload_part15_3, длительность - 0
+Успешный Тест № 1289 - test_esr_init_config_upload_part15_3, длительность - 0
+Успешный Тест № 1290 - test_mes_init_config_upload_part15_3, длительность - 0
+Успешный Тест № 1291 - test_dhcp_renew_part15_3, длительность - 46
+Успешный Тест № 1292 - test_dhcp_renew_part15_3, длительность - 46
+Успешный Тест № 1293 - test_dhcp_renew_part15_3, длительность - 46
+Успешный Тест № 1294 - test_relay_agent_part15_3, длительность - 0
+Успешный Тест № 1295 - test_relay_agent_part15_3, длительность - 0
+Успешный Тест № 1296 - test_relay_agent_part15_3, длительность - 0
+Успешный Тест № 1297 - test_dhcp_ping_part15_3, длительность - 39
+Успешный Тест № 1298 - test_dhcpv6_renew_part15_3, длительность - 46
+Успешный Тест № 1299 - test_dhcpv6_renew_part15_3, длительность - 46
+Успешный Тест № 1300 - test_dhcpv6_renew_part15_3, длительность - 46
+Успешный Тест № 1301 - test_relay_agent_ipv6_part15_3, длительность - 0
+Успешный Тест № 1302 - test_relay_agent_ipv6_part15_3, длительность - 0
+Успешный Тест № 1303 - test_relay_agent_ipv6_part15_3, длительность - 0
+Успешный Тест № 1304 - test_dhcpv6_ping_part15_3, длительность - 39
+Успешный Тест № 1305 - test_change_config_relay_grt_vrf_part15_3, длительность - 0
+Успешный Тест № 1306 - test_change_config_relay_grt_vrf_part15_3, длительность - 1
+Успешный Тест № 1307 - test_change_config_relay_grt_vrf_part15_3, длительность - 0
+Успешный Тест № 1308 - test_dhcp_renew_relay_vrf_part15_3, длительность - 46
+Успешный Тест № 1309 - test_dhcp_renew_relay_vrf_part15_3, длительность - 46
+Успешный Тест № 1310 - test_dhcp_renew_relay_vrf_part15_3, длительность - 46
+Успешный Тест № 1311 - test_relay_agent_vrf_part15_3, длительность - 10
+Успешный Тест № 1312 - test_relay_agent_vrf_part15_3, длительность - 10
+Успешный Тест № 1313 - test_relay_agent_vrf_part15_3, длительность - 10
+Успешный Тест № 1314 - test_dhcp_ping_relay_vrf_part15_3, длительность - 9
+Успешный Тест № 1315 - test_dhcpv6_renew_vrf_part15_3, длительность - 46
+Успешный Тест № 1316 - test_dhcpv6_renew_vrf_part15_3, длительность - 46
+Успешный Тест № 1317 - test_dhcpv6_renew_vrf_part15_3, длительность - 46
+Успешный Тест № 1318 - test_relay_agent_ipv6_part15_3, длительность - 1
+Успешный Тест № 1319 - test_relay_agent_ipv6_part15_3, длительность - 0
+Успешный Тест № 1320 - test_relay_agent_ipv6_part15_3, длительность - 0
+Успешный Тест № 1321 - test_dhcpv6_ping_vrf_part15_3, длительность - 9
+Успешный Тест № 1322 - test_me_init_config_upload_part15_4_1, длительность - 0
+Успешный Тест № 1323 - test_me_init_config_upload_part15_4_1, длительность - 0
+Успешный Тест № 1324 - test_me_init_config_upload_part15_4_1, длительность - 0
+Успешный Тест № 1325 - test_esr_init_config_upload_part15_4_1, длительность - 0
+Успешный Тест № 1326 - test_junos_init_config_upload_part15_4_1, длительность - 0
+Успешный Тест № 1327 - test_apply_hw_module_param_part15_4_1, длительность - 420
+Успешный Тест № 1328 - test_pbr_test1_part15_4_1, длительность - 55
+Успешный Тест № 1329 - test_pbr_test1_part15_4_1, длительность - 50
+Успешный Тест № 1330 - test_pbr_test1_part15_4_1, длительность - 54
+Успешный Тест № 1331 - test_pbr_test2_part15_4_1, длительность - 99
+Успешный Тест № 1332 - test_pbr_test2_part15_4_1, длительность - 50
+Успешный Тест № 1333 - test_pbr_test2_part15_4_1, длительность - 50
+Успешный Тест № 1334 - test_pbr_test3_part15_4_1, длительность - 53
+Успешный Тест № 1335 - test_pbr_test3_part15_4_1, длительность - 52
+Успешный Тест № 1336 - test_pbr_test3_part15_4_1, длительность - 52
+Успешный Тест № 1337 - test_me_init_config_upload_part15_4_2, длительность - 0
+Успешный Тест № 1338 - test_me_init_config_upload_part15_4_2, длительность - 0
+Успешный Тест № 1339 - test_me_init_config_upload_part15_4_2, длительность - 0
+Успешный Тест № 1340 - test_esr_init_config_upload_part15_4_2, длительность - 0
+Успешный Тест № 1341 - test_junos_init_config_upload_part15_4_2, длительность - 0
+Успешный Тест № 1342 - test_apply_hw_module_param_part15_4_2, длительность - 420
+Успешный Тест № 1343 - test_pbr_default_test1_part15_4_2, длительность - 50
+Успешный Тест № 1344 - test_pbr_default_test1_part15_4_2, длительность - 50
+Успешный Тест № 1345 - test_pbr_default_test1_part15_4_2, длительность - 55
+Успешный Тест № 1346 - test_pbr_default_test2_part15_4_2, длительность - 87
+Успешный Тест № 1347 - test_pbr_default_test2_part15_4_2, длительность - 50
+Успешный Тест № 1348 - test_pbr_default_test2_part15_4_2, длительность - 52
+Успешный Тест № 1349 - test_me_init_config_upload_part15_4_3, длительность - 0
+Успешный Тест № 1350 - test_me_init_config_upload_part15_4_3, длительность - 0
+Успешный Тест № 1351 - test_me_init_config_upload_part15_4_3, длительность - 0
+Успешный Тест № 1352 - test_esr_init_config_upload_part15_4_3, длительность - 0
+Успешный Тест № 1353 - test_junos_init_config_upload_part15_4_3, длительность - 0
+Успешный Тест № 1354 - test_apply_hw_module_param_part15_4_3, длительность - 420
+Успешный Тест № 1355 - test_me_init_config_upload_part15_4_4, длительность - 0
+Успешный Тест № 1356 - test_me_init_config_upload_part15_4_4, длительность - 0
+Успешный Тест № 1357 - test_me_init_config_upload_part15_4_4, длительность - 0
+Успешный Тест № 1358 - test_esr_init_config_upload_part15_4_4, длительность - 0
+Успешный Тест № 1359 - test_junos_init_config_upload_part15_4_4, длительность - 0
+Успешный Тест № 1360 - test_apply_hw_module_param_part15_4_4, длительность - 30
+Успешный Тест № 1361 - test_pbr_test1_part15_4_4, длительность - 271
+Успешный Тест № 1362 - test_pbr_default_test1_part15_4_4, длительность - 253
+Успешный Тест № 1363 - test_me_init_config_upload_part15_5, длительность - 0
+Успешный Тест № 1364 - test_me_init_config_upload_part15_5, длительность - 0
+Успешный Тест № 1365 - test_me_init_config_upload_part15_5, длительность - 0
+Успешный Тест № 1366 - test_esr_init_config_upload_part15_5, длительность - 0
+Успешный Тест № 1367 - test_permit_deny_acl_part15_5, длительность - 169
+Успешный Тест № 1368 - test_counters_icmp_part15_5, длительность - 31
+Успешный Тест № 1369 - test_counters_icmp_part15_5, длительность - 31
+Успешный Тест № 1370 - test_counters_telnet_part15_5, длительность - 7
+Успешный Тест № 1371 - test_permit_deny_acl_ipv6_part15_5, длительность - 254
+Успешный Тест № 1372 - test_counters_icmp_ipv6_part15_5, длительность - 33
+Успешный Тест № 1373 - test_permit_deny_acl_vrf_part15_5, длительность - 135
+Успешный Тест № 1374 - test_permit_deny_acl_vrf_part15_5, длительность - 135
+Успешный Тест № 1375 - test_counters_icmp_vrf_part15_5, длительность - 31
+Успешный Тест № 1376 - test_counters_icmp_vrf_part15_5, длительность - 31
+Успешный Тест № 1377 - test_counters_telnet_vrf_part15_5, длительность - 7
+Успешный Тест № 1378 - test_counters_telnet_vrf_part15_5, длительность - 6
+Успешный Тест № 1379 - test_me_init_config_upload_part15_6, длительность - 0
+Успешный Тест № 1380 - test_me_init_config_upload_part15_6, длительность - 0
+Успешный Тест № 1381 - test_esr_init_config_upload_part15_6, длительность - 0
+Успешный Тест № 1382 - test_apply_hw_module_param_part15_6, длительность - 520
+Успешный Тест № 1383 - test_me_init_config_upload_part15_7, длительность - 0
+Успешный Тест № 1384 - test_me_init_config_upload_part15_7, длительность - 0
+Успешный Тест № 1385 - test_me_init_config_upload_part15_7, длительность - 0
+Успешный Тест № 1386 - test_esr_init_config_upload_part15_7, длительность - 0
+Успешный Тест № 1387 - test_inter_vrf_routing_15_7_atDR1, длительность - 40
+Успешный Тест № 1388 - test_inter_vrf_routing_15_7_atAR2, длительность - 0
+Успешный Тест № 1389 - test_inter_vrf_routing_15_7_atAR1, длительность - 0
+Успешный Тест № 1390 - test_inter_vrf_routing_15_7_atDR1, длительность - 0
+Успешный Тест № 1391 - test_inter_vrf_routing_15_7_atAR1, длительность - 0
+Успешный Тест № 1392 - test_inter_vrf_routing_15_7_atAR2, длительность - 0
+Успешный Тест № 1393 - test_inter_vrf_routing_15_7_atDR1, длительность - 0
+Успешный Тест № 1394 - test_inter_vrf_routing_15_7_atAR1, длительность - 0
+Успешный Тест № 1395 - test_inter_vrf_routing_15_7_atAR2, длительность - 0
+Успешный Тест № 1396 - test_inter_vrf_routing_15_7_atAR1, длительность - 0
+Успешный Тест № 1397 - test_inter_vrf_routing_15_7_atDR1, длительность - 0
+Успешный Тест № 1398 - test_inter_vrf_routing_15_7_atAR2, длительность - 0
+Успешный Тест № 1399 - test_inter_vrf_routing_15_7_atDR1, длительность - 0
+Успешный Тест № 1400 - test_inter_vrf_routing_15_7_atDR1, длительность - 0
+Успешный Тест № 1401 - test_inter_vrf_routing_15_7_atDR1, длительность - 0
+Успешный Тест № 1402 - test_inter_vrf_routing_15_7_atDR1, длительность - 0
+Успешный Тест № 1403 - test_inter_vrf_routing_15_7, длительность - 0
+Успешный Тест № 1404 - test_inter_vrf_routing_15_7, длительность - 0
+Успешный Тест № 1405 - test_inter_vrf_routing_15_7, длительность - 0
+Успешный Тест № 1406 - test_inter_vrf_routing_15_7_, длительность - 1
+Успешный Тест № 1407 - test_me_init_config_upload_part15_8, длительность - 0
+Успешный Тест № 1408 - test_me_init_config_upload_part15_8, длительность - 0
+Успешный Тест № 1409 - test_me_init_config_upload_part15_8, длительность - 0
+Успешный Тест № 1410 - test_esr_init_config_upload_part15_8, длительность - 0
+Успешный Тест № 1411 - test_routing_admin_dist_part15_8, длительность - 56
+Успешный Тест № 1412 - test_routing_admin_dist_part15_8, длительность - 58
+Успешный Тест № 1413 - test_me_init_config_upload_part16, длительность - 0
+Успешный Тест № 1414 - test_me_init_config_upload_part16, длительность - 0
+Успешный Тест № 1415 - test_me_init_config_upload_part16, длительность - 0
+Успешный Тест № 1416 - test_ip_sla_change_of_route_part16, длительность - 85
+Успешный Тест № 1417 - test_me_init_config_upload_part17_1, длительность - 0
+Успешный Тест № 1418 - test_me_init_config_upload_part17_1, длительность - 0
+Успешный Тест № 1419 - test_me_init_config_upload_part17_1, длительность - 0
+Успешный Тест № 1420 - test_esr_init_config_upload_part17_1, длительность - 0
+Успешный Тест № 1421 - test_junos_init_config_upload_part17_1, длительность - 0
+Успешный Тест № 1422 - test_mes_init_config_upload_part17_1, длительность - 0
+Успешный Тест № 1423 - test_ping_interAS_optionC_part17_1, длительность - 25
+Успешный Тест № 1424 - test_ping_interAS_optionC_part17_1, длительность - 5
+Успешный Тест № 1425 - test_show_l3forwarding_part17_1, длительность - 0
+Успешный Тест № 1426 - test_show_l3forwarding_part17_1, длительность - 0
+Успешный Тест № 1427 - test_show_l3forwarding_prefix_part17_1, длительность - 0
+Успешный Тест № 1428 - test_show_l3forwarding_prefix_part17_1, длительность - 0
+Успешный Тест № 1429 - test_show_l3forwarding_prefix_part17_1, длительность - 0
+Успешный Тест № 1430 - test_show_l3forwarding_prefix_part17_1, длительность - 0
+Успешный Тест № 1431 - test_me_init_config_upload_part17_2, длительность - 0
+Успешный Тест № 1432 - test_me_init_config_upload_part17_2, длительность - 0
+Успешный Тест № 1433 - test_me_init_config_upload_part17_2, длительность - 0
+Успешный Тест № 1434 - test_esr_init_config_upload_part17_2, длительность - 0
+Успешный Тест № 1435 - test_junos_init_config_upload_part17_2, длительность - 0
+Успешный Тест № 1436 - test_ping_interAS_optC_L2VPN_part17_2, длительность - 25
+Успешный Тест № 1437 - test_junos_init_config_upload_part17_3, длительность - 0
+Успешный Тест № 1438 - test_esr_init_config_upload_part17_3, длительность - 0
+Успешный Тест № 1439 - test_me_init_config_upload_part17_3, длительность - 0
+Успешный Тест № 1440 - test_me_init_config_upload_part17_3, длительность - 0
+Успешный Тест № 1441 - test_me_init_config_upload_part17_3, длительность - 0
+Успешный Тест № 1442 - test_ipv4_ping_interAS_optB_L3VPN_part17_3, длительность - 74
+Успешный Тест № 1443 - test_ipv6_ping_interAS_optB_L3VPN_part17_3, длительность - 59
+Успешный Тест № 1444 - test_me_init_config_upload_part18_1, длительность - 0
+Успешный Тест № 1445 - test_me_init_config_upload_part18_1, длительность - 0
+Успешный Тест № 1446 - test_me_init_config_upload_part18_1, длительность - 0
+Успешный Тест № 1447 - test_radius_on_local_passw, длительность - 4
+Успешный Тест № 1448 - test_radius_on_local_passw, длительность - 4
+Успешный Тест № 1449 - test_radius_on_radius_passw, длительность - 25
+Успешный Тест № 1450 - test_radius_on_radius_passw, длительность - 1
+Успешный Тест № 1451 - test_radius_on_radius_passw, длительность - 0
+Успешный Тест № 1452 - test_radius_off_local_passw, длительность - 12
+Успешный Тест № 1453 - test_radius_off_local_passw, длительность - 13
+Успешный Тест № 1454 - test_radius_off_local_passw, длительность - 12
+Успешный Тест № 1455 - test_radius_off_radius_passw, длительность - 23
+Успешный Тест № 1456 - test_radius_off_radius_passw, длительность - 24
+Успешный Тест № 1457 - test_radius_off_radius_passw, длительность - 22
+Успешный Тест № 1458 - test_me_init_config_upload_part18_2_1, длительность - 0
+Успешный Тест № 1459 - test_me_init_config_upload_part18_2_1, длительность - 0
+Успешный Тест № 1460 - test_me_init_config_upload_part18_2_1, длительность - 0
+Успешный Тест № 1461 - test_tac_on_local_passw, длительность - 0
+Успешный Тест № 1462 - test_tac_on_local_passw, длительность - 0
+Успешный Тест № 1463 - test_tac_on_tac_passw, длительность - 20
+Успешный Тест № 1464 - test_tac_on_tac_passw, длительность - 1
+Успешный Тест № 1465 - test_tac_on_tac_passw, длительность - 0
+Успешный Тест № 1466 - test_tac_off_local_passw, длительность - 12
+Успешный Тест № 1467 - test_tac_off_local_passw, длительность - 1
+Успешный Тест № 1468 - test_tac_off_local_passw, длительность - 0
+Успешный Тест № 1469 - test_tac_off_tac_passw, длительность - 20
+Успешный Тест № 1470 - test_tac_off_tac_passw, длительность - 8
+Успешный Тест № 1471 - test_tac_off_tac_passw, длительность - 8
+Успешный Тест № 1472 - test_tac_aaa_auth_command_part18_2_2, длительность - 94
+Успешный Тест № 1473 - test_tac_aaa_auth_command_part18_2_2, длительность - 92
+Успешный Тест № 1474 - test_tac_off_aaa_auth_command_part18_2_2, длительность - 187
+Успешный Тест № 1475 - test_tac_off_aaa_auth_command_part18_2_2, длительность - 189
+Успешный Тест № 1476 - test_me_init_config_upload_part19_1, длительность - 11
+Успешный Тест № 1477 - test_me_init_config_upload_part19_1, длительность - 11
+Успешный Тест № 1478 - test_me_init_config_upload_part19_1, длительность - 10
+Успешный Тест № 1479 - test_esr_init_config_upload_part19_1, длительность - 0
+Успешный Тест № 1480 - test_junos_init_config_upload_part19_1, длительность - 0
+Успешный Тест № 1481 - test_show_bgp_l2vpn_evpn_part19_1, длительность - 45
+Успешный Тест № 1482 - test_show_bgp_l2vpn_evpn_part19_1, длительность - 43
+Успешный Тест № 1483 - test_ping_over_L2VPN_EVPN_part19_1, длительность - 28
+Успешный Тест № 1484 - test_me_init_config_upload_part19_2, длительность - 0
+Успешный Тест № 1485 - test_me_init_config_upload_part19_2, длительность - 0
+Успешный Тест № 1486 - test_me_init_config_upload_part19_2, длительность - 0
+Успешный Тест № 1487 - test_esr_init_config_upload_part19_2, длительность - 0
+Успешный Тест № 1488 - test_junos_init_config_upload_part19_2, длительность - 0
+Успешный Тест № 1489 - test_ping_over_L2VPN_EVPN_RSVP_part19_2, длительность - 28
+Успешный Тест № 1490 - test_me_init_config_upload_part19_4, длительность - 0
+Успешный Тест № 1491 - test_me_init_config_upload_part19_4, длительность - 0
+Успешный Тест № 1492 - test_me_init_config_upload_part19_4, длительность - 0
+Успешный Тест № 1493 - test_esr_init_config_upload_part19_4, длительность - 0
+Успешный Тест № 1494 - test_junos_init_config_upload_part19_4, длительность - 0
+Успешный Тест № 1495 - test_ping_over_vxlan_evpn_part19_4, длительность - 1
+Успешный Тест № 1496 - test_show_evpn_vxlan_tunnel_part19_4, длительность - 43
+Успешный Тест № 1497 - test_show_evpn_vxlan_tunnel_part19_4, длительность - 43
+Успешный Тест № 1498 - test_show_evpn_vxlan_tunnel_part19_4, длительность - 43
+Успешный Тест № 1499 - test_show_l2vpn_mac_table_bd_part19_4, длительность - 43
+Успешный Тест № 1500 - test_show_l2vpn_mac_table_bd_part19_4, длительность - 44
+Успешный Тест № 1501 - test_show_l2vpn_mac_table_bd_part19_4, длительность - 43
+Успешный Тест № 1502 - test_me_init_config_upload_part20_1, длительность - 0
+Успешный Тест № 1503 - test_me_init_config_upload_part20_1, длительность - 0
+Успешный Тест № 1504 - test_me_init_config_upload_part20_1, длительность - 0
+Успешный Тест № 1505 - test_temp_comparison_part20_1, длительность - 0
+Успешный Тест № 1506 - test_temp_comparison_part20_1, длительность - 0
+Успешный Тест № 1507 - test_temp_comparison_part20_1, длительность - 0
+Успешный Тест № 1508 - test_me_init_config_upload_part21_1, длительность - 0
+Успешный Тест № 1509 - test_me_init_config_upload_part21_1, длительность - 0
+Успешный Тест № 1510 - test_me_init_config_upload_part21_1, длительность - 0
+Успешный Тест № 1511 - test_mes_init_config_reboot_part0, длительность - 0
+Успешный Тест № 1512 - test_base_function_ECMP_part21_1, длительность - 17
+Успешный Тест № 1513 - test_base_function_ECMP_part21_1, длительность - 20
+Успешный Тест № 1514 - test_base_function_ECMP_part21_1, длительность - 16
+Успешный Тест № 1515 - test_me_init_config_upload_part21_2, длительность - 0
+Успешный Тест № 1516 - test_me_init_config_upload_part21_2, длительность - 0
+Успешный Тест № 1517 - test_me_init_config_upload_part21_2, длительность - 0
+Успешный Тест № 1518 - test_base_function_ECMP_part21_2, длительность - 24
+Успешный Тест № 1519 - test_base_function_ECMP_part21_2, длительность - 21
+Успешный Тест № 1520 - test_me_init_config_upload_part21_3, длительность - 0
+Успешный Тест № 1521 - test_me_init_config_upload_part21_3, длительность - 0
+Успешный Тест № 1522 - test_me_init_config_upload_part21_3, длительность - 0
+Успешный Тест № 1523 - test_base_function_ECMP_part21_3, длительность - 36
+Успешный Тест № 1524 - test_base_function_ECMP_part21_3, длительность - 38
+Успешный Тест № 1525 - test_base_function_ECMP_part21_3, длительность - 36
+Успешный Тест № 1526 - test_me_init_config_upload_part22, длительность - 0
+Успешный Тест № 1527 - test_me_init_config_upload_part22, длительность - 0
+Успешный Тест № 1528 - test_me_init_config_upload_part22, длительность - 0
+Успешный Тест № 1529 - test_rip_grt_part22, длительность - 23
+Успешный Тест № 1530 - test_rip_vrf_part22, длительность - 12
+Успешный Тест № 1531 - test_rip_mpls_l3vpn_part22, длительность - 3
+Успешный Тест № 1532 - test_me_init_config_upload_part23, длительность - 0
+Успешный Тест № 1533 - test_me_init_config_upload_part23, длительность - 0
+Успешный Тест № 1534 - test_me_init_config_upload_part23, длительность - 0
+Успешный Тест № 1535 - test_span_local_part23, длительность - 13
+Успешный Тест № 1536 - test_span_local_part23, длительность - 13
+Успешный Тест № 1537 - test_span_transit_part23, длительность - 15
+Успешный Тест № 1538 - test_span_transit_part23, длительность - 58
+Успешный Тест № 1539 - test_span_transit_part23, длительность - 65
+Успешный Тест № 1540 - test_rspan_local_part23, длительность - 16
+Успешный Тест № 1541 - test_rspan_local_part23, длительность - 16
+Успешный Тест № 1542 - test_rspan_transit_part23, длительность - 15
+Успешный Тест № 1543 - test_rspan_transit_part23, длительность - 58
+Успешный Тест № 1544 - test_rspan_transit_part23, длительность - 65
+Успешный Тест № 1545 - test_acl_mirroring_without_vlan_part23, длительность - 488
+Успешный Тест № 1546 - test_acl_mirroring_with_vlan_part23, длительность - 29
+Успешный Тест № 1547 - test_me_init_config_upload_part24, длительность - 0
+Успешный Тест № 1548 - test_me_init_config_upload_part24, длительность - 0
+Успешный Тест № 1549 - test_me_init_config_upload_part24, длительность - 0
+Успешный Тест № 1550 - test_ripng_grt_part24, длительность - 23
+Успешный Тест № 1551 - test_ripng_vrf_part24, длительность - 6
+Успешный Тест № 1552 - test_ripng_mpls_l3vpn_part24, длительность - 33
+Успешный Тест № 1553 - test_me_init_config_upload_part25_1, длительность - 0
+Успешный Тест № 1554 - test_me_init_config_upload_part25_1, длительность - 0
+Успешный Тест № 1555 - test_me_init_config_upload_part25_1, длительность - 0
+Успешный Тест № 1556 - test_me_init_config_upload_part913_3_1, длительность - 0
+Успешный Тест № 1557 - test_me_init_config_upload_part913_3_1, длительность - 0
+Успешный Тест № 1558 - test_me_init_config_upload_part913_3_1, длительность - 0
+Успешный Тест № 1559 - test_mes_init_config_upload_reload_part913_3_1, длительность - 0
+Успешный Тест № 1560 - test_esr_init_config_upload_part913_3_1, длительность - 0
+Успешный Тест № 1561 - test_show_lacp_bu_part913_3_1, длительность - 0
+Успешный Тест № 1562 - test_mclag_switchover_part913_3_2, длительность - 36
+Успешный Тест № 1563 - test_me_init_config_upload_part913_3_4, длительность - 0
+Успешный Тест № 1564 - test_me_init_config_upload_part913_3_4, длительность - 0
+Успешный Тест № 1565 - test_me_init_config_upload_part913_3_4, длительность - 0
+Успешный Тест № 1566 - test_esr_init_config_upload_part913_3_4, длительность - 0
+Успешный Тест № 1567 - test_forwarding_mclag_switchover_bu1_part913_3_4, длительность - 77
+Успешный Тест № 1568 - test_forwarding_mclag_switchover_bu2_part913_3_4, длительность - 82
+Успешный Тест № 1569 - test_forwarding_redundancy_switchover_part913_3_4, длительность - 139
+Успешный Тест № 1570 - test_int_load_mclag_part913_3_4, длительность - 172
+Успешный Тест № 1571 - test_bfd_neighbors_part913_3_4, длительность - 0
+Успешный Тест № 1572 - test_bfd_neighbors_part913_3_4, длительность - 0
+Успешный Тест № 1573 - test_bfd_neighbors_detail_part913_3_4, длительность - 30
+Успешный Тест № 1574 - test_bfd_neighbors_detail_part913_3_4, длительность - 30
+Пропущенный Тест №1575 - test_junos_init_config_upload_part10_1. Причина - test_junos_init_config_upload_part10_1[192.168.17.130-labr01-user-Password-part10.2] depends on load_config102_dut1')
+Пропущенный Тест №1576 - test_show_ospfv2_neighbors_part10_2. Причина - test_show_ospfv2_neighbors_part10_2[192.168.17.86-atAR1-admin-password] depends on load_config102_dut1')
+Пропущенный Тест №1577 - test_show_ospfv2_neighbors_part10_2. Причина - test_show_ospfv2_neighbors_part10_2[192.168.17.139-atAR2-admin-password] depends on load_config102_dut1')
+Пропущенный Тест №1578 - test_show_ospfv2_neighbors_part10_2. Причина - test_show_ospfv2_neighbors_part10_2[192.168.17.146-atDR1-admin-password] depends on load_config102_dut1')
+Пропущенный Тест №1579 - test_show_ospfv2_interfaces_part10_2. Причина - test_show_ospfv2_interfaces_part10_2[192.168.17.86-atAR1-admin-password] depends on load_config102_dut1')
+Пропущенный Тест №1580 - test_show_ospfv2_interfaces_part10_2. Причина - test_show_ospfv2_interfaces_part10_2[192.168.17.139-atAR2-admin-password] depends on load_config102_dut1')
+Пропущенный Тест №1581 - test_show_ospfv2_interfaces_part10_2. Причина - test_show_ospfv2_interfaces_part10_2[192.168.17.146-atDR1-admin-password] depends on load_config102_dut1')
+Пропущенный Тест №1582 - test_show_route_ospf_part10_1. Причина - test_show_route_ospf_part10_1[192.168.17.86-atAR1-admin-password] depends on load_config102_dut1')
+Пропущенный Тест №1583 - test_show_route_ospf_part10_1. Причина - test_show_route_ospf_part10_1[192.168.17.139-atAR2-admin-password] depends on load_config102_dut1')
+Пропущенный Тест №1584 - test_show_route_ospf_part10_1. Причина - test_show_route_ospf_part10_1[192.168.17.146-atDR1-admin-password] depends on load_config102_dut1')
+Пропущенный Тест №1585 - test_show_route_part10_1. Причина - test_show_route_part10_1[192.168.17.86-atAR1-admin-password] depends on load_config102_dut1')
+Пропущенный Тест №1586 - test_show_route_part10_1. Причина - test_show_route_part10_1[192.168.17.139-atAR2-admin-password] depends on load_config102_dut1')
+Пропущенный Тест №1587 - test_show_route_part10_1. Причина - test_show_route_part10_1[192.168.17.146-atDR1-admin-password] depends on load_config102_dut1')
+Пропущенный Тест №1588 - test_show_route_ospf_frr_part10_4. Причина - test_show_route_ospf_frr_part10_4[192.168.17.86-admin-password] depends on load_config104_dut1')
+Пропущенный Тест №1589 - test_show_route_ospf_frr_part10_4. Причина - test_show_route_ospf_frr_part10_4[192.168.17.139-admin-password] depends on load_config104_dut1')
+Пропущенный Тест №1590 - test_show_ospfv2_frr_part10_4. Причина - test_show_ospfv2_frr_part10_4[192.168.17.86-atAR1-admin-password] depends on load_config104_dut1')
+Пропущенный Тест №1591 - test_show_ospfv2_frr_part10_4. Причина - test_show_ospfv2_frr_part10_4[192.168.17.139-atAR2-admin-password] depends on load_config104_dut1')
+Пропущенный Тест №1592 - test_show_ospfv2_frr_1001_part10_4. Причина - test_show_ospfv2_frr_1001_part10_4[192.168.17.86-admin-password] depends on load_config104_dut1')
+Пропущенный Тест №1593 - test_show_ospfv2_frr_1001_part10_4. Причина - test_show_ospfv2_frr_1001_part10_4[192.168.17.139-admin-password] depends on load_config104_dut1')
+Пропущенный Тест №1594 - test_junos_init_config_upload_part10_5. Причина - test_junos_init_config_upload_part10_5[192.168.17.130-labr01-user-Password-part10.5] depends on load_config105_dut1')
+Пропущенный Тест №1595 - test_show_ospfv3_interfaces_part10_5. Причина - test_show_ospfv3_interfaces_part10_5[192.168.17.86-admin-password] depends on load_config105_dut1')
+Пропущенный Тест №1596 - test_show_ospfv3_interfaces_part10_5. Причина - test_show_ospfv3_interfaces_part10_5[192.168.17.139-admin-password] depends on load_config105_dut1')
+Пропущенный Тест №1597 - test_show_ospfv3_interfaces_part10_5. Причина - test_show_ospfv3_interfaces_part10_5[192.168.17.146-admin-password] depends on load_config105_dut1')
+Пропущенный Тест №1598 - test_show_route_ospfv3_part10_5. Причина - test_show_route_ospfv3_part10_5[192.168.17.86-admin-password] depends on load_config105_dut1')
+Пропущенный Тест №1599 - test_show_route_ospfv3_part10_5. Причина - test_show_route_ospfv3_part10_5[192.168.17.139-admin-password] depends on load_config105_dut1')
+Пропущенный Тест №1600 - test_show_route_ospfv3_part10_5. Причина - test_show_route_ospfv3_part10_5[192.168.17.146-admin-password] depends on load_config105_dut1')
+Пропущенный Тест №1601 - test_show_route_rib_and_fib_part10_5. Причина - test_show_route_rib_and_fib_part10_5[192.168.17.86-admin-password] depends on load_config105_dut1')
+Пропущенный Тест №1602 - test_show_route_rib_and_fib_part10_5. Причина - test_show_route_rib_and_fib_part10_5[192.168.17.139-admin-password] depends on load_config105_dut1')
+Пропущенный Тест №1603 - test_show_route_rib_and_fib_part10_5. Причина - test_show_route_rib_and_fib_part10_5[192.168.17.146-admin-password] depends on load_config105_dut1')
+Пропущенный Тест №1604 - test_ping_ipv6_loopback_part10_5. Причина - test_ping_ipv6_loopback_part10_5[192.168.17.86-admin-password] depends on load_config105_dut1')
+Пропущенный Тест №1605 - test_ping_ipv6_loopback_part10_5. Причина - test_ping_ipv6_loopback_part10_5[192.168.17.139-admin-password] depends on load_config105_dut1')
+Пропущенный Тест №1606 - test_ping_ipv6_loopback_part10_5. Причина - test_ping_ipv6_loopback_part10_5[192.168.17.146-admin-password] depends on load_config105_dut1')
+Пропущенный Тест №1607 - test_ospfv2_router_id_select_part10_6. Причина - test_ospfv2_router_id_select_part10_6[192.168.17.86-admin-password-show ospfv2] depends on load_config106_dut1')
+Пропущенный Тест №1608 - test_ospfv2_router_id_select_part10_6. Причина - test_ospfv2_router_id_select_part10_6[192.168.17.139-admin-password-show ospfv2 vrf test_1] depends on load_config106_dut1')
+Пропущенный Тест №1609 - test_ospfv2_router_id_select_part10_6. Причина - test_ospfv2_router_id_select_part10_6[192.168.17.146-admin-password-show ospfv2] depends on load_config106_dut1')
+Пропущенный Тест №1610 - test_ospfv2_hello_analysis_part10_7_2. Причина - test_ospfv2_hello_analysis_part10_7_2[192.168.17.146-admin-password-atDR1-bu2.3211-src host 10.0.222.1 and dst host 224.0.0.5] depends on load_config1072_dut1')
+Пропущенный Тест №1611 - test_ospfv2_hello_analysis_part10_7_2. Причина - test_ospfv2_hello_analysis_part10_7_2[192.168.17.146-admin-password-atDR1-bu2.3218-src host 10.0.222.5 and dst host 224.0.0.5] depends on load_config1072_dut1')
+Пропущенный Тест №1612 - test_ospfv2_hello_analysis_part10_7_2. Причина - test_ospfv2_hello_analysis_part10_7_2[192.168.17.146-admin-password-atDR1-bu2.3219-src host 10.0.222.9 and dst host 224.0.0.5] depends on load_config1072_dut1')
+Пропущенный Тест №1613 - test_ospfv2_hello_analysis_part10_7_2. Причина - test_ospfv2_hello_analysis_part10_7_2[192.168.17.146-admin-password-atDR1-te0/1/5.3205-src host 10.0.200.1 and dst host 224.0.0.5] depends on load_config1072_dut1')
+Пропущенный Тест №1614 - test_ospfv2_hello_analysis_part10_7_2. Причина - test_ospfv2_hello_analysis_part10_7_2[192.168.17.146-admin-password-atDR1-te0/1/5.3235-src host 10.0.230.1 and dst host 224.0.0.5] depends on load_config1072_dut1')
+Пропущенный Тест №1615 - test_ospfv2_hello_analysis_part10_7_2. Причина - test_ospfv2_hello_analysis_part10_7_2[192.168.17.86-admin-password-atAR1-bu2.3210-src host 10.0.221.1 and dst host 224.0.0.5] depends on load_config1072_dut1')
+Пропущенный Тест №1616 - test_ospfv2_hello_analysis_part10_7_2. Причина - test_ospfv2_hello_analysis_part10_7_2[192.168.17.86-admin-password-atAR1-bu2.3216-src host 10.0.221.5 and dst host 224.0.0.5] depends on load_config1072_dut1')
+Пропущенный Тест №1617 - test_ospfv2_hello_analysis_part10_7_2. Причина - test_ospfv2_hello_analysis_part10_7_2[192.168.17.86-admin-password-atAR1-bu2.3217-src host 10.0.221.9 and dst host 224.0.0.5] depends on load_config1072_dut1')
+Пропущенный Тест №1618 - test_ospfv2_hello_analysis_part10_7_2. Причина - test_ospfv2_hello_analysis_part10_7_2[192.168.17.86-admin-password-atAR1-te0/0/11.3205-src host 10.0.200.2 and dst host 224.0.0.5] depends on load_config1072_dut1')
+Пропущенный Тест №1619 - test_ospfv2_hello_analysis_part10_7_2. Причина - test_ospfv2_hello_analysis_part10_7_2[192.168.17.86-admin-password-atAR1-te0/0/11.3235-src host 10.0.230.2 and dst host 224.0.0.5] depends on load_config1072_dut1')
+Пропущенный Тест №1620 - test_ospfv2_hello_analysis_part10_7_2. Причина - test_ospfv2_hello_analysis_part10_7_2[192.168.17.139-admin-password-atAR2-bu1.3211-src host 10.0.222.2 and dst host 224.0.0.5] depends on load_config1072_dut1')
+Пропущенный Тест №1621 - test_ospfv2_hello_analysis_part10_7_2. Причина - test_ospfv2_hello_analysis_part10_7_2[192.168.17.139-admin-password-atAR2-bu1.3218-src host 10.0.222.6 and dst host 224.0.0.5] depends on load_config1072_dut1')
+Пропущенный Тест №1622 - test_ospfv2_hello_analysis_part10_7_2. Причина - test_ospfv2_hello_analysis_part10_7_2[192.168.17.139-admin-password-atAR2-bu1.3219-src host 10.0.222.10 and dst host 224.0.0.5] depends on load_config1072_dut1')
+Пропущенный Тест №1623 - test_ospfv2_hello_analysis_part10_7_2. Причина - test_ospfv2_hello_analysis_part10_7_2[192.168.17.139-admin-password-atAR2-bu2.3210-src host 10.0.221.2 and dst host 224.0.0.5] depends on load_config1072_dut1')
+Пропущенный Тест №1624 - test_ospfv2_hello_analysis_part10_7_2. Причина - test_ospfv2_hello_analysis_part10_7_2[192.168.17.139-admin-password-atAR2-bu2.3216-src host 10.0.221.6 and dst host 224.0.0.5] depends on load_config1072_dut1')
+Пропущенный Тест №1625 - test_ospfv2_hello_analysis_part10_7_2. Причина - test_ospfv2_hello_analysis_part10_7_2[192.168.17.139-admin-password-atAR2-bu2.3217-src host 10.0.221.10 and dst host 224.0.0.5] depends on load_config1072_dut1')
+Пропущенный Тест №1626 - test_ospfv2_hello_analysis_part10_7_2. Причина - test_ospfv2_hello_analysis_part10_7_2[192.168.17.139-admin-password-atAR2-te0/0/11.3205-src host 10.0.200.3 and dst host 224.0.0.5] depends on load_config1072_dut1')
+Пропущенный Тест №1627 - test_ospfv2_hello_analysis_part10_7_2. Причина - test_ospfv2_hello_analysis_part10_7_2[192.168.17.139-admin-password-atAR2-te0/0/11.3235-src host 10.0.230.3 and dst host 224.0.0.5] depends on load_config1072_dut1')
+Пропущенный Тест №1628 - test_junos_init_config_upload_part11_3. Причина - test_junos_init_config_upload_part11_3[192.168.17.130-labr01-user-Password-part11.3] depends on load_config113_dut1')
+Пропущенный Тест №1629 - test_show_pim_vrf_topology_part11_3. Причина - test_show_pim_vrf_topology_part11_3[192.168.17.86-admin-password] depends on load_config113_dut1')
+Пропущенный Тест №1630 - test_show_pim_vrf_topology_part11_3. Причина - test_show_pim_vrf_topology_part11_3[192.168.17.146-admin-password] depends on load_config113_dut1')
+Пропущенный Тест №1631 - test_show_pim_vrf_testvrf_interfaces_part11_3. Причина - test_show_pim_vrf_testvrf_interfaces_part11_3[192.168.17.86-admin-password] depends on load_config113_dut1')
+Пропущенный Тест №1632 - test_show_pim_vrf_testvrf_interfaces_part11_3. Причина - test_show_pim_vrf_testvrf_interfaces_part11_3[192.168.17.146-admin-password] depends on load_config113_dut1')
+Пропущенный Тест №1633 - test_show_pim_vrf_summary_part11_3. Причина - test_show_pim_vrf_summary_part11_3[192.168.17.86-admin-password-atAR1] depends on load_config113_dut1')
+Пропущенный Тест №1634 - test_show_pim_vrf_summary_part11_3. Причина - test_show_pim_vrf_summary_part11_3[192.168.17.146-admin-password-atDR1] depends on load_config113_dut1')
+Пропущенный Тест №1635 - test_show_pim_vrf_testvrf_interfaces_part11_3. Причина - test_show_pim_vrf_testvrf_interfaces_part11_3[192.168.17.86-admin-password] depends on load_config113_dut1')
+Пропущенный Тест №1636 - test_show_pim_vrf_testvrf_interfaces_part11_3. Причина - test_show_pim_vrf_testvrf_interfaces_part11_3[192.168.17.139-admin-password] depends on load_config113_dut1')
+Пропущенный Тест №1637 - test_show_pim_vrf_testvrf_interfaces_part11_3. Причина - test_show_pim_vrf_testvrf_interfaces_part11_3[192.168.17.146-admin-password] depends on load_config113_dut1')
+Пропущенный Тест №1638 - test_subscribers_leave_part11_3. Причина - test_subscribers_leave_part11_3[192.168.17.146-admin-password] depends on load_config113_dut1')
+Пропущенный Тест №1639 - test_multicast_switchover_part11_3. Причина - test_multicast_switchover_part11_3[192.168.17.146-admin-password] depends on load_config113_dut1')
+Пропущенный Тест №1640 - test_ssh_protect_part12_2. Причина - test_ssh_protect_part12_2[192.168.17.146-admin-password-atDR1] depends on load_config122_dut1')
+Пропущенный Тест №1641 - test_ssh_protect_part12_2. Причина - test_ssh_protect_part12_2[192.168.17.86-admin-password-atAR1] depends on load_config122_dut1')
+Пропущенный Тест №1642 - test_ssh_protect_part12_2. Причина - test_ssh_protect_part12_2[192.168.17.139-admin-password-atAR2] depends on load_config122_dut1')
+Пропущенный Тест №1643 - test_ftp_protect_part12_2. Причина - test_ftp_protect_part12_2[192.168.17.146-admin-password-atDR1] depends on load_config122_dut1')
+Пропущенный Тест №1644 - test_ftp_protect_part12_2. Причина - test_ftp_protect_part12_2[192.168.17.86-admin-password-atAR1] depends on load_config122_dut1')
+Пропущенный Тест №1645 - test_ftp_protect_part12_2. Причина - test_ftp_protect_part12_2[192.168.17.139-admin-password-atAR2] depends on load_config122_dut1')
+Пропущенный Тест №1646 - test_telnet_protect_part12_2. Причина - test_telnet_protect_part12_2[192.168.17.146-admin-password-atDR1] depends on load_config122_dut1')
+Пропущенный Тест №1647 - test_telnet_protect_part12_2. Причина - test_telnet_protect_part12_2[192.168.17.86-admin-password-atAR1] depends on load_config122_dut1')
+Пропущенный Тест №1648 - test_telnet_protect_part12_2. Причина - test_telnet_protect_part12_2[192.168.17.139-admin-password-atAR2] depends on load_config122_dut1')
+Пропущенный Тест №1649 - test_http_protect_part12_2. Причина - test_http_protect_part12_2[192.168.17.146-admin-password-atDR1] depends on load_config122_dut1')
+Пропущенный Тест №1650 - test_http_protect_part12_2. Причина - test_http_protect_part12_2[192.168.17.86-admin-password-atAR1] depends on load_config122_dut1')
+Пропущенный Тест №1651 - test_http_protect_part12_2. Причина - test_http_protect_part12_2[192.168.17.139-admin-password-atAR2] depends on load_config122_dut1')
+Пропущенный Тест №1652 - test_flow_monitor_part15_6. Причина - test_flow_monitor_part15_6[192.168.17.86-atAR1-admin-password] depends on load_config156_dut1')
+Пропущенный Тест №1653 - test_flow_monitor_part15_6. Причина - test_flow_monitor_part15_6[192.168.17.139-atAR2-admin-password] depends on load_config156_dut1')
+Пропущенный Тест №1654 - test_flow_monitor_part15_6. Причина - test_flow_monitor_part15_6[192.168.17.146-atDR1-admin-password] depends on load_config156_dut1')
+1 record inserted into table function_tests_detail_info.
+1 record inserted into table function_tests_rating_info.

@@ -1,0 +1,30 @@
+  {{ lsa | re("192.168.168.4[23]") }} {{ adv | re("0.0.0.40") }} {{ age | re("\d+:\d+:\d+") }} {{ seq | re("0x\w+") }} {{ checksum }} {{ type | re("external-lsa") }}
+
+
+#0/FMC0:atDR1# show ospfv2 vrf VRF40 database
+#Mon Mar 30 16:48:48 2020
+#  Routing Process: 40, VRF VRF40, with ID 0.0.0.40
+#  
+#    Area Link State Database:
+#    
+#  Link ID           ADV Router     Age        Seq#        Checksum    Area              Type 
+#  ----------------- -------------- ---------- ----------- ----------- ----------------- ----- 
+#  0.0.0.40          0.0.0.40       00:07:54   0x80000007  0x0000AE23  0.0.0.0           router-lsa 
+#  0.0.0.41          0.0.0.41       00:07:54   0x80000007  0x000090EC  0.0.0.0           router-lsa 
+#  192.168.41.2      0.0.0.41       00:07:54   0x80000004  0x0000C780  0.0.0.0           network-lsa 
+#  1.0.0.1           0.0.0.40       00:08:05   0x80000001  0x00002EF6  0.0.0.0           area-opaque-lsa 
+#    
+#    Link State Database:
+#  Link ID           ADV Router     Age        Seq#        Checksum    Area              Interface             Type 
+#  ----------------- -------------- ---------- ----------- ----------- ----------------- --------------------- ----- 
+#  1.0.0.0           0.0.0.40       00:08:05   0x80000001  0x0000897D  0.0.0.0           te0/1/5.10041         opaque-link-lsa 
+#    
+#    External Link States:
+#  Link ID           ADV Router     Age        Seq#        Checksum    Type                  
+#  ----------------- -------------- ---------- ----------- ----------- --------------------- 
+#  192.168.42.0      0.0.0.40       00:07:30   0x80000001  0x0000E8AD  external-lsa          
+#  192.168.43.0      0.0.0.40       00:07:39   0x80000001  0x0000DDB7  external-lsa          
+#  192.168.168.42    0.0.0.40       00:02:33   0x80000002  0x0000D11B  external-lsa   
+#  192.168.168.43    0.0.0.40       00:07:39   0x80000001  0x0000C923  external-lsa          
+#    
+#0/FMC0:atDR1# 

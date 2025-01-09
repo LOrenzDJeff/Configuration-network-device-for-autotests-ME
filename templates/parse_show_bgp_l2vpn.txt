@@ -1,0 +1,53 @@
+Value bgp_router_id (\d+.\d+.\d+.\d+)
+Value AS_num (\d+)
+Value BGP_GR (\s+Graceful Restart is disabled|Graceful Restart is enabled)
+Value Top (\s+Route Distinguisher\s+Sig\s+VE ID or PE addr\s+Next hop\s+Metric\s+VE Block\s+VE Block\s+Rcvd/Lcl\s+Label\s+Base\s+LocPrf\s+Weight\s+Path\s+)
+Value neighbor1_RD (\d+:\d+)
+Value neighbor2_RD (\d+:\d+)
+Value neighbor3_RD (\d+:\d+)
+Value neighbor1_IP (1.0.0.1)
+Value neighbor2_IP (1.0.0.2)
+Value neighbor3_IP (1.0.0.3)
+Value neighbor1_metric (\d+)
+Value neighbor2_metric (\d+)
+Value neighbor3_metric (\d+)
+Value neighbor1_ve_block (\d+)
+Value neighbor2_ve_block (\d+)
+Value neighbor3_ve_block (\d+)
+Value neighbor1_ve_block_size (\d+)
+Value neighbor2_ve_block_size (\d+)
+Value neighbor3_ve_block_size (\d+)
+Value neighbor1_label_base ((-|\d+)\/(-|\d+))
+Value neighbor2_label_base ((-|\d+)\/(-|\d+))
+Value neighbor3_label_base ((-|\d+)\/(-|\d+))
+
+Start
+  ^\s+BGP router identifier ${bgp_router_id}, local AS number ${AS_num}\s+
+  ^${BGP_GR}
+  ^${Top}
+  ^\s+u>i\s+${neighbor1_RD}\s+BGP\s+1\s+${neighbor1_IP}\s+${neighbor1_metric}\s+${neighbor1_ve_block}\s+${neighbor1_ve_block_size}\s+${neighbor1_label_base}\s+100\s+0\s+?
+  ^\s+u>\s+${neighbor1_RD}\s+BGP\s+1\s+${neighbor1_metric}\s+${neighbor1_ve_block}\s+${neighbor1_ve_block_size}\s+${neighbor1_label_base}\s+100\s+0\s+?
+  ^\s+u>i\s+${neighbor2_RD}\s+BGP\s+2\s+${neighbor2_IP}\s+${neighbor2_metric}\s+${neighbor2_ve_block}\s+${neighbor2_ve_block_size}\s+${neighbor2_label_base}\s+100\s+0\s+?
+  ^\s+u>\s+${neighbor2_RD}\s+BGP\s+2\s+${neighbor2_metric}\s+${neighbor2_ve_block}\s+${neighbor2_ve_block_size}\s+${neighbor2_label_base}\s+100\s+0\s+?
+  ^\s+u>i\s+${neighbor3_RD}\s+BGP\s+3\s+${neighbor3_IP}\s+${neighbor3_metric}\s+${neighbor3_ve_block}\s+${neighbor3_ve_block_size}\s+${neighbor3_label_base}\s+100\s+0\s+?
+  ^\s+u>\s+${neighbor3_RD}\s+BGP\s+3\s+${neighbor3_metric}\s+${neighbor3_ve_block}\s+${neighbor3_ve_block_size}\s+${neighbor3_label_base}\s+100\s+0\s+?
+
+#0/FMC0:atDR1# show bgp l2vpn
+#Sat Mar 14 21:22:09 2020
+#  BGP router identifier 1.0.0.1, local AS number 65100
+#  Graceful Restart is disabled
+#  BGP table state: active
+#  BGP scan interval: 120 secs
+#
+#  Status codes: d damped, h history, > best, S stale, * active, u untracked, i internal
+#  Origin codes: i igp, e egp, ? incomplete
+#
+#  Route Distinguisher        Sig  VE ID or PE addr  Next hop         Metric  VE Block    VE Block    Label Base  LocPrf  Weight  Path 
+#                                                                                         Size                                     
+#  -------------------------- ---- ----------------- ---------------- ------- ----------- ----------- ----------- ------- ------- ----- 
+#  u>   65100:200             BGP  1                                  0       1           8           512         100     0       ? 
+#  u>i  65100:200             BGP  2                 1.0.0.2          0       1           8           512         100     0       ? 
+#  u>i  65100:200             BGP  3                 1.0.0.3          0       1           8           512         100     0       ? 
+#
+#  Total paths: 3
+#

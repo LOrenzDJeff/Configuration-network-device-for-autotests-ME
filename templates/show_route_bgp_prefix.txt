@@ -1,0 +1,15 @@
+Value rt_entry_for (\S+)
+Value next_hop (\S+)
+Value via (\S+)
+Value known_via (\w+)
+Value distance (\d+)
+Value metric (\d+)
+Value type (\S+)
+Value protect (\S+)
+Value rt_type (\S+)
+
+Start
+  ^\s+Routing entry for ${rt_entry_for}
+  ^\s+${next_hop}, via ${via}
+  ^\s+Known via ${known_via}, distance ${distance}, metric ${metric}
+  ^\s+type ${type}, protection ${protect}, route-type ${rt_type}

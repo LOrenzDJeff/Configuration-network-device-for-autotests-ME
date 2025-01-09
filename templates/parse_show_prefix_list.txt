@@ -1,0 +1,6 @@
+Value seq (\d+)
+Value permission (\w+)
+Value network (\S+)
+
+Start
+  ^\s+${seq}\s${permission}\s${network}\s -> Record

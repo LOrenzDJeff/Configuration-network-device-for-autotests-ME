@@ -1,0 +1,104 @@
+Value int1 (\s+Interface Bundle-ether1, state: point-to-point, status: up|\s+Interface Bundle-ether1, state: designated-router, status: up)
+Value int1_metric (\s+Area 0.0.0.0, metric: 1)
+Value int1_DR (\s+Designated Router IP addr: 0.0.0.0|\s+Designated Router IP addr: 192.168.55.\d+)
+Value int1_BDR (\s+Backup Designated Router IP addr: 0.0.0.0|\s+Backup Designated Router IP addr: 192.168.55.\d+)
+Value int1_mask (\s+Subnet mask: 255.255.255.252)
+Value int1_te (\s+Traffic Engineering: disabled)
+Value int2 (\s+Interface Bundle-ether2, state: backup-designated-router, status: up|\s+Interface Bundle-ether2, state: point-to-point, status: up)
+Value int2_metric (\s+Area 0.0.0.0, metric: 1)
+Value int2_DR (\s+Designated Router IP addr: 192.168.55.6)
+Value int2_BDR (\s+Backup Designated Router IP addr: 192.168.55.5)
+Value int2_mask (\s+Subnet mask: 255.255.255.252)
+Value int2_te (\s+Traffic Engineering: disabled)
+Value int3 (\s+Interface Loopback10, state: other-designated-router, status: up)
+Value int3_metric (\s+Area 0.0.0.0, metric: 1000)
+Value int3_DR (\s+Designated Router IP addr: 0.0.0.0)
+Value int3_BDR (\s+Backup Designated Router IP addr: 0.0.0.0)
+Value int3_mask (\s+Subnet mask: 255.255.255.255)
+Value int3_te (\s+Traffic Engineering: disabled)
+Value int4 (Tengigabitethernet0/[10]/\d+.35[012],)
+Value int4_metric (\s+Area 0.0.0.0, metric: 1)
+Value int4_DR (\s+Designated Router IP addr: 0.0.0.0)
+Value int4_BDR (\s+Backup Designated Router IP addr: 0.0.0.0)
+Value int4_mask (\s+Subnet mask: 255.255.255.252)
+Value int4_te (\s+Traffic Engineering: disabled)
+
+Start
+  ^${int1} -> Interface1
+  ^${int2} -> Interface2
+  ^${int3} -> Interface3
+  ^\s+Interface ${int4} state: point-to-point, status: up -> Interface4
+
+
+
+Interface1
+  ^${int1_metric}  
+  ^${int1_DR}
+  ^${int1_BDR}
+  ^${int1_mask}
+  ^${int1_te} -> Start
+
+Interface2
+  ^${int2_metric}  
+  ^${int2_DR}
+  ^${int2_BDR}
+  ^${int2_mask}
+  ^${int2_te} -> Start  
+
+Interface3
+  ^${int3_metric}  
+  ^${int3_DR}
+  ^${int3_BDR}
+  ^${int3_mask}
+  ^${int3_te} -> Start 
+
+Interface4
+  ^${int4_metric}  
+  ^${int4_DR}
+  ^${int4_BDR}
+  ^${int4_mask}
+  ^${int4_te} -> Start 
+
+#Thu Apr  2 17:46:03 2020
+#  Routing Process: test, with ID 1.0.0.1
+#    Router is not an area border router
+#  
+#      Interface Bundle-ether1, state: point-to-point, status: up
+#        Area 0.0.0.0, metric: 5
+#        Changed state: 5 time, Administrative group 0
+#        Designated Router IP addr: 0.0.0.0
+#        Backup Designated Router IP addr: 0.0.0.0
+#        Subnet mask: 255.255.255.252
+#        Remote peer index: 8
+#        Number of LSA count: 2, checksum: 0x0000c980
+#        Traffic Engineering: disabled
+#  
+#      Interface Bundle-ether2, state: backup-designated-router, status: up
+#        Area 0.0.0.0, metric: 10
+#        Changed state: 6 time, Administrative group 0
+#        Designated Router IP addr: 192.168.55.6
+#        Backup Designated Router IP addr: 192.168.55.5
+#        Subnet mask: 255.255.255.252
+#        Remote peer index: 0
+#        Number of LSA count: 2, checksum: 0x00011810
+#        Traffic Engineering: disabled
+#  
+#      Interface Loopback10, state: other-designated-router, status: up
+#        Area 0.0.0.0, metric: 1000
+#        Changed state: 1 time, Administrative group 0
+#        Designated Router IP addr: 0.0.0.0
+#        Backup Designated Router IP addr: 0.0.0.0
+#        Subnet mask: 255.255.255.255
+#        Remote peer index: 0
+#        Number of LSA count: 1, checksum: 0x00002e31
+#        Traffic Engineering: disabled
+#  
+#      Interface Tengigabitethernet0/1/5.350, state: point-to-point, status: up
+#        Area 0.0.0.0, metric: 10
+#        Changed state: 8 time, Administrative group 0
+#        Designated Router IP addr: 0.0.0.0
+#        Backup Designated Router IP addr: 0.0.0.0
+#        Subnet mask: 255.255.255.252
+#        Remote peer index: 0
+#        Number of LSA count: 1, checksum: 0x0000f041
+#        Traffic Engineering: disabled

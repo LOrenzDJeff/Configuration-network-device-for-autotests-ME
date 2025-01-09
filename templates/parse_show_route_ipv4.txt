@@ -1,0 +1,15 @@
+Value type (\w+)
+Value next_hop (\d+.\d+.\d+.\d+|(\S+\s+){0,2}\S+)
+Value interface (\S+)
+Value entries (\d+)
+Value exact_type (\S+)
+Value distance (\d+)
+Value metric (\d+)
+
+
+Start
+ ^\s+${next_hop}, via ${interface}
+ ^\s+Known via ${type}, distance ${distance}, metric ${metric}
+ ^\s+type ${exact_type}, -> Record
+ ^\s+Entries: ${entries} -> Record
+

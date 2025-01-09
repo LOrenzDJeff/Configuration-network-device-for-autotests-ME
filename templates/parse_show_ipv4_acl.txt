@@ -1,0 +1,23 @@
+Value action (permit|deny|redirect)
+Value protocol (ip|icmp|tcp|udp)
+Value src_prefix (\d+.\d+.\d+.\d+/\d+|any|\d+.\d+.\d+.\d+)
+Value dst_prefix (\d+.\d+.\d+.\d+/\d+|any|\d+.\d+.\d+.\d+)
+Value num_match_packets (\d+)
+
+Start
+  ^\s+10,\s+${action},\s+${protocol},\s+src\[${src_prefix}\],\s+dst\[${dst_prefix}\]\s+\S+\s+\d+,\s+\S+\s+${num_match_packets},\s+\S+\s+\d+\s+\w+ -> Record
+  ^\s+10,\s+${action},\s+${protocol},\s+src\[${src_prefix}\],\s+dst\[${dst_prefix}\]\s+\S+\s+${num_match_packets}\s+\w+ -> Record
+  ^\s+20,\s+${action},\s+${protocol},\s+src\[${src_prefix}\],\s+dst\[${dst_prefix},\s+port eq 23\]\s+\S+\s+\d+,\s+\S+\s+${num_match_packets},\s+\S+\s+\d+\s+\w+ -> Record
+  ^\s+20,\s+${action},\s+${protocol},\s+src\[${src_prefix}\],\s+dst\[${dst_prefix},\s+port eq 23\]\s+\S+\s+${num_match_packets}\s+\w+ -> Record
+
+
+#0/FMC0:atDR1# show access-lists List2
+#Thu Jan 19 14:10:46 2023
+#2023-01-19T14:10:46.756597+07:00 %KLISH-I-COMMAND: From klish terminal [user='admin' host='0.0.0.0' terminal='console' vrf='default'] command: 'show access-lists List2'
+#  access-list List2
+#    10, permit, icmp, src[100.123.0.0/24], dst[100.124.0.0/24] L2: 0, IPv4: 10, IPv6: 0 hits
+#    20, permit, tcp, src[100.123.0.0/24], dst[100.124.0.1, port eq 23] L2: 0, IPv4: 0, IPv6: 0 hits
+#    110, deny, icmp, src[any], dst[any] L2: 0, IPv4: 0, IPv6: 0 hits
+#    120, deny, tcp, src[any], dst[any] L2: 0, IPv4: 0, IPv6: 0 hits
+
+

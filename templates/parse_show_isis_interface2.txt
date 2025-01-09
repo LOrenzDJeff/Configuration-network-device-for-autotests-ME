@@ -1,0 +1,149 @@
+Value line1 (\s+IS-IS Router test interface:)
+Value int_name (.*)
+Value uptime (.*)
+Value bfd (.*)
+Value operstate (.*)
+Value neighborhood (.*)
+Value padding (.*)
+Value circuit3way (.*)
+Value T1 (.*)
+Value networktype (.*)
+Value PDU (.*) 
+Value ipv4_family (.*)
+Value ipv6_family (.*)
+Value circuitlevel (.*)
+Value ID_param (ID|Designated ID)
+Value ID_lvl1 (-|0010.0000.000\d)
+Value ID_lvl2 (-|0010.0000.000\d)
+Value hostname_param (Hostname|Designated Hostname)
+Value hostname_lvl1 (-|\S+)
+Value hostname_lvl2 (-|\S+)
+Value metric_lvl1 (-|\d+)
+Value metric_lvl2 (-|\d+)
+Value hello_multiplier_lvl1 (-|\d+)
+Value hello_multiplier_lvl2 (-|\d+)
+Value hello_timer_lvl1 (-|\d+)
+Value hello_timer_lvl2 (-|\d+)
+
+Start
+  ^${line1}
+  ^\s+${int_name},\s+circuit id:\s+\d+
+  ^\s+Last up:\s+${uptime}
+  ^\s+BFD Fast detect:\s+${bfd}
+  ^\s+Operation state:\s+${operstate}
+  ^\s+Disabled creating neighborhood on this interface:\s+${neighborhood}
+  ^\s+Hello[- ]padding:\s+${padding}
+  ^\s+Circuit 3 way:\s+${circuit3way}
+  ^\s+T1 timer status:\s+${T1}
+  ^\s+Media Type:\s+${networktype}
+  ^\s+Used PDU:\s+${PDU}
+  ^\s+IPv4 Address Family:\s+${ipv4_family}
+  ^\s+IPv6 Address Family:\s+${ipv6_family}
+  ^\s+Circuit level:\s+${circuitlevel} \(Interface circuit type is level-1-2\)
+  ^\s+${ID_param}\s+${ID_lvl1}\s+${ID_lvl2} 
+  ^\s+${hostname_param}\s+${hostname_lvl1}\s+${hostname_lvl2}
+  ^\s+Metric\s+${metric_lvl1}\s+${metric_lvl2}
+  ^\s+Hello Multiplier\s+${hello_multiplier_lvl1}\s+${hello_multiplier_lvl2}
+  ^\s+Hello Timer, sec\s+${hello_timer_lvl1}\s+${hello_timer_lvl2} -> Record
+
+#0/FMC0:atDR1# show isis interfaces  
+#Fri Sep 11 11:01:06 2020
+#  IS-IS Router test interface:
+    
+#  Bundle-ether1, circuit id: 41
+#    Last up: 00h27m18s ago
+#    BFD Fast detect: IPv4 enabled, IPv6 disabled
+#    Operation state: up
+#    Disabled creating neighborhood on this interface: false
+#    Hello padding: enabled
+#    Circuit 3 way: enabled
+#    LDP-IGP synchronization: disabled
+#    T1 timer status: stopped
+#    Media Type: p2p
+#    Used PDU: 1500
+#    Administrative tag: 0
+#    IPv4 Address Family: enabled
+#    IPv6 Address Family: enabled
+#    Circuit level: level-2 (Interface circuit type is level-1-2)
+#                                      Level-1           Level-2
+#    ID                                -                 0010.0000.0003
+#    Hostname                          -                 atAR1
+#    Priority                          -                 64
+#    Metric                            -                 10
+#    Authentication                    -                 none
+#    Hello Multiplier                  -                 3
+#    Hello Timer, sec                  -                 9
+#    Minimum arrival interval, msec    -                 0
+#    CSNP retransmit interval, sec     -                 10
+#    LSP retransmit interval, sec      -                 10
+    
+#  Bundle-ether2, circuit id: 42
+#    Last up: 00h13m37s ago
+#    BFD Fast detect: IPv4 enabled, IPv6 disabled
+#    Operation state: up
+#    Disabled creating neighborhood on this interface: false
+#    Hello padding: enabled
+#    Circuit 3 way: enabled
+#    LDP-IGP synchronization: disabled
+#    T1 timer status: stopped
+#    Media Type: broadcast
+#    Used PDU: 1500
+#    Administrative tag: 0
+#    IPv4 Address Family: enabled
+#    IPv6 Address Family: enabled
+#    Circuit level: level-2 (Interface circuit type is level-1-2)
+#                                      Level-1           Level-2
+#    Designated ID                     -                 0010.0000.0002
+#    Designated Hostname               -                 atAR2
+#    Priority                          -                 64
+#    Metric                            -                 10
+#    Authentication                    -                 none
+#    Hello Multiplier                  -                 3
+#    Hello Timer, sec                  -                 9
+#    Minimum arrival interval, msec    -                 0
+#    CSNP retransmit interval, sec     -                 10
+#    LSP retransmit interval, sec      -                 10
+    
+#  Loopback10, circuit id: 43
+#    Last up: never
+#    BFD Fast detect: IPv4 disabled, IPv6 disabled
+#    Operation state: up
+#    Disabled creating neighborhood on this interface: true
+#    Hello padding: enabled
+#    Circuit 3 way: enabled
+#    LDP-IGP synchronization: disabled
+#    T1 timer status: stopped
+#    Media Type: broadcast
+#    Used PDU: 1492
+#    Administrative tag: 0
+#    IPv4 Address Family: enabled
+#    IPv6 Address Family: enabled
+#    Circuit level: level-2 (Interface circuit type is level-1-2)
+    
+#  Tengigabitethernet0/1/5.350, circuit id: 44
+#    Last up: 00h13m37s ago
+#    BFD Fast detect: IPv4 disabled, IPv6 disabled
+#    Operation state: up
+#    Disabled creating neighborhood on this interface: false
+#    Hello padding: enabled
+#    Circuit 3 way: enabled
+#    LDP-IGP synchronization: disabled
+#    T1 timer status: stopped
+#    Media Type: p2p
+#    Used PDU: 1500
+#    Administrative tag: 0
+#    IPv4 Address Family: enabled
+#    IPv6 Address Family: enabled
+#    Circuit level: level-2 (Interface circuit type is level-1-2)
+#                                      Level-1           Level-2
+#    ID                                -                 0010.0000.0004
+#    Hostname                          -                 LABR01
+#    Priority                          -                 64
+#    Metric                            -                 10
+#    Authentication                    -                 none
+#    Hello Multiplier                  -                 3
+#    Hello Timer, sec                  -                 9
+#    Minimum arrival interval, msec    -                 0
+#    CSNP retransmit interval, sec     -                 10
+#    LSP retransmit interval, sec      -                 10
+#0/FMC0:atDR1#   

@@ -1,0 +1,70 @@
+Value route_src1 (B B[VE]|O EA|S)
+Value route_src2 (B B[VE]|O EA|S)
+Value route_src3 (B B[VE]|O EA|S)
+Value rt1 (192.168.168.41/32)
+Value rt2 (192.168.168.42/32)
+Value rt3 (192.168.168.43/32)
+Value nexthop1 (\d+.\d+.\d+.\d+)
+Value nexthop2 (\d+.\d+.\d+.\d+)
+Value nexthop3 (\d+.\d+.\d+.\d+)
+Value metric1 (\[\d+/\d+\])
+Value metric2 (\[\d+/\d+\])
+Value metric3 (\[\d+/\d+\])
+Value out_int1 (te0/0/11.1004[123]|te0/1/5.10041)
+Value out_int2 (te0/0/11.1004[123]|te0/1/5.10041)
+Value out_int3 (te0/0/11.1004[123]|te0/1/5.10041)
+Value total_route (\d+)
+
+Start
+  ^\s+${route_src1}\s+${rt1}\s+via\s+${nexthop1}\s+${metric1},\s+\d+[dh]\d+[hm]\d+[ms],\s+${out_int1}
+  ^\s+${route_src1}\s+${rt1}\s+via\s+${nexthop1}\s+${metric1}, \d+[dh]\d+[hm]\d+[ms]
+  ^\s+${route_src2}\s+${rt2}\s+via\s+${nexthop2}\s+${metric2},\s+\d+[dh]\d+[hm]\d+[ms],\s+${out_int2}
+  ^\s+${route_src2}\s+${rt2}\s+via\s+${nexthop2}\s+${metric2}, \d+[dh]\d+[hm]\d+[ms]
+  ^\s+${route_src3}\s+${rt3}\s+via\s+${nexthop3}\s+${metric3},\s+\d+[dh]\d+[hm]\d+[ms],\s+${out_int3}
+  ^\s+${route_src3}\s+${rt3}\s+via\s+${nexthop3}\s+${metric3}, \d+[dh]\d+[hm]\d+[ms]
+  ^\s+Total entries: ${total_route}
+
+
+#0/ME5100:atAR1# show route vrf VRF40
+#Tue Dec 15 14:16:58 2020
+#  Codes: C - connected, S - static, O - OSPF, B - BGP, L - local
+#      IA - OSPF inter area, EA - OSPF intra area
+#      N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+#      E1 - OSPF external type 1, E2 - OSPF external type 2
+#      i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2,
+#      LE1 - IS-IS level1 external, LE2 - IS-IS level2 external
+#      BI - BGP internal, BE - BGP external, BV - BGP vpn
+#  
+#  
+#  B BV   192.168.41.0/24    via 1.0.0.1 [200/0], 00h07m30s
+#  B BV   192.168.42.0/24    via 1.0.0.2 [200/0], 00h07m28s
+#  C      192.168.43.0/24     is directly connected, 00h07m55s, te0/0/11.10043
+#  L      192.168.43.1/32     is directly connected, 00h07m55s, te0/0/11.10043
+#  B BV   192.168.168.41/32    via 1.0.0.1 [200/2], 00h07m21s
+#  B BV   192.168.168.42/32    via 1.0.0.2 [200/0], 00h07m26s
+#  S      192.168.168.43/32    via 192.168.43.2 [1/1], 00h07m55s, te0/0/11.10043
+#  
+#  Total route count: 7   
+#0/ME5100:atAR1# 
+
+#0/ME5200:atAR2# show route vrf VRF40
+#Tue Dec 15 14:54:40 2020
+#  Codes: C - connected, S - static, O - OSPF, B - BGP, L - local
+#      IA - OSPF inter area, EA - OSPF intra area
+#      N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+#      E1 - OSPF external type 1, E2 - OSPF external type 2
+#      i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2,
+#      LE1 - IS-IS level1 external, LE2 - IS-IS level2 external
+#      BI - BGP internal, BE - BGP external, BV - BGP vpn
+#  
+#  
+#  B BV   192.168.41.0/24    via 1.0.0.1 [200/0], 00h45m10s
+#  C      192.168.42.0/24     is directly connected, 00h45m37s, te0/0/11.10042
+#  L      192.168.42.1/32     is directly connected, 00h45m37s, te0/0/11.10042
+#  B BV   192.168.43.0/24    via 1.0.0.3 [200/0], 00h45m09s
+#  B BV   192.168.168.41/32    via 1.0.0.1 [200/2], 00h45m03s
+#  B BE   192.168.168.42/32    via 192.168.42.2 [20/0], 00h45m09s, te0/0/11.10042
+#  B BV   192.168.168.43/32    via 1.0.0.3 [200/0], 00h45m09s
+#  
+#  Total route count: 7   
+#0/ME5200:atAR2# 

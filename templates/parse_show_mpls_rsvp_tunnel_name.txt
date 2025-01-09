@@ -1,0 +1,88 @@
+Value tun_name (\S+)
+Value tun_src (1.0.0.\d)
+Value tun_dst (1.0.0.\d)
+Value tun_descr (\S+)
+Value tun_status (\s+Status:)
+Value tun_admin_status (up|down)
+Value tun_oper_status (up|down)
+Value tun_id (\d+)
+Value tun_ingress_id (1.0.0.\d)
+Value tun_egress_id (1.0.0.\d)
+Value tun_config_param (\s+Config Parameters:)
+Value tun_bandwidth (\d+)
+Value tun_bandwidth_backup (\d+)
+Value tun_protect_type (none|detour|facility)
+Value tun_band_protect_desire (enabled|disabled)
+Value tun_node_protect (enabled|disabled)
+Value tun_routing (yes|no)
+Value tun_forwarding (yes|no)
+Value tun_bidirect (not bidirectional|bidirectional)
+Value tun_prio_setup (\d)
+Value tun_prio_hold (\d)
+Value tun_lsp_info (\s+Current LSP Info:)
+Value tun_lsp_name (\S+)
+Value tun_lsp_state (up|down)
+Value tun_lsp_id (\d+)
+Value tun_lsp_computation (dynamic|explicit)
+Value tun_lsp_explicit_name (\S*)
+
+Start
+  ^\s+Name:\s+${tun_name}\s+Source\s+${tun_src}\s+Destination\s+${tun_dst},\s+Description:\s+${tun_descr}
+  ^${tun_status} -> Status
+  ^${tun_config_param} -> Config_param
+  ^${tun_lsp_info} -> LSP_info
+  ^\s+Path computation: ${tun_lsp_computation}, explicit-path-name:\s+${tun_lsp_explicit_name}
+
+
+
+Status
+  ^\s+Admin:\s+${tun_admin_status},\s+Oper:\s+${tun_oper_status}
+  ^\s+Tunnel id:\s+${tun_id}
+  ^\s+Ingress LSR id:\s+${tun_ingress_id},\s+Egress LSR id:\s+${tun_egress_id} -> Start
+
+Config_param
+  ^\s+Bandwidth:\s+${tun_bandwidth}\s+[GMK]bps,\s+Backup:\s+${tun_bandwidth_backup}\s+[GMK]bps
+  ^\s+Protection type:\s+${tun_protect_type},\s+Bandwidth protection desired:\s+${tun_band_protect_desire},\s+Node protect:\s+${tun_node_protect} 
+  ^\s+Provides routing adjacency:\s+${tun_routing},\s+forwarding adjacency:\s+${tun_forwarding}
+  ^\s+Tunnel\s+is\s+${tun_bidirect} -> Priority
+
+Priority
+  ^\s+Setup:\s+${tun_prio_setup},\s+Holding:\s+${tun_prio_hold} -> Start 
+
+
+
+LSP_info
+  ^\s+Name:\s+${tun_lsp_name},\s+State:\s+${tun_lsp_state},\s+LSP id:\s+${tun_lsp_id} -> Start
+
+#Value tun_priority (\s+Priority:)
+
+#0/ME5100:atAR2# show mpls rsvp tunnels to_atDR1
+#Wed Jul 15 17:07:55 2020
+#  Name: to_atDR1 Source 1.0.0.2 Destination 1.0.0.1, Description: from_atAR2_to_atDR1
+#    Status:
+#      Admin: up, Oper: up
+#      Tunnel id: 1
+#      Ingress LSR id: 1.0.0.2, Egress LSR id: 1.0.0.1
+#    Config Parameters:
+#      Bandwidth: 0 kbps, Backup: 0 kbps
+#      Protection type: none, Bandwidth protection desired: disabled, Node protect: disabled
+#      Provides routing adjacency: no, forwarding adjacency: no
+#      Tunnel is not bidirectional
+#      Priority:
+#        Setup: 7, Holding: 7
+#    Tunnel is not an IGP shortcut
+#      Current LSP Info:
+#        Name: atAR2_to_atDR1-lsp1, State: up, LSP id: 0
+#          Path computation: dynamic, explicit-path-name: 
+#          Retry timer: 30000 ms
+#          Admin group information for this LSP:
+#            Exclude-group:
+#              None
+#            Include-all-group:
+#              None
+#            Include-any-group:
+#              None
+#          History:
+#            Path changes: 0, Current path time: 0
+#            State changes: 3
+#

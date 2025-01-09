@@ -1,0 +1,50 @@
+Value line1 (\s+RSTP operates in 802.1D bridge mode)
+Value line2 (\s+Configured hello time is 2 sec, maximum age is default)
+Value line3 (\s+operational 200/2000, forward delay is 15 sec.|\s+operational 200/600, forward delay is 15 sec.)
+Value RootMAC (\w\w:\w\w:\w\w:\w\w:\w\w:\w\w)
+Value BridgeMAC (\w\w:\w\w:\w\w:\w\w:\w\w:\w\w)
+Value Top (\s+interface\s+prio.nbr\s+cost\s+state\s+role\s+type\s+)
+Value port9 (te0/0/9)
+Value port9_prio_number (\d+.\d+)
+Value port9_cost (\d+)
+Value port9_state (fwd|blk)
+Value port9_role (Dsgn|Root|Altn)
+Value port9_type (p2p|p2p edge)
+Value port10 (te0/0/10)
+Value port10_prio_number (\d+.\d+)
+Value port10_cost (\d+)
+Value port10_state (fwd|blk)
+Value port10_role (Dsgn|Root|Altn)
+Value port10_type (p2p|p2p edge)
+
+Start
+  ^${line1}
+  ^${line2}
+  ^${line3}
+  ^\s+Root ID\s+Address\s+${RootMAC}
+  ^\s+Bridge ID\s+Address\s+${BridgeMAC}
+  ^${Top}
+  ^\s+${port9}\s+${port9_prio_number}\s+${port9_cost}\s+${port9_state}\s+${port9_role}\s+${port9_type}\s+
+  ^\s+${port10}\s+${port10_prio_number}\s+${port10_cost}\s+${port10_state}\s+${port10_role}\s+${port10_type}\s+
+
+
+#0/ME5200:atAR2# show spanning-tree rstp
+#Mon Oct 19 10:22:37 2020
+#  RSTP operates in 802.1D bridge mode
+#  Configured hello time is 2 sec, maximum age is default
+#  operational 200/2000, forward delay is 15 sec.
+#    Root ID         Address    A8:F9:4B:35:AC:40
+#                    Priority   0
+#                    Root hops  1
+#                    Path cost  20000
+#    Bridge ID       Address    e0:d9:e3:ff:48:80
+#                    Priority   32768
+#  Number of topology changes 1, last occurred 326 sec ago.
+#    
+#  interface                prio.nbr  cost         state   role      type 
+#  ------------------------ --------- ------------ ------- --------- ----- 
+#  te0/0/9                  128.10    20000        fwd     Root       p2p 
+#  te0/0/10                 128.11    20000        blk     Altn       p2p 
+#0/ME5200:atAR2# 
+#
+#Value RootMAC (A8:F9:4B:35:AC:40|E0:D9:E3:DF:35:20|\w\w:\w\w:\w\w:\w\w:\w\w:\w\w)

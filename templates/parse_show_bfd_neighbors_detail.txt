@@ -1,0 +1,79 @@
+Value neighbor_addr (\d+.\d+.\d+.\d+)
+Value local_addr (\d+.\d+.\d+.\d+)
+Value session_state (up|down|init)
+Value diagnostic (no-diagnostic|no-contact)
+Value interface (\S+)
+Value local_discr (\d+)
+Value remote_discr (\d+)
+Value reg_protocol (\S+)
+Value min_tx (\d+)
+Value min_rx (\d+)
+Value multiplier (\d+)
+Value rec_min_tx (\d+)
+Value rec_multiplier (\d+)
+Value act_tx (\d+)
+Value act_detect (\d+)
+Value peer_path (\S+)
+Value bfd_type (\S+)
+Value uptime (\d+[dh]\d+[hm]\d+[ms])
+Value vrf (\S*)
+
+Start
+  ^\s+VRF:* ${vrf}
+  ^\s+Neighbor Address: ${neighbor_addr}
+  ^\s+Local address: ${local_addr}
+  ^\s+Session state is ${session_state}
+  ^\s+Diagnostic: ${diagnostic}
+  ^\s+Interface: ${interface}
+  ^\s+LocalDiscriminator: ${local_discr}
+  ^\s+RemoteDiscriminator: ${remote_discr}
+  ^\s+Registered protocols: ${reg_protocol}
+  ^\s+MinTxInt: ${min_tx} ms, MinRxInt: ${min_rx} ms, Multiplier: ${multiplier}
+  ^\s+Received MinTxInt: ${rec_min_tx} ms, Received Multiplier: ${rec_multiplier}
+  ^\s+Actual TxInt: ${act_tx} ms
+  ^\s+Actual Detection Interval: ${act_detect} ms
+  ^\s+Peer path is ${peer_path}
+  ^\s+BFD is ${bfd_type}
+  ^\s+Uptime: ${uptime} -> Record
+
+#0/FMC0:atDR1# show bfd neighbors ipv4 192.168.55.1
+#Wed Jan 27 10:22:29 2021
+#  
+#  Neighbor Address: 192.168.55.1
+#  Local address: 192.168.55.2
+#  Session state is up
+#  Diagnostic: no-diagnostic
+#  Interface: bu1
+#  Applied session profile: 
+#  LocalDiscriminator: 1
+#  RemoteDiscriminator: 2
+#  Registered protocols: isis
+#  MinTxInt: 30 ms, MinRxInt: 30 ms, Multiplier: 4
+#  Received MinTxInt: 100 ms, Received Multiplier: 3
+#  Actual TxInt: 100 ms
+#  Actual Detection Interval: 300 ms
+#  Peer path is single-hop
+#  BFD is hardware
+#  Uptime: 00h01m55s
+#    Elapsed time since the last change: 04d17h59m
+#  Last received packet:
+#    Version: 1
+#    Diagnostic: no-diagnostic
+#    State bit: up
+#    Multiplier: 3
+#    Length: 24
+#    My Discriminator: 2
+#    Your Discriminator: 1
+#    Desired Min Tx Interval: 100 ms
+#    Required Min Rx Interval: 100 ms
+#    Required Min Echo Rx Interval: 0 ms
+#    Flags:
+#      Poll:                      0
+#      Final:                     1
+#      Control Plane Independent: 1
+#      Authentication Present:    0
+#      Demand:                    0
+#      Multipoint:                0
+#  
+#0/FMC0:atDR1# 
+

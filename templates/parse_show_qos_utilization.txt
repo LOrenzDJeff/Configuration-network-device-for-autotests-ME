@@ -1,0 +1,23 @@
+Value Int_name (\S+)
+Value Stat_period (\d+)
+Value Queue_send_kbps (\d+)
+Value Queue_drop_kbps (\d+)
+Value Queue_send_pps (\d+)
+Value Queue_drop_pps (\d+)
+Value Queue_class (\S+)
+
+Start
+  ^\s+${Int_name}\s+${Stat_period}\s+${Queue_send_kbps}\s+${Queue_drop_kbps}\s+${Queue_send_pps}\s+${Queue_drop_pps}\s+${Queue_class} -> Record
+
+
+#  0/FMC0:atDR1# show qos utilization 
+#Sat Nov  9 17:52:59 2024
+#  Interface        Period, s   Enq, Kbit/s           Drop, Kbit/s          Frames enq, pps       Frames drop, pps      Class 
+#  ---------------- ----------- --------------------- --------------------- --------------------- --------------------- ------ 
+#  bu1              20          0                     0                     0                     0                     CS3 
+#  bu1              20          0                     0                     0                     0                     CS6 
+#  bu1              20          0                     0                     0                     0                     CS7 
+#  bu1              20          0                     0                     0                     0                     EF 
+#  bu1              20          405370                0                     41960                 0                     class-default 
+#0/FMC0:atDR1# 
+

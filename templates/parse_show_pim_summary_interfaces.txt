@@ -1,0 +1,57 @@
+Value Top (\s+Address\s+Interface\s+Nbr Count\s+Groups \(\*,G\)\s+Groups \(S,G\)\s+)
+Value addr (\d+.\d+.\d+.\d+/[32][04])
+Value pim_int (bu[12]|te0/1/5.35[03]|te0/0/9.30|te0/0/11.35[12])
+Value nbr_count ([01])
+Value Star_G_count (\d)
+Value S_G_count (\d)
+
+Start
+  ^${Top} -> Record
+  ^\s+${addr}\s+${pim_int}\s+${nbr_count}\s+${Star_G_count}\s+${S_G_count} -> Record
+
+
+#0/FMC0:atDR1# show pim summary interfaces 
+#Mon Apr 13 17:50:00 2020
+#  IPv4
+#  
+#  Address              Interface          Nbr Count   Groups (*,G)   Groups (S,G)   
+#  -------------------- ------------------ ----------- -------------- -------------- 
+#  192.168.55.2/30      bu1                1           0              0              
+#  192.168.55.5/30      bu2                1           0              0              
+#  192.168.55.17/30     te0/1/5.350        1           0              0              
+#  10.1.1.1/24          te0/1/5.353        0           2              0              
+#  
+#  IPv6
+#  
+#0/FMC0:atDR1# 
+
+
+#0/ME5100:atAR1# show pim summary interfaces 
+#Mon Apr 13 17:51:28 2020
+#  IPv4
+#  
+#  Address              Interface          Nbr Count   Groups (*,G)   Groups (S,G)   
+#  -------------------- ------------------ ----------- -------------- -------------- 
+#  192.168.55.1/30      bu1                1           0              2              
+#  192.168.55.21/30     bu2                1           0              0              
+#  192.168.55.9/30      te0/0/11.352       1           0              0              
+#  46.61.193.160/24     te0/0/9.30         0           0              0              
+#  
+#  IPv6
+#  
+#0/ME5100:atAR1# 
+
+#0/ME5100:atAR2# show pim summary interfaces 
+#Mon Apr 13 17:51:00 2020
+#  IPv4
+#  
+#  Address              Interface          Nbr Count   Groups (*,G)   Groups (S,G)   
+#  -------------------- ------------------ ----------- -------------- -------------- 
+#  192.168.55.6/30      bu1                1           2              2              
+#  192.168.55.22/30     bu2                1           0              0              
+#  192.168.55.13/30     te0/0/11.351       1           0              0              
+#  
+#  IPv6
+#  
+#0/ME5100:atAR2# 
+#

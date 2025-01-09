@@ -1,0 +1,19 @@
+Value Unit (0/FMC[01]|0/ME5[12]00)
+Value Image ([01])
+Value Run_status (Yes|No)
+Value Boot (\S*)
+Value Version (\d+.\d+.\d+.\d+[RT]|\d+.\d+.\d+.\d+RC|\d+.\d+.\d+.\S+)
+Value Date (\d\d-\w+-\d\d\d\d\s+\d\d:\d\d:\d\d)
+
+Start
+  ^\s+${Unit}\s+${Image}\s+${Run_status}\s+${Boot}\s+${Version}\s+${Date}\s+ -> Record
+
+#0/FMC0:atDR1# show firmware 
+#Thu Dec 10 12:07:28 2020
+#  Unit      Image  Running  Boot          Version               Date                    
+#  --------- ------ -------- ------------- --------------------- ----------------------- 
+#  0/FMC0    0      No                     2.3.0.task-167094     04-Dec-2020 00:38:56    
+#  0/FMC0    1      Yes      *             2.3.0.834RC           07-Dec-2020 05:37:38    
+#  0/FMC1    0      Yes      *             2.3.0.834RC           07-Dec-2020 05:37:38    
+#  0/FMC1    1      No                     2.3.0.task-167094     04-Dec-2020 00:38:56    
+#0/FMC0:atDR1# 

@@ -1,0 +1,99 @@
+Value ChassysType (   Module in slot main control panel is ME5000)
+Value ChassysSerial (ME\d+)
+Value  HardVersion (\d+v\d+)
+Value HardRev (\d+)
+Value MAC (\w\w:\w\w:\w\w:\w\w:\w\w:\w\w)
+
+Start
+  ^${ChassysType} -> Record
+  ^    Serial number:      ${ChassysSerial} -> Record
+  ^    Hardware version:   ${HardVersion} -> Record
+  ^    Hardware revision:  ${HardRev} -> Record
+  ^    MAC address:        ${MAC} -> Record
+
+
+
+#Пример вывода команды 'show system inventory' на ME5000
+#0/FMC0:atDR1# show sys invent
+#Sat Dec  7 21:47:29 2019
+#  Hardware inventory information for chassis 0
+#
+#   Module in slot main control panel is ME5000
+#    Serial number:      ME04000030
+#    Hardware version:   1v2
+#    Hardware revision:  0
+#    MAC address:        a8:f9:4b:8b:92:80
+#
+#   Module in slot FMC0 is FMC16
+#    Serial number:      ME01000036
+#    Hardware version:   1v4
+#    Hardware revision:  0
+#    Installed RAM:      8 GB
+#      Bank 0:           Kingston 9965526-020.A00LF
+#        Capacity:       4 GB
+#        Serial number:  5456239
+#      Bank 1:           Kingston 9965526-020.A00LF
+#        Capacity:       4 GB
+#        Serial number:  555ab39
+#    Storage:
+#      Device model:   WDC WD3200LPCX-00VHAT0
+#      Serial number:  WD-WXC1AC5KVECS
+#      Capacity:       320 GB
+#
+#   Module in slot FMC1 is FMC16
+#    Serial number:      ME01000042
+#    Hardware version:   1v4
+#    Hardware revision:  0
+#    Installed RAM:      8 GB
+#      Bank 0:           Kingston 9965526-017.A00LF
+#        Capacity:       4 GB
+#        Serial number:  54d46a
+#      Bank 1:           Kingston 9965526-017.A00LF
+#        Capacity:       4 GB
+#        Serial number:  56d36a
+#    Storage:
+#      Device model:   WDC WD3200LPCX-00VHAT0
+#      Serial number:  WD-WXT1E75C039K
+#      Capacity:       320 GB
+#
+#   Module in slot 0 is not present
+#
+#   Module in slot 1 is LC18XGE
+#    Serial number:      ME02000037
+#    Hardware version:   1v3
+#    Hardware revision:  0
+#    Installed RAM:      4 GB
+#      Bank 0:           Kingston 9965526-020.A00LF
+#        Capacity:       4 GB
+#        Serial number:  626c4f6
+#
+#   Module in slot 2 is not present
+#
+#   Module in slot 3 is not present
+#
+#   Module in slot 4 is not present
+#
+#   Module in slot 5 is not present
+#
+#   Module in slot 6 is not present
+#
+#   Module in slot 7 is not present
+#
+#   Module in slot 8 is LC18XGE
+#    Serial number:      ME02000041
+#    Hardware version:   1v3
+#    Hardware revision:  1
+#    Installed RAM:      4 GB
+#      Bank 0:           Kingston 9965526-017.A00LF
+#        Capacity:       4 GB
+#        Serial number:  53e414
+#
+#   Module in slot 9 is not present
+#
+#   Module in slot 10 is not present
+#
+#   Module in slot 11 is not present
+#
+#   Module in slot fan tray top is present
+#
+#   Module in slot fan tray bottom is present

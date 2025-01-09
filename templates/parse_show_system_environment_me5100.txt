@@ -1,0 +1,63 @@
+Value Chassis_number (\d+)
+Value MainModule (ME5[12]00)
+Value CpuTemp_int (\d+)
+Value CpuTemp_ext (\d+)
+Value SwitchEngineTemp_int (\d+)
+Value SwitchEngineTemp_ext (\d+)
+Value SMSTAT_Temp_int (\d+)
+Value SMSTAT_Temp_ext (\d+)
+Value LookupEngineTemp_int (\d+)
+Value LookupEngineTemp_ext (\d+)
+Value BoardTemp (\d+)
+Value FanSpeed (\d+)
+Value Fan1 (\d+)
+Value Fan2 (\d+)
+Value Fan3 (\d+)
+Value PSM1Fan (is not present|\d+)
+Value PSM2Fan (is not present|\d+)
+
+Start
+  ^\s+Hardware environment information for chassis ${Chassis_number}
+  ^\s+Main system module is ${MainModule}
+  ^\s+CPU temperature \(int/ext\):\s+${CpuTemp_int}\s+C\s+/\s+${CpuTemp_ext}\s+C
+  ^\s+Switching engine temperature \(int/ext\): ${SwitchEngineTemp_int}\s+C\s+/\s+${SwitchEngineTemp_ext}\s+C
+  ^\s+SM-STAT board \(int/ext\):\s+${SMSTAT_Temp_int}\s+C\s+/\s+${SMSTAT_Temp_ext}\s+C
+  ^\s+Lookup engine temperature \(int/ext\):\s+${LookupEngineTemp_int}\s+C\s+/\s+${LookupEngineTemp_ext}\s+C
+  ^\s+Board sensor \(inlet\) temperature:\s+${BoardTemp}\s+C
+  ^\s+System fan speed is set to ${FanSpeed}%
+#  ^\s+Fan 1: ${Fan1} RPM
+  ^\s+Fan unit 1: ${Fan1} RPM
+#  ^\s+Fan 2: ${Fan2} RPM
+  ^\s+Fan unit 2: ${Fan2} RPM
+#  ^\s+Fan 3: ${Fan3} RPM
+  ^\s+Fan unit 3: ${Fan3} RPM
+  ^\s+Power supply 1 ${PSM1Fan}
+  ^\s+Power supply 1 fan speed is ${PSM1Fan} RPM
+  ^\s+Power supply 2 ${PSM2Fan}
+  ^\s+Power supply 2 fan speed is ${PSM2Fan} RPM
+
+
+#Пример вывода команды 'show system environment' на ME5100 
+#0/ME5100:atAR1# show system environment 
+#Tue Dec 10 09:57:03 2019
+#  Hardware environment information for chassis 0
+#  
+#  Main system module is: 
+#   CPU temperature (int/ext):              34 C /  32 C
+#   Switching engine temperature (int/ext): 41 C /  33 C
+#   Lookup engine temperature (int/ext):    38 C /  31 C
+#   Board sensor (inlet) temperature:       31 C
+#  
+#   System fan speed is set to 24%
+#    Current fan speeds:
+#  
+#     Fan 1: 2940 RPM
+#     Fan 2: 2880 RPM
+#     Fan 3: 2820 RPM
+#  
+#  Power supply 1 is not present
+#  
+#  Power supply 2 fan speed is 9060 RPM
+#0/ME5100:atAR1# 
+
+

@@ -1,0 +1,32 @@
+<group name="Start">
+  Hardware environment information for chassis {{ Chassis_number }}
+  Main system module is {{ MainModule }}
+</group>
+
+<group name="temperature">
+   CPU temperature (int/ext):              {{ CpuTemp_int }} C /  {{ CpuTemp_ext }} C
+   Switching engine temperature (int/ext): {{ SwitchEngineTemp_int }} C /  {{ SwitchEngineTemp_ext }} C
+   SM-STAT board (int/ext):                {{ SMSTAT_Temp_int }} C /  {{ SMSTAT_Temp_ext }} C
+   Lookup engine temperature (int/ext):    {{ LookupEngineTemp_int }} C /  {{ LookupEngineTemp_ext }} C
+   Board sensor (inlet) temperature:       {{ BoardTemp }} C
+   The Highest transceiver temperature:    {{ Highest }} C
+</group>
+
+<group name="Fan_speed">
+  System fan speed is set to {{ FanSpeed }}%
+</group>
+
+<group name="Fan_rpm">
+   Fan {{ NUM }}:                                  {{ Fan_RPM }} RPM
+</group>
+
+<group name="Power_first">
+  Power supply 1 is not {{ PSM1Fan }}
+</group>
+
+<group name="Power_second">
+  Power supply 2 is {{ PSM2Fan }}
+   Power status:                           {{ Power }}
+   Temperature:                            {{ Temp }}
+   Fan speed:                              {{ Speed }} RPM
+</group>

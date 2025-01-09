@@ -1,0 +1,11 @@
+{{ ip_addr | re("\w+:\w+:\w+:\w+::\w+/\d+") }} {{ interface | re("br\d+") }} {{ admin_status | contains('Up', 'Down') }} {{ link_status | contains('Up', 'Down') }} DHCP
+
+
+#labr02# show ipv6 interfaces vrf vrf42
+#IPv6 address                                          Interface            Admin   Link    Type      
+#---------------------------------------------------   ------------------   -----   -----   -------   
+#fe80::aaf9:4bff:feaa:d89c/64                          te1/0/1.42           Up      Up      static    
+#fe80::a849:d9ff:fe25:896f/64                          lo3                  Up      Up      static    
+#2001:db8:cafe:a012::252/64                            br42                 Up      Up      DHCP
+#fe80::dcad:beff:feaf:42/64                            br42                 Up      Up      static
+#labr02#

@@ -1,0 +1,69 @@
+Value route1 (\s+O EA\s+1.0.0.1/32\s+via 192.168.55.[52] \[30/2\], \d+[dh]\d+[hm]\d+[ms], bu1)
+Value route2 (\s+O EA\s+1.0.0.2/32\s+via 192.168.55.22 \[30/2\], \d+[dh]\d+[hm]\d+[ms], bu2|\s+O EA\s+1.0.0.2/32\s+via 192.168.55.6 \[30/2\], \d+[dh]\d+[hm]\d+[ms], bu2)
+Value route3 (\s+O EA\s+1.0.0.3/32\s+via 192.168.55.21 \[30/2\], \d+[dh]\d+[hm]\d+[ms], bu2|\s+O EA\s+1.0.0.3/32\s+via 192.168.55.1 \[30/2\], \d+[dh]\d+[hm]\d+[ms], bu1)
+Value route4 (\s+O EA\s+1.0.0.4/32\s+via 192.168.55.1[048] \[30/1\], \d+[dh]\d+[hm]\d+[ms], te0/[01]/\d+.35[012])
+Value Total_count (\d+)
+
+Start
+  ^${route1}
+  ^${route2}
+  ^${route3}
+  ^${route4}
+  ^\s+ Total entries:\s+${Total_count}
+
+
+
+
+#0/ME5100:atAR1# show route ospf 
+#Tue Apr  7 04:27:13 2020
+#  Codes: IA - OSPF inter area, EA - OSPF intra area
+#      N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+#      E1 - OSPF external type 1, E2 - OSPF external type 2
+#  
+#  
+#  O EA   1.0.0.1/32    via 192.168.55.2 [30/1001], 00h18m40s, bu1
+#  O EA   1.0.0.2/32    via 192.168.55.22 [30/1001], 00h18m40s, bu2
+#  O EA   1.0.0.4/32    via 192.168.55.10 [30/1], 00h18m40s, te0/0/11.352
+#  O EA   192.168.55.4/30    via 192.168.55.2 [30/2], 00h18m40s, bu1
+#  O EA   192.168.55.12/30    via 192.168.55.10 [30/2], 00h18m40s, te0/0/11.352
+#  O EA   192.168.55.16/30    via 192.168.55.10 [30/2], 00h18m40s, te0/0/11.352
+#  
+#  Total route count: 6
+#0/ME5100:atAR1# 
+
+
+
+#0/ME5100:atAR2# show route ospf 
+#Tue Apr  7 04:25:09 2020
+#  Codes: IA - OSPF inter area, EA - OSPF intra area
+#      N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+#      E1 - OSPF external type 1, E2 - OSPF external type 2
+#  
+#  
+#  O EA   1.0.0.1/32    via 192.168.55.5 [30/1001], 00h28m14s, bu1
+#  O EA   1.0.0.3/32    via 192.168.55.21 [30/1001], 00h24m49s, bu2
+#  O EA   1.0.0.4/32    via 192.168.55.14 [30/1], 00h24m49s, te0/0/11.351
+#  O EA   192.168.55.0/30    via 192.168.55.5 [30/2], 00h16m35s, bu1
+#  O EA   192.168.55.8/30    via 192.168.55.14 [30/2], 00h16m35s, te0/0/11.351
+#  O EA   192.168.55.16/30    via 192.168.55.14 [30/2], 00h21m18s, te0/0/11.351
+#  
+#  Total route count: 6
+#0/ME5100:atAR2# 
+
+
+#0/FMC0:atDR1# show route ospf 
+#Tue Apr  7 11:25:28 2020
+#  Codes: IA - OSPF inter area, EA - OSPF intra area
+#      N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+#      E1 - OSPF external type 1, E2 - OSPF external type 2
+#  
+#  
+#  O EA   1.0.0.2/32    via 192.168.55.6 [30/1001], 00h21m40s, bu2
+#  O EA   1.0.0.3/32    via 192.168.55.1 [30/1001], 00h21m40s, bu1
+#  O EA   1.0.0.4/32    via 192.168.55.18 [30/1], 00h21m40s, te0/1/5.350
+#  O EA   192.168.55.8/30    via 192.168.55.18 [30/2], 00h16m54s, te0/1/5.350
+#  O EA   192.168.55.12/30    via 192.168.55.18 [30/2], 00h21m40s, te0/1/5.350
+#  O EA   192.168.55.20/30    via 192.168.55.6 [30/2], 00h16m54s, bu2
+#  
+#  Total route count: 6
+#0/FMC0:atDR1# 

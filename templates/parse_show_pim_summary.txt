@@ -1,0 +1,57 @@
+Value ipv4_keepalive_timer (\d+)
+Value ipv4_reg_supress_timer (\d+)
+Value ipv4_probe_timer (\d+)
+Value ipv4_backstop_timer (\d+)
+Value ipv4_join_startup_timer (\d+)
+Value ipv6_keepalive_timer (\d+)
+Value ipv6_reg_supress_timer (\d+)
+Value ipv6_probe_timer (\d+)
+Value ipv6_backstop_timer (\d+)
+Value ipv6_join_startup_timer (\d+)
+
+Start
+  ^\s+PIM IPv4 State Counters -> IPV4
+  ^\s+PIM IPv6 State Counters -> IPV6
+
+IPV4
+  ^\s+Keepalive period is ${ipv4_keepalive_timer} sec 
+  ^\s+Register suppression time is ${ipv4_reg_supress_timer} sec, probe time is ${ipv4_probe_timer} sec
+  ^\s+Backstop timer:\s+${ipv4_backstop_timer}\s+sec\s+\(\d+ remaining\)
+  ^\s+Join startup timer:\s+${ipv4_join_startup_timer}\s+sec\s+\(\d+ remaining\) -> Record Start
+
+
+IPV6
+  ^\s+Keepalive period is ${ipv6_keepalive_timer} sec
+  ^\s+Register suppression time is ${ipv6_reg_supress_timer} sec, probe time is ${ipv6_probe_timer} sec
+  ^\s+Backstop timer:\s+${ipv6_backstop_timer}\s+sec\s+\(\d+ remaining\)
+  ^\s+Join startup timer:\s+${ipv6_join_startup_timer}\s+sec\s+\(\d+ remaining\) -> Record Start
+
+
+#0/ME5100:atAR1# show pim summary 
+#Fri Jan  8 17:16:55 2021
+#  PIM IPv4 State Counters
+#    Keepalive period is 210 sec
+#    Register suppression time is 60 sec, probe time is 5 sec
+#    PIM multipath mode is highest-neighbor (disabled)
+#    Interface state change traps are enabled
+#    PIM graceful restart status is timed-out
+#      Backstop timer:     300 sec (0 remaining)
+#      Join startup timer: 60 sec (0 remaining)
+#    Different sources/RPs: 1/1
+#    Groups now/max: (*,G): 2/not set   (S,G): 2/not set
+#                  (*,G,I): 0/not set (S,G,I): 2/not set
+#  
+#  PIM IPv6 State Counters
+#    Keepalive period is 210 sec
+#    Register suppression time is 60 sec, probe time is 5 sec
+#    PIM multipath mode is highest-neighbor (disabled)
+#    Interface state change traps are enabled
+#    PIM graceful restart status is timed-out
+#      Backstop timer:     300 sec (0 remaining)
+#      Join startup timer: 60 sec (0 remaining)
+#    Different sources/RPs: 0/0
+#    Groups now/max: (*,G): 0/not set   (S,G): 0/not set
+#                  (*,G,I): 0/not set (S,G,I): 0/not set
+#  
+#0/ME5100:atAR1# 
+

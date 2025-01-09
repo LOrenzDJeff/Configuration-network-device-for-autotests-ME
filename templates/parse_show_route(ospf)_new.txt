@@ -1,0 +1,85 @@
+Value line1 (\s+Codes: C - connected, S - static, O - OSPF, B - BGP, L - local)
+Value line2 (\s+IA - OSPF inter area, EA - OSPF intra area)
+Value line3 (\s+N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2)
+Value line4 (\s+E1 - OSPF external type 1, E2 - OSPF external type 2)
+Value line5 (\s+i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2,)
+Value line6 (\s+LE1 - IS-IS level1 external, LE2 - IS-IS level2 external)
+Value line7 (\s+BI - BGP internal, BE - BGP external, BV - BGP vpn)
+Value route1 (\s+O EA\s+1.0.0.1/32\s+via 192.168.55.[52] \[30/2\], \d+[dh]\d+[hm]\d+[ms], bu1)
+Value route2 (\s+O EA\s+1.0.0.2/32\s+via 192.168.55.22 \[30/2\], \d+[dh]\d+[hm]\d+[ms], bu2|\s+O EA\s+1.0.0.2/32\s+via 192.168.55.6 \[30/2\], \d+[dh]\d+[hm]\d+[ms], bu2)
+Value route3 (\s+O EA\s+1.0.0.3/32\s+via 192.168.55.21 \[30/2\], \d+[dh]\d+[hm]\d+[ms], bu2|\s+O EA\s+1.0.0.3/32\s+via 192.168.55.1 \[30/2\], \d+[dh]\d+[hm]\d+[ms], bu1)
+Value route4 (\s+O EA\s+1.0.0.4/32\s+via 192.168.55.1[048] \[30/1\], \d+[dh]\d+[hm]\d+[ms], te0/[01]/\d+.35[012])
+Value Total_count (\d+)
+
+Start
+  ^${line1} 
+  ^${line2} 
+  ^${line3} 
+  ^${line4} 
+  ^${line5} 
+  ^${line6} 
+  ^${line7} 
+  ^${route1} 
+  ^${route2} 
+  ^${route3}
+  ^${route4}
+  ^\s+Total entries: ${Total_count} -> Record
+
+
+#0/ME5100:atAR1# show route 
+#Tue Apr  7 04:27:56 2020
+#  Codes: C - connected, S - static, O - OSPF, B - BGP, L - local
+#      IA - OSPF inter area, EA - OSPF intra area
+#      N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+#      E1 - OSPF external type 1, E2 - OSPF external type 2
+#      i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2,
+#      LE1 - IS-IS level1 external, LE2 - IS-IS level2 external
+#      BI - BGP internal, BE - BGP external, BV - BGP vpn
+#  
+#  
+#  O EA   1.0.0.1/32    via 192.168.55.2 [30/1001], 00h19m23s, bu1
+#  O EA   1.0.0.2/32    via 192.168.55.22 [30/1001], 00h19m23s, bu2
+#  L      1.0.0.3/32     is directly connected, 02h02m38s, lo10
+#  O EA   1.0.0.4/32    via 192.168.55.10 [30/1], 00h19m23s, te0/0/11.352
+#  C      192.168.55.0/30     is directly connected, 01h57m33s, bu1
+#  L      192.168.55.1/32     is directly connected, 01h57m33s, bu1
+#  O EA   192.168.55.4/30    via 192.168.55.2 [30/2], 00h19m23s, bu1
+#  C      192.168.55.8/30     is directly connected, 02h02m34s, te0/0/11.352
+#  L      192.168.55.9/32     is directly connected, 02h02m34s, te0/0/11.352
+#  O EA   192.168.55.12/30    via 192.168.55.10 [30/2], 00h19m23s, te0/0/11.352
+#  O EA   192.168.55.16/30    via 192.168.55.10 [30/2], 00h19m23s, te0/0/11.352
+#  C      192.168.55.20/30     is directly connected, 02h01m44s, bu2
+#  L      192.168.55.21/32     is directly connected, 02h01m44s, bu2
+#  
+#  Total route count: 13
+#0/ME5100:atAR1# 
+
+
+#0/FMC0:atDR1# show route
+#Tue Apr  7 11:46:31 2020
+#  Codes: C - connected, S - static, O - OSPF, B - BGP, L - local
+#      IA - OSPF inter area, EA - OSPF intra area
+#      N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2
+#      E1 - OSPF external type 1, E2 - OSPF external type 2
+#      i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2,
+#      LE1 - IS-IS level1 external, LE2 - IS-IS level2 external
+#      BI - BGP internal, BE - BGP external, BV - BGP vpn
+#  
+#  
+#  L      1.0.0.1/32     is directly connected, 02h21m20s, lo10
+#  O EA   1.0.0.2/32    via 192.168.55.6 [30/1001], 00h42m44s, bu2
+#  O EA   1.0.0.3/32    via 192.168.55.1 [30/1001], 00h42m44s, bu1
+#  O EA   1.0.0.4/32    via 192.168.55.18 [30/1], 00h42m44s, te0/1/5.350
+#  C      192.168.55.0/30     is directly connected, 02h16m09s, bu1
+#  L      192.168.55.2/32     is directly connected, 02h16m09s, bu1
+#  C      192.168.55.4/30     is directly connected, 02h16m16s, bu2
+#  L      192.168.55.5/32     is directly connected, 02h16m16s, bu2
+#  O EA   192.168.55.8/30    via 192.168.55.18 [30/2], 00h37m58s, te0/1/5.350
+#  O EA   192.168.55.12/30    via 192.168.55.18 [30/2], 00h42m44s, te0/1/5.350
+#  C      192.168.55.16/30     is directly connected, 02h16m09s, te0/1/5.350
+#  L      192.168.55.17/32     is directly connected, 02h16m09s, te0/1/5.350
+#  O EA   192.168.55.20/30    via 192.168.55.6 [30/2], 00h37m58s, bu2
+#  
+#  Total route count: 13
+#0/FMC0:atDR1# 
+

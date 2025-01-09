@@ -1,0 +1,21 @@
+Value loss (\d+)
+
+Start
+  ^\d+ packets transmitted, \d+ packets received, ${loss}% packet loss
+  
+#5324-at-stand-ethlab#ping 192.168.50.1 timeout 100 size 1500 count 6    
+#Pinging 192.168.50.1 with 1454 bytes of data:
+#
+#1454 bytes from 192.168.50.1: icmp_seq=1. time=20 ms
+#1454 bytes from 192.168.50.1: icmp_seq=2. time=0 ms
+#1454 bytes from 192.168.50.1: icmp_seq=3. time=0 ms
+#1454 bytes from 192.168.50.1: icmp_seq=4. time=0 ms
+#1454 bytes from 192.168.50.1: icmp_seq=5. time=0 ms
+#1454 bytes from 192.168.50.1: icmp_seq=6. time=0 ms
+#
+#----192.168.50.1 PING Statistics----
+#6 packets transmitted, 6 packets received, 0% packet loss
+#round-trip (ms) min/avg/max = 0/3/20
+#
+#
+#5324-at-stand-ethlab#

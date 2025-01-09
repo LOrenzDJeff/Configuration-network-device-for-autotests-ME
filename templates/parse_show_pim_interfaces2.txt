@@ -1,0 +1,30 @@
+Value Top (\s+Address\s+Interface\s+Status\s+Nbr\s+\(\*,G\)\s+\(S,G\)\s+DR\s+Designated)
+Value int_addr (192.168.55.\d+|46.61.193.160|10.1.1.1)
+Value int (bu[12]|te0/0/11.35[12]|te0/1/5.35[03]|te0/0/9.30)
+Value int_status (up|down)
+Value nbr_count (\d+|-)
+Value Star_G (\d+)
+Value Source_G (\d+) 
+Value DR_pri (\d+)
+Value DR_addr (192.168.55.\d+|local)
+
+Start
+  ^${Top} 
+  ^\s+${int_addr}\s+${int}\s+${int_status}\s+${nbr_count}\s+${Star_G}\s+${Source_G}\s+${DR_pri}\s+${DR_addr}\s+ -> Record 
+
+#0/ME5100:atAR1# show pim interfaces 
+#Fri Jan  8 11:07:13 2021
+#  IPv4
+#  
+#  Address           Interface          Status    Nbr     (*,G)   (S,G)   DR          Designated      
+#                                                 Count   Count   Count   priority    Router          
+#  ----------------- ------------------ --------- ------- ------- ------- ----------- --------------- 
+#  192.168.55.1      bu1                up        1       0       2       1           192.168.55.2    
+#  192.168.55.21     bu2                up        1       0       0       1           192.168.55.22   
+#  192.168.55.9      te0/0/11.352       up        1       0       0       1           192.168.55.10   
+#  46.61.193.160     te0/0/9.30         up        -       0       0       1           local           
+#  
+#  IPv6
+#  
+#0/ME5100:atAR1# 
+

@@ -1,0 +1,64 @@
+Value hello_rx (\d+)
+Value hello_tx (\d+)
+Value hello_timer_mismatch (\d+)
+Value dead_timer_mismatch (\d+)
+Value area_count_mismatch (\d+)
+Value dr_ip_add (\d+.\d+.\d+.\d+)
+Value bdr_ip_add (\d+.\d+.\d+.\d+)
+
+Start
+  ^\s+Designated Router IP addr:\s+${dr_ip_add}
+  ^\s+Backup Designated Router IP addr:\s+${bdr_ip_add}
+  ^\s+rx hello:\s+${hello_rx},\s+byte:\s+\d+
+  ^\s+tx hello:\s+${hello_tx},\s+byte:\s+\d+
+  ^\s+header bad source err: \d+, header area mismatch err: ${area_count_mismatch}
+  ^\s+hello\s+timer\s+mismatch:\s+${hello_timer_mismatch},\s+dead\s+interval\s+mismatch:\s+${dead_timer_mismatch} 
+  
+  
+#0/FMC0:atDR1# show ospfv2 interfaces  bundle-ether 2.3218 detailed  
+#Tue Jun 20 17:08:27 2023
+#  Routing Process: 1, ID 1.0.0.1
+#    Router is not an area border router
+#  
+#      Interface Bundle-ether2.3218, state: point-to-point, status: up
+#        Area 255.255.255.255, metric: 1, Network type: point-to-point
+#        Changed state: 8 time, Administrative group: 0
+#        Designated Router IP addr: 0.0.0.0
+#        Backup Designated Router IP addr: 0.0.0.0
+#        Subnet mask: 255.255.255.252
+#        Remote peer index: 0
+#        Traffic Engineering: disabled
+#        Wait time remaining: 0 ms
+#        Hello time remaining: 6356 ms
+#        Number of LSA count: 0, checksum: 0x00000000
+#        Stats (packet count):
+#          rx invalid: 0, byte: 0
+#          rx hello: 0, byte: 0
+#          rx database description: 0, byte: 0
+#          rx ls request: 0, byte: 0
+#          rx ls update: 0, byte: 0
+#          rx ls acknowledgement: 0, byte: 0
+#          tx hello: 14, byte: 896
+#          tx database description: 0, byte: 0
+#          tx ls request: 0, byte: 0
+#          tx ls update: 0, byte: 0
+#          tx ls acknowledgement: 0, byte: 0
+#          tx failed: 0, byte: 0
+#          header length err: 0, header version err: 0
+#          header bad source err: 0, header area mismatch err: 0
+#          header self-originated err: 0, header duplicate id err: 0
+#          header hello err: 2, header MTU mismatch err: 0
+#          header neighbor ignored err: 0, header resource err: 0
+#          bad lsa len: 0, bad lsa type: 0
+#          bad lsa data: 0, bad lsa checksum: 0x0000
+#          unknown NBMA neighbor: 0, unknown virtual neighbor: 0
+#          hello timer mismatch: 2, dead interval mismatch: 0
+#          options mismatch: 0, dead interval mismatch: 0
+#          neighbor admin down: 0, come from the local router: 0
+#          multi-area interface is not P2P: 0, bad packet: 2
+#          checksum err: 0, authentication err: 0
+#          wrong protocol err: 0, virtual interface clash with multi-area interface err: 0
+#          bad authentication: 0, authentication failed: 0
+#          netmask mismatch: 0
+#          interface in standby state err: 0
+

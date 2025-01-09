@@ -1,0 +1,13 @@
+Value remote_as (\d+)
+Value local_as (\d+)
+Value link (\w+\s\w+)
+Value bgp_state (\w+)
+Value peer_group (\S+\s*\S*)
+Value bgp_neighbor_hop (\w+\s\w+\s\w+\s\w+\s\w+\s\w+\s\d+\s\w+\s\w+)
+
+
+Start
+  ^\s+Remote AS\s${remote_as}\S\slocal AS\s${local_as}\s*\S*\s*\S*\s*\S*\S\s${link}
+  ^\s+BGP STATE:\s${bgp_state}
+  ^\s+Peer group:\s${peer_group}
+  ^\s+${bgp_neighbor_hop}

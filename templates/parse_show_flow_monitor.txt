@@ -1,0 +1,25 @@
+Value packets (\d+)
+Value bytes (\d+)
+Value source (\d+.\d+.\d+.\d+)
+Value dest (\d+.\d+.\d+.\d+)
+Value start_t (\d+:\d+:\d+)
+Value start_d (\d+/\d+/\d+)
+Value last_update_t (\d+:\d+:\d+)
+Value last_update_d (\d+/\d+/\d+)
+
+
+Start
+  ^\s+\d+\s+${packets}\s+${bytes}\s+${source}\s+${dest}\s+${start_t}\s+${last_update_t}
+  ^\s+${start_d}\s+${last_update_d} -> Record
+
+
+
+#0/FMC0:atDR1# show flow monitor 
+#Mon Aug  7 16:14:37 2023
+#  id       packets               bytes                 source           destination      started            last updated       
+#  -------- --------------------- --------------------- ---------------- ---------------- ------------------ ------------------ 
+#  53       60                    87000                 10.0.44.2        10.0.45.2        16:14:20           16:14:32           
+#                                                                                          07/08/2023         07/08/2023        
+#  54       60                    86520                 10.0.45.2        10.0.44.2        16:14:20           16:14:32           
+#                                                                                          07/08/2023         07/08/2023        
+#0/FMC0:atDR1# 

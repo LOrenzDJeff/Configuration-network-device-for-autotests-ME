@@ -1,0 +1,37 @@
+<group name="Start">
+  Hardware environment information for chassis 0  
+  Module in slot FMC0 is {{ FMC0 }}
+</group>
+
+<group name="FMC0_info">
+    CPU temperature (int/ext):              {{ FMC0_CpuTemp_int }} C /  {{ FMC0_CpuTemp_ext }} C
+    Fabric engine temperature (int/ext):    {{ FMC0_FabricTemp_int }} C /  {{ FMC0_FabricTemp_ext }} C
+    Board sensor (inlet) temperature:       {{ FMC0_Board_Temp }} C
+</group>
+
+<group name="Module">
+  Module in slot 8 is {{ Slot }}
+    CPU temperature (int/ext):              {{ Slot_CpuTemp_int }} C /  {{ Slot_CpuTemp_ext }} C
+    Lookup engine temperature (int/ext):    {{ Slot_Lookup_Temp_int }} C /  {{ Slot_Lookup_Temp_ext }} C
+    Switching engine temperature (int/ext): {{ Slot_Switch_Temp_int }} C /  {{ Slot_Switch_Temp_ext }} C
+    SM-STAT engine temperature (int/ext):   {{ Slot_SMSTAT_Temp_int }} C /  {{ Slot_SMSTAT_Temp_ext }} C
+    Board sensor (inlet) temperature:       {{ Slot_Board_Temp }} C
+    The Highest transceiver temperature:    {{ Slot_Highest }} C
+</group>
+
+<group name="Fan_speed_Top">
+  Fan array 1 (top) is set to {{ FanTop }}%
+</group>
+
+<group name="Fan_feeder_top">
+   Fan feeder A DC-DC temperature:          {{ Fan_A}} C
+   Fan feeder B DC-DC temperature:          {{ Fan_B }} C
+</group>
+
+<group name="Fan_rpm">
+    Fan {{ NUM }}:                                  {{ Fan_RPM }} RPM
+</group>
+  
+<group name="Fan_speed_Bottom">
+  Fan array 2 (bottom) is set to {{ FanBottom }}%
+</group>

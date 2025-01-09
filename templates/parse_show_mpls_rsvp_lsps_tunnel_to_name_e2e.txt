@@ -1,0 +1,96 @@
+Value lsp_signal_name (to_atAR2@main|to_atAR2@backup)
+Value lsp_id (\d+)
+Value lsp_src (\d+.\d+.\d+.\d+)
+Value lsp_dst (\d+.\d+.\d+.\d+)
+Value lsp_state (up|down)
+Value lsp_res_status (active|standby)
+Value lsp_protect_role (working|protecting)
+Value lsp_signal_int (Bundle-ether[12]|Tengigabitethernet0/0/11.35[12])
+Value hop_number (hop\d+)
+Value incoming_ERO (\d+.\d+.\d+.\d+/32)
+Value outgoing_ERO (\d+.\d+.\d+.\d+/32)
+Value incoming_RRO (\d+.\d+.\d+.\d+|Label \d+)
+Value outgoing_RRO (\d+.\d+.\d+.\d+|Label \d+)
+Value loose_inc (\(lose\))
+Value loose_out (\(lose\))
+
+Start
+  ^\s+LSP name: main, signaled-name: ${lsp_signal_name}, id: ${lsp_id}, Source: ${lsp_src}, Destination: ${lsp_dst} -> Record LSP_main
+  ^\s+${hop_number}\s+${incoming_ERO}\s+${loose_inc}?\s+${outgoing_ERO}?\s+${loose_out}? -> Record
+  ^\s+${hop_number}\s+${incoming_RRO}\s+${outgoing_RRO} -> Record
+  ^\s+LSP name: backup, signaled-name: ${lsp_signal_name}, id: ${lsp_id}, Source: ${lsp_src}, Destination: ${lsp_dst} -> Record LSP_backup
+  ^\s+${hop_number}\s+${incoming_ERO}?\s+${loose_inc}?\s+${outgoing_ERO}?\s+${loose_out}? -> Record
+  ^\s+${hop_number}\s+${incoming_RRO}\s+${outgoing_RRO} -> Record
+
+LSP_main
+  ^\s+State: ${lsp_state}, Status: ${lsp_res_status}, Protection role: ${lsp_protect_role}
+  ^\s+Signaling interface: ${lsp_signal_int} -> Record Start
+
+LSP_backup
+  ^\s+State: ${lsp_state}, Status: ${lsp_res_status}, Protection role: ${lsp_protect_role}
+  ^\s+Signaling interface: ${lsp_signal_int} -> Record Start
+
+#0/FMC0:atDR1# show mpls rsvp lsps tunnel to_atAR2
+#Wed Jan 13 16:10:29 2021
+#  Tunnel: to_atAR2, id: 1
+#    LSP name: main, signaled-name: to_atAR2@main, id: 2, Source: 1.0.0.1, Destination: 1.0.0.2
+#      State: up, Resource status: primary, Protection role: working
+#      Direction: ingress, Node protect: disabled, Bandwidth protection requirement: disabled
+#      Carrying the normal traffic after protection switching: no
+#      Protected by a fast reroute: none 
+#      Downstream repaired: yes
+#      Path recording is desired
+#      SE Style is desired
+#      LSP rerouting is end-to-end-rerouting
+#      OAM MEP entities are not desired
+#      OAM MIP entities are not desired
+#        Downstream information:
+#          Next hop: 192.168.55.6
+#          Signaling interface: Bundle-ether2
+#          Neighbor: 192.168.55.6
+#          Label: 3, type: mpls-label
+# 
+#                           Incoming ERO                 Outgoing ERO
+#                   ---------------------------- ----------------------------
+#          hop0     192.168.55.5/32              192.168.55.6/32              
+#          hop1     192.168.55.6/32                                           
+# 
+#                 Incoming RRO      Outgoing RRO
+#                 ----------------- -----------------
+#        hop0     192.168.55.6      192.168.55.6      
+#        hop1     Label 3           Label 3           
+#  
+#  Tunnel: to_atAR2, id: 1
+#    LSP name: backup, signaled-name: to_atAR2@backup, id: 1, Source: 1.0.0.1, Destination: 1.0.0.2
+#      State: up, Resource status: secondary, Protection role: protecting
+#      Direction: ingress, Node protect: disabled, Bandwidth protection requirement: disabled
+#      Carrying the normal traffic after protection switching: no
+#      Protected by a fast reroute: none (protecting)
+#      Downstream repaired: yes
+#      Path recording is desired
+#      SE Style is desired
+#      LSP rerouting is end-to-end-rerouting
+#      OAM MEP entities are not desired
+#      OAM MIP entities are not desired
+#        Downstream information:
+#          Next hop: 192.168.55.1
+#          Signaling interface: Bundle-ether1
+#          Neighbor: 192.168.55.1
+#          Label: 520, type: mpls-label
+# 
+#                           Incoming ERO                 Outgoing ERO
+#                   ---------------------------- ----------------------------
+#          hop0     192.168.55.2/32              192.168.55.1/32              
+#          hop1     192.168.55.1/32              192.168.55.21/32             
+#          hop2     192.168.55.21/32             192.168.55.22/32             
+#          hop3     192.168.55.22/32                                          
+# 
+#                 Incoming RRO      Outgoing RRO
+#                 ----------------- -----------------
+#        hop0     192.168.55.1      192.168.55.1      
+#        hop1     Label 520         Label 520         
+#        hop2     192.168.55.22     192.168.55.22     
+#        hop3     Label 3           Label 3           
+#  
+#0/FMC0:atDR1#  
+

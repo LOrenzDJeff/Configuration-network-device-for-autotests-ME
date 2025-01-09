@@ -1,0 +1,143 @@
+Value agg_status (up|mc-lag-standby|too-few-links)
+Value dev_role (active \(local-best\)|standby \(remote-best\))
+Value port (te0/8/4|te0/8/15|te0/0/14|te0/0/2)
+Value port_state (collecting-distributing|waiting)
+Value port_id (\d\d.\d\d\d\d\d)
+#Value system_id (32768.a8:f9:4b:8b:92:80|32768.e0:d9:e3:df:34:a0|20.e0:d9:e3:df:34:a0|10.a8:f9:4b:8b:92:80)
+Value system_id (\d+.\w+:\w+:\w+:\w+:\w+:\w+)
+Value partner_port (te0/8/4|te0/8/15|te0/0/14|te0/0/2)
+Value partner_tx_state (PUYCD|PUY|ASUYCD|ASUY)
+#Value partner_port_id (32768.\d+|32768.\d+|32000.\d+|31000.\d+)
+Value partner_port_id (\d+.\d+)
+#Value partner_sys_id (32768.e0:d9:e3:df:35:20|1.a8:f9:4b:35:ac:40|32768.e0:d9:e3:ff:48:80)
+Value partner_sys_id (\d+.\w+:\w+:\w+:\w+:\w+:\w+)
+Value mclag_mbr_id (1000000[13])
+Value mclag_bandle_mac (\w+:\w+:\w+:\w+:\w+:\w+)
+Value mclag_partner_mac (\w+:\w+:\w+:\w+:\w+:\w+)
+Value bundle_info (rcvd|down)
+Value partner_info (rcvd|down)
+Value mclag_status (\S+)
+Value agg_table_port (te0/8/4|te0/8/15|te0/0/14|te0/0/2)
+Value agg_table_port_status (on|off)
+
+Start
+  ^\s+Aggregation status\s+${agg_status}
+  ^\s+Role of device\s+${dev_role}
+  ^\s+${port}\s+${port_state}\s+${port_id}\s+${system_id}\s+
+  ^\s+${partner_port}\s+${partner_tx_state}\s+${partner_port_id}\s+${partner_sys_id}\s+
+  ^\s+${mclag_mbr_id}\s+${mclag_bandle_mac}\s+${mclag_partner_mac}\s+${bundle_info}\s+${partner_info}\s+${mclag_status}\s+
+  ^\s+${agg_table_port}\s+${agg_table_port_status}\s+ -> Record
+
+#0/FMC0:atDR1# show lacp bundle-ether 1
+#Mon Apr 27 14:16:49 2020
+#  Bundle-Ether1, up
+# 
+#    Bundle OS index       62
+#    Bundle MAC            0a:1b:2c:3d:4e:12
+#    Aggregation status    up
+#    Load balance type     hash
+# 
+#    MC-LAG information:
+#      Redundancy group      12
+#      Current port priority 22
+#      Local port priority   22
+#      Role of device        active (local-best)
+# 
+#    BFD Information:
+#      Status                disabled
+#      Source IP             none
+#      Destination IP        none
+#      Multiplier            0
+#      Tx interval           0 ms
+#      Rx interval           0 ms
+# 
+# 
+# 
+#  Local information:
+#  Port                State                      Port ID       System ID                  
+#  ------------------- -------------------------- ------------- -------------------------- 
+#  te0/8/4             collecting-distributing    22.37023      32768.a8:f9:4b:8b:92:80    
+# 
+#  Flags:
+#    A - Port is in active mode. P - Port is in passive mode.
+#    S - Port sends PDUs at slow rate. F - Port sends PDUs at fast rate.
+#    U - Port is aggregated. Y - Port is synchronized
+#    C - Port is collecting. D - Port is distributing
+#    T - Port is using default values for partner information
+#    E - Information about partner has expired
+# 
+# 
+#  Partner's information:
+#  Port                TX state  Port ID       System ID                  
+#  ------------------- --------- ------------- -------------------------- 
+#  te0/8/4             PUYCD     32768.6       32768.e0:d9:e3:df:35:20    
+# 
+#  MC-LAG:
+#  Mbr-id    Bundle MAC              Partner MAC             Bundle info  Partner info  Status 
+#  --------- ----------------------- ----------------------- ------------ ------------- ------- 
+#  10000003  0a:1b:2c:3d:4e:12       e0:d9:e3:df:35:20       rcvd         rcvd          synchronized 
+# 
+#  Aggregation status table:
+#  Port                Aggregation 
+#  ------------------- ------------ 
+#  te0/8/4             on 
+# 
+#0/FMC0:atDR1# 
+
+
+
+#0/ME5100:atAR1# show lacp bundle-ether 1
+#Mon Apr 27 14:16:36 2020
+#  Bundle-Ether1, up
+# 
+#    Bundle OS index       8
+#    Bundle MAC            0a:1b:2c:3d:4e:12
+#    Aggregation status    mc-lag-standby
+#    Load balance type     hash
+# 
+#    MC-LAG information:
+#      Redundancy group      12
+#      Current port priority 33
+#      Local port priority   33
+#      Role of device        standby (remote-best)
+# 
+#    BFD Information:
+#      Status                disabled
+#      Source IP             none
+#      Destination IP        none
+#      Multiplier            0
+#      Tx interval           0 ms
+#      Rx interval           0 ms
+# 
+# 
+# 
+#  Local information:
+#  Port                State                      Port ID       System ID                  
+#  ------------------- -------------------------- ------------- -------------------------- 
+#  te0/0/2             waiting                    33.40969      32768.e0:d9:e3:df:34:a0    
+# 
+#  Flags:
+#    A - Port is in active mode. P - Port is in passive mode.
+#    S - Port sends PDUs at slow rate. F - Port sends PDUs at fast rate.
+#    U - Port is aggregated. Y - Port is synchronized
+#    C - Port is collecting. D - Port is distributing
+#    T - Port is using default values for partner information
+#    E - Information about partner has expired
+# 
+# 
+#  Partner's information:
+#  Port                TX state  Port ID       System ID                  
+#  ------------------- --------- ------------- -------------------------- 
+#  te0/0/2             PUY       32768.9       32768.e0:d9:e3:df:35:20    
+# 
+#  MC-LAG:
+#  Mbr-id    Bundle MAC              Partner MAC             Bundle info  Partner info  Status 
+#  --------- ----------------------- ----------------------- ------------ ------------- ------- 
+#  10000001  0a:1b:2c:3d:4e:12       e0:d9:e3:df:35:20       rcvd         rcvd          synchronized 
+# 
+#  Aggregation status table:
+#  Port                Aggregation 
+#  ------------------- ------------ 
+#  te0/0/2             off 
+# 
+#0/ME5100:atAR1# 

@@ -1,0 +1,97 @@
+Value S_G (\(46.61.193.86, 225.54.205.13[56]\))
+Value Star_G (\(\*, 225.54.205.13[56]\))
+Value SPT_asm (SPT, asm,|asm,)
+Value uptime (\d+[dh]\d+[hm]\d+[ms])
+Value RP (RP: 1.0.0.2 is not local|RP: 1.0.0.2 is local)
+
+Start
+  ^\s+${S_G}\s+${SPT_asm}\s+Up:\s+${uptime} -> Record
+  ^\s+${Star_G}\s+${SPT_asm}\s+Up:\s+${uptime},\s+${RP} \(config\) -> Record
+
+
+
+#0/FMC0:atDR1# show pim topology 
+#Fri Apr 10 18:22:22 2020
+#  IP PIM Multicast Topology Table
+#  Entry state: (*/S,G)[RPT/SPT] Mode, Protocol, Uptime, Info
+#  Interface state: Name, Uptime, Fwd, Info
+#    
+#    (46.61.193.86, 225.54.205.135) SPT, asm, Up: 04h24m26s
+#    JP: joined (00h00m41s), RPF: Bundle-ether1, nexthop: 192.168.55.1, protocol: isis, prefix: 46.61.193.0/24
+#      No interfaces in immediate olist
+#    
+#    (46.61.193.86, 225.54.205.135) RPT pruned, Up: 00h00m00s 
+#      No interfaces in immediate olist
+#    
+#    (*, 225.54.205.135) asm, Up: 04h24m26s, RP: 1.0.0.2 is not local (config)
+#    JP: joined (00h00m35s), RPF: Bundle-ether2, nexthop: 192.168.55.6, protocol: isis, prefix: 1.0.0.2/32
+#      te0/1/5.353 asm, Up: 04h24m26s is local
+#    
+#    
+#    (46.61.193.86, 225.54.205.136) SPT, asm, Up: 04h24m26s
+#    JP: joined (00h00m41s), RPF: Bundle-ether1, nexthop: 192.168.55.1, protocol: isis, prefix: 46.61.193.0/24
+#      No interfaces in immediate olist
+#    
+#    (46.61.193.86, 225.54.205.136) RPT pruned, Up: 00h00m00s 
+#      No interfaces in immediate olist
+#    
+#    (*, 225.54.205.136) asm, Up: 04h24m26s, RP: 1.0.0.2 is not local (config)
+#    JP: joined (00h00m35s), RPF: Bundle-ether2, nexthop: 192.168.55.6, protocol: isis, prefix: 1.0.0.2/32
+#      te0/1/5.353 asm, Up: 04h24m26s is local
+#    
+#      
+#0/FMC0:atDR1# 
+
+
+
+
+#0/ME5100:atAR1# show pim topology 
+#Fri Apr 10 18:23:12 2020
+#  IP PIM Multicast Topology Table
+#  Entry state: (*/S,G)[RPT/SPT] Mode, Protocol, Uptime, Info
+#  Interface state: Name, Uptime, Fwd, Info
+#    
+#    (46.61.193.86, 225.54.205.135) SPT, asm, Up: 04h26m02s
+#    JP: joined (never), RPF: Tengigabitethernet0/0/9.30, nexthop: 46.61.193.86, protocol: local, prefix: 46.61.193.0/24
+#      bu1 asm, Up: 04h25m18s is not local
+#    
+#    (46.61.193.86, 225.54.205.136) SPT, asm, Up: 04h26m02s
+#    JP: joined (never), RPF: Tengigabitethernet0/0/9.30, nexthop: 46.61.193.86, protocol: local, prefix: 46.61.193.0/24
+#      bu1 asm, Up: 04h25m18s is not local
+#      
+#0/ME5100:atAR1# 
+
+
+
+#0/ME5100:atAR2# show pim topology 
+#Fri Apr 10 18:23:49 2020
+#  IP PIM Multicast Topology Table
+#  Entry state: (*/S,G)[RPT/SPT] Mode, Protocol, Uptime, Info
+#  Interface state: Name, Uptime, Fwd, Info
+#    
+#    (46.61.193.86, 225.54.205.135) asm, Up: 04h26m16s
+#    JP: not-joined (never), RPF: Bundle-ether2, nexthop: 192.168.55.21, protocol: isis, prefix: 46.61.193.0/24
+#      No interfaces in immediate olist
+#    
+#    (46.61.193.86, 225.54.205.135) RPT pruned, Up: 00h00m00s 
+#      bu1 Up: 04h25m55s is not local
+#    
+#    (*, 225.54.205.135) asm, Up: 04h26m00s, RP: 1.0.0.2 is local (config)
+#    JP: joined (never), RPF: unknown, nexthop: 0.0.0.0, protocol: other, prefix: 1.0.0.2/32
+#      bu1 asm, Up: 04h26m00s is not local
+#    
+#    
+#    (46.61.193.86, 225.54.205.136) asm, Up: 04h26m16s
+#    JP: not-joined (never), RPF: Bundle-ether2, nexthop: 192.168.55.21, protocol: isis, prefix: 46.61.193.0/24
+#      No interfaces in immediate olist
+#    
+#    (46.61.193.86, 225.54.205.136) RPT pruned, Up: 00h00m00s 
+#      bu1 Up: 04h25m55s is not local
+#    
+#    (*, 225.54.205.136) asm, Up: 04h26m00s, RP: 1.0.0.2 is local (config)
+#    JP: joined (never), RPF: unknown, nexthop: 0.0.0.0, protocol: other, prefix: 1.0.0.2/32
+#      bu1 asm, Up: 04h26m00s is not local
+#    
+#      
+#0/ME5100:atAR2# 
+#

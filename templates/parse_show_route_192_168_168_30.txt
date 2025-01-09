@@ -1,0 +1,29 @@
+Value line1 (\s+Routing entry for 192.168.168.30/32)
+Value line2 (\s+Last update: \d+[dhm]\d+[hm]\d+[hms]|\s+Last update: N/A)
+Value line3 (\s+Routing Descriptor Blocks)
+Value next_hop (\s+192.168.55.[25], via bu1|\s+192.168.30.2, via te0/1/5.20030)
+Value metric (\s+Known via bgp, distance 200, metric -\d+|\s+Known via static, distance 1, metric 1|\s+Known via bgp, distance 200, metric \d+)
+Value type (\s+type bgp-internal, protection none, route-type remote|\s+type static, protection none, route-type remote)
+Value entry (\s+Entries: 1)
+
+Start
+  ^${line1}
+  ^${line2}
+  ^${line3}
+  ^${next_hop}
+  ^${metric}
+  ^${type}
+  ^${entry}
+
+
+#0/ME5100:atAR2# show route 192.168.168.30
+#Tue Feb 11 10:14:50 2020
+#  Routing entry for 192.168.168.30/32
+#    Last update: N/A
+#    Routing Descriptor Blocks
+#      192.168.55.5, via bu1
+#      Known via bgp, distance 200, metric -102
+#        type bgp-internal, protection none, route-type remote
+#  
+#  Entries: 1
+#

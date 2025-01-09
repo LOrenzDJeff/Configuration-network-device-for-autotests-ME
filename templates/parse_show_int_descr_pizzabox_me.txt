@@ -1,0 +1,54 @@
+Value Top (\s+Interface\s+Admin state\s+Oper state\s+Description\s+)
+Value port1_name (te0/0/\d+.\d+|te0/1/5.350)
+Value port1_adm_state (up|down)
+Value port1_oper_state (up|down)
+Value port1_desc (to_LABR01:ge-0\/0\/0.\d+)
+Value port2_name (te0/0/\d+|bu2)
+Value port2_adm_state (up|down)
+Value port2_oper_state (up|down)
+Value port2_desc (to_atAR[12]:te0/0/\d+|to_AR2:bundle-ether2)
+Value port3_name (te0/0/\d+|bu1)
+Value port3_adm_state (up|down)
+Value port3_oper_state (up|down)
+Value port3_desc (to_atDR1:Gi0/0/0/1.\d+|to_atDR1:bundle-ether[12]|to_atAR1:bundle-ether1)
+
+Start
+  ^${Top}
+  ^\s+${port1_name}\s+${port1_adm_state}\s+${port1_oper_state}\s+${port1_desc}\s+
+  ^\s+${port2_name}\s+${port2_adm_state}\s+${port2_oper_state}\s+${port2_desc}
+  ^\s+${port3_name}\s+${port3_adm_state}\s+${port3_oper_state}\s+${port3_desc}
+
+
+
+
+#Вывод команды 'show interface description' на ME5100 (на ME5200  аналогично за исключением Hu интрефейсов)
+#0/ME5100:atAR1-Test2# show interfaces description 
+#Wed Dec 11 04:32:08 2019
+#  Interface                Admin state  Oper state  Description 
+#  ------------------------ ------------ ----------- ------------ 
+#  te0/0/1                  up           up          to_atAR2:te0/0/1 
+#  te0/0/2                  up           up          to_atAR2:te0/0/2 
+#  te0/0/3                  up           up          to_atDR1:te0/1/3 
+#  te0/0/4                  up           up          to_atDR1:te0/1/4 
+#  te0/0/5                  up           down         
+#  te0/0/6                  up           down         
+#  te0/0/7                  up           down         
+#  te0/0/8                  up           down         
+#  te0/0/9                  up           up          to_ER05:te0/0/1 
+#  te0/0/10                 up           down         
+#  te0/0/11                 up           up          to_MES.17.137:te1/0/2 
+#  te0/0/12                 up           down         
+#  te0/0/13                 up           down         
+#  te0/0/14                 up           down         
+#  te0/0/15                 up           down         
+#  te0/0/16                 up           down         
+#  te0/0/17                 up           down         
+#  te0/0/18                 up           down         
+#  te0/0/19                 up           down         
+#  te0/0/20                 up           up           
+#  te0/0/11.352             up           up          to_LABR01:ge-0/0/0.352 
+#  te0/0/11.4040            up           up          to_Management_network 
+#  bu1                      up           up          to_atDR1:bundle-ether1 
+#  bu2                      up           up          to_AR2:bundle-ether2 
+#  lo1                      up           up           
+#  mgmt0/fmc0/1             up           up           

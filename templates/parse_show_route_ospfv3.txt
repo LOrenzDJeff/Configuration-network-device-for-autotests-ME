@@ -1,0 +1,10 @@
+Value ROUTE (200[1234]:0:10:1::[1234]/128)
+Value NEXT_HOP (\S+)
+Value ADMIN_DIST (\d+)
+Value COST (\d+)
+Value OUT_INT (\S+)
+Value TOTAL_ENT (\d+)
+
+Start
+  ^\s*O EA\s+${ROUTE}\s+via\s+${NEXT_HOP}\s+\[${ADMIN_DIST}/${COST}\], \d+[dh]\d+[hm]\d+[ms], ${OUT_INT}\s* -> Record
+  ^\s*Total entries:\s+${TOTAL_ENT}\s* -> Record

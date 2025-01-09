@@ -1,0 +1,9 @@
+{{ ip_addr | re("\d+.\d+.\d+.\d+/\d+") }} {{ interface | re("br\d+") }} {{ admin_status | contains('Up', 'Down') }} {{ link_status | contains('Up', 'Down') }} DHCP
+
+#labr02# show ip interfaces vrf vrf41
+#IP address                                            Interface              Admin   Link    Type
+#---------------------------------------------------   --------------------   -----   -----   -------
+#192.168.41.2/24                                       br41                   Up      Up      DHCP
+#192.168.168.41/32                                     lo2                    Up      Up      static
+#labr02#
+

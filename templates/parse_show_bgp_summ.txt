@@ -1,0 +1,19 @@
+Value r_ident (\d+.\d+.\d+.\d+)
+Value local_as_numb (\d+)
+Value neighbor (\S+)
+Value as (\d+)
+Value MsgRcvd (\d+)
+Value MsgSent (\d+)
+Value UpDown (\S+)
+Value prefRcd (\S+)
+Value grace_restart (\S+\s*\S*)
+Value table_st (\S+)
+Value vrf (\S+)
+Value total_entries (\d+)
+
+Start
+  ^\s+BGP router identifier\s+${r_ident}(,\s+vrf\s+${vrf})?, local AS number\s+${local_as_numb}
+  ^\s+Graceful Restart ${grace_restart}
+  ^\s+BGP table state: ${table_st}
+  ^\s*${neighbor}\s+${as}\s+${MsgRcvd}\s+${MsgSent}\s+${UpDown}\s+${prefRcd} -> Record
+  ^\s+Total entries: ${total_entries} -> Record

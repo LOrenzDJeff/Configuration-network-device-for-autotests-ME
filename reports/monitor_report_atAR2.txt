@@ -1,0 +1,7 @@
+Устройство: atAR2
+Версия ПО: 3.9.7.17RC
+Uptime: 0 hours, 24 minutes, 22 seconds
+Дата и время начала мониторинга: 2024-12-23 20:00:10
+Дата и время окончания мониторинга: 2024-12-24 08:23:09
+Результат анализа консольного вывода:
+{'Assertion failed': 3, 'crash-info': 0, 'pp-manager not response': 0, 'SIGFAULT': 0, 'coredump': 0, 'memory leak': 0}

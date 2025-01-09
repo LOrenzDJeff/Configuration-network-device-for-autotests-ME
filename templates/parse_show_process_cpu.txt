@@ -1,0 +1,8 @@
+Value ONE_MIN (\S+%)
+Value FIVE_MIM (\S+%)
+Value FIFTEEN_MIN (\S+%)
+Value UNIT (\S+)
+Value PROCESS (\S+)
+
+Start
+  ^\s*${ONE_MIN}\s+${FIVE_MIM}\s+${FIFTEEN_MIN}\s+${UNIT}\s+${PROCESS}\s* -> Record

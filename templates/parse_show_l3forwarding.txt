@@ -1,0 +1,62 @@
+Value ipv4_prefix1 (100.0.0.100/32|200.0.0.200/32)
+Value ipv4_nexthop1 (\d+.\d+.\d+.\d+)
+Value ipv4_label11 (\d+)
+Value ipv4_label12 (\d+)
+Value ipv4_out_int1 (te0/0/11.\d+|bu1)
+Value ipv4_prefix2 (192.168.100.0/24|192.168.200.0/24)
+Value ipv4_nexthop2 (\d+.\d+.\d+.\d+)
+Value ipv4_label21 (\d+)
+Value ipv4_label22 (\d+)
+Value ipv4_out_int2 (te0/0/11.\d+|bu1)
+Value ipv6_prefix1 (2003:0:200:200::200/128|2003:0:100:100::100/128)
+Value ipv6_nexthop1 (\d+.\d+.\d+.\d+)
+Value ipv6_label11 (\d+)
+Value ipv6_label12 (\d+)
+Value ipv6_out_int1 (te0/0/11.\d+|bu1)
+Value ipv6_prefix2 (2001:192:168:200::/64|2001:192:168:100::/64)
+Value ipv6_nexthop2 (\d+.\d+.\d+.\d+)
+Value ipv6_label21 (\d+)
+Value ipv6_label22 (\d+)
+Value ipv6_out_int2 (te0/0/11.\d+|bu1)
+
+Start
+  ^\s+${ipv4_prefix1}\s+${ipv4_nexthop1}\s+${ipv4_label11}/${ipv4_label12}\s+${ipv4_out_int1}
+  ^\s+${ipv4_prefix2}\s+${ipv4_nexthop2}\s+${ipv4_label21}/${ipv4_label22}\s+${ipv4_out_int2}
+  ^\s+${ipv6_prefix1}\s+${ipv6_nexthop1}\s+${ipv6_label11}/${ipv6_label12}\s+${ipv6_out_int1}
+  ^\s+${ipv6_prefix2}\s+${ipv6_nexthop2}\s+${ipv6_label21}/${ipv6_label22}\s+${ipv6_out_int2}
+
+#0/ME5100:atAR1# show l3forwarding vrf as100 
+#Wed Oct 13 09:55:58 2021
+#  Prefix                                         Nexthop                                     Outgoing label     Interface 
+#  ---------------------------------------------- ------------------------------------------- ------------------ ---------- 
+#  100.0.0.100/32                                 192.168.100.2                               --/--              te0/0/11.4010 
+#  192.168.100.1/32                               receive                                     --/--              te0/0/11.4010 
+#  200.0.0.200/32                                 192.168.55.2                                20/17              bu1 
+#  192.168.100.0/24                               attached                                    --/--              te0/0/11.4010 
+#  192.168.200.0/24                               192.168.55.2                                20/17              bu1 
+#  2001:192:168:100::1/128                        receive                                     --/--              te0/0/11.4010 
+#  2003:0:100:100::100/128                        fe80::aaf9:4bff:feaa:d89c                   --/--              te0/0/11.4010 
+#  2003:0:200:200::200/128                        192.168.55.2                                20/17              bu1 
+#  fe80::e2d9:e3ff:fedf:34ab/128                  receive                                     --/--              CPU (link-local) 
+#  2001:192:168:100::/64                          attached                                    --/--              te0/0/11.4010 
+#  2001:192:168:200::/64                          192.168.55.2                                20/17              bu1 
+#0/ME5100:atAR1# 
+
+
+#0/ME5200:atAR2# show l3forwarding vrf as200
+#Wed Oct 13 02:56:33 2021
+#  Prefix                                         Nexthop                                     Outgoing label     Interface 
+#  ---------------------------------------------- ------------------------------------------- ------------------ ---------- 
+#  100.0.0.100/32                                 192.168.19.4                                311920/18          te0/0/11.4019 
+#  192.168.200.1/32                               receive                                     --/--              te0/0/11.4020 
+#  200.0.0.200/32                                 192.168.200.2                               --/--              te0/0/11.4020 
+#  192.168.100.0/24                               192.168.19.4                                311920/18          te0/0/11.4019 
+#  192.168.200.0/24                               attached                                    --/--              te0/0/11.4020 
+#  2001:192:168:200::1/128                        receive                                     --/--              te0/0/11.4020 
+#  2003:0:100:100::100/128                        192.168.19.4                                311920/18          te0/0/11.4019 
+#  2003:0:200:200::200/128                        fe80::aaf9:4bff:feaa:d89c                   --/--              te0/0/11.4020 
+#  fe80::e2d9:e3ff:feff:488b/128                  receive                                     --/--              CPU (link-local) 
+#  2001:192:168:100::/64                          192.168.19.4                                311920/18          te0/0/11.4019 
+#  2001:192:168:200::/64                          attached                                    --/--              te0/0/11.4020 
+#0/ME5200:atAR2# 
+

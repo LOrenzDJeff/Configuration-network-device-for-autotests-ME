@@ -1,0 +1,1 @@
+[32mINFO    [0m conftest:conftest.py:353 Тест 123Ztest_telnet_login_part1[192.168.17.86-admin-password]123Z выполнен успешно.

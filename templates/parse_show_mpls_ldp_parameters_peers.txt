@@ -1,0 +1,73 @@
+Value rt_id (\d+.\d+.\d+.\d+)
+Value lsr_id (\d+.\d+.\d+.\d+)
+Value transport_addr (\d+.\d+.\d+.\d+)
+Value Graceful_restart (\s+Graceful Restart:)
+Value Grace_status (\s+Status: disabled|\s+Status: enabled)
+Value Grace_timers (\s+Reconnect Timeout: \d+ sec, Forwarding State Holdtime: \d+ sec)
+Value Neighbors (\s+Neighbors:)
+Value Peer_addr (\s+Peer address: \d+.\d+.\d+.\d+\s+)
+Value Neighbor_bfd (\s+BFD status: disabled|\s+BFD status: enabled)
+Value Neighbor_hold_timer (\s+Holdtime interval: \d+ sec)
+Value Neighbor_hello_timer (\s+Hello interval: \d+ sec)
+
+
+Start
+  ^\s+Router ID:\s+${rt_id}
+  ^\s+LSR ID:\s+${lsr_id}
+  ^\s+Transport address:\s+${transport_addr} 
+  ^${Graceful_restart} -> GracefulRestart
+  ^${Neighbors} -> Neighbor
+
+GracefulRestart
+  ^${Grace_status}
+  ^${Grace_timers} -> Record Start
+
+Neighbor
+  ^${Peer_addr}
+  ^${Neighbor_bfd}
+  ^${Neighbor_hold_timer}
+  ^${Neighbor_hello_timer} -> Record 
+  
+
+
+#
+#0/ME5100:atAR1# show mpls ldp parameters 
+#Fri Jan 10 17:19:44 2020
+#  LDP Parameters:
+#    Router ID: 1.0.0.3
+#    LSR ID: 1.0.0.3
+#    Transport address: 1.0.0.3
+#  Graceful Restart:
+#    Status: disabled
+#    Reconnect Timeout: 200 sec, Forwarding State Holdtime: 200 sec
+#  
+#  Neighbors:
+#  
+#    Peer address: 1.0.0.1 
+#      BFD status: disabled
+#      Holdtime interval: 40 sec
+#      Hello interval: 0 sec
+#  
+#    Peer address: 1.0.0.2 
+#      BFD status: disabled
+#      Holdtime interval: 40 sec
+#      Hello interval: 0 sec
+#  
+#  Interfaces:
+#  
+#    Interface Tengigabitethernet0/0/11.352 
+#      BFD status: disabled
+#      Holdtime interval: 40 sec
+#      Hello interval: 15 sec
+#  
+#    Interface Bundle-ether 1 
+#      BFD status: disabled
+#      Holdtime interval: 40 sec
+#      Hello interval: 15 sec
+#  
+#    Interface Bundle-ether 2 
+#      BFD status: disabled
+#      Holdtime interval: 40 sec
+#      Hello interval: 15 sec
+#0/ME5100:atAR1# 
+#

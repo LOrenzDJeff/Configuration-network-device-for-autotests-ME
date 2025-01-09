@@ -1,0 +1,26 @@
+Value state (\S+)
+Value last_ev (\S+)     
+Value loc_soc (\S+)
+Value rem_soc (\S+)    
+Value tcp_mode (\S+)
+Value hops (\d+)
+Value peer_group (\S+\s*\S*)
+Value open_msg_rec (\d+)
+Value open_msg_trans (\d+) 
+Value total_msg_rec (\d+)
+Value total_msg_trans (\d+)       
+Value max_pref_allowed (\d+)
+Value restart_interval (\d+)
+Value prefRcd (\d+)
+
+Start
+  ^\s+BGP STATE:\s${state}\S\s\S+\s\S+\s${last_ev}
+  ^\s+Local socket:\s:?${loc_soc}\S\s\S+\s${rem_soc}
+  ^\s+Peer group: ${peer_group}
+  ^\s+TCP\s\w+\s\w+:\s${tcp_mode}
+  ^\s+BGP neighbor\s\S+\s\S+\s\S+\s\S+\s${hops}
+  ^\s+Open\s+\S+\s\S+\s${open_msg_rec}\S\s\S+\s${open_msg_trans}
+  ^\s+Total\s+\S+\s\S+\s${total_msg_rec}\S\s\S+\s${total_msg_trans}
+  ^\s+Maximum\s\w+\s\w+:\s${max_pref_allowed};\s\w+\s\w+:\s${restart_interval}\s
+  ^\s+Prefixes\s${prefRcd}\s
+

@@ -1,0 +1,20 @@
+Value vxlan_tun_src (\d+.\d+.\d+.\d+)
+Value vxlan_tun_dst (\d+.\d+.\d+.\d+)
+Value vni (\S+)
+Value vxlan_oper_status (\S+)
+Value evi (\S+)
+
+Start
+  ^\s+${vxlan_tun_src}\s+${vxlan_tun_dst}\s+${vni}\s+${vxlan_oper_status}\s+${evi}\s+\(\d+\) -> Record
+
+
+#0/ME5200:atAR2# show evpn vxlan-tunnel 
+#Mon May 22 15:13:41 2023
+#  Source                                         Peer                                           VNI                   Oper Status  EVI                                       VRF 
+#  ---------------------------------------------- ---------------------------------------------- --------------------- ------------ ----------------------------------------- ---- 
+#  1.0.0.2                                        1.0.0.1                                        222:222               up           test_2 (1073741826)                        
+#  1.0.0.2                                        1.0.0.3                                        222:222               up           test_2 (1073741826)                        
+#0/ME5200:atAR2# 
+
+
+

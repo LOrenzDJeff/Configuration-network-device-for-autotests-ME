@@ -1,0 +1,31 @@
+Value Top (\s+Local port\s+Chassis id\s+Port id\s+Capabilities\s+Agent\s+System name\s+)
+Value local_port (\S+)
+Value chassis_id (\S+)
+Value port_id (\S+)
+Value capabilities (\w+\s+\w+)
+Value agent (\w+)
+Value system_name (\S+)
+
+
+Start
+ ^${Top} -> Record
+ ^\s+${local_port}\s+${chassis_id}\s+${port_id}\s+${capabilities}\s+${agent}\s+${system_name} -> Record
+
+
+#Пример вывода команды 'show lldp neighbors' на маршрутизаторе ME5000
+#0/FMC0:atDR1# show lldp neighbors 
+#Mon Dec 16 12:09:12 2019
+#  Capability codes:
+#        (R) Router, (B) Bridge, (T) Telephone, (D) DOCSIS Cable Device
+#        (W) WLAN Access Point, (r) Repeater, (H) Host, (s) Station only
+#        (TP) - Two Ports MAC Relay, (S) - S-VLAN, (C) - C-VLAN, (O) Other
+#  LLDP agent codes:
+#        (N) Nearest Bridge, (NnT) Nearest non-TPMR Bridge
+#        (NC) Nearest Customer Bridge
+#  local port      device id          port id            capabilities          agent  system name 
+#  --------------- ------------------ ------------------ --------------------- ------ ------------ 
+#  te0/1/3         e0:d9:e3:df:34:a0  te 0/0/3           B R                          atAR1 
+#  te0/1/4         e0:d9:e3:df:34:a0  te 0/0/4           B R                          atAR1 
+#  te0/8/3         e0:d9:e3:df:35:20  te 0/0/3           B R                          atAR2 
+#  te0/8/4         e0:d9:e3:df:35:20  te 0/0/4           B R                          atAR2 
+#0/FMC0:atDR1# 

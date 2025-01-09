@@ -1,0 +1,13 @@
+    {{ ospf_int | re("te\d+/\d+/\d+.\d+") }} {{ ospf_area | re("\d+.\d+.\d+.\d+") }} {{ ospf_state | re("DR|BDR") }} {{ ospf_addr | re("\d+.\d+.\d+.\d+/\d+") }} {{ ospf_metric | re("\d+") }} {{ ospf_mode | re("Active|Passive") }} {{ ospf_gr | re("Y|N") }} {{ ospf_bfd | re("Y|N") }}
+
+
+#0/FMC0:atDR1# show ospfv2 vrf VRF40 interface
+#Thu Jan 14 16:15:04 2021
+#  Routing Process: 40, VRF VRF40, with ID 0.0.0.40
+#    Router is an area border router
+#
+#    Interface             Area             State  Address             Metric        Mode      GR   BFD 
+#    --------------------- ---------------- ------ ------------------- ------------- --------- ---- ---- 
+#    te0/1/5.10041         0.0.0.0          BDR    192.168.41.1/24     1             Active    N    N 
+#  
+#0/FMC0:atDR1#

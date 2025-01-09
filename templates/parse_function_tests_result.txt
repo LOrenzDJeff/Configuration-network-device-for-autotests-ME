@@ -1,0 +1,10 @@
+Value success_test_name (\S+)
+Value fail_test_name (\S+)
+Value fail_test_cause ('.*')
+Value param_list (\S+)
+
+Start
+  ^\d+-\d+-\d+\s+\d+:\d+:\d+\s+\[\s+INFO\]\s+Тест\s+123Z${success_test_name}\[${param_list}\]123Z\s+выполнен успешно. -> Record
+  ^\d+-\d+-\d+\s+\d+:\d+:\d+\s+\[\s+INFO\]\s+Тест\s+123Z${fail_test_name}\[${param_list}\]123Z\s+провалился и причина - ${fail_test_cause} -> Record
+#2023-04-13 01:27:22 [    INFO] Тест 123Ztest_me_init_config_upload_part7_3_8_1[192.168.17.139-atAR2-admin-password-part7.3.8.1]123Z выполнен успешно.
+#2023-04-13 04:39:02 [    INFO] Тест 123Ztest_dhcpv6_renew_part15_3[41]123Z провалился и причина - 'AssertionError: Парсинг вывода команды вернул пустой результат'

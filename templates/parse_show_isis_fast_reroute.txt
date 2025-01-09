@@ -1,0 +1,181 @@
+Value dst_prfx_ipv4 (\d+.\d+.\d+.\d+/\d+)
+Value primary_nexthop_ipv4 (\d+.\d+.\d+.\d+)
+Value backup_nexthop_ipv4 (\d+.\d+.\d+.\d+)
+Value dst_prfx_ipv6 (\w+:\w+:\w+:a\w+::/\d+|\w+:\w+:\w+:\w+::\w+/\d+)
+Value primary_nexthop_ipv6 (\w+::\w+:\w+:\w+:\w+)
+Value backup_nexthop_ipv6 (\w+::\w+:\w+:\w+:\w+)
+
+Start
+  ^\s+The destination Internet address prefix:\s+${dst_prfx_ipv4} -> Detail
+  ^\s+The destination Internet address prefix:\s+${dst_prfx_ipv6} -> Detail
+
+
+
+Detail
+  ^\s+Primary next hop: -> prim_nexthop_addr
+  ^\s+Candidate: -> lfa_nexthop_addr
+
+
+prim_nexthop_addr
+  ^\s+router address: ${primary_nexthop_ipv4} -> Detail
+  ^\s+router address: ${primary_nexthop_ipv6} -> Detail
+
+lfa_nexthop_addr
+  ^\s+LFA router address: ${backup_nexthop_ipv4} -> Record Start
+  ^\s+LFA router address: ${backup_nexthop_ipv6} -> Record Start
+
+
+
+#   The destination Internet address prefix: 
+
+
+#0/ME5100:atAR1# show isis fast-reroute 
+#Wed Sep 23 15:21:55 2020
+#  IS-IS Router test
+#  Ipv4:
+#    The destination Internet address prefix: 192.168.55.4/30
+#      Reason: best-candidate, providing-protection is true, primary-excluded is false, candidate-excluded is false, loop-free is true, overloaded is false, primary is false, remote-lfa is #false, node-protecting is true
+#      The router ID of the next hop router on this path: 0010.0000.0002, metric 20
+#      Primary next hop:
+#          router address: 192.168.55.2
+#          local network interface: Bundle-ether1
+#      Candidate:
+#          LFA router address: 192.168.55.22
+#          local network interface: Bundle-ether2
+#      Attached:
+#          router ID: 
+#          local network interface: 
+      
+#    The destination Internet address prefix: 192.168.55.12/30
+#      Reason: best-candidate, providing-protection is true, primary-excluded is false, candidate-excluded is false, loop-free is true, overloaded is false, primary is false, remote-lfa is #false, node-protecting is true
+#      The router ID of the next hop router on this path: 0010.0000.0004, metric 20
+#      Primary next hop:
+#          router address: 192.168.55.22
+#          local network interface: Bundle-ether2
+#      Candidate:
+#          LFA router address: 192.168.55.10
+#          local network interface: Tengigabitethernet0/0/11.352
+#      Attached:
+#          router ID: 
+#          local network interface: 
+      
+#    The destination Internet address prefix: 192.168.55.16/30
+#      Reason: best-candidate, providing-protection is true, primary-excluded is false, candidate-excluded is false, loop-free is true, overloaded is false, primary is false, remote-lfa is false, node-protecting is true
+#      The router ID of the next hop router on this path: 0010.0000.0004, metric 20
+#      Primary next hop:
+#          router address: 192.168.55.2
+#          local network interface: Bundle-ether1
+#      Candidate:
+#          LFA router address: 192.168.55.10
+#          local network interface: Tengigabitethernet0/0/11.352
+#      Attached:
+#          router ID: 
+#          local network interface: 
+      
+#    The destination Internet address prefix: 1.0.0.1/32
+#      Reason: tie-router-id, providing-protection is false, primary-excluded is false, candidate-excluded is false, loop-free is true, overloaded is false, primary is false, remote-lfa is false, node-protecting is false
+#      The router ID of the next hop router on this path: 0010.0000.0004, metric 20
+#      Primary next hop:
+#          router address: 192.168.55.2
+#          local network interface: Bundle-ether1
+#      Candidate:
+#          LFA router address: 192.168.55.10
+#          local network interface: Tengigabitethernet0/0/11.352
+#      Attached:
+#          router ID: 
+#          local network interface: 
+      
+#    The destination Internet address prefix: 1.0.0.1/32
+#      Reason: best-candidate, providing-protection is true, primary-excluded is false, candidate-excluded is false, loop-free is true, overloaded is false, primary is false, remote-lfa is false, node-protecting is false
+#      The router ID of the next hop router on this path: 0010.0000.0002, metric 20
+#      Primary next hop:
+#          router address: 192.168.55.2
+#          local network interface: Bundle-ether1
+#      Candidate:
+#          LFA router address: 192.168.55.22
+#          local network interface: Bundle-ether2
+#      Attached:
+#          router ID: 
+#          local network interface: 
+      
+#    The destination Internet address prefix: 1.0.0.2/32
+#      Reason: best-candidate, providing-protection is true, primary-excluded is false, candidate-excluded is false, loop-free is true, overloaded is false, primary is false, remote-lfa is false, node-protecting is false
+#      The router ID of the next hop router on this path: 0010.0000.0001, metric 20
+#      Primary next hop:
+#          router address: 192.168.55.22
+#          local network interface: Bundle-ether2
+#      Candidate:
+#          LFA router address: 192.168.55.2
+#          local network interface: Bundle-ether1
+#      Attached:
+#          router ID: 
+#          local network interface: 
+      
+#    The destination Internet address prefix: 1.0.0.2/32
+#      Reason: tie-router-id, providing-protection is false, primary-excluded is false, candidate-excluded is false, loop-free is true, overloaded is false, primary is false, remote-lfa is false, node-protecting is false
+#      The router ID of the next hop router on this path: 0010.0000.0004, metric 20
+#      Primary next hop:
+#          router address: 192.168.55.22
+#          local network interface: Bundle-ether2
+#      Candidate:
+#          LFA router address: 192.168.55.10
+#          local network interface: Tengigabitethernet0/0/11.352
+#      Attached:
+#          router ID: 
+#          local network interface: 
+      
+#    The destination Internet address prefix: 1.0.0.4/32
+#      Reason: best-candidate, providing-protection is true, primary-excluded is false, candidate-excluded is false, loop-free is true, overloaded is false, primary is false, remote-lfa is false, node-protecting is false
+#      The router ID of the next hop router on this path: 0010.0000.0001, metric 20
+#      Primary next hop:
+#          router address: 192.168.55.10
+#          local network interface: Tengigabitethernet0/0/11.352
+#      Candidate:
+#          LFA router address: 192.168.55.2
+#          local network interface: Bundle-ether1
+#      Attached:
+#          router ID: 
+#          local network interface: 
+      
+#    The destination Internet address prefix: 1.0.0.4/32
+#      Reason: tie-router-id, providing-protection is false, primary-excluded is false, candidate-excluded is false, loop-free is true, overloaded is false, primary is false, remote-lfa is false, node-protecting is false
+#      The router ID of the next hop router on this path: 0010.0000.0002, metric 20
+#      Primary next hop:
+#          router address: 192.168.55.10
+#          local network interface: Tengigabitethernet0/0/11.352
+#      Candidate:
+#          LFA router address: 192.168.55.22
+#          local network interface: Bundle-ether2
+#      Attached:
+#          router ID: 
+#          local network interface: 
+#      
+#  Ipv6:
+#    The destination Internet address prefix: 2001:db8:cafe:a001::/64
+#      Reason: best-candidate, providing-protection is true, primary-excluded is false, candidate-excluded is false, loop-free is true, overloaded is false, primary is false, remote-lfa is false, node-protecting is true
+#      The router ID of the next hop router on this path: 0010.0000.0002, metric 20
+#      Primary next hop:
+#          router address: fe80::aaf9:4bff:fe8b:9372
+#          local network interface: Bundle-ether1
+#      Candidate:
+#          LFA router address: fe80::e2d9:e3ff:fedf:3537
+#          local network interface: Bundle-ether2
+#      Attached:
+#          router ID: 
+#          local network interface: 
+      
+#    The destination Internet address prefix: 2001:db8:cafe:a011::/64
+#      Reason: best-candidate, providing-protection is true, primary-excluded is false, candidate-excluded is false, loop-free is true, overloaded is false, primary is false, remote-lfa is false, node-protecting is true
+#      The router ID of the next hop router on this path: 0010.0000.0004, metric 20
+#      Primary next hop:
+#          router address: fe80::aaf9:4bff:fe8b:9372
+#          local network interface: Bundle-ether1
+#      Candidate:
+#          LFA router address: fe80::205:8601:6071:900
+#          local network interface: Tengigabitethernet0/0/11.352
+#      Attached:
+#          router ID: 
+#          local network interface: 
+      
+    
+#0/ME5100:atAR1#  

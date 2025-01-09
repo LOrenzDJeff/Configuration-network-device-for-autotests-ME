@@ -1,0 +1,33 @@
+Value route_entry (\d+.\d+.\d+.\d+/32 \(1 entry, 1 announced\))
+Value route_source (\d+.\d+.\d+.\d+)
+Value route_next_hop (\d+.\d+.\d+.\d+)
+
+Start
+  ^${route_entry}
+  ^\s+Source: ${route_source}
+  ^\s+Next hop: ${route_next_hop} via ge-0/0/0.350, selected
+
+
+#inet.0: 16 destinations, 16 routes (16 active, 0 holddown, 0 hidden)
+#192.168.168.30/32 (1 entry, 1 announced)
+#        *BGP    Preference: 170/-101
+#                Next hop type: Indirect
+#                Address: 0x940f8d4
+#                Next-hop reference count: 3
+#                Source: 1.0.0.1
+#                Next hop type: Router, Next hop index: 600
+#                Next hop: 192.168.55.17 via ge-0/0/0.350, selected
+#                Session Id: 0x3
+#                Protocol next hop: 1.0.0.1
+#                Indirect next hop: 0x95b4000 1048574 INH Session ID: 0x8
+#                State: <Active Int Ext>
+#                Local AS: 65100 Peer AS: 65100
+#                Age: 10:24:49 	Metric2: 10 
+#                Validation State: unverified 
+#                Task: BGP_65100.1.0.0.1+179
+#                Announcement bits (2): 0-KRT 4-Resolve tree 4 
+#                AS path: ?
+#                Accepted
+#                Localpref: 100
+#                Router ID: 1.0.0.1
+#

@@ -1,0 +1,12 @@
+Value status (\S+)
+Value state (\S+)
+Value ad_interval (\d+)
+Value as_orig_int (\d+)
+Value w_interval (\d+)
+
+Start
+  ^\s+Status: ${status},\s+\S+\s+${state}
+  ^\s+Advertisement interval: ${ad_interval}
+  ^\s+AS-origination interval: ${as_orig_int}
+  ^\s+Withdraw interval: ${w_interval} -> Record
+  

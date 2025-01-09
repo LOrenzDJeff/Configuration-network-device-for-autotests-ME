@@ -1,0 +1,20 @@
+Value temp (\d+)
+Value temp1 (\d+)
+Value name ((\S+\s+){2}\S+ | (\S+\s+){3}\S+)
+Value slot (\d+ | \S+)
+Value module ((\S+s+){2}\S+)
+
+
+Start
+ ^\s+${module}\s+${slot}\s+S\s+S+\s* -> Record
+ ^\s+${name}\s+${temp}\s+C\s+/\s+${temp1} -> Record
+ ^\s+${name}\s+${temp}\s+C\s* -> Record
+
+
+
+
+
+
+
+
+
