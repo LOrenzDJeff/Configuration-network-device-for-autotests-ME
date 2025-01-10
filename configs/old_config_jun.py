@@ -1,4 +1,5 @@
-from all_lib import *
+from Exscript import Account
+from Exscript.protocols import Telnet
 
 class setting_vMX():
     def __init__(self, DUT, authorization):

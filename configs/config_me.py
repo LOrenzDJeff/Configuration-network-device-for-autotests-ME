@@ -1,4 +1,4 @@
-from all_lib import *
+import telnetlib
 
 class setting_ME():
     #Инициализация устройства
@@ -34,7 +34,7 @@ class setting_ME():
 
     #Загрузка чистой конфигурации
     def startup(self):
-        if self.vrf == "default":
+        if self.vrf == "none":
             self.tn.write(b"copy tftp://%s/startup_config/%s/startup-cfg-cli fs://candidate-config\n"%(self.server['ip'].encode('ascii'), self.hostname.encode('ascii')))
         else:
             self.tn.write(b"copy tftp://%s/startup_config/%s/startup-cfg-cli fs://candidate-config vrf %s\n"%(self.server['ip'].encode('ascii'), self.hostname.encode('ascii'), self.vrf.encode('ascii')))

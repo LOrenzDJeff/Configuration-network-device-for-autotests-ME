@@ -1,0 +1,133 @@
+aaa authentication login AAA-TAC 
+  method tacacs
+  method local
+exit
+
+banner login "This device can be used by authorized users only. Unauthorized access is prosecuted by federal law (Federal law 63, article 272 of the Criminal Code of the Russian Federation"
+banner motd "Test motd banner"
+
+clock timezone gmt 7
+
+hostname atAR1
+
+hw-module enable acl-counters 
+hw-module enable acl-default 
+hw-module maximum acl-entries 64
+hw-module maximum cpu-punt-entries 10000
+
+interface mgmt 0/fmc0/1 
+  vrf mgmt-intf
+exit
+interface tengigabitethernet 0/0/1 
+  description to_atAR2:te0/0/1
+exit
+interface tengigabitethernet 0/0/2 
+  description to_atAR2:te0/0/2
+exit
+interface tengigabitethernet 0/0/3 
+  description to_atDR1:te0/1/3
+exit
+interface tengigabitethernet 0/0/4 
+  description to_atDR1:te0/1/4
+exit
+interface tengigabitethernet 0/0/5 
+exit
+interface tengigabitethernet 0/0/6 
+exit
+interface tengigabitethernet 0/0/7 
+exit
+interface tengigabitethernet 0/0/8 
+exit
+interface tengigabitethernet 0/0/9 
+  description to_ER05:te0/0/1
+exit
+interface tengigabitethernet 0/0/10 
+exit
+interface tengigabitethernet 0/0/11 
+  description to_MES.17.137:te1/0/2
+exit
+interface tengigabitethernet 0/0/12 
+exit
+interface tengigabitethernet 0/0/13 
+exit
+interface tengigabitethernet 0/0/14 
+exit
+interface tengigabitethernet 0/0/15 
+exit
+interface tengigabitethernet 0/0/16 
+exit
+interface tengigabitethernet 0/0/17 
+exit
+interface tengigabitethernet 0/0/18 
+exit
+interface tengigabitethernet 0/0/19 
+exit
+interface tengigabitethernet 0/0/20 
+exit
+interface tengigabitethernet 0/0/11.4040 
+  description to_Management_network
+  encapsulation outer-vid 4040 
+  ipv4 address 192.168.17.86/23
+  vrf MGN
+exit
+
+vrf MGN 
+  rd 1:0
+exit
+vrf mgmt-intf 
+  rd 0:0
+exit
+
+line telnet login authentication AAA-TAC
+line ssh login authentication AAA-TAC
+
+logging rotate 10
+logging size 20000
+
+ntp vrf MGN 
+  server 192.168.16.89 
+  exit
+exit
+
+router static 
+  vrf MGN 
+    address-family ipv4 unicast 
+      destination 192.168.0.0/16 192.168.16.1 
+      exit
+    exit
+  exit
+exit
+
+snmp server vrf MGN 
+  community label private 
+    community-name encrypted BEBD045EB50C5AFE75
+    rights rw
+  exit
+  community label public
+    community-name encrypted 8CA10161B90C
+    version v2c
+  exit
+exit
+
+ssh server vrf MGN 
+exit
+ssh server vrf mgmt-intf 
+exit
+
+tacacs-server host 192.168.16.89 vrf MGN 
+  password encrypted 8FB1007FB51B
+  source-address 10.10.10.3
+exit
+
+telnet server vrf MGN 
+exit
+
+user ad
+  password encrypted $6$T4hZd31JW/J3l/DH$CUcT0ksVznXLJWrOLIUVJHy6kv0nZOQCV1WX7WqgxFtZrgi0COcoVE1LAEZWZ44NonbVS9PnNarPP1ljrX6SJ0
+  privilege p15
+exit
+
+user admin 
+  password encrypted $6$l0YtRh71nZ.zOv/3$ffX5KG61Q7HlhbkZVDoye4dI.wsOcxb.2J8SqHACtK486MCTcQjOIq71bLDcSBSSreZLhUlyU/fSTeB.BFA2v/
+  privilege p15
+exit
