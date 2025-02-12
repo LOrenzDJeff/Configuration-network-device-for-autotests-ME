@@ -36,14 +36,16 @@ from pytest import approx
 from driver import ME5000CliDriver
 from driver import MES5324CliDriver
 
-with open ('./configs/config.json') as f:
+with open ('./hardware_set.json') as f:
+    hardware_set_id =  json.load(f)['hardware_set_id']
+
+with open (f'./tftpd/{hardware_set_id}') as f:
     templates = json.load(f)
     DUT1 = setting_ME("DUT1",templates)
     DUT2 = setting_ME("DUT2",templates)
     DUT3 = setting_ME("DUT3",templates)
     DUT4 = setting_vMX("DUT4",templates)
     DUT5 = setting_MES("DUT5",templates)
-    DUT6 = templates['DUT6']
-    DUT7 = templates['DUT7']
-    DUT9 = templates['DUT9']
-    hardware_set_id = templates['hardware_set_id']
+#    DUT6 = templates['DUT6']
+#    DUT7 = templates['DUT7']
+#    DUT9 = templates['DUT9']

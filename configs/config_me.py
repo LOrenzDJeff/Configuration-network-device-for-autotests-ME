@@ -16,7 +16,6 @@ class setting_ME():
             self.neighor2 = authorization[DUT]["int"]["to_phys2"]
             self.neighor3 = authorization[DUT]["int"]["to_virt"]
             self.loopback = authorization[DUT]["int"]["lo"]
-            self.boot_timer = authorization[DUT]["boot_timer"]
             self.server = authorization["DUT7"]
             self.connection()
         except KeyError:
