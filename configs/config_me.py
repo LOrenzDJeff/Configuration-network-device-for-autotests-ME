@@ -17,7 +17,6 @@ class setting_ME():
             self.neighor3 = authorization[DUT]["int"]["to_virt"]
             self.loopback = authorization[DUT]["int"]["lo"]
             self.server = authorization["DUT7"]
-            self.connection()
         except KeyError:
             print("В файле json не достаёт ключа")
 

@@ -15,13 +15,8 @@ from conftest import *
 			)
  
 def test_me_init_config_ME2001(DUT): 
-# В данном тесте будем загружать начальную конфигурацию на ME маршрутизаторы для тестов из Части 1 документа
-	for i in range(2):
-		try:
-			DUT.ipv4()
-			DUT.lacp()
-			print("Загрузка конфигурации на %s прошла успешно!"%DUT.hostname)
-			break
-		except BrokenPipeError:
-			print("Пропало подключение, пытаемся восстановить")
-			DUT.connection()
+	DUT.connection()
+	DUT.ipv4()
+	DUT.lacp()
+	print("Загрузка конфигурации на %s прошла успешно!"%DUT.hostname)
+	DUT.close()
