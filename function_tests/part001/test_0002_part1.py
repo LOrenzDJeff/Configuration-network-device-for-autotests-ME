@@ -15,7 +15,7 @@ from conftest import *
 
 def test_junos_init_config_upload_part1 (DUT): 
 # В данном тесте будем загружать начальную конфигурацию на Junos LABR01 для тестов из Части 1 документа     
-    DUT.startup()
     DUT.connection()
+    DUT.startup()
     DUT.ipv4()
     print("Загрузка конфигурации на %s прошла успешно!"%DUT.hostname)

@@ -2,7 +2,7 @@ import telnetlib
 
 class setting_ME():
     #Инициализация устройства
-    def __init__(self, DUT, authorization):
+    def __init__(self, DUT, authorization,hardware_set_id):
         try:
             self.hostname = authorization[DUT]["hostname"]
             self.hardware = authorization[DUT]["hardware"]
@@ -16,49 +16,63 @@ class setting_ME():
             self.neighor2 = authorization[DUT]["int"]["to_phys2"]
             self.neighor3 = authorization[DUT]["int"]["to_virt"]
             self.loopback = authorization[DUT]["int"]["lo"]
-            self.server = authorization["DUT7"]
+            self.server = authorization["DUT7"]["ip"]
+            self.stend = hardware_set_id
         except KeyError:
             print("В файле json не достаёт ключа")
 
     def connection(self):
         self.tn = telnetlib.Telnet(self.host_ip)
-        self.tn.read_until(b"login: ")
+        self.tn.read_until(b"login: ", timeout=30)
         self.tn.write(self.login.encode('ascii') + b"\n")
-        self.tn.read_until(b"Password: ")
+        self.tn.read_until(b"Password: ", timeout=30)
         self.tn.write(self.password.encode('ascii') + b"\n")
+        self.tn.read_until(b"#", timeout=30)
 
     def close(self):
         self.tn.write(b"exit\n")
+        self.tn.close()
 
     #Загрузка чистой конфигурации
     def startup(self):
         if self.vrf == "none":
-            self.tn.write(b"copy tftp://%s/startup_config/%s/startup-cfg-cli fs://candidate-config\n"%(self.server['ip'].encode('ascii'), self.hostname.encode('ascii')))
+            self.tn.write(b"copy tftp://%s/%s/startup_config/%s/startup-cfg-cli fs://candidate-config\n"%(self.server.encode('ascii'), self.stend.encode('ascii'), self.hostname.encode('ascii')))
         else:
-            self.tn.write(b"copy tftp://%s/startup_config/%s/startup-cfg-cli fs://candidate-config vrf %s\n"%(self.server['ip'].encode('ascii'), self.hostname.encode('ascii'), self.vrf.encode('ascii')))
-        self.tn.read_until(b"#")
+            self.tn.write(b"copy tftp://%s/%s/startup_config/%s/startup-cfg-cli fs://candidate-config vrf %s\n"%(self.server.encode('ascii'), self.stend.encode('ascii'), self.hostname.encode('ascii'), self.vrf.encode('ascii')))
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"commit replace\n")
-        self.tn.read_until(b"\[n\]")
+        self.tn.read_until(b"Do you wish to proceed? (y/n): [n]", timeout=30)
         self.tn.write(b"y\n")
-        self.tn.read_until(b"Commit successfully completed")
+        self.tn.read_until(b"#", timeout=30)
 
     #Добавление ipv4 из config.json
     def ipv4(self):
         self.tn.write(b"config\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"int " + self.neighor1['int_name'].encode('ascii') + b"\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"ipv4 address " + self.neighor1['ip'].encode('ascii') + b"\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"description " + self.neighor1['neighbor'].encode('ascii') + b"\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"int " + self.neighor2['int_name'].encode('ascii') + b"\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"ipv4 address " + self.neighor2['ip'].encode('ascii') + b"\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"description " + self.neighor2['neighbor'].encode('ascii') + b"\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"int " + self.neighor3['int_name'].encode('ascii') + b"\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"ipv4 address " + self.neighor3['ip'].encode('ascii') + b"\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"description " + self.neighor3['neighbor'].encode('ascii') + b"\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"encapsulation outer-vid " + self.neighor3['vlan'].encode('ascii') + b"\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"commit\n")
-        self.tn.read_until(b"#")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"end\n")
-        self.tn.read_until(b"#")
+        self.tn.read_until(b"#", timeout=30)
     
     #Изменение ipv4 в одном интерфейсе
     def change_ipv4(self, int, old_ip, new_ip):
@@ -67,9 +81,9 @@ class setting_ME():
         self.tn.write(b"no ipv4 address " + old_ip.encode('ascii') + b"\n")
         self.tn.write(b"ipv4 address " + new_ip.encode('ascii') + b"\n")
         self.tn.write(b"commit\n")
-        self.tn.read_until(b"#")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"end\n")
-        self.tn.read_until(b"#")
+        self.tn.read_until(b"#", timeout=30)
 
     #Удаление всех ipv4, которые находятся в config_OOP.json
     def no_ipv4(self):
@@ -81,9 +95,9 @@ class setting_ME():
         self.tn.write(b"exit\n")
         self.tn.write(b"no int " + self.neighor3['int_name'].encode('ascii') + b"\n")
         self.tn.write(b"commit\n")
-        self.tn.read_until(b"#")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"end\n")
-        self.tn.read_until(b"#")
+        self.tn.read_until(b"#", timeout=30)
     
     #Добавление loopback из config_OOP.json
     def loopback_ipv4(self):
@@ -127,21 +141,34 @@ class setting_ME():
     #Агрегирование интерфейсов из config_OOP.json
     def lacp(self):
         self.tn.write(b"config\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"int " + self.neighor1['int_name'].encode('ascii') + b"\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"int " + self.neighor2['int_name'].encode('ascii') + b"\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"lacp\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"int " + self.neighor1['int_name'].encode('ascii') + b"\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"int " + self.neighor2['int_name'].encode('ascii') + b"\n")
+        self.tn.read_until(b"#", timeout=30)
         for i in self.neighor1['interface']:
             self.tn.write(b"int " + i.encode('ascii') + b"\n")
+            self.tn.read_until(b"#", timeout=30)
             self.tn.write(b"bundle id " + self.neighor1['id'].encode('ascii') + b"\n")
+            self.tn.read_until(b"#", timeout=30)
             self.tn.write(b"bundle mode " + self.neighor1['mode'].encode('ascii') + b"\n")
         for i in self.neighor2['interface']:
             self.tn.write(b"int " + i.encode('ascii') + b"\n")
+            self.tn.read_until(b"#", timeout=30)
             self.tn.write(b"bundle id " + self.neighor2['id'].encode('ascii') + b"\n")
+            self.tn.read_until(b"#", timeout=30)
             self.tn.write(b"bundle mode " + self.neighor2['mode'].encode('ascii') + b"\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"commit\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"end\n")
+        self.tn.read_until(b"#", timeout=30)
 
     #Удаление агрегации из config_OOP.json
     def no_lacp(self):

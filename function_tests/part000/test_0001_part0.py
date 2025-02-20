@@ -7,9 +7,11 @@ from conftest import *
 @allure.title('Загрузка конфигурации на ME маршрутизатор')
 @pytest.mark.part0
 @pytest.mark.parametrize("DUT",
-			[ DUT1, DUT2, DUT3])
-@pytest.mark.usefixtures('move_mgmt_int_from_mgmt_intf')
+			[ DUT1, DUT2, DUT3, DUT4])
 def test_me_init_config0_upload (DUT): 
 # В данном тесте будем загружать начальную конфигурацию на ME маршрутизаторы для тестов из Части 0 документа
+	DUT.connection()
+	print('Соединился')
 	DUT.startup()
+	DUT.close()
 	print('Стартовая конфигурация на %s прошла успешно!'%(DUT.hostname))

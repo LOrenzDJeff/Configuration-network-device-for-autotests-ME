@@ -109,8 +109,6 @@ snmp server vrf MGN
   exit
 exit
 
-ssh server vrf MGN 
-exit
 ssh server vrf mgmt-intf 
 exit
 
@@ -119,7 +117,7 @@ tacacs-server host 192.168.16.89 vrf MGN
   source-address 10.10.10.3
 exit
 
-telnet server vrf MGN 
+telnet server vrf mgmt-intf
 exit
 
 user ad

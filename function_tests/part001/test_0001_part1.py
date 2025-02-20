@@ -16,6 +16,7 @@ from conftest import *
  
 def test_me_init_config_ME2001(DUT): 
 	DUT.connection()
+	DUT.startup()
 	DUT.ipv4()
 	DUT.lacp()
 	print("Загрузка конфигурации на %s прошла успешно!"%DUT.hostname)
