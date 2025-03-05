@@ -77,9 +77,13 @@ class setting_ME():
     #Изменение ipv4 в одном интерфейсе
     def change_ipv4(self, int, old_ip, new_ip):
         self.tn.write(b"config\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"int " + int.encode('ascii') + b"\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"no ipv4 address " + old_ip.encode('ascii') + b"\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"ipv4 address " + new_ip.encode('ascii') + b"\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"commit\n")
         self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"end\n")
@@ -88,12 +92,19 @@ class setting_ME():
     #Удаление всех ipv4, которые находятся в config_OOP.json
     def no_ipv4(self):
         self.tn.write(b"config\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"int " + self.neighor1['int_name'].encode('ascii') + b"\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"no ipv4 address " +  self.neighor1['ip'].encode('ascii') + b"\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"int " +  self.neighor2['int_name'].encode('ascii') + b"\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"no ipv4 address " + self.neighor2['i[]'].encode('ascii') + b"\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"exit\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"no int " + self.neighor3['int_name'].encode('ascii') + b"\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"commit\n")
         self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"end\n")
@@ -102,41 +113,65 @@ class setting_ME():
     #Добавление loopback из config_OOP.json
     def loopback_ipv4(self):
         self.tn.write(b"config\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"int loopback " + self.loopback['num'].encode('ascii') + b"\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"ipv4 address " + self.loopback['ip'].encode('ascii') + b"\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"commit\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"end\n")
+        self.tn.read_until(b"#", timeout=30)
 
     #Добавление нового loopback
     def add_new_loopback(self, id, ip):
         self.tn.write(b"config\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"int loopback " + id.encode('ascii') + b"\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"ipv4 address " + ip.encode('ascii') + b"\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"commit\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"end\n")
+        self.tn.read_until(b"#", timeout=30)
 
     #Изменение ipv4 у указанного loopback
     def change_loopback(self, id, old_ip, new_ip):
         self.tn.write(b"config\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"int loopback " + id.encode('ascii') + b"\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"no ipv4 address " + old_ip.encode('ascii') + b"\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"ipv4 address " + new_ip.encode('ascii') + b"\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"commit\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"end\n")
+        self.tn.read_until(b"#", timeout=30)
 
     #Удаление указанного loopback
     def deleted_othet_loopback(self, id):
         self.tn.write(b"config\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"no int loopback " + id.encode('ascii') + b"\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"commit\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"end\n")
+        self.tn.read_until(b"#", timeout=30)
 
     #Удаление loopback, который находится в config_OOP.json
     def no_loopback(self):
         self.tn.write(b"config\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"no int loopback " + self.loopback["num"].encode('ascii') + b"\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"commit\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"end\n")
+        self.tn.read_until(b"#", timeout=30)
 
     #Агрегирование интерфейсов из config_OOP.json
     def lacp(self):
@@ -173,14 +208,23 @@ class setting_ME():
     #Удаление агрегации из config_OOP.json
     def no_lacp(self):
         self.tn.write(b"config\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"no int " + self.neighor1['int_name'].encode('ascii') + b"\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"no int " + self.neighor2['int_name'].encode('ascii') + b"\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"lacp\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"no int " + self.neighor1['int_name'].encode('ascii') + b"\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"no int " + self.neighor2['int_name'].encode('ascii') + b"\n")
+        self.tn.read_until(b"#", timeout=30)
         for i in self.neighor1['interface']:
             self.tn.write(b"no int " + i.encode('ascii') + b"\n")
         for i in self.neighor2['interface']:
             self.tn.write(b"no int " + i.encode('ascii') + b"\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"commit\n")
+        self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"end\n")
+        self.tn.read_until(b"#", timeout=30)
