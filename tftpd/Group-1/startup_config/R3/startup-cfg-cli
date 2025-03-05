@@ -1,0 +1,20 @@
+!! IOS XR Configuration 6.0.0
+!! Last configuration change at Fri Dec 13 04:33:51 2024 by cisco
+!
+hostname R3-G1
+telnet vrf default ipv4 server max-servers 10
+interface GigabitEthernet0/0/0/1
+ shutdown
+!
+interface GigabitEthernet0/0/0/2
+!
+interface GigabitEthernet0/0/0/2.3460
+ ipv4 address 192.168.17.8 255.255.252.0
+ encapsulation dot1q 3460
+!
+router static
+ address-family ipv4 unicast
+  192.168.0.0/16 192.168.16.1
+ !
+!
+end

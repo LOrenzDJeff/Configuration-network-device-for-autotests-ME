@@ -8,29 +8,27 @@ banner motd "Test motd banner"
 
 clock timezone gmt 7
 
-hostname atAR2
+hostname R4-G1
 
 hw-module enable acl-counters 
 hw-module enable acl-default 
 hw-module maximum acl-entries 64
 
 interface mgmt 0/fmc0/1 
+  ipv4 address 192.168.17.36
   vrf mgmt-intf
 exit
-interface loopback 1 
-  ipv4 address 172.16.1.2/32
-exit
 interface tengigabitethernet 0/0/1 
-  description to_atAR1:te0/0/1
+  description to_R2:te0/0/1
 exit
 interface tengigabitethernet 0/0/2 
-  description to_atAR1:te0/0/2
+  description to_R2:te0/0/2
 exit
 interface tengigabitethernet 0/0/3 
-  description to_atDR1:te0/8/3
+  description to_R1:te0/0/3
 exit
 interface tengigabitethernet 0/0/4 
-  description to_atDR1:te0/8/4
+  description to_R1:te0/0/4
 exit
 interface tengigabitethernet 0/0/5 
 exit
@@ -64,11 +62,6 @@ exit
 interface tengigabitethernet 0/0/19 
 exit
 interface tengigabitethernet 0/0/20 
-exit
-interface tengigabitethernet 0/0/11.4040 
-  description to_Management_network
-  encapsulation outer-vid 4040 
-  ipv4 address 192.168.17.139/23
 exit
 
 vrf mgmt-intf 
