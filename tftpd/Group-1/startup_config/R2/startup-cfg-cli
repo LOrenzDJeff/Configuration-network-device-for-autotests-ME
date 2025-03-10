@@ -1,22 +1,10 @@
-aaa authentication login AAA-TAC 
-  method tacacs
-  method local
-exit
-
 banner login "This device can be used by authorized users only. Unauthorized access is prosecuted by federal law (Federal law 63, article 272 of the Criminal Code of the Russian Federation"
 banner motd "Test motd banner"
 
-clock timezone gmt 7
-
 hostname R2-G1
 
-hw-module enable acl-counters 
-hw-module enable acl-default 
-hw-module maximum acl-entries 64
-hw-module maximum cpu-punt-entries 10000
-
 interface mgmt 0/fmc0/1 
-  ipv4 address 192.168.17.35/23
+  ipv4 address 192.168.17.35/22
   vrf mgmt-intf
 exit
 interface tengigabitethernet 0/0/1 
@@ -65,35 +53,21 @@ exit
 interface tengigabitethernet 0/0/20 
 exit
 
-vrf MGN 
-  rd 1:0
-exit
 vrf mgmt-intf 
   rd 0:0
 exit
 
-line telnet login authentication AAA-TAC
-line ssh login authentication AAA-TAC
-
-logging rotate 10
-logging size 20000
-
-ntp vrf MGN 
-  server 192.168.16.89 
-  exit
-exit
-
-router static 
-  vrf MGN 
-    address-family ipv4 unicast 
-      destination 192.168.0.0/16 192.168.16.1 
+router static
+  vrf mgmt-intf
+    address-family ipv4 unicast
+      destination 192.168.0.0/16 192.168.16.1
       exit
     exit
   exit
 exit
 
-snmp server vrf MGN 
-  community label private 
+snmp server vrf mgmt-intf
+  community label private
     community-name encrypted BEBD045EB50C5AFE75
     rights rw
   exit
@@ -104,11 +78,6 @@ snmp server vrf MGN
 exit
 
 ssh server vrf mgmt-intf 
-exit
-
-tacacs-server host 192.168.16.89 vrf MGN 
-  password encrypted 8FB1007FB51B
-  source-address 10.10.10.3
 exit
 
 telnet server vrf mgmt-intf

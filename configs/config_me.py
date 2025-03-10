@@ -41,7 +41,7 @@ class setting_ME():
             self.tn.write(b"copy tftp://%s/%s/startup_config/%s/startup-cfg-cli fs://candidate-config vrf %s\n"%(self.server.encode('ascii'), self.stend.encode('ascii'), self.hostname.encode('ascii'), self.vrf.encode('ascii')))
         self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"commit replace\n")
-        self.tn.read_until(b"Do you wish to proceed? (y/n): [n]", timeout=30)
+        self.tn.read_until(b"[n]", timeout=30)
         self.tn.write(b"y\n")
         self.tn.read_until(b"#", timeout=30)
 

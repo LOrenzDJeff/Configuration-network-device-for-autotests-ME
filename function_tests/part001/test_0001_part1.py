@@ -14,10 +14,10 @@ from conftest import *
 			]
 			)
  
-def test_me_init_config_ME2001(DUT): 
+def test_me_init_config(DUT):
 	DUT.connection()
 	DUT.startup()
-	DUT.ipv4()
 	DUT.lacp()
+	DUT.ipv4()
 	print("Загрузка конфигурации на %s прошла успешно!"%DUT.hostname)
 	DUT.close()
