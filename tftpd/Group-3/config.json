@@ -2,10 +2,10 @@
     "DUT1": 
     {
         "hostname": "R2",
-        "hardware": "ME5100",
+        "hardware": "ME5200S",
         "software": "3.9.10.155RC",
         "proto": "telnet",
-        "host_ip": "192.168.17.38",
+        "host_ip": "192.168.17.13",
         "login": "admin",
         "password": "password",
         "vrf": "mgmt-intf",
@@ -33,14 +33,14 @@
           },
           "to_virt":
           {
-              "int_name" : "te0/0/11.254",
+              "int_name" : "te0/0/11.354",
               "ip" : "192.168.1.9/30",
-              "vlan" : "254",
-              "neighbor" : "to_R3:ge0/0/0/2.254"
+              "vlan" : "354",
+              "neighbor" : "to_R3:ge0/0/0/2.354"
           },
           "lo" : 
           {
-              "ip" : "1.0.2.2/32",
+              "ip" : "1.0.3.2/32",
               "num" : "10"
           }
         }
@@ -48,10 +48,10 @@
     "DUT2": 
     {
         "hostname": "R4",
-        "hardware": "ME5100",
+        "hardware": "ME5200S",
         "software": "3.9.10.155RC",
         "proto": "telnet",
-        "host_ip": "192.168.17.39",
+        "host_ip": "192.168.17.14",
         "login": "admin",
         "password": "password",
         "vrf": "mgmt-intf",
@@ -79,14 +79,14 @@
           },
           "to_virt":
           {
-              "int_name" : "te0/0/11.255",
+              "int_name" : "te0/0/11.355",
               "ip" : "192.168.1.13/30",
-              "vlan" : "255",
-              "neighbor" : "to_R3:ge0/0/0/2.255"
+              "vlan" : "355",
+              "neighbor" : "to_R3:ge0/0/0/2.355"
           },
           "lo" : 
           {
-              "ip" : "1.0.2.4/32",
+              "ip" : "1.0.3.4/32",
               "num" : "10"
           }
         }
@@ -94,10 +94,10 @@
     "DUT3": 
     {
         "hostname": "R1",
-        "hardware": "ME5100",
+        "hardware": "ME5200S",
         "software": "3.9.10.155RC",
         "proto": "telnet",
-        "host_ip": "192.168.17.37",
+        "host_ip": "192.168.17.12",
         "login": "admin",
         "password": "password",
         "vrf": "mgmt-intf",
@@ -125,14 +125,14 @@
           },
           "to_virt" : 
           {
-              "int_name" : "te0/0/5.253",
+              "int_name" : "te0/0/5.353",
               "ip" : "192.168.1.17/30",
-              "vlan" : "253",
-              "neighbor" : "to_R3:ge-0/0/0/2.253"
+              "vlan" : "353",
+              "neighbor" : "to_R3:ge-0/0/0/2.353"
           },
           "lo" : 
           {
-              "ip" : "1.0.2.1",
+              "ip" : "1.0.3.1",
               "num" : "10"
           }
         }
@@ -140,31 +140,31 @@
     "DUT4": 
     {
         "hostname": "R3",
-        "hardware": "cisco",
-        "software": "IOS XRv Chassis",
+        "hardware": "vMX",
+        "software": "JUNOS 18.2R1.9",
         "proto": "telnet",
-        "host_ip": "192.168.17.9",
-        "login": "admin",
-        "password": "admin",
-        "int": "gi 0/0/0/2",
+        "host_ip": "192.168.17.7",
+        "login": "user",
+        "password": "Password",
+        "int": "ge-0/0/0",
         "vlan1": 
         {
-            "id" : "253",
-            "ipv4" : "192.168.1.18 255.255.255.252"
+            "id" : "353",
+            "ipv4" : "192.168.1.18/30"
         },
         "vlan2": 
         {
-            "id" : "254",
-            "ipv4" : "192.168.1.10 255.255.255.252"
+            "id" : "354",
+            "ipv4" : "192.168.1.10/30"
         },
         "vlan3": 
         {
-            "id" : "255",
-            "ipv4" : "192.168.1.14 255.255.255.252"
+            "id" : "355",
+            "ipv4" : "192.168.1.14/30"
         },
         "lo" : 
           {
-              "ip" : "1.0.2.3 255.255.255.255",
+              "ip" : "1.0.3.3/32",
               "num" : "0"
           }
     },
@@ -174,7 +174,7 @@
         "hardware": "MES2424FB",
         "software": "10.3.4",
         "proto": "telnet",
-        "host_ip": "192.168.17.46",
+        "host_ip": "192.168.17.16",
         "login": "admin",
         "password": "admin"
     },

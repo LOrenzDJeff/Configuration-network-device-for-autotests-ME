@@ -1,7 +1,6 @@
 from configs.config_me import *
 from configs.config_cisco import *
-from configs.old_config_jun import *
-from configs.old_config_mes import *
+from configs.config_jun import *
 import ipaddress
 import json
 import time

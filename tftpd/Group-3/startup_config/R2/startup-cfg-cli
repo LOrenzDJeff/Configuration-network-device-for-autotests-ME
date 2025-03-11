@@ -1,26 +1,26 @@
 banner login "This device can be used by authorized users only. Unauthorized access is prosecuted by federal law (Federal law 63, article 272 of the Criminal Code of the Russian Federation"
 banner motd "Test motd banner"
 
-hostname R4-G1
+hostname R2-G3
 
 interface mgmt 0/fmc0/1 
-  ipv4 address 192.168.17.36/22
+  ipv4 address 192.168.17.13/22
   vrf mgmt-intf
 exit
 interface tengigabitethernet 0/0/1 
-  description to_R2:te0/0/1
-  load-interval 20
-exit
-interface tengigabitethernet 0/0/2 
-  description to_R2:te0/0/2
-  load-interval 20
-exit
-interface tengigabitethernet 0/0/3 
   description to_R1:te0/0/3
   load-interval 20
 exit
-interface tengigabitethernet 0/0/4 
+interface tengigabitethernet 0/0/2 
   description to_R1:te0/0/4
+  load-interval 20
+exit
+interface tengigabitethernet 0/0/3 
+  description to_R4:te0/0/3
+  load-interval 20
+exit
+interface tengigabitethernet 0/0/4 
+  description to_R4:te0/0/4
   load-interval 20
 exit
 interface tengigabitethernet 0/0/5 
@@ -31,12 +31,11 @@ interface tengigabitethernet 0/0/7
 exit
 interface tengigabitethernet 0/0/8 
 exit
-interface tengigabitethernet 0/0/9 
+interface tengigabitethernet 0/0/9
 exit
 interface tengigabitethernet 0/0/10 
 exit
 interface tengigabitethernet 0/0/11 
-  description to_MES17.137:te1/0/1
 exit
 interface tengigabitethernet 0/0/12 
 exit
@@ -61,43 +60,34 @@ vrf mgmt-intf
   rd 0:0
 exit
 
-router static
-  vrf mgmt-intf
-    address-family ipv4 unicast
-      destination 192.168.0.0/16 192.168.16.1
+router static 
+  vrf mgmt-intf 
+    address-family ipv4 unicast 
+      destination 192.168.0.0/16 192.168.16.1 
+      exit
+      destination 192.168.32.0/20 192.168.16.1 
       exit
     exit
   exit
 exit
 
-snmp server vrf mgmt-intf
-  community label private
-    community-name encrypted BEBD045EB50C5AFE75
-    rights rw
-  exit
-  community label public
-    community-name encrypted 8CA10161B90C
-    version v2c
-  exit
-exit
-
-ssh server vrf default 
-exit
 ssh server vrf mgmt-intf 
 exit
 
-telnet server vrf default 
-exit
 telnet server vrf mgmt-intf 
 exit
 
 user ad
-  password encrypted $6$riJFnJ.4tUqQCpCS$ppr9y0grtYjAO/6Y/uNnE9JmvF5q6FoFIrFxxgaJrD28WcqdJll/pQymyvYFtm93rW64koPpaqwEHhJ7k2YNb1
+  password encrypted $6$BXtTHZbxfvANpJgr$7mq05sroQF9xEyoO.yMUcYjG3DSSb3BpKL25A2PZPzhHkmJkay.y0ld7OkXS9QxUnV6q.HJu6QqoL5OzFl75A.
   privilege p15
 exit
 
 user admin 
-  password encrypted $6$zKmUNMuvZJ8VkUMQ$C87Fg.wf24huJlhF9bDZk1kSJiHdQLl9ZF8vhQQ1s69Z0saoXGBS.ber.RWQ7rZZbt.24Awax.SCZfG8f1UR0/
+  password encrypted $6$UnQIpMX/n7n6a2Xc$GQ94UCp3eRPv1yYFBPE.gTvIcDfYqaN7MGfqJ3/S6xvWrZM55VvtEQGQvRTIS2sSdqTifJ5WCFuyNQyYeDZlt1
   privilege p15
 exit
 
+user pytest 
+  password encrypted $6$iITXc4IkM9zwahlp$zh.PCpL4GFK1w92fwWqJoFu0n9BN9avx88ohS9m/RzGc.kxizxHVPIiaO71iumXjPcz4yYb2KYnsSc.FFnrxy/
+  privilege p15
+exit

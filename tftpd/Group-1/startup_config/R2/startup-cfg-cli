@@ -13,12 +13,15 @@ interface tengigabitethernet 0/0/1
 exit
 interface tengigabitethernet 0/0/2 
   description to_R4:te0/0/2
+  load-interval 20
 exit
 interface tengigabitethernet 0/0/3 
   description to_R1:te0/0/1
+  load-interval 20
 exit
 interface tengigabitethernet 0/0/4 
   description to_R1:te0/0/2
+  load-interval 20
 exit
 interface tengigabitethernet 0/0/5 
 exit

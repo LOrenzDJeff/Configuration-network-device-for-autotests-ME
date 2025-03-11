@@ -18,4 +18,5 @@ def test_junos_init_config_upload_part1 (DUT):
     DUT.connection()
     DUT.startup()
     DUT.ipv4()
+    DUT.close()
     print("Загрузка конфигурации на %s прошла успешно!"%DUT.hostname)
