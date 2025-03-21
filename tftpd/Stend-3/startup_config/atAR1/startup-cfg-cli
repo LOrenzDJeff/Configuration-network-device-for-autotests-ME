@@ -1,4 +1,4 @@
-aaa authentication login AAA-TAC 
+aaa authentication login TAC 
   method tacacs
   method local
 exit
@@ -13,7 +13,6 @@ hostname atAR1
 hw-module enable acl-counters 
 hw-module enable acl-default 
 hw-module maximum acl-entries 64
-hw-module maximum cpu-punt-entries 10000
 
 interface mgmt 0/fmc0/1 
   vrf mgmt-intf
@@ -67,7 +66,7 @@ exit
 interface tengigabitethernet 0/0/11.4040 
   description to_Management_network
   encapsulation outer-vid 4040 
-  ipv4 address 192.168.17.86/23
+  ipv4 address 192.168.17.204/23
   vrf MGN
 exit
 
@@ -78,8 +77,8 @@ vrf mgmt-intf
   rd 0:0
 exit
 
-line telnet login authentication AAA-TAC
-line ssh login authentication AAA-TAC
+line telnet login authentication TAC
+line ssh login authentication TAC
 
 logging rotate 10
 logging size 20000

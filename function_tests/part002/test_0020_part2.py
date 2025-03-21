@@ -8,23 +8,22 @@ from conftest import *
 @pytest.mark.dependency(depends=["load_config002_dut1","load_config002_dut2","load_config002_dut3"],scope='session')   
 @pytest.mark.parametrize("DUT",
 			[
-			 pytest.param("DUT1"), 
- 			 pytest.param("DUT2"), 
- 			 pytest.param("DUT3")
+			 pytest.param(DUT1), 
+ 			 pytest.param(DUT2), 
+ 			 pytest.param(DUT3)
 			]
 			)
 def test_banner_login(DUT):
-    router = setting_ME(DUT)
     banner_login='This device can be used by authorized users only. Unauthorized access is prosecuted by federal law (Federal law 63, article 272 of the Criminal Code of the Russian Federation'
     banner_motd='Test motd banner'
     conn = Telnet()
-    acc = Account(router.login, router.password)
-    conn.connect(router.host_ip)
+    acc = Account(DUT.login, DUT.password)
+    conn.connect(DUT.host_ip)
     conn.waitfor('ogin:')
     res=conn.response
     conn.login(acc)
     res1=conn.response
     res=res +res1
-    allure.attach(res,'Вывод banner login и banner motd для %s'%router.host_ip, attachment_type=allure.attachment_type.TEXT)
-    assert_that(res.find(banner_login)!=-1,"Ожидаемое сообщение banner_login - %s не обнаружено при подключении к узлу %s"%(banner_login,router.host_ip))
-    assert_that(res.find(banner_motd)!=-1,"Ожидаемое сообщение banner_motd - %s не обнаружено при подключении к узлу %s"%(banner_motd,router.host_ip))
+    allure.attach(res,'Вывод banner login и banner motd для %s'%DUT.host_ip, attachment_type=allure.attachment_type.TEXT)
+    assert_that(res.find(banner_login)!=-1,"Ожидаемое сообщение banner_login - %s не обнаружено при подключении к узлу %s"%(banner_login,DUT.host_ip))
+    assert_that(res.find(banner_motd)!=-1,"Ожидаемое сообщение banner_motd - %s не обнаружено при подключении к узлу %s"%(banner_motd,DUT.host_ip))

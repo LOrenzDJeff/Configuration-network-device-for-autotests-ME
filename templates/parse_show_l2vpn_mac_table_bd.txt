@@ -32,7 +32,7 @@ Start
 #  MAC address        Type     Learned from                               LC/location     Bridge-domain name 
 #  ------------------ -------- ------------------------------------------ --------------- ------------------- 
 #  e0:d9:e3:df:34:b6  Dynamic  bu1.300                                    0/1             BD-TEST 
-#  e0:d9:e3:df:34:b7  Dynamic  pw 1.0.0.2 123                             0/1             BD-TEST 
+#  e4:5a:d4:de:c8:a3  Dynamic  pw 1.0.0.2 123                             0/1             BD-TEST
 #
 #  Total objects for this criteria: 2
 #0/FMC0:atDR1# 
@@ -43,7 +43,7 @@ Start
 #  MAC address        Type     Learned from                               LC/location     Bridge-domain name 
 #  ------------------ -------- ------------------------------------------ --------------- ------------------- 
 #  e0:d9:e3:df:34:b6  Dynamic  pw 1.0.0.1 123                             0/0             BD-TEST 
-#  e0:d9:e3:df:34:b7  Dynamic  bu2.400                                    0/0             BD-TEST 
+#  e4:5a:d4:de:c8:a3  Dynamic  bu2.400                                    0/0             BD-TEST
 #
 #  Total objects for this criteria: 2
 #0/ME5100:atAR2# 

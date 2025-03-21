@@ -1,34 +1,26 @@
 Value FMC0 (FMC16|FMC32)
 Value FMC0_CpuTemp_int (\d+)
-Value FMC0_CpuTemp_ext (\d+)
 Value FMC0_FabricTemp_int (\d+)
 Value FMC0_FabricTemp_ext (\d+)
-Value FMC0_Board_Temp (\d+)
 Value FMC1 (FMC16|FMC32)
 Value FMC1_CpuTemp_int (\d+)
-Value FMC1_CpuTemp_ext (\d+)
 Value FMC1_FabricTemp_int (\d+)
 Value FMC1_FabricTemp_ext (\d+)
-Value FMC1_Board_Temp (\d+)
 Value Slot1 (LC18XGE|LC20XGE|LC8XLGE)
 Value Slot1_CpuTemp_int (\d+)
-Value Slot1_CpuTemp_ext (\d+)
 Value Slot1_Switch_Temp_int (\d+)
 Value Slot1_Switch_Temp_ext (\d+)
 Value Slot1_Lookup_Temp_int (\d+)
-Value Slot1_Lookup_Temp_ext (\d+)
 Value Slot1_SMSTAT_Temp_int (\d+)
 Value Slot1_SMSTAT_Temp_ext (\d+)
 Value Slot1_Board_Temp (\d+)
 Value Slot8 (LC18XGE|LC20XGE|LC8XLGE)
 Value Slot8_CpuTemp_int (\d+)
-Value Slot8_CpuTemp_ext (\d+)
 Value Slot8_Switch_Temp_int (\d+)
 Value Slot8_Switch_Temp_ext (\d+)
 Value Slot8_Lookup_Temp_int (\d+)
-Value Slot8_Lookup_Temp_ext (\d+)
-Value Slot8_SMSTAT_Temp_int (\d+)
-Value Slot8_SMSTAT_Temp_ext (\d+)
+#Value Slot8_SMSTAT_Temp_int (\d+)
+#Value Slot8_SMSTAT_Temp_ext (\d+)
 Value Slot8_Board_Temp (\d+)
 Value FanTop (\d+)
 Value Fan1Top (\d+)
@@ -55,28 +47,25 @@ Start
 
 
 FMC0
-  ^\s+CPU temperature \(int/ext\):\s+${FMC0_CpuTemp_int}\s+C\s+/\s+${FMC0_CpuTemp_ext}\s+C
-  ^\s+Fabric engine temperature \(int/ext\):\s+${FMC0_FabricTemp_int}\s+C\s+/\s+${FMC0_FabricTemp_ext}\s+C
-  ^\s+Board sensor \(inlet\) temperature:\s+${FMC0_Board_Temp}\s+C -> Start
-
+  ^\s+CPU temperature \(int\):\s+${FMC0_CpuTemp_int}\s+C
+  ^\s+Fabric engine temperature \(int/ext\):\s+${FMC0_FabricTemp_int}\s+C\s+/\s+${FMC0_FabricTemp_ext}\s+C -> Start
 
 FMC1
-  ^\s+CPU temperature \(int/ext\):\s+${FMC1_CpuTemp_int}\s+C\s+/\s+${FMC1_CpuTemp_ext}\s+C
-  ^\s+Fabric engine temperature \(int/ext\):\s+${FMC1_FabricTemp_int}\s+C\s+/\s+${FMC1_FabricTemp_ext}\s+C
-  ^\s+Board sensor \(inlet\) temperature:\s+${FMC1_Board_Temp}\s+C -> Start
+  ^\s+CPU temperature \(int\):\s+${FMC1_CpuTemp_int}\s+C
+  ^\s+Fabric engine temperature \(int/ext\):\s+${FMC1_FabricTemp_int}\s+C\s+/\s+${FMC1_FabricTemp_ext}\s+C -> Start
 
 Slot1
-  ^\s+CPU temperature \(int/ext\):\s+${Slot1_CpuTemp_int}\s+C\s+/\s+${Slot1_CpuTemp_ext}\s+C
+  ^\s+CPU temperature \(int\):\s+${Slot1_CpuTemp_int}\s+C
   ^\s+Switching engine temperature \(int/ext\):\s+${Slot1_Switch_Temp_int}\s+C\s+/\s+${Slot1_Switch_Temp_ext}\s+C
-  ^\s+Lookup engine temperature \(int/ext\):\s+${Slot1_Lookup_Temp_int}\s+C\s+/\s+${Slot1_Lookup_Temp_ext}\s+C
+  ^\s+Lookup engine temperature \(int\):\s+${Slot1_Lookup_Temp_int}\s+C
   ^\s+SM-STAT engine temperature \(int/ext\):\s+${Slot1_SMSTAT_Temp_int}\s+C\s+/\s+${Slot1_SMSTAT_Temp_ext}\s+C
   ^\s+Board sensor \(inlet\) temperature:\s+${Slot1_Board_Temp}\s+C -> Start
 
 Slot8
-  ^\s+CPU temperature \(int/ext\):\s+${Slot8_CpuTemp_int}\s+C\s+/\s+${Slot8_CpuTemp_ext}\s+C
+  ^\s+CPU temperature \(int\):\s+${Slot8_CpuTemp_int}\s+C
   ^\s+Switching engine temperature \(int/ext\):\s+${Slot8_Switch_Temp_int}\s+C\s+/\s+${Slot8_Switch_Temp_ext}\s+C
-  ^\s+Lookup engine temperature \(int/ext\):\s+${Slot8_Lookup_Temp_int}\s+C\s+/\s+${Slot8_Lookup_Temp_ext}\s+C
-  ^\s+SM-STAT engine temperature \(int/ext\):\s+${Slot8_SMSTAT_Temp_int}\s+C\s+/\s+${Slot8_SMSTAT_Temp_ext}\s+C
+  ^\s+Lookup engine temperature \(int\):\s+${Slot8_Lookup_Temp_int}\s+C 
+#  ^\s+SM-STAT engine temperature \(int/ext\):\s+${Slot8_SMSTAT_Temp_int}\s+C\s+/\s+${Slot8_SMSTAT_Temp_ext}\s+C
   ^\s+Board sensor \(inlet\) temperature:\s+${Slot8_Board_Temp}\s+C -> Start
 
 FanTop
@@ -139,5 +128,4 @@ FanBottom
 #     Fan 4: 3480 RPM
 #     Fan 5: 3420 RPM
 #     Fan 6: 3420 RPM
-
 

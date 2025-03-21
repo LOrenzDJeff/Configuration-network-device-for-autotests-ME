@@ -1,0 +1,12 @@
+version: '3'
+services:
+  tacacs:
+#    image: tac_plus
+    build: .
+#      context: .
+    container_name: tacacs
+    ports:
+    - "49:49/tcp"
+    restart: always
+    
+

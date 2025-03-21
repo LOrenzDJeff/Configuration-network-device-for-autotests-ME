@@ -14,7 +14,6 @@ Start
   ^\s+header bad source err: \d+, header area mismatch err: ${area_count_mismatch}
   ^\s+hello\s+timer\s+mismatch:\s+${hello_timer_mismatch},\s+dead\s+interval\s+mismatch:\s+${dead_timer_mismatch} 
   
-  
 #0/FMC0:atDR1# show ospfv2 interfaces  bundle-ether 2.3218 detailed  
 #Tue Jun 20 17:08:27 2023
 #  Routing Process: 1, ID 1.0.0.1

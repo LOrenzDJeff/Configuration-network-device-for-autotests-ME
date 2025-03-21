@@ -5,7 +5,7 @@
       "hardware": "ME2001",
       "software": "2.3.0.349T",
       "proto": "telnet",
-      "host_ip": "192.168.17.86",
+      "host_ip": "192.168.17.204",
       "login": "admin",
       "password": "password",
       "vrf": "MGN",
@@ -193,7 +193,7 @@
     },
     "DUT7" : 
     {
-        "ip" : "192.168.16.89",
+        "ip" : "192.168.16.112",
         "login" : "avtotest",
         "password": "ethers"
     },

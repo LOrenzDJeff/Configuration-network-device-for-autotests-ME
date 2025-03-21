@@ -8,17 +8,16 @@ from conftest import *
 @pytest.mark.dependency(depends=["load_config002_dut1", "load_config002_dut2", "load_config002_dut3"], scope='session')
 @pytest.mark.parametrize("DUT",
 			[
-			 pytest.param("DUT1"), 
- 			 pytest.param("DUT2"), 
- 			 pytest.param("DUT3")
+			 pytest.param(DUT1), 
+ 			 pytest.param(DUT2), 
+ 			 pytest.param(DUT3)
 			]
 			)
 def test_ntp_part2(DUT):
-    router = setting_ME(DUT)
     conn = Telnet()
-    acc = Account(router.login, router.password)
+    acc = Account(DUT.login, DUT.password)
     try:
-        conn.connect(router.host_ip)
+        conn.connect(DUT.host_ip)
         conn.login(acc)
         conn.set_prompt('#')
         conn.execute('show ntp associations')
@@ -27,7 +26,7 @@ def test_ntp_part2(DUT):
         allure.attach(resp, 'Вывод команды show ntp associations', attachment_type=allure.attachment_type.TEXT)
 
         # Символ '*' нужно добавить перед ip адресом сервера т.к. он указывает на факт синхронизации
-        number = resp.find('*%s' %router.server['ip'])
+        number = resp.find('*%s' %DUT.server['ip'])
         assert number != -1, \
             "В выводе команды show ntp associations не обнаружен символ '*', нет синхронизации с одноранговым узлом"
     finally:

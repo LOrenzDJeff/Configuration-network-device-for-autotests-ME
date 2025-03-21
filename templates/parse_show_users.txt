@@ -1,16 +1,21 @@
-Value Top (\s+SID\s+Username\s+Host\s+Logged in at\s+Login/Idle time\s+Level\s+)
-Value user (\s+\d [* ]\s+\w+\s+\d+.\d+.\d+.\d+\s+telnet\s+\d\d:\d\d:\d\d \d\d.\d\d.\d\d\d\d\s+\d\dh\d\dm\d\ds/\d\dh\d\dm\d\ds\s+p\d+)
+Value username (\w+)
+Value host (\S+)
+Value proto (\w+)
+Value logged (\d+:\d+:\d+\s\d+\.\d+\.\d+)
+Value log_time (\d+h\d+m\d+s/\d+h\d+m\d+s)
+Value priv (\w+)
+Value auth_method (\w+)
+Value vrf (\w+)
 
 Start
-  ^${Top} -> Record
-  ^${user} -> Record
+  ^\s+\d\s\*\s+${username}\s+${host}\s+${proto}\s+${logged}\s+${log_time}\s+${priv}(?:\s+${auth_method})?(?:\s+${vrf})? -> Record
+
 
 #Пример вывода команды 'show users'
-#0/ME5100:atAR1-Test2# show users
-#Thu Dec 12 11:26:53 2019
-#  SID     Username  Host                                Logged in at          Login/Idle time       Level  
-#  ------- --------- ----------------------------------- --------------------- --------------------- ------ 
-#  1 *     admin     192.168.16.189 telnet                11:22:34 12.12.2019   00h04m19s/00h00m00s   p15    
-# 
-#  Total sessions: 1, * - current session
-#0/ME5100:atAR1-Test2# 
+#Thu Dec 26 18:08:49 2024
+#  SID     Username            Host                          Logged in at          Login/Idle time       Level
+#  ------- ------------------- ----------------------------- --------------------- --------------------- ------
+#  1 *     admin               192.168.16.89 telnet          18:08:49 26.12.2024   00h00m00s/00h00m00s   p15
+#
+#  Total entries: 1, * - current session, E - exclusive configuration mode
+#0/ME2001:atAR1#

@@ -3,11 +3,11 @@ Value nexthop (\d+.\d+.\d+.\d+)
 Value backup_nexthop (\d+.\d+.\d+.\d+)
 Value admin_dist_metric (\d+/\d+)
 Value outgoing_int (bu[12]|te0/0/11.35[12]|)
-Value Total_count (\d+)
+Value total_count (\d+)
 
 Start
   ^\s+O\s+EA\s+${prefix}\s+via\s+${nexthop}\s+\(backup local-lfa, address: ${backup_nexthop}\)\s+\[${admin_dist_metric}\], \d+h\d+m\d+s,\s+${outgoing_int} -> Record
-  ^\s+Total entries:\s+${Total_count}
+  ^\s+Total entries:\s+${total_count}
 
 #0/ME5100:atAR2# show route ospf
 #Tue Apr  7 09:05:56 2020

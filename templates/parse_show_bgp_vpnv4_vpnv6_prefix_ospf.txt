@@ -11,6 +11,7 @@ Value route_t (\d*x*\d*)
 Value metric_t (\S*)
 Value ospf_r_id (\d+.\d+.\d+.\d+)
 Value ospf_r_t_a (\d+.\d+.\d+.\d+)
+Value total_entries (\d+)
 
 Start 
   ^\s+RD\s+${rd},\s+Source VRF:\s+${source_vrf}
@@ -18,4 +19,5 @@ Start
   ^\s+Origin\s+${origin},\s+metric\s+${metric},\s+local-pref\s+${loc_pref},\s+weight\s+${weight},\s*\S*\s*\S*
   ^\s*Community*:*\s*${community}
   ^\s+Extended Community:\s+${ext_comm},\s+ospf-route-type area:\s+${ospf_r_t_a},\s+route-type:\s+${route_t},\s+metric-type:\s+${metric_t},\s+ospf-router-id\s+${ospf_r_id}
-  ^\s+Extended Community:\s+${ext_comm},\s+ospf-router-id\s+${ospf_r_id},*\s+ospf-route-type area:\s+${ospf_r_t_a},\s+route-type:\s+${route_t},\s+metric-type:\s+${metric_t}
+  ^\s+Extended Community:\s+${ext_comm},\s+ospf-router-id\s+${ospf_r_id},*\s+ospf-route-type area:\s+${ospf_r_t_a},\s+route-type:\s+${route_t},\s+metric-type:\s+${metric_t} -> Record
+  ^\s+Total entries: ${total_entries} -> Record

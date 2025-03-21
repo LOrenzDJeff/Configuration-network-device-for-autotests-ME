@@ -1,0 +1,61 @@
+version: '3'
+services:
+  server:
+    build: server/
+#      context: .
+#    restart: always 
+    ports:
+      - "5001:5001"
+    networks:
+          iperf-server:
+            ipv4_address: 192.168.74.3
+    command: -s
+
+  client:
+    build: client/
+#      context: .
+#    restart: always
+    networks:
+         iperf-client:
+            ipv4_address: 192.168.73.3
+    command: -c $arg1 -p 5001 -P 10 -b $arg3 -n 10Gb -t $arg2
+    depends_on:
+      - server
+
+  client1:
+    build: client/
+#      context: .
+#    restart: always
+    networks:
+         iperf-client:
+            ipv4_address: 192.168.73.4
+    command: -c $arg1 -p 5001:5003 -P 10 -b $arg3 -n 100Gb -t $arg2
+    depends_on:
+      - server
+  client2:
+    build: client/
+#      context: .
+#    restart: always
+    networks:
+         iperf-client:
+            ipv4_address: 192.168.73.5
+    command: -c $arg1 -p 5001:5004 -P 10 -b $arg3 -n 100Gb -t $arg2
+    depends_on:
+      - server
+  client3:
+    build: client/
+#      context: .
+#    restart: always
+    networks:
+         iperf-client:
+            ipv4_address: 192.168.73.6
+    command: -c $arg1 -p 5001:5004 -P 10 -b $arg3 -n 100Gb -t $arg2
+    depends_on:
+      - server
+
+
+networks:
+  iperf-client:
+     external: true
+  iperf-server:
+     external: true

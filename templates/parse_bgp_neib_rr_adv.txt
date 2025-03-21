@@ -12,6 +12,7 @@ Value vrf (/S*)
 Value grace_restart (\S+\s*\S*)
 Value table_st (\S+)
 
+
 Start
   ^\s+BGP router identifier ${bgp_router_id},*\s*\S*\s*${vrf}*, local AS number\s+${local_as_numb}
   ^\s+Graceful Restart ${grace_restart}

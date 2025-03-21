@@ -1,0 +1,8 @@
+Value version (\d+)
+Value peer (\d+.\d+.\d+.\d+:\d+)
+Value tcp_conn (\d+.\d+.\d+.\d+)
+Value md5 (on|off)
+
+Start
+  ^\s+LDPv${version} peer: ${peer}
+  ^\s+TCP connection: ${tcp_conn}, MD5 ${md5} -> Record

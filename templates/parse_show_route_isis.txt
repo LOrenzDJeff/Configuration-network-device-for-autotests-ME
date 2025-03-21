@@ -1,22 +1,21 @@
-Value line1 (\s+Codes: i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2)
-Value line2 (\s+LE1 - IS-IS level1 external, LE2 - IS-IS level2 external)
-Value route1_ipv4 (1.0.0.4/32\s+via \d+.\d+.\d+.\d+ \(backup local-lfa, address: \d+.\d+.\d+.\d+\) \[116/20\], \d+[wdh]\d+[dhm]\d+[hms], te0/0/11.35[12]|1.0.0.4/32\s+via \d+.\d+.\d+.\d+ \(backup local-lfa, address: \d+.\d+.\d+.\d+\) \[116/20\], \d+[wdh]\d+[dhm]\d+[hms], te0/1/5.350)
-Value route1_ipv6 (2004:0:10:1::4/128\s+via \w+::\w+:\w+:\w+:\w+ \(backup local-lfa, address: \w+::\w+:\w+:\w+:\w+\) \[116/20\], \d+[wdh]\d+[dhm]\d+[hms], te0/0/11.35[12]|2004:0:10:1::4/128\s+via \w+::\w+:\w+:\w+:\w+ \(backup local-lfa, address: \w+::\w+:\w+:\w+:\w+\) \[116/20\], \d+[wdh]\d+[dhm]\d+[hms], te0/1/5.350)
-Value Total_route (\d+)
+Value prefix (1.0.0.4/32|2004:0:10:1::4/128)
+Value next_hop (\d+.\d+.\d+.\d+|\w+::\w+:\w+:\w+:\w+)
+Value LFA_addr (\d+.\d+.\d+.\d+|\w+::\w+:\w+:\w+:\w+)
+Value time (\d+[wdh]\d+[dhm]\d+[hms])
+Value int (\S+)
+Value total_route (\d+)
 
 Start
-  ^${line1} -> Record
-  ^${line2} -> Record
-  ^\s+i L2\s+${route1_ipv4} -> Record
-  ^\s+i L2\s+${route1_ipv6} -> Record
-  ^\s+Total entries: ${Total_route} -> Record
+  ^\s+i L2\s+${prefix}\s+via ${next_hop}\s+\(backup local-lfa, address: ${LFA_addr}\) \[116/20\], ${time}, ${int} -> Record
+  ^\s+Total entries: ${total_route} -> Record
+
 
 #0/ME5100:atAR2# show route isis
 #Sat Jan  4 16:55:51 2020
 #  Codes: i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2
 #      LE1 - IS-IS level1 external, LE2 - IS-IS level2 external
-#  
-#  
+#
+#
 #  i L2   1.0.0.1/32    via 192.168.55.5 (backup local-lfa, address: 192.168.55.21) [116/10], 01h20m12s, bu1
 #  i L2   1.0.0.3/32    via 192.168.55.21 (backup local-lfa, address: 192.168.55.5) [116/10], 01h37m50s, bu2
 #  i L2   1.0.0.4/32    via 192.168.55.14 (backup local-lfa, address: 192.168.55.5) [116/10], 00h18m55s, te0/0/11.351
@@ -29,6 +28,6 @@ Start
 #  i L2   2001:db8:cafe:a013::/64    via fe80::e2d9:e3ff:fedf:34b7 (backup local-lfa, address: fe80::205:8601:5f71:4f00) [116/20], 00h18m55s, bu2
 #  i L2   2003:0:10:1::3/128    via fe80::e2d9:e3ff:fedf:34b7 (backup local-lfa, address: fe80::aaf9:4bff:fe8b:9373) [116/10], 01h37m50s, bu2
 #  i L2   2004:0:10:1::4/128    via fe80::205:8601:5f71:4f00 (backup local-lfa, address: fe80::aaf9:4bff:fe8b:9373) [116/10], 00h18m55s, te0/0/11.351
-#  
+#
 #  Total route count: 12
 #

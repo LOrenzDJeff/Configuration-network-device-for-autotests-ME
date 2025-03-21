@@ -34,9 +34,9 @@ Value Slot10 (LC8XLGE|LC20XGE|LC18XGE|not present)
 Value Slot11 (LC8XLGE|LC20XGE|LC18XGE|not present)
 Value FanTop (present|not present)
 Value FanBottom (present|not present)
-Value Slot8_SM_STAT_board (\w+\s+\w+-\w+-\w+)
-Value Slot8_Serial_number (ME\w+)
-Value Slot8_Hardware_version (\d+v\d+)
+#Value Slot8_SM_STAT_board (\w+\s+\w+-\w+-\w+)
+#Value Slot8_Serial_number (ME\w+)
+#Value Slot8_Hardware_version (\d+v\d+)
 
 Start
   ^\s+Module in slot main control panel is ${ChassisType}
@@ -45,7 +45,7 @@ Start
   ^\s+Hardware revision:\s+${HardRev}
   ^\s+MAC address:\s+${MAC}
   ^\s+Module in slot FMC0 is ${SlotFMC0} -> FMC0
-  ^\s+Module in slot FMC1 is ${SlotFMC1} -> FMC1
+ # ^\s+Module in slot FMC1 is ${SlotFMC1} -> FMC1
   ^\s+Module in slot 0 is ${Slot0}
   ^\s+Module in slot 1 is ${Slot1} -> Slot1
   ^\s+Module in slot 2 is ${Slot2}
@@ -84,12 +84,12 @@ Slot1_SM_STAT_board
 Slot8
   ^\s+Serial number:\s+${Slot8_Serial}
   ^\s+Hardware version:\s+${Slot8_HardVersion}
-  ^\s+Hardware revision:\s+${Slot8_HardRev} 
-  ^\s+SM-STAT board:\s+${Slot8_SM_STAT_board} -> Slot8_SM_STAT_board
+  ^\s+Hardware revision:\s+${Slot8_HardRev} -> Start
+#  ^\s+SM-STAT board:\s+${Slot8_SM_STAT_board} -> Slot8_SM_STAT_board
   
-Slot8_SM_STAT_board
-  ^\s+Serial number:\s+${Slot8_Serial_number} 
-  ^\s+Hardware version:\s+${Slot8_Hardware_version} -> Start
+#Slot8_SM_STAT_board
+#  ^\s+Serial number:\s+${Slot8_Serial_number} 
+#  ^\s+Hardware version:\s+${Slot8_Hardware_version} -> Start
 
 
 #0/FMC0:atDR1# show system inventory 

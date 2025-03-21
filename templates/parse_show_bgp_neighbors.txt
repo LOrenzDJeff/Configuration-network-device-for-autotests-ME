@@ -27,7 +27,9 @@ Value nexthop_calc (\S+)
 Value best_path_to_adv (\d+)
 Value addit_path_cap (\S+)
 Value session_auth (\w+)
-
+Value capab_sent (.+)
+Value capab_received (.+)
+Value capab_negotiated (.+)
 
 Start
   ^\s+BGP router identifier ${bgp_router_id},*\s*\S*\s*${vrf}, local AS number\s+${l_as_numb}
@@ -42,8 +44,11 @@ Start
   ^\s+Graceful restart is ${grace_restart}
   ^\s+BFD status: ${bfd_status}
   ^\s+BFD desired: ${bfd_desired}
-  ^\s+Confederation member: ${conf_memb} 
+  ^\s+Confederation member: ${conf_memb}
   ^\s+Peer group: ${peer_group}
+  ^\s+Capabilities sent:\s+${capab_sent}
+  ^\s+Capabilities received:\s+${capab_received}
+  ^\s+Capabilities negotiated:\s+${capab_negotiated}
   ^\s+Address Family: ${address_fam}
   ^\s+Status: ${addr_fam_status}, state ${addr_fam_state}
   ^\s+ORF capability: ${addr_fam_orf_cap}
@@ -51,6 +56,7 @@ Start
   ^\s+Best paths to advertise: ${best_path_to_adv}, Additional path capability ${addit_path_cap}
   ^\s+In prefixes: \d+, \d+ RIB stored for peer, ${prefix_recv} accepted, 0 rejected, \d+ active
   ^\s+Out prefixes: \d+, ${prefix_sent} advertised, \d+ denied -> Record
+
 
 #0/FMC0:atDR1# show bgp neighbors 1.0.0.2
 #Tue Feb 11 14:20:08 2020

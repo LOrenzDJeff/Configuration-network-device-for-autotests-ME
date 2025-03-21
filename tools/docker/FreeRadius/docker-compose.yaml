@@ -1,0 +1,11 @@
+version: '3'
+services:
+  freeradius:
+    build:
+      context: .
+    container_name: freeradius 
+    command: -X
+    ports:
+      - "1812-1813:1812-1813/udp"
+    restart: always
+    

@@ -16,7 +16,7 @@ class setting_ME():
             self.neighor2 = authorization[DUT]["int"]["to_phys2"]
             self.neighor3 = authorization[DUT]["int"]["to_virt"]
             self.loopback = authorization[DUT]["int"]["lo"]
-            self.server = authorization["DUT7"]["ip"]
+            self.server = authorization["DUT7"]
             self.stend = hardware_set_id
         except KeyError:
             print("В файле json не достаёт ключа")
@@ -36,9 +36,9 @@ class setting_ME():
     #Загрузка чистой конфигурации
     def startup(self):
         if self.vrf == "none":
-            self.tn.write(b"copy tftp://%s/%s/startup_config/%s/startup-cfg-cli fs://candidate-config\n"%(self.server.encode('ascii'), self.stend.encode('ascii'), self.hostname.encode('ascii')))
+            self.tn.write(b"copy tftp://%s/%s/startup_config/%s/startup-cfg-cli fs://candidate-config\n"%(self.server['ip'].encode('ascii'), self.stend.encode('ascii'), self.hostname.encode('ascii')))
         else:
-            self.tn.write(b"copy tftp://%s/%s/startup_config/%s/startup-cfg-cli fs://candidate-config vrf %s\n"%(self.server.encode('ascii'), self.stend.encode('ascii'), self.hostname.encode('ascii'), self.vrf.encode('ascii')))
+            self.tn.write(b"copy tftp://%s/%s/startup_config/%s/startup-cfg-cli fs://candidate-config vrf %s\n"%(self.server['ip'].encode('ascii'), self.stend.encode('ascii'), self.hostname.encode('ascii'), self.vrf.encode('ascii')))
         self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"commit replace\n")
         self.tn.read_until(b"[n]", timeout=30)
@@ -227,4 +227,26 @@ class setting_ME():
         self.tn.write(b"commit\n")
         self.tn.read_until(b"#", timeout=30)
         self.tn.write(b"end\n")
+        self.tn.read_until(b"#", timeout=30)
+
+    def lldp_agent_add(self):
+        self.tn.write(b"config\n")
+        self.tn.read_until(b"#", timeout=30)
+        for i in range(2):
+            self.con.execute(b"lldp interface " + self.neighor1['interface'][i] + "\n")
+            self.tn.read_until(b"#", timeout=30)
+            self.con.execute(b"agent nearest-bridge\n")
+            self.tn.read_until(b"#", timeout=30)
+            self.con.execute(b"exit\n")
+            self.tn.read_until(b"#", timeout=30)
+        for i in range(2):
+            self.con.execute(b"lldp interface " + self.neighor2['interface'][i] + "\n")
+            self.tn.read_until(b"#", timeout=30)
+            self.con.execute(b"agent nearest-bridge\n")
+            self.tn.read_until(b"#", timeout=30)
+            self.con.execute(b"exit\n")
+            self.tn.read_until(b"#", timeout=30)
+        self.con.execute(b"commit\n")
+        self.tn.read_until(b"#", timeout=30)
+        self.con.execute(b"end\n")
         self.tn.read_until(b"#", timeout=30)

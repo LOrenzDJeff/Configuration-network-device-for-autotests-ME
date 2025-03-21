@@ -12,33 +12,25 @@ Start
   ^${Top}
   ^\s+${lsp_name}\s+${lsp_id}\s+${lsp_source}\s+${lsp_destination}\s+${labels}\s+${lsp_type}\s+${lsp_int_in} / ${lsp_int_out} -> Record
 
-#0/ME5100:atAR1# show mpls rsvp tunnels-lsp interface bu1
-#Wed Aug  5 13:45:06 2020
+#0/ME5100:atAR1# show mpls rsvp lsp interface bundle-ether 1
+#Mon Apr 17 15:37:26 2023
 #  
-#  R: Role, I: Ingress, T: Transit, E: Egress
-#  * means the LSP is detour LSP, # is is facility backup
+#  Role: I - Ingress, T - Transit, E - Egress, * - Detour, # - Facility backup
 #  
-#  LSP name                      LSP id   Source            Destination       In/Out Label      R      In/Out Interface 
-#  -------------------------     -------- ----------------- ----------------- ----------------- ------ ----------------- 
-#  to_vMX-1@atDR1_to_vMX-lsp1    1        1.0.0.1           1.0.0.4           16/3              T      bu1 / te0/0/11.352 
-#                                                                                               
-#
-#  to_atDR1@atAR2_to_atDR1-lsp1  1        1.0.0.2           1.0.0.1           17/3              T      bu2 / bu1 
-#                                                                                               
-#
-#0/ME5100:atAR1# show mpls rsvp tunnels-lsp interface bu2
-#Wed Aug  5 13:45:10 2020
-#  
-#  R: Role, I: Ingress, T: Transit, E: Egress
-#  * means the LSP is detour LSP, # is is facility backup
-#  
-#  LSP name                      LSP id   Source            Destination       In/Out Label      R      In/Out Interface 
-#  -------------------------     -------- ----------------- ----------------- ----------------- ------ ----------------- 
-#  to_atDR1@atAR2_to_atDR1-lsp1  1        1.0.0.2           1.0.0.1           17/3              T      bu2 / bu1 
-#                                                                                               
-#
-#  to_atAR2@atAR1_to_atAR2-lsp1  1        1.0.0.3           1.0.0.2           -/3               I      - / bu2 
-#                                                                                               
-#
+#  Name                                     Id     Source            Destination       In/Out Label      Role  In/Out Interface 
+#  ---------------------------------------- ------ ----------------- ----------------- ----------------- ----- ----------------- 
+#  to_atDR1@atAR2_to_atDR1-lsp1             1      1.0.0.2           1.0.0.1           16/3              T     bu2 / bu1 
+#  to_vMX-1@atDR1_to_vMX-lsp1               1      1.0.0.1           1.0.0.4           17/3              T     bu1 / te0/0/11.352 
 #0/ME5100:atAR1# 
 #
+#0/ME5100:atAR1# show mpls rsvp lsp interface bundle-ether 2
+#Mon Apr 17 15:50:48 2023
+#  
+#  Role: I - Ingress, T - Transit, E - Egress, * - Detour, # - Facility backup
+#  
+#  Name                                     Id     Source            Destination       In/Out Label      Role  In/Out Interface 
+#  ---------------------------------------- ------ ----------------- ----------------- ----------------- ----- ----------------- 
+#  to_atAR2@atAR1_to_atAR2-lsp1             1      1.0.0.3           1.0.0.2           -/3               I     - / bu2 
+#  to_atDR1@atAR2_to_atDR1-lsp1             1      1.0.0.2           1.0.0.1           16/3              T     bu2 / bu1 
+#0/ME5100:atAR1# 
+

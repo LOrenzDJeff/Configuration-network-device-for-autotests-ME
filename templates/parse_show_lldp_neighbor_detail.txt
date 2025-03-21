@@ -1,13 +1,13 @@
-Value portN (Tengigabitethernet ?0/[18]/[34]|Tengigabitethernet ?0/0/[1-4])
+Value portN (\S+)
 Value p_chassis (\w\w:\w\w:\w\w:\w\w:\w\w:\w\w)
-Value p_port_id (te ?\d/\d/\d)
+Value p_port_id (te ?\d+/\d+/\d+)
 Value p_neib_mac (\w\w:\w\w:\w\w:\w\w:\w\w:\w\w)
-Value p_port_descr (\w+:te ?\d/\d/\d)
+Value p_port_descr (\S+)
 Value p_sys_name (\w+)
-Value p_sys_descr (Eltex ME5000M? modular carrier router|Eltex ME5[12]00 carrier router|System Description: Eltex ME5[12]00 carrier router|System Description: Eltex ME5000M? modular carrier router)
-Value p_syscap (\s+System Capabilities: Bridge, Router)
-Value p_encap (\s+Enabled Capabilities: Bridge, Router)
-Value p_manange_ip (\d+\.\d+\.\d+\.\d+)
+Value p_sys_descr (Eltex ME\d+\s*\S* carrier router)
+Value p_syscap (Bridge, Router)
+Value p_encap (Bridge, Router)
+Value p_manage_ip (\d+\.\d+\.\d+\.\d+)
 
 Start
   ^\s+Local Interface: ${portN} 
@@ -16,10 +16,10 @@ Start
   ^\s+Neighbor MAC address: ${p_neib_mac}
   ^\s+Port Description: ${p_port_descr}
   ^\s+System Name: ${p_sys_name}
-  ^\s+${p_sys_descr}
-  ^${p_syscap}   
-  ^${p_encap}   
-  ^\s+Management Address: ${p_manange_ip} -> Record 
+  ^\s+System Description:\s+${p_sys_descr}
+  ^\s+System Capabilities:\s+${p_syscap} 
+  ^\s+Enabled Capabilities:\s+${p_encap}
+  ^\s+Management Address: ${p_manage_ip} -> Record 
 
   
 

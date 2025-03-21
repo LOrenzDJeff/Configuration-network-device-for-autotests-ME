@@ -1,27 +1,21 @@
-Value line1 (\s+LLDP traffic statistics:)
-Value line2 (\s+Last neighbor change: \d+[dh]\d+[hm]\d+[ms] ago)
-Value line3 (\s+Neighbor entries added: \d+)
-Value line4 (\s+Neighbor entries deleted: \d+)
-Value line5 (\s+Neighbor entries aged out: \d+)
-Value line6 (\s+Neighbor advertisements dropped: \d+)
-Value Top (\s+Port\s+TX frames total\s+TX frames errors\s+RX frames total\s+RX frames discarded\s+Frames errors\s+RX TLVs discarded\s+RX TLVs unrecognized\s+RX ageouts total\s+Agent\s+)
-Value port1 (\s+te0/0/1\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+N\s+|\s+te0/1/3\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+N\s+)
-Value port2 (\s+te0/0/2\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+N\s+|\s+te0/1/4\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+N\s+)
-Value port3 (\s+te0/0/3\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+N\s+|\s+te0/8/3\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+N\s+)
-Value port4 (\s+te0/0/4\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+N\s+|\s+te0/8/4\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+N\s+)
+Value line1 (LLDP traffic statistics:)
+Value line2 (Last neighbor change: \d+[dh]\d+[hm]\d+[ms] ago)
+Value line3 (Neighbor entries added: \d+)
+Value line4 (Neighbor entries deleted: \d+)
+Value line5 (Neighbor entries aged out: \d+)
+Value line6 (Neighbor advertisements dropped: \d+)
+Value Top (Port\s+TX frames total\s+TX frames errors\s+RX frames total\s+RX frames discarded\s+Frames errors\s+RX TLVs discarded\s+RX TLVs unrecognized\s+RX ageouts total\s+Agent\s+)
+Value port (te0/\d+/\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+\d+\s+N\s+)
 
 Start
-  ^${line1} -> Record
-  ^${line2} -> Record
-  ^${line3} -> Record
-  ^${line4} -> Record
-  ^${line5} -> Record
-  ^${line6} -> Record
-  ^${Top} -> Record
-  ^${port1} -> Record
-  ^${port2} -> Record
-  ^${port3} -> Record
-  ^${port4} -> Record
+  ^\s+${line1} 
+  ^\s+${line2} 
+  ^\s+${line3} 
+  ^\s+${line4} 
+  ^\s+${line5} 
+  ^\s+${line6} 
+  ^\s+${Top} 
+  ^\s+${port} -> Record
 
 #Пример вывода команды 'show lldp statistics'
 #0/ME5100:atAR1# show lldp statistics 

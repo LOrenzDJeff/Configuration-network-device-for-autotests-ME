@@ -1,0 +1,14 @@
+version: '3'
+services:
+  dhcp_server:
+    environment:
+      - DHCPD_PROTOCOL=6
+    build: ./
+    volumes: 
+      - ./data:/data/
+    network_mode: host
+        
+
+    
+
+    

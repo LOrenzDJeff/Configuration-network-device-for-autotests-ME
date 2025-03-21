@@ -1,0 +1,162 @@
+aaa authentication login AAA-TAC 
+  method tacacs
+  method local
+exit
+
+banner login "This device can be used by authorized users only. Unauthorized access is prosecuted by federal law (Federal law 63, article 272 of the Criminal Code of the Russian Federation"
+banner motd "Test motd banner"
+
+clock timezone gmt 7
+
+hostname atDR1
+
+hw-module enable acl-counters 
+
+interface mgmt 0/fmc0/1
+  ipv4 address 192.168.17.152/23
+  vrf mgmt-intf
+exit
+interface mgmt 0/fmc0/2
+  vrf mgmt-intf
+exit
+interface mgmt 0/fmc1/1
+  ipv4 address 192.168.17.153/23
+  vrf mgmt-intf
+exit
+interface mgmt 0/fmc1/2
+  vrf mgmt-intf
+exit
+interface tengigabitethernet 0/1/1
+exit
+interface tengigabitethernet 0/1/2
+exit
+interface tengigabitethernet 0/1/3
+exit
+interface tengigabitethernet 0/1/4
+exit
+interface tengigabitethernet 0/1/5
+exit
+interface tengigabitethernet 0/1/6
+exit
+interface tengigabitethernet 0/1/7
+exit
+interface tengigabitethernet 0/1/8
+exit
+interface tengigabitethernet 0/1/9
+exit
+interface tengigabitethernet 0/1/10
+exit
+interface tengigabitethernet 0/1/11
+exit
+interface tengigabitethernet 0/1/12
+exit
+interface tengigabitethernet 0/1/13
+exit
+interface tengigabitethernet 0/1/14
+exit
+interface tengigabitethernet 0/1/15
+exit
+interface tengigabitethernet 0/1/16
+exit
+interface tengigabitethernet 0/1/17
+exit
+interface tengigabitethernet 0/1/18
+exit
+interface tengigabitethernet 0/8/1
+exit
+interface tengigabitethernet 0/8/2
+exit
+interface tengigabitethernet 0/8/3
+exit
+interface tengigabitethernet 0/8/4
+exit
+interface tengigabitethernet 0/8/5
+exit
+interface tengigabitethernet 0/8/6
+exit
+interface tengigabitethernet 0/8/7
+exit
+interface tengigabitethernet 0/8/8
+exit
+interface tengigabitethernet 0/8/9
+exit
+interface tengigabitethernet 0/8/10
+exit
+interface tengigabitethernet 0/8/11
+exit
+interface tengigabitethernet 0/8/12
+exit
+interface tengigabitethernet 0/8/13
+exit
+interface tengigabitethernet 0/8/14
+exit
+interface tengigabitethernet 0/8/15
+exit
+interface tengigabitethernet 0/8/16
+exit
+interface tengigabitethernet 0/8/17
+exit
+interface tengigabitethernet 0/8/18
+exit
+
+vrf ESR 
+  rd 12:12
+exit
+vrf mgmt-intf 
+  rd 0:0
+exit
+
+line telnet login authentication AAA-TAC
+line ssh login authentication AAA-TAC
+
+ntp vrf mgmt-intf 
+  server 192.168.16.189 
+  exit
+exit
+
+router static 
+  vrf mgmt-intf 
+    address-family ipv4 unicast 
+      destination 192.168.0.0/16 192.168.16.1 
+      exit
+      destination 192.168.32.0/20 192.168.16.1 
+      exit
+    exit
+  exit
+exit
+
+snmp server vrf mgmt-intf 
+  community label private 
+    community-name encrypted BEBD045EB50C5AFE75
+    rights rw
+  exit
+  community label public
+    community-name encrypted 8CA10161B90C
+    version v2c
+  exit
+exit
+
+ssh server vrf mgmt-intf 
+exit
+
+tacacs-server host 192.168.16.189 vrf mgmt-intf 
+  password encrypted 8FB1007FB51B
+exit
+
+telnet server vrf mgmt-intf 
+exit
+
+user ad
+  password encrypted $6$BXtTHZbxfvANpJgr$7mq05sroQF9xEyoO.yMUcYjG3DSSb3BpKL25A2PZPzhHkmJkay.y0ld7OkXS9QxUnV6q.HJu6QqoL5OzFl75A.
+  privilege p15
+exit
+
+user admin 
+  password encrypted $6$UnQIpMX/n7n6a2Xc$GQ94UCp3eRPv1yYFBPE.gTvIcDfYqaN7MGfqJ3/S6xvWrZM55VvtEQGQvRTIS2sSdqTifJ5WCFuyNQyYeDZlt1
+  privilege p15
+exit
+
+user pytest 
+  password encrypted $6$iITXc4IkM9zwahlp$zh.PCpL4GFK1w92fwWqJoFu0n9BN9avx88ohS9m/RzGc.kxizxHVPIiaO71iumXjPcz4yYb2KYnsSc.FFnrxy/
+  privilege p15
+exit

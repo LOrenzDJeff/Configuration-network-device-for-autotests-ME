@@ -8,18 +8,17 @@ from conftest import *
 @pytest.mark.dependency(depends=["load_config002_dut1","load_config002_dut2","load_config002_dut3"],scope='session')
 @pytest.mark.parametrize("DUT",
 			[
-			 pytest.param("DUT1"), 
- 			 pytest.param("DUT2"), 
- 			 pytest.param("DUT3")
+			 pytest.param(DUT1), 
+ 			 pytest.param(DUT2), 
+ 			 pytest.param(DUT3)
 			]
 			)
 def test_show_privilege (DUT): 
 # В данном тесте будем проверять вывод команды 'show privilege'      
     resp = ''
-    router = setting_ME(DUT)
     conn = Telnet()
-    acc = Account(router.login, router.password)
-    conn.connect(router.host_ip)
+    acc = Account(DUT.login, DUT.password)
+    conn.connect(DUT.host_ip)
     conn.login(acc)
     conn.set_prompt('#')        
     conn.execute('show privilege') 

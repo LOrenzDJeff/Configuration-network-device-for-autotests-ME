@@ -1,5 +1,6 @@
-<group name="s_g_spt">
-    ({{ source_ip }}, {{ group_ip }}) {{ tree_type }}, {{ mode }}, Up: {{ entry_uptime }}
+<group name="s_g_spt" default="">
+    ({{ source_ip | _start_ }}, {{ group_ip }}) {{ tree_type }}, {{ mode }}, Up: {{ entry_uptime }}
+    ({{ source_ip | _start_ }}, {{ group_ip }}) {{ mode }}, Up: {{ entry_uptime }}
     JP: joined {{ jp_joined }}, RPF: {{ rpf_interface }}, ({{ rpf_ip }})
       {{ interface }} {{ int_mode }}, Up: {{ int_uptime }} is {{ int_type }}
 </group>
@@ -12,5 +13,3 @@
     JP: joined {{ jp_joined }}, RPF: {{ rpf_interface }}, ({{ rpf_ip }})
       {{ interface }} {{ int_mode }}, Up: {{ int_uptime }} is {{ int_type }}
 </group>
-
-

@@ -7,4 +7,4 @@ Value recv_pkt (\d+)
 
 Start
   ^Success\s+rate\s+is\s+${success_rate}\s+percent\s+\(${send_pkt}/${recv_pkt}\),\s+round-trip min/avg/max = ${rtt_min}/${rtt_avg}/${rtt_max} ms
-  ^Success rate is ${success_rate} percent \(${send_pkt}/${recv_pkt}\)
+  ^Success rate is ${success_rate} percent \(${send_pkt}/${recv_pkt}\) -> Record

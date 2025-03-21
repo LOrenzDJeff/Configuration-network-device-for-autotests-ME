@@ -41,7 +41,7 @@ Status
   ^\s+Ingress LSR id:\s+${tun_ingress_id},\s+Egress LSR id:\s+${tun_egress_id} -> Start
 
 Config_param
-  ^\s+Bandwidth:\s+${tun_bandwidth}\s+[GMK]bps,\s+Backup:\s+${tun_bandwidth_backup}\s+[GMK]bps
+  ^\s+Bandwidth:\s+${tun_bandwidth}\s+(K|M|G)bps,\s+Backup:\s+${tun_bandwidth_backup}\s+(K|M|G)bps
   ^\s+Protection type:\s+${tun_protect_type},\s+Bandwidth protection desired:\s+${tun_band_protect_desire},\s+Node protect:\s+${tun_node_protect} 
   ^\s+Provides routing adjacency:\s+${tun_routing},\s+forwarding adjacency:\s+${tun_forwarding}
   ^\s+Tunnel\s+is\s+${tun_bidirect} -> Priority

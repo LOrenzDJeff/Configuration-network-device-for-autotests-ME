@@ -15,7 +15,6 @@ Start
   ^\s+${nbr_id}\s+${nbr_area_id}\s+${nbr_priority}\s+${nbr_state}\s+${nbr_bfd}\s+${nbr_dead_timer}\s+${nbr_last_change}\s+${nbr_addr}\s+${nbr_int} -> Record
 
 
-
 #0/FMC0:atDR1# show ospfv2 neighbors 
 #Thu Apr  2 15:16:37 2020
 #  Routing Process: test, with ID 1.0.0.1

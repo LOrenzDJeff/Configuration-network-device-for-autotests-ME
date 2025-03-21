@@ -8,9 +8,9 @@ from conftest import *
 @pytest.mark.dependency(depends=["load_config002_dut1","load_config002_dut2","load_config002_dut3"],scope='session')
 @pytest.mark.parametrize("DUT",
 			[
-			 pytest.param("DUT1"), 
- 			 pytest.param("DUT2"), 
- 			 pytest.param("DUT3")
+			 pytest.param(DUT1), 
+ 			 pytest.param(DUT2), 
+ 			 pytest.param(DUT3)
 			]
 			)
 		        
@@ -18,13 +18,10 @@ def test_show_firmware_part2(DUT):
 # В данном тесте будем проверять вывод команды 'show firmware'   
 
     allure.attach.file('./network-schemes/part2_show_firmware.png','Что анализируем в тесте:', attachment_type=allure.attachment_type.PNG)    
-    with open('config_OOP.json', 'r', encoding='utf-8') as file:
-        check = json.load(file)
-    router = setting_ME(DUT)
     resp = ''
     conn = Telnet()
-    acc = Account(router.login, router.password)
-    conn.connect(router.host_ip)
+    acc = Account(DUT.login, DUT.password)
+    conn.connect(DUT.host_ip)
     conn.login(acc)
     conn.set_prompt('#')        
 # Определим тип маршрутизатора (ME5000 или ME2001 или ME5200)
@@ -53,7 +50,7 @@ def test_show_firmware_part2(DUT):
     conn.close()
     
 
-    if (router.hardware == check['DUT1']['hardware'])^(router.hardware == check['DUT2']['hardware']):
+    if (DUT.hardware == DUT1.hardware)^(DUT.hardware == DUT2.hardware):
 #        assert_that(number_of_elements==2, "Кол-во элементов в списке processed_result не соответсвует 2, а равно - %d"%number_of_elements)
         # count=0
         # for count in processed_result:
@@ -103,7 +100,7 @@ def test_show_firmware_part2(DUT):
         assert_that(Date2 != '' ,"Параметр Date2 в выводе команды не соответсвуют шаблону, а равен - %s"%Date2)        
 
 
-    elif (router.hardware == check['DUT3']['hardware']):
+    elif (DUT.hardware == DUT3.hardware):
 #        assert_that(number_of_elements==4, "Кол-во элементов в списке processed_result не соответсвует 4, а равно - %d"%number_of_elements)
         # count=0
         # for count in processed_result:

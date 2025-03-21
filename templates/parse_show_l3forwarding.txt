@@ -1,29 +1,12 @@
-Value ipv4_prefix1 (100.0.0.100/32|200.0.0.200/32)
-Value ipv4_nexthop1 (\d+.\d+.\d+.\d+)
-Value ipv4_label11 (\d+)
-Value ipv4_label12 (\d+)
-Value ipv4_out_int1 (te0/0/11.\d+|bu1)
-Value ipv4_prefix2 (192.168.100.0/24|192.168.200.0/24)
-Value ipv4_nexthop2 (\d+.\d+.\d+.\d+)
-Value ipv4_label21 (\d+)
-Value ipv4_label22 (\d+)
-Value ipv4_out_int2 (te0/0/11.\d+|bu1)
-Value ipv6_prefix1 (2003:0:200:200::200/128|2003:0:100:100::100/128)
-Value ipv6_nexthop1 (\d+.\d+.\d+.\d+)
-Value ipv6_label11 (\d+)
-Value ipv6_label12 (\d+)
-Value ipv6_out_int1 (te0/0/11.\d+|bu1)
-Value ipv6_prefix2 (2001:192:168:200::/64|2001:192:168:100::/64)
-Value ipv6_nexthop2 (\d+.\d+.\d+.\d+)
-Value ipv6_label21 (\d+)
-Value ipv6_label22 (\d+)
-Value ipv6_out_int2 (te0/0/11.\d+|bu1)
+Value prefix (\d+.\d+.\d+.\d+/\d+|(\w+:?:?)+/\d+)
+Value nexthop (\S+)
+Value label1 (\d+)
+Value label2 (\d+)
+Value int (\S+)
 
 Start
-  ^\s+${ipv4_prefix1}\s+${ipv4_nexthop1}\s+${ipv4_label11}/${ipv4_label12}\s+${ipv4_out_int1}
-  ^\s+${ipv4_prefix2}\s+${ipv4_nexthop2}\s+${ipv4_label21}/${ipv4_label22}\s+${ipv4_out_int2}
-  ^\s+${ipv6_prefix1}\s+${ipv6_nexthop1}\s+${ipv6_label11}/${ipv6_label12}\s+${ipv6_out_int1}
-  ^\s+${ipv6_prefix2}\s+${ipv6_nexthop2}\s+${ipv6_label21}/${ipv6_label22}\s+${ipv6_out_int2}
+  ^\s+${prefix}\s+${nexthop}\s+${label1}/${label2}\s+${int} -> Record
+
 
 #0/ME5100:atAR1# show l3forwarding vrf as100 
 #Wed Oct 13 09:55:58 2021

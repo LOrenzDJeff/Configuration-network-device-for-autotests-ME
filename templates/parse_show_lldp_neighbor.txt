@@ -1,6 +1,6 @@
-Value Top (\s+Local port\s+Chassis id\s+Port id\s+Capabilities\s+Agent\s+System name\s+)
+Value Top (\s+local port\s+device id\s+port id\s+capabilities\s+agent\s+system name\s+)
 Value local_port (\S+)
-Value chassis_id (\S+)
+Value device_id (\S+)
 Value port_id (\S+)
 Value capabilities (\w+\s+\w+)
 Value agent (\w+)
@@ -9,7 +9,7 @@ Value system_name (\S+)
 
 Start
  ^${Top} -> Record
- ^\s+${local_port}\s+${chassis_id}\s+${port_id}\s+${capabilities}\s+${agent}\s+${system_name} -> Record
+ ^\s+${local_port}\s+${device_id}\s+${port_id}\s+${capabilities}\s+${agent}\s+${system_name} -> Record
 
 
 #Пример вывода команды 'show lldp neighbors' на маршрутизаторе ME5000

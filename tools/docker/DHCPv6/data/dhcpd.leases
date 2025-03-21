@@ -1,0 +1,10 @@
+# The format of this file is documented in the dhcpd.leases(5) manual page.
+# This lease file was written by isc-dhcp-4.3.5
+
+# authoring-byte-order entry is generated, DO NOT DELETE
+authoring-byte-order little-endian;
+
+server-duid "\000\001\000\001(\021T\367\0301\277\015\351\364";
+
+server-duid "\000\001\000\001(\021T\367\0301\277\015\351\364";
+

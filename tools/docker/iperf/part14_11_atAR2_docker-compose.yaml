@@ -1,0 +1,35 @@
+version: '3'
+services:
+  iperf3-serv:
+    build:
+      context: .
+#    mac-address: 18:31:bf:0d:e9:f4
+    networks:
+      iperf-server:
+              ipv4_address: 192.168.74.3
+
+    container_name: my_iperf3_server 
+    command: -s --one-off
+    ports:
+      - "5201:5201"
+  iperf3-client:
+    depends_on: 
+      - iperf3-serv
+    build:
+      context: .
+    networks:
+       iperf-client:
+               ipv4_address: 192.168.73.3
+    container_name: my_iperf3_client 
+    command: -c $arg1 -p 5201 -t $arg2 -u -b $arg3 -- length 1400
+#    command: -c 192.168.72.1 -t 300 -u -b 150M --length 1400
+#    restart: always
+
+networks:
+    iperf-server:
+      external: true
+    iperf-client:
+      external: true
+
+
+

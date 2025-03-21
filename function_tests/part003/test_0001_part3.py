@@ -20,8 +20,6 @@ def test_me_init_config(DUT):
 	start_time = time.time()
 	router.ipv4()
 	router.lacp()
-	router.add_ntp()
-	router.snmp_add()
 	router.lldp_agent_add()
 	print(time.time() - start_time)
 	print("Загрузка конфигурации на %s прошла успешно!"%router.hostname)

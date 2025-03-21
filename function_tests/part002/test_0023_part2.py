@@ -12,7 +12,7 @@ def show_proc_mem(job, host, conn):
     gl_response = conn.response
 
 
-def connect_router(ip, username, password, job_function):
+def connect_DUT(ip, username, password, job_function):
     try:
         start(Account(username, password), f"telnet://{ip}", job_function)
         return gl_response
@@ -28,18 +28,13 @@ def connect_router(ip, username, password, job_function):
 @pytest.mark.dependency(depends=["load_config002_dut1", "load_config002_dut2", "load_config002_dut3"], scope='session')
 @pytest.mark.parametrize("DUT",
 			[
-			 pytest.param("DUT1"), 
- 			 pytest.param("DUT2"), 
- 			 pytest.param("DUT3")
+			 pytest.param(DUT1), 
+ 			 pytest.param(DUT2), 
+ 			 pytest.param(DUT3)
 			]
 			)
 def test_show_processes_memory_part2(DUT):
-    with open('./tests_descriptions/part002/test0023_procedure.txt', 'rb') as desc:
-        allure.attach(desc.read(), name='Описание теста', attachment_type=allure.attachment_type.TEXT)
-
-    router = setting_ME(DUT)
-
-    connect_router(router.host_ip, router.login, router.password, show_proc_mem)
+    connect_DUT(DUT.host_ip, DUT.login, DUT.password, show_proc_mem)
     output = gl_response
     assert output is not None, 'Пустой вывод команды show processes memory'
     allure.attach(output, 'Вывод команды show processes memory', attachment_type=allure.attachment_type.TEXT)

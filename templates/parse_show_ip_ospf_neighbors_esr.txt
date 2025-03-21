@@ -1,14 +1,4 @@
-Value Top (Router ID\s+Pri\s+State\s+DTime\s+Interface\s+Router IP)
-Value neighbor_id (\d+.\d+.\d+.\d+)
-Value neighbor_pri (\d+)
-Value neighbor_state (Full/DR|Full/BDR|2-Way/Other)
-Value neighbor_int (te\d/\d/\d|br\d+|br_\d+|tengigabitethernet \d/\d/\d|bridge \d+)
-Value neighbor_ip (\d+.\d+.\d+.\d+)
-
-
-Start
-  ^${Top}
-  ^${neighbor_id}\s+${neighbor_pri}\s+${neighbor_state}\s+\d+:\d+\s+${neighbor_int} *${neighbor_ip} -> Record
+{{ neighbor_id | re("\d+.\d+.\d+.\d+") }} {{ neighbor_pri | re("\d+") }} {{ neighbor_state | contains('Full/DR', 'Full/BDR', '2-Way/Other') }} {{ dtime }} {{ neighbor_int }} {{ neighbor_ip | re("\d+.\d+.\d+.\d+")}}
 
 
 #labr02# show ip ospf neighbors 

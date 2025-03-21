@@ -1,0 +1,31 @@
+Value status_codes (\*?[b> ]i)
+Value prefix (\d+.\d+.\d+.\d+/\d+|\w+:\w+:\w+:\w+::\w+/\d+)
+Value next_hop (\d+.\d+.\d+.\d+|\w+:\w+:\w+:\w+::\w+)
+Value path (65100\s+\?)
+Value metric (\d+)
+Value loc_prf (\d+)
+Value weight (\d+)
+Value total_entries (\d+)
+
+Start
+  ^\s+${status_codes}\s+${prefix}\s+${next_hop}\s+${metric}\s+${loc_prf}\s+${weight}\s+${path} -> Record
+  ^\s+Total entries:\s+${total_entries}
+
+
+#0/FMC0:atDR1# show bgp ipv4 unicast
+#Wed Oct 16 14:40:14 2024
+#  BGP router identifier 10.0.0.50, local AS number 64050
+#  Graceful Restart is disabled
+#  BGP table state: active
+#
+#  Status codes: d damped, h history, > best, b backup, S stale, * active, u untracked, i internal
+#  Origin codes: i igp, e egp, ? incomplete
+#
+#  Network                  Next hop         Metric  LocPrf  Weight  Path
+#  ------------------------ ---------------- ------- ------- ------- -----
+#  *>i  10.0.0.52/32        1.1.1.52         0       100     0       i
+#  *>i  10.0.0.132/32       1.1.1.4          0       100     0       65100 ?
+#  * i  10.0.0.132/32       1.1.1.51         0       100     0       65100 ?
+#
+#  Total entries: 3
+#0/FMC0:atDR1#

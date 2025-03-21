@@ -1,10 +1,24 @@
-Value success_test_name (\S+)
-Value fail_test_name (\S+)
-Value fail_test_cause ('.*')
-Value param_list (\S+)
+Value passed_test_name (\S+)
+Value failed_test_name (\S+)
+Value skipped_test_name (\S+)
+Value fail_test_cause (.*)
+Value skip_test_cause (.*)
+Value param_list (.*)
+Value duration (\d+)
+Value error_test_name (\S+)
+
 
 Start
-  ^\d+-\d+-\d+\s+\d+:\d+:\d+\s+\[\s+INFO\]\s+Тест\s+123Z${success_test_name}\[${param_list}\]123Z\s+выполнен успешно. -> Record
-  ^\d+-\d+-\d+\s+\d+:\d+:\d+\s+\[\s+INFO\]\s+Тест\s+123Z${fail_test_name}\[${param_list}\]123Z\s+провалился и причина - ${fail_test_cause} -> Record
-#2023-04-13 01:27:22 [    INFO] Тест 123Ztest_me_init_config_upload_part7_3_8_1[192.168.17.139-atAR2-admin-password-part7.3.8.1]123Z выполнен успешно.
-#2023-04-13 04:39:02 [    INFO] Тест 123Ztest_dhcpv6_renew_part15_3[41]123Z провалился и причина - 'AssertionError: Парсинг вывода команды вернул пустой результат'
+  ^passed_test_name - ${passed_test_name}, passed_test_param - ${param_list}, passed_test_duration - ${duration} -> Record
+  ^failed_test_name - ${failed_test_name}, failed_test_param - ${param_list}, Assert-message - ${fail_test_cause} -> Record
+#  ^skipped_test_name - ${skipped_test_name}, skipped_test_param - ${param_list}, skipped_test_longrepr - (${skip_test_cause}) -> Record
+  ^skipped_test_name - ${skipped_test_name}, skipped_test_param - ${param_list},.*Skipped:\s+(${skip_test_cause}) -> Record
+  ^ERROR\s+\S+::${error_test_name}\[${param_list}] -> Record
+
+
+#passed_test_name - test_me_init_config_upload_part2, passed_test_param - 192.168.17.88-atAR1-admin-password-part2, passed_test_duration - 0
+
+#failed_test_name - test_show_system_environment_part2, failed_test_param - 192.168.17.152-admin-password, Assert-message - AssertionError: Параметр Module in slot FMC0 не равен #ожидаемому FMC32, а равен - FMC16
+
+#skipped_test_name - test_backup_part2, skipped_test_param - 192.168.17.88-atAR1-admin-password, skipped_test_longrepr - ('/usr/local/lib/python3.6/dist-packages/
+#pytest_dependency-0.5.1-py3.6.egg/pytest_dependency.py', 103, 'Skipped: test_backup_part2[192.168.17.88-atAR1-admin-password] depends on load_config002_dut31')

@@ -1,0 +1,20 @@
+Value pref (\d+.\d+.\d+.\d+\/\d+)
+Value label_out (\S+)
+Value outgoing_int (\S+)
+Value next_hop (\d+.\d+.\d+.\d+)
+Value flags (\w*)
+
+Start
+  ^\s+${pref}\s+${label_out}\s+${outgoing_int}\s+${next_hop}\s+${flags} -> Record
+  
+#0/FMC0:atDR1# show mpls ldp forwarding 
+#Thu Sep 14 11:17:38 2023
+#  Codes:
+#    R = Remote LFA FRR backup
+#    E = Entropy Label Capability
+#  
+#  Prefix                Label(s) out  Outgoing Interface  Next Hop              flags  
+#  --------------------- ------------- ------------------- --------------------- ------ 
+#  1.0.0.2/32            313600        tuto_labr01@lsp1    1.0.0.4                      
+#  1.0.0.3/32            ImpNull       bu1                 192.168.55.1                 
+#  1.0.0.4/32            ImpNull       tuto_labr01@lsp1    1.0.0.4               E 

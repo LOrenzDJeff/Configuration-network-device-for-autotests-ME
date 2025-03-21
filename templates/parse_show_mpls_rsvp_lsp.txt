@@ -33,10 +33,11 @@ Start
 #Mon Apr 17 16:34:05 2023
 #  
 #  Role: I - Ingress, T - Transit, E - Egress, * - Detour, # - Facility backup
+#  Flags: E - Entropy Label Capability
 #  
-#  Name                                     Id     Source            Destination       In/Out Label      Role  State 
-#  ---------------------------------------- ------ ----------------- ----------------- ----------------- ----- ------ 
-#  to_atAR2@atAR1_to_atAR2-lsp1             1      1.0.0.3           1.0.0.2           -/3               I     up 
-#  to_atDR1@atAR2_to_atDR1-lsp1             1      1.0.0.2           1.0.0.1           16/3              T     up 
-#  to_vMX-1@atDR1_to_vMX-lsp1               1      1.0.0.1           1.0.0.4           17/3              T     up 
-#0/ME5100:atAR1# 
+#  Name                                     Id     Source            Destination       In/Out Label      Role  Flags  State 
+#  ---------------------------------------- ------ ----------------- ----------------- ----------------- ----- ------ ------ 
+#  to_atAR2@atAR1_to_atAR2-lsp1             1      1.0.0.3           1.0.0.2           -/3               I            up 
+#  to_atDR1@atAR2_to_atDR1-lsp1             1      1.0.0.2           1.0.0.1           24/3              T            up 
+#  to_vMX-1@atDR1_to_vMX-lsp1               1      1.0.0.1           1.0.0.4           25/3              T     E      up 
+

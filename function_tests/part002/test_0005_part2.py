@@ -8,16 +8,13 @@ from conftest import *
 @pytest.mark.dependency(depends=["load_config002_dut1","load_config002_dut2","load_config002_dut3"],scope='session')
 @pytest.mark.parametrize("DUT",
 			[
-			 pytest.param("DUT1"), 
- 			 pytest.param("DUT2"), 
- 			 pytest.param("DUT3")
+			 pytest.param(DUT1), 
+ 			 pytest.param(DUT2), 
+ 			 pytest.param(DUT3)
 			]
 			)
 def test_snmp_part2(DUT):
-    with open('config_OOP.json', 'r', encoding='utf-8') as file:
-        check = json.load(file)
-    router = setting_ME(DUT)
-    session = Session(hostname = router.host_ip , community = 'public' , version = 2)
+    session = Session(hostname = DUT.host_ip , community = 'public' , version = 2)
     system_items = session.walk('SNMPv2-MIB::system')
     str1=''
     str2=''
@@ -40,12 +37,12 @@ def test_snmp_part2(DUT):
     SysName = processed_result[0]['SysName']
     SysLocation = processed_result[0]['SysLocation']
     SysUptime = processed_result[0]['SysUptime']
-    if router.host_ip==check["DUT1"]['host_ip']:
-        assert_that(SysName==check["DUT1"]['hostname'],"В выводе команды snmpwalk параметр Sysname не равен ожидаемому значению %s, а равен - %s"%(check["DUT1"]['hostname'],SysName))
-    if router.host_ip==check["DUT2"]['host_ip']:
-        assert_that(SysName==check["DUT2"]['hostname'],"В выводе команды snmpwalk параметр Sysname не равен ожидаемому значению %s, а равен - %s"%(check["DUT2"]['hostname'],SysName))
-    if router.host_ip==check["DUT3"]['host_ip']:
-        assert_that(SysName==check["DUT3"]['hostname'],"В выводе команды snmpwalk параметр Sysname не равен ожидаемому значению %s, а равен - %s"%(check["DUT3"]['hostname'],SysName))
+    if DUT.host_ip==DUT1.host_ip:
+        assert_that(SysName==DUT1.hostname,"В выводе команды snmpwalk параметр Sysname не равен ожидаемому значению %s, а равен - %s"%(DUT1.hostname,SysName))
+    if DUT.host_ip==DUT2.host_ip:
+        assert_that(SysName==DUT2.hostname,"В выводе команды snmpwalk параметр Sysname не равен ожидаемому значению %s, а равен - %s"%(DUT2.hostname,SysName))
+    if DUT.host_ip==DUT3.host_ip:
+        assert_that(SysName==DUT3.hostname,"В выводе команды snmpwalk параметр Sysname не равен ожидаемому значению %s, а равен - %s"%(DUT3.hostname,SysName))
 
     assert_that(SysDescr !="","В выводе snmpwalk не обнаружен параметр SysDescr") 
     assert_that(SysContact != "","В выводе snmpwalk не обнаружен параметр SysContact")   

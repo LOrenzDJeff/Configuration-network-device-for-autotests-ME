@@ -1,19 +1,18 @@
 Value Top (\s+Interface\s+Media\s+Duplex\s+Speed\s+Link\s+Flow ctrl\s+Link State\s+Up Time)
-Value port_name (te0/0/[1234]|te0/0/11|te0/1/[345]|te0/8/[34])
-Value port_type (10G-Copper|1G-Fiber|Unknown)
+Value port_name (\S+)
+Value port_type (25G-Fiber|10G-Copper|1G-Fiber|10G-Fiber|Unknown)
 Value port_duplex (Full)
-Value port_speed (10G|1G|Unknown)
+Value port_speed (10G|1G)
 Value port_neg (auto)
-Value port_flow_ctl (rx)
-Value port_link_state (Up|Down) 
+Value port_flow_ctl (rx|on)
+Value port_link_state (Up|Down)
 Value port_uptime (\d\d[dwh]\d\d[dhm]\d\d[hms])
-Value agg_int (\s+bu[12]\s+Full\s+20G\s+auto\s+--\s+Up\s+\d\d[dwh]\d\d[dhm]\d\d[hms])
+Value agg_int (\s+bu[12]\s+--\s+--\s+auto\s+--\s+Up)
 
 Start
   ^${Top}
   ^\s+${port_name}\s+${port_type}\s+${port_duplex}\s+${port_speed}\s+${port_neg}\s+${port_flow_ctl}\s+${port_link_state}\s+${port_uptime} -> Record
   ^\s+${agg_int} -> Record 
-
 
 #0/ME5200:atAR2# show interfaces status 
 #Fri Jan 15 12:03:39 2021

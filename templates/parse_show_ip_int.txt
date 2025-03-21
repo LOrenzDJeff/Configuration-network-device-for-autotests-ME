@@ -6,4 +6,3 @@
 #192.168.41.2/24                                       br41                   Up      Up      DHCP
 #192.168.168.41/32                                     lo2                    Up      Up      static
 #labr02#
-

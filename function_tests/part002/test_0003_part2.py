@@ -8,30 +8,27 @@ from conftest import *
 @pytest.mark.dependency(depends=["load_config002_dut1","load_config002_dut2","load_config002_dut3"],scope='session')
 @pytest.mark.parametrize("DUT",
 			[
-			 pytest.param("DUT1"), 
- 			 pytest.param("DUT2"), 
- 			 pytest.param("DUT3")
+			 pytest.param(DUT1), 
+ 			 pytest.param(DUT2), 
+ 			 pytest.param(DUT3)
 			]
 			)
 def test_syslog_part2(DUT):
 # Подключаемся к маршрутизатору c адресом ip, а затем выполняем команду-маркер 'show vrf bla-bla-bla', чтобы потом её искать на syslog-сервере
-    router = setting_ME(DUT)
-    with open('config_OOP.json', 'r', encoding='utf-8') as file:
-        check = json.load(file)
     resp1 = ''
     resp2 = ''
     conn2 = Telnet()
-    acc2 = Account(router.login, router.password)
-    conn2.connect(router.host_ip)
+    acc2 = Account(DUT.login, DUT.password)
+    conn2.connect(DUT.host_ip)
     conn2.login(acc2)
     conn2.set_prompt('#')
     conn2.execute('configure')
-    if router.hostname==check["DUT1"]['hostname']:
-        conn2.execute('logging host %s vrf MGN facility local3'%router.server['ip'])
-    elif router.hostname == check["DUT2"]['hostname']:
-        conn2.execute('logging host %s vrf default facility local3'%router.server['ip'])
-    elif router.hostname == check["DUT3"]['hostname']:
-        conn2.execute('logging host %s vrf mgmt-intf facility local3'%router.server['ip'])    
+    if DUT.hostname == DUT1.hostname:
+        conn2.execute('logging host %s vrf MGN facility local3'%DUT.server['ip'])
+    elif DUT.hostname == DUT2.hostname:
+        conn2.execute('logging host %s vrf default facility local3'%DUT.server['ip'])
+    elif DUT.hostname == DUT3.hostname:
+        conn2.execute('logging host %s vrf mgmt-intf facility local3'%DUT.server['ip'])    
     conn2.execute('commit')
     conn2.execute('end')
     var_time = int(time.time())   # Получаем кол-во секунд с момента начала эпохи Unix. Они будут нужны для формирования уникальной команды-маркера
@@ -43,11 +40,11 @@ def test_syslog_part2(DUT):
 # Подключаемся к syslog серверу  и анализируем файл 'syslog' на предмет содержания команды-маркера
     conn3 = Telnet()
 #    conn3 = SSH2()
-    acc3 = Account(router.server['login'], router.server['password'])
-    conn3.connect(router.server['ip'])   # Подключаемся к syslog-серверу
+    acc3 = Account(DUT.server['login'], DUT.server['password'])
+    conn3.connect(DUT.server['ip'])   # Подключаемся к syslog-серверу
     conn3.login(acc3)
     conn3.set_prompt('meatests') # Укажем промпт явно, иначе на следующем шаге частенько excecption timeout возникает.
-    conn3.execute('grep -e "%s" /var/log/me5000/%s/me5k.log'%(cmd,router.host_ip))
+    conn3.execute('grep -e "%s" /var/log/me5000/%s/me5k.log'%(cmd,DUT.host_ip))
     resp1 = conn3.response
     print("\nРезультат парсинга  команды grep -e - %s\n"%resp1)
     allure.attach(resp1,'Парсинг syslog-файла на предмет нахождения в нем команды-маркера %s'%cmd)

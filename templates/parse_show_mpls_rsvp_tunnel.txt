@@ -1,20 +1,19 @@
-Value top (\s+Tunnel name\s+Source\s+Destination\s+Status\s+State\s+)
+Value top (\s+Tunnel name\s+Source\s+Destination\s+Status\s+State\s+Up time)
 Value tun_name (\S+)
-Value tun_src (1.0.0.\d)
-Value tun_dst (1.0.0.\d)
+Value tun_src (\d+.\d+.\d+.\d+)
+Value tun_dst (\d+.\d+.\d+.\d+)
 Value tun_status (up|down)
 Value tun_state (up|down)
 
 Start
   ^${top}
-  ^\s+${tun_name}\s+${tun_src}\s+${tun_dst}\s+${tun_status}\s+${tun_state}\s+
+  ^\s+${tun_name}\s+${tun_src}\s+${tun_dst}\s+${tun_status}\s+${tun_state}\s+\S+\s+
 
 
-#
-##0/FMC0:atDR1# show mpls rsvp tunnels
-#Wed Jul 15 15:48:39 2020
-#  Tunnel name                       Source            Destination       Status  State 
-#  --------------------------------- ----------------- ----------------- ------- ------ 
-#  to_vMX-1                          1.0.0.1           1.0.0.4           up      up 
+#0/FMC0:atDR1# show mpls rsvp tunnels 
+#Tue Sep 19 16:06:24 2023
+#  Tunnel name                       Source            Destination       Status  State             Up time 
+#  --------------------------------- ----------------- ----------------- ------- ----------------- -------- 
+#  to_labr01                         1.0.0.1           1.0.0.4           up      up                00h31m42s 
 #0/FMC0:atDR1# 
-#
+

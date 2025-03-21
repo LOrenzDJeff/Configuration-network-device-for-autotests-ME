@@ -10,16 +10,15 @@ import time
 @pytest.mark.dependency(depends=["load_config002_dut1","load_config002_dut2","load_config002_dut3"],scope='session')
 @pytest.mark.parametrize("DUT",
 			[
-			 pytest.param("DUT1"), 
- 			 pytest.param("DUT2"), 
- 			 pytest.param("DUT3")
+			 pytest.param(DUT1), 
+ 			 pytest.param(DUT2), 
+ 			 pytest.param(DUT3)
 			]
 			)
 def test_arp_age(DUT):
-    router = setting_ME(DUT)
     conn = Telnet()
-    acc = Account(router.login, router.password)
-    conn.connect(router.host_ip)
+    acc = Account(DUT.login, DUT.password)
+    conn.connect(DUT.host_ip)
     conn.login(acc)
     conn.set_prompt('#')
     cmd='config'
@@ -33,7 +32,7 @@ def test_arp_age(DUT):
     time.sleep(5)
     cmd='exit'
     conn.execute(cmd)
-    cmd = 'show arp interfaces '+ router.neighor1['int_name']
+    cmd = 'show arp interfaces '+ DUT.neighor1['int_name']
     conn.execute(cmd)
     resp1 = conn.response
     allure.attach(resp1, 'Результат выполнения команды '+cmd, attachment_type=allure.attachment_type.TEXT)

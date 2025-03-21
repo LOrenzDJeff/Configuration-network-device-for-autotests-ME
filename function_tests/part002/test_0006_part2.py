@@ -8,18 +8,17 @@ from conftest import *
 @pytest.mark.dependency(depends=["load_config002_dut1","load_config002_dut2","load_config002_dut3"],scope='session')
 @pytest.mark.parametrize("DUT",
 			[
-			 pytest.param("DUT1"), 
- 			 pytest.param("DUT2"), 
- 			 pytest.param("DUT3")
+			 pytest.param(DUT1), 
+ 			 pytest.param(DUT2), 
+ 			 pytest.param(DUT3)
 			]
 			)
 def test_show_system_part2(DUT):
 # Подключаемся к маршрутизатору 'ip'
-    router = setting_ME(DUT)    
     resp = ''
     conn = Telnet()
-    acc = Account(router.login, router.password)
-    conn.connect(router.host_ip)
+    acc = Account(DUT.login, DUT.password)
+    conn.connect(DUT.host_ip)
     conn.login(acc)
     conn.set_prompt('#')
     cmd="show system"
@@ -40,7 +39,7 @@ def test_show_system_part2(DUT):
     SysMac = processed_result[0]['SysMac'] # Сохраняем значение из многомерного списка в переменную SysMac
     SysPSM1 = processed_result[0]['SysPSM1'] # Сохраняем значение из многомерного списка в переменную SysPSM1
     SysPSM2 = processed_result[0]['SysPSM2'] # Сохраняем значение из многомерного списка в переменную SysPSM2   
-    print ('Router %s has system Uptime: %s end_of_uptime\r'%(router.host_ip,SysUptime))
+    print ('Router %s has system Uptime: %s end_of_uptime\r'%(DUT.host_ip,SysUptime))
     conn.send('quit\r')
     conn.close()
     assert_that(SysType!='',"В выводе команды параметр SysType не соответсвует шаблону")  

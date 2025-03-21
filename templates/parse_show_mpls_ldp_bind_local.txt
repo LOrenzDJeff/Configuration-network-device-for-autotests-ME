@@ -5,20 +5,27 @@ Value neighbor_state (\S+)
 Value type (\S+)
 
 Start
-  ^\s+${FEC}\s+${neighbor_addr}\s+${label}\s+${neighbor_state}\s+${type} -> Record
+  ^\s+${FEC}
+  ^\s+local binding:\s+${neighbor_addr}, label ${label}
+  ^\s+State:\s+${neighbor_state}, type:\s+${type} -> Record
 
-
-#Wed May  1 20:24:34 2024
-#  Codes:
-#    E = Entropy Label Capability
-#  
-#  Prefix                Peer ID                    Label       State                        Type        Interface 
-#  --------------------- -------------------------- ----------- ---------------------------- ----------- ---------- 
-#  1.0.0.1/32            1.0.0.3:0                  17          mapping-established          prefix       
-#  1.0.0.2/32            1.0.0.1:0                  3           mapping-established          prefix       
-#  1.0.0.2/32            1.0.0.3:0                  3           mapping-established          prefix       
-#  1.0.0.3/32            1.0.0.1:0                  16          mapping-established          prefix       
-#
-#  Total entries: 4
-#0/ME5200:atAR2# 
-#
+#0/ME5100:atAR1# show mpls ldp bindings local 
+#Fri Jan 10 11:54:54 2020
+#  1.0.0.1/32
+#    local binding: 1.0.0.2:0, label 16
+#    State: mapping-established, type: prefix
+#    Interface: 
+#  1.0.0.2/32
+#    local binding: 1.0.0.1:0, label 17
+#    State: mapping-established, type: prefix
+#    Interface: 
+#  1.0.0.3/32
+#    local binding: 1.0.0.1:0, label 3
+#    State: mapping-established, type: prefix
+#    Interface: 
+#  1.0.0.3/32
+#    local binding: 1.0.0.2:0, label 3
+#    State: mapping-established, type: prefix
+#    Interface: 
+#0/ME5100:atAR1# 
+# 

@@ -1,41 +1,17 @@
-Value line1 (\s+Codes: C - connected, S - static, O - OSPF, B - BGP, L - local)
-Value line2 (\s+IA - OSPF inter area, EA - OSPF intra area)
-Value line3 (\s+N1 - OSPF NSSA external type 1, N2 - OSPF NSSA external type 2)
-Value line4 (\s+E1 - OSPF external type 1, E2 - OSPF external type 2)
-Value line5 (\s+i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2,)
-Value line6 (\s+LE1 - IS-IS level1 external, LE2 - IS-IS level2 external)
-Value line7 (\s+BI - BGP internal, BE - BGP external, BV - BGP vpn)
-Value route1_ipv4 (1.0.0.1/32\s+via \d+.\d+.\d+.\d+ \[116/10\], \d+[wdh]\d+[dhm]\d+[hms],|1.0.0.1/32\s+is directly connected, \d+[wdh]\d+[dhm]\d+[hms],) 
-Value route2_ipv4 (1.0.0.2/32\s+via \d+.\d+.\d+.\d+ \[116/10\], \d+[wdh]\d+[dhm]\d+[hms],|1.0.0.2/32\s+is directly connected, \d+[wdh]\d+[dhm]\d+[hms],)
-Value route3_ipv4 (1.0.0.3/32\s+via \d+.\d+.\d+.\d+ \[116/10\], \d+[wdh]\d+[dhm]\d+[hms],|1.0.0.3/32\s+is directly connected, \d+[wdh]\d+[dhm]\d+[hms],)
-Value route4_ipv4 (1.0.0.4/32\s+via \d+.\d+.\d+.\d+ \[116/10\], \d+[wdh]\d+[dhm]\d+[hms],)
-Value route1_ipv6 (2001:0:10:1::1/128\s+via \w+::\w+:\w+:\w+:\w+ \[116/10\], \d+[wdh]\d+[dhm]\d+[hms],|2001:0:10:1::1/128\s+is directly connected, \d+[wdh]\d+[dhm]\d+[hms],)
-Value route2_ipv6 (2002:0:10:1::2/128\s+via \w+::\w+:\w+:\w+:\w+ \[116/10\], \d+[wdh]\d+[dhm]\d+[hms],|2002:0:10:1::2/128\s+is directly connected, \d+[wdh]\d+[dhm]\d+[hms],)
-Value route3_ipv6 (2003:0:10:1::3/128\s+via \w+::\w+:\w+:\w+:\w+ \[116/10\], \d+[wdh]\d+[dhm]\d+[hms],|2003:0:10:1::3/128\s+is directly connected, \d+[wdh]\d+[dhm]\d+[hms],)
-Value total_count (\d+)
+Value codes (i L[12]|L)
+Value prefix (1.0.0.\d+/32|200\d+:0:10:1::\d+/128)
+Value next_hop (\d+.\d+.\d+.\d+|\w+::\w+:\w+:\w+:\w+)
+Value metric (\[\d+/\d+\])
+Value time (\d+[wdh]\d+[dhm]\d+[hms])
+Value int (\S+)
+Value total_entries (\d+)
+
 
 Start
-  ^${line1} -> Record
-  ^${line2} -> Record
-  ^${line3} -> Record
-  ^${line4} -> Record
-  ^${line5} -> Record
-  ^${line6} -> Record
-  ^${line7} -> Record
-  ^\s+i L[12]\s+${route1_ipv4} bu[12] -> Record
-  ^\s+L\s+${route1_ipv4} lo10 -> Record
-  ^\s+i L[12]\s+${route2_ipv4} bu[12] -> Record
-  ^\s+L\s+${route2_ipv4} lo10 -> Record
-  ^\s+i L[12]\s+${route3_ipv4} bu[12] -> Record
-  ^\s+L\s+${route3_ipv4} lo10 -> Record
-  ^\s+i L[12]\s+${route4_ipv4} te0/[01]/\d+.\d+ -> Record
-  ^\s+i L[12]\s+${route1_ipv6} bu1 -> Record
-  ^\s+L\s+${route1_ipv6} lo10 -> Record
-  ^\s+i L[12]\s+${route2_ipv6} bu[12] -> Record
-  ^\s+L\s+${route2_ipv6} lo10 -> Record
-  ^\s+i L[12]\s+${route3_ipv6} bu[12] -> Record
-  ^\s+L\s+${route3_ipv6} lo10 -> Record
-  ^\s+Total entries: ${total_count} -> Record
+  ^\s+${codes}\s+${prefix}\s+via\s+${next_hop}\s+${metric},\s+${time},\s+${int} -> Record
+  ^\s+${codes}\s+${prefix}\s+is\s+directly\s+connected,\s+${time},\s+${int} -> Record
+  ^\s+Total entries: ${total_entries} -> Record
+
 
 #0/ME5100:atAR1# show route
 #Tue Dec 24 09:19:03 2019

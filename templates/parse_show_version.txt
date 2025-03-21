@@ -1,11 +1,4 @@
-Value Version (\d+\.\d+\.\d+\.\d+[RT])
-Value Version_alt (\d+\.\d+\.\d+\.\S+)
-Value Version_alt2 (\d+\.\d+\.\d+\.\d+[RC])
+Value Version (Eltex ME5\d00 carrier router running Network OS for ME5k ver. \d+\.\d+\.\d+\.\d+[RT] \(\d\d-\w+-\d\d\d\d \d\d:\d\d:\d\d\)|Eltex ME5\d00 modular carrier router running Network OS for ME5k ver. \d+\.\d+\.\d+\.\d+[RT] \(\d\d-\w+-\d\d\d\d \d\d:\d\d:\d\d\)|Eltex ME5\d00 carrier router running Network OS for ME5k ver. \d+\.\d+\.\d+\.\d+RC \(\d\d-\w+-\d\d\d\d \d\d:\d\d:\d\d\)|Eltex ME5\d00 carrier router running Network OS for ME5k ver. \d+\.\d+\.\d+\.DEVEL-BUILD \(\d\d-\w+-\d\d\d\d \d\d:\d\d:\d\d\)|Eltex ME5\d00 carrier router running Network OS for ME5k ver. \d+\.\d+\.\d+\.\S+ \(\d\d-\w+-\d\d\d\d \d\d:\d\d:\d\d\)|Eltex ME5\d00 modular carrier router running Network OS for ME5k ver. \d+\.\d+\.\d+\.\S+ \(\d\d-\w+-\d\d\d\d \d\d:\d\d:\d\d\)|Eltex ME2001 carrier router running Network OS for ME5k ver. \d+\.\d+\.\d+\.\S+ \(\d\d-\w+-\d\d\d\d \d\d:\d\d:\d\d\))
 
 Start
-  ^Eltex ME5\d00 carrier router running Network OS for ME5k ver. ${Version} \(\d\d-\w+-\d\d\d\d \d\d:\d\d:\d\d\)
-  ^Eltex ME5\d00M? modular carrier router running Network OS for ME5k ver. ${Version} \(\d\d-\w+-\d\d\d\d \d\d:\d\d:\d\d\)
-  ^Eltex ME5\d00 carrier router running Network OS for ME5k ver. ${Version_alt2} \(\d\d-\w+-\d\d\d\d \d\d:\d\d:\d\d\)
-  ^Eltex ME5\d00 carrier router running Network OS for ME5k ver. ${Version}.DEVEL-BUILD \(\d\d-\w+-\d\d\d\d \d\d:\d\d:\d\d\)
-  ^Eltex ME5\d00 carrier router running Network OS for ME5k ver. ${Version_alt} \(\d\d-\w+-\d\d\d\d \d\d:\d\d:\d\d\)
-  ^Eltex ME5\d00M? modular carrier router running Network OS for ME5k ver. ${Version_alt} \(\d\d-\w+-\d\d\d\d \d\d:\d\d:\d\d\)
+  ^${Version}

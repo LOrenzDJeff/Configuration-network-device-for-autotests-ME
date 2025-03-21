@@ -1,4 +1,4 @@
-aaa authentication login AAA-TAC 
+aaa authentication login TAC 
   method tacacs
   method local
 exit
@@ -75,8 +75,8 @@ vrf mgmt-intf
   rd 0:0
 exit
 
-line telnet login authentication AAA-TAC
-line ssh login authentication AAA-TAC
+line telnet login authentication TAC
+line ssh login authentication TAC
 
 logging rotate 10
 logging size 20000
@@ -110,7 +110,8 @@ ssh server vrf mgmt-intf
 exit
 
 tacacs-server host 192.168.16.89 vrf default 
-  password encrypted 8FB1007FB51B43FED3
+  password encrypted 8FB1007FB51B
+  source-address 10.10.10.2
 exit
 
 telnet server vrf default 

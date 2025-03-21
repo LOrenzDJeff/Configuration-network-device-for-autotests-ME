@@ -1,13 +1,4 @@
-Value Int_name (\S+)
-Value Stat_period (\d+)
-Value Queue_send_kbps (\d+)
-Value Queue_drop_kbps (\d+)
-Value Queue_send_pps (\d+)
-Value Queue_drop_pps (\d+)
-Value Queue_class (\S+)
-
-Start
-  ^\s+${Int_name}\s+${Stat_period}\s+${Queue_send_kbps}\s+${Queue_drop_kbps}\s+${Queue_send_pps}\s+${Queue_drop_pps}\s+${Queue_class} -> Record
+  {{ int }} {{ period | DIGIT }} {{ enq | DIGIT }} {{ drop | DIGIT }} {{ ignore }} {{ ignore }} {{ class }}
 
 
 #  0/FMC0:atDR1# show qos utilization 
@@ -20,4 +11,3 @@ Start
 #  bu1              20          0                     0                     0                     0                     EF 
 #  bu1              20          405370                0                     41960                 0                     class-default 
 #0/FMC0:atDR1# 
-

@@ -1,0 +1,1 @@
+  {{ prefix | contains('10.0.0.132/32', '2003:0:10:10::132/128') }} {{ next_hop }} {{ out_label }} {{ int }}

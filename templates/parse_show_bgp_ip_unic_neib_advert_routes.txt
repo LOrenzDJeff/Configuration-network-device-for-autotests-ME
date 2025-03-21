@@ -1,0 +1,13 @@
+Value status_code (a)
+Value prefix (\d+.\d+.\d+.\d+/\d+|\w+:\w+:\w+:\w+::\w+/\d+)
+Value next_hop (\d+.\d+.\d+.\d+|\w+:\w+:\w+:\w+::\d+)
+Value metric (\d+)
+Value loc_prf (\d+)
+Value advert_status (\w+)
+Value loc_agr_type (\S+)
+Value path (65100\s+\?)
+Value total_ent (\d+)
+
+Start
+  ^\s+${status_code}?\s+${prefix}\s+${next_hop}\s+${metric}\s+${loc_prf}\s+${advert_status}\s+${loc_agr_type}\s+${path} -> Record
+  ^\s+Total entries:\s+${total_ent}

@@ -31,23 +31,27 @@ Start
   ^\s+u>\s+${neighbor2_RD}\s+BGP\s+2\s+${neighbor2_metric}\s+${neighbor2_ve_block}\s+${neighbor2_ve_block_size}\s+${neighbor2_label_base}\s+100\s+0\s+?
   ^\s+u>i\s+${neighbor3_RD}\s+BGP\s+3\s+${neighbor3_IP}\s+${neighbor3_metric}\s+${neighbor3_ve_block}\s+${neighbor3_ve_block_size}\s+${neighbor3_label_base}\s+100\s+0\s+?
   ^\s+u>\s+${neighbor3_RD}\s+BGP\s+3\s+${neighbor3_metric}\s+${neighbor3_ve_block}\s+${neighbor3_ve_block_size}\s+${neighbor3_label_base}\s+100\s+0\s+?
-
+  
 #0/FMC0:atDR1# show bgp l2vpn
-#Sat Mar 14 21:22:09 2020
-#  BGP router identifier 1.0.0.1, local AS number 65100
+#2024-01-23T11:27:52.715611+07:00 %KLISH-I-COMMAND: From klish terminal [user='admin' host='0.0.0.0' terminal='console' vrf='default'] command: 'show bgp l2vpn'
+#Tue Jan 23 11:27:52 2024
+#  BGP router identifier 1.0.0.1, local AS number 65100 
 #  Graceful Restart is disabled
 #  BGP table state: active
 #  BGP scan interval: 120 secs
-#
+#  
 #  Status codes: d damped, h history, > best, S stale, * active, u untracked, i internal
 #  Origin codes: i igp, e egp, ? incomplete
+#  
+#  Address Family: L2VPN VPLS
+#  ----------------------------
+#  
+#  Route Distinguisher        Sig  VE ID or PE addr  Next hop         Metric  VE Block    VE Block    Rcvd/Lcl Label Base  LocPrf  Weight  Path 
+#                                                                                         Size                                              
+#  -------------------------- ---- ----------------- ---------------- ------- ----------- ----------- -------------------- ------- ------- ----- 
+#  u>   65100:200             BGP  1                                  0       1           8           -/512                100     0       ? 
+#  u>i  65100:200             BGP  2                 1.0.0.2          0       1           8           512/-                100     0       ? 
+#  u>i  65100:200             BGP  3                 1.0.0.3          0       1           8           512/-                100     0       ? 
 #
-#  Route Distinguisher        Sig  VE ID or PE addr  Next hop         Metric  VE Block    VE Block    Label Base  LocPrf  Weight  Path 
-#                                                                                         Size                                     
-#  -------------------------- ---- ----------------- ---------------- ------- ----------- ----------- ----------- ------- ------- ----- 
-#  u>   65100:200             BGP  1                                  0       1           8           512         100     0       ? 
-#  u>i  65100:200             BGP  2                 1.0.0.2          0       1           8           512         100     0       ? 
-#  u>i  65100:200             BGP  3                 1.0.0.3          0       1           8           512         100     0       ? 
-#
-#  Total paths: 3
-#
+#  Total entries: 3
+

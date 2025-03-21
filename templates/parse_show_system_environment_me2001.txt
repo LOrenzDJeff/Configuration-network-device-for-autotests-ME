@@ -1,0 +1,49 @@
+Value Chassis_number (\d+)
+Value MainModule (ME\d+)
+Value CpuTemp_int (\d+)
+Value SwitchEngineTemp_int (\d+)
+Value SwitchEngineTemp_ext (\d+)
+Value PLLTemp_int (\d+)
+Value HighTemp (\d+)
+Value FanSpeed (\d+)
+Value Fan1 (\d+)
+Value Fan2 (\d+)
+Value Fan3 (\d+)
+Value Fan4 (\d+)
+Value Fan5 (\d+)
+Value PSM1Fan (present|not present)
+Value PSM2FanTemp (\d+)
+
+Start
+  ^\s+Hardware environment information for chassis ${Chassis_number}
+  ^\s+Main system module is ${MainModule}
+  ^\s+CPU temperature \(int\):\s+${CpuTemp_int}\s+C 
+  ^\s+Switching engine temperature \(int/ext\): ${SwitchEngineTemp_int}\s+C\s+/\s+${SwitchEngineTemp_ext}\s+C
+  ^\s+PLL temperature\s+\(int\):\s+${PLLTemp_int}\s+C
+  ^\s+The Highest transceiver temperature:\s+${HighTemp}\s+C
+  ^\s+System fan speed is set to ${FanSpeed}%
+  ^\s+Fan unit 1:\s+${Fan1} RPM\s+/\s+${Fan2} RPM\s+/\s+${Fan3} RPM\s+/\s+${Fan4} RPM\s+/\s+${Fan5} RPM
+  ^\s+Power supply 1 is ${PSM1Fan}
+  ^\s+Power supply 2 temperature:\s+${PSM2FanTemp}\s+C
+
+
+#Пример вывода команды 'show system environment' на ME5100 
+#0/ME2001:atAR1# show system environment 
+#Tue Sep 17 12:18:57 2024
+#  Hardware environment information for chassis 0
+#  
+#  Main system module is ME2001
+#   CPU temperature (int):                  37 C
+#   Switching engine temperature (int/ext): 44 C /  30 C
+#   PLL temperature  (int):                 56 C
+#   The Highest transceiver temperature:    32 C
+#  
+#   System fan speed is set to 56%
+#    Current fan speeds:
+#  
+#     Fan unit 1: 11520 RPM / 11400 RPM / 11520 RPM / 11400 RPM / 11520 RPM
+#  
+#  Power supply 1 is not power up
+#  
+#  Power supply 2 temperature: 36 C
+#0/ME2001:atAR1# 

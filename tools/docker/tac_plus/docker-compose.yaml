@@ -1,0 +1,10 @@
+version: '3'
+services:
+  tacacs:
+    build: .
+    container_name: my_tacacs_cont
+    ports:
+      - "49:49/tcp"
+    restart: always
+    volumes:
+      - ./tac_plus/tac_user.cfg:/etc/tac_plus/tac_user.cfg

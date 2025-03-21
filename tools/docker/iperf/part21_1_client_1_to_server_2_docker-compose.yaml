@@ -1,0 +1,29 @@
+version: '3'
+services:
+  server:
+    build: server/
+#      context: .
+#    restart: always 
+    ports:
+      - "5001:5001"
+    networks:
+          iperf-client:
+            ipv4_address: 192.168.73.3
+    command: -s
+
+  client:
+    build: client/
+#      context: .
+#    restart: always
+    networks:
+         iperf-server:
+            ipv4_address: 192.168.74.3
+    command: -c $arg1 -p 5001 -P 12 -b $arg3 -n 10Gb -t $arg2
+    depends_on:
+      - server
+
+networks:
+  iperf-client:
+     external: true
+  iperf-server:
+     external: true

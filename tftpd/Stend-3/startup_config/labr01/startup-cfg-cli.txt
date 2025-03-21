@@ -1,0 +1,45 @@
+version 18.2R1.9;
+system {
+    host-name labr01;
+    root-authentication {
+        encrypted-password "$1$yG5bGTcf$.SBGr/JB6dF7sFHBWKQxX."; ## SECRET-DATA
+    }
+    login {
+        user user {
+            uid 100;
+            class super-user;
+            authentication {
+                encrypted-password "$1$gqvECz46$Fa/MVn5Rvmtm.BqCeteAd1"; ## SECRET-DATA
+            }
+        }
+    }
+    services {
+        telnet;
+    }
+    syslog {
+        user * {
+            any emergency;
+        }                               
+        file messages {
+            any notice;
+            authorization info;
+        }
+        file interactive-commands {
+            interactive-commands any;
+        }
+    }
+}
+
+interfaces {                            
+    ge-0/0/0 {                          
+        flexible-vlan-tagging;          
+        native-vlan-id 3460;            
+        encapsulation flexible-ethernet-services;
+        unit 0 {                        
+            vlan-id 3460;               
+            family inet {               
+                address 192.168.17.130/23;
+            }                           
+        }                               
+    }                                   
+}

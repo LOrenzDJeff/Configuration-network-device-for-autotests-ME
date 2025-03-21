@@ -1,0 +1,24 @@
+Value codes (B (BI|BE|BV|BL))
+Value prefix (\d+.\d+.\d+.\d+/\d+|\w+:\w+:\w+:\w+::\w+/\d+)
+Value next_hop (\d+.\d+.\d+.\d+|\w+(:\w+:\w+:\w+)?::\w+(:\w+)?)
+Value adm_dist (\[\d+/\d+\])
+Value uptime (\d{2}[dh]\d{2}[hm]\d{2}[ms])
+Value int (\S+)
+Value total_ent (\d+)
+
+Start
+  ^\s+${codes}\s+${prefix}\s+via\s+${next_hop}\s+${adm_dist},\s+${uptime},\s+${int} -> Record
+  ^\s+Total entries:\s+${total_ent}
+
+
+#0/ME5200:atAR2# show route bgp
+#Wed Oct 16 14:43:24 2024
+#  Codes: BI - BGP internal, BE - BGP external, BV - BGP vpn,
+#         BL - BGP labeled
+#
+#
+#  B BI   10.0.0.132/32    via 172.22.2.50 [200/0], 00h05m46s, bu1
+#  B BI   2003:0:10:10::132/128    via fe80::2024:146 [200/0], 00h05m46s, bu1
+#
+#  Total entries: 2
+#0/ME5200:atAR2#

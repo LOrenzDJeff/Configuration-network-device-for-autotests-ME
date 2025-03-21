@@ -1,0 +1,17 @@
+bob    Cleartext-Password := "test"
+
+ron	Cleartext-Password := "secret"
+	Service-Type = Framed-User,
+	Framed-Protocol = PPP
+admin	Cleartext-Password := "!QAZ2wsx4"
+	Service-Type = Framed-User,
+	Framed-Protocol = PPP
+user1	Cleartext-Password := "_TEST1_"
+	Service-Type = Framed-User,
+	Framed-Protocol = PPP
+user2	Cleartext-Password := "_TEST2_"
+	Service-Type = Framed-User,
+	Framed-Protocol = PPP
+user3	Cleartext-Password := "_TEST3_"
+	Service-Type = Framed-User,
+	Framed-Protocol = PPP

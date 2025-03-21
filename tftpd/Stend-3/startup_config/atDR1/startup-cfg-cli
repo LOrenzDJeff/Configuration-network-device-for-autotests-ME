@@ -1,4 +1,4 @@
-aaa authentication login AAA-TAC 
+aaa authentication login TAC 
   method tacacs
   method local
 exit
@@ -116,8 +116,8 @@ vrf mgmt-intf
   rd 0:0
 exit
 
-line telnet login authentication AAA-TAC
-line ssh login authentication AAA-TAC
+line telnet login authentication TAC
+line ssh login authentication TAC
 
 ntp vrf mgmt-intf 
   server 192.168.16.89 
