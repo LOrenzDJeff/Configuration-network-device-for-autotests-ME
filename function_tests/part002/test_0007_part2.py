@@ -5,7 +5,7 @@ from conftest import *
 @allure.title('В данном тесте будем проверять вывод команды show system inventory')
 @pytest.mark.part2
 @pytest.mark.show_system_inventory
-@pytest.mark.dependency(depends=["load_config002_dut1","load_config002_dut2","load_config002_dut3"],scope='session')
+#@pytest.mark.dependency(depends=["load_config002_dut1","load_config002_dut2","load_config002_dut3"],scope='session')
 @pytest.mark.parametrize("DUT",
 			[
 			 pytest.param(DUT1), 
@@ -24,7 +24,8 @@ def test_show_system_inventory_part2(DUT):
 # Определим тип маршрутизатора (ME5000 или ME2001 или ME5200)
     conn.execute('show system')
     resp =conn.response
-    for RTtype in ['ME5000', 'ME2001', 'ME5200']:
+    print(resp)
+    for RTtype in ['ME5000', 'ME2001', 'ME5200','ME5100']:
         index = resp.find(RTtype)
         if index!= -1:
             SysType=RTtype

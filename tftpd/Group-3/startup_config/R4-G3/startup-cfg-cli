@@ -1,26 +1,26 @@
 banner login "This device can be used by authorized users only. Unauthorized access is prosecuted by federal law (Federal law 63, article 272 of the Criminal Code of the Russian Federation"
 banner motd "Test motd banner"
 
-hostname R1-G3
+hostname R4-G3
 
 interface mgmt 0/fmc0/1 
-  ipv4 address 192.168.17.12/22
+  ipv4 address 192.168.17.14/22
   vrf mgmt-intf
 exit
 interface tengigabitethernet 0/0/1 
-  description to_R2:te0/0/3
+  description to_R1:te0/0/3
   load-interval 20
 exit
 interface tengigabitethernet 0/0/2 
-  description to_R2:te0/0/4
+  description to_R1:te0/0/4
   load-interval 20
 exit
 interface tengigabitethernet 0/0/3 
-  description to_R4:te0/0/3
+  description to_R2:te0/0/3
   load-interval 20
 exit
 interface tengigabitethernet 0/0/4 
-  description to_R4:te0/0/4
+  description to_R2:te0/0/4
   load-interval 20
 exit
 interface tengigabitethernet 0/0/5 
@@ -58,6 +58,11 @@ exit
 
 vrf mgmt-intf 
   rd 0:0
+exit
+
+ntp vrf mgmt-intf 
+  server 192.168.16.89 
+  exit
 exit
 
 router static 

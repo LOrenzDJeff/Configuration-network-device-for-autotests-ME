@@ -38,8 +38,8 @@ def test_syslog_part2(DUT):
 
     time.sleep(10)
 # Подключаемся к syslog серверу  и анализируем файл 'syslog' на предмет содержания команды-маркера
-    conn3 = Telnet()
-#    conn3 = SSH2()
+#    conn3 = Telnet()
+    conn3 = SSH2()
     acc3 = Account(DUT.server['login'], DUT.server['password'])
     conn3.connect(DUT.server['ip'])   # Подключаемся к syslog-серверу
     conn3.login(acc3)

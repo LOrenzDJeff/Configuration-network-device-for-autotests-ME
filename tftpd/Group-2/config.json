@@ -1,7 +1,7 @@
 {
     "DUT1": 
     {
-        "hostname": "R2",
+        "hostname": "R2-G2",
         "hardware": "ME5100",
         "software": "3.9.10.155RC",
         "proto": "telnet",
@@ -47,7 +47,7 @@
     },
     "DUT2": 
     {
-        "hostname": "R4",
+        "hostname": "R4-G2",
         "hardware": "ME5100",
         "software": "3.9.10.155RC",
         "proto": "telnet",
@@ -93,7 +93,7 @@
     },
     "DUT3": 
     {
-        "hostname": "R1",
+        "hostname": "R1-G2",
         "hardware": "ME5100",
         "software": "3.9.10.155RC",
         "proto": "telnet",
@@ -139,7 +139,7 @@
     },
     "DUT4": 
     {
-        "hostname": "R3",
+        "hostname": "R3-G2",
         "hardware": "cisco",
         "software": "IOS XRv Chassis",
         "proto": "telnet",

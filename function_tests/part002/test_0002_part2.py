@@ -16,7 +16,7 @@ from conftest import *
 #@pytest.mark.usefixtures('me_init_configuration')
 def test_backup_part2(DUT):
 # Подключаемся к tftp-серверу и удаляем все ранее сохраненные backup-файлы, если они есть
-    conn3 = Telnet()
+    conn3 = SSH2()
     acc3 = Account(DUT.server['login'], DUT.server['password'])
     conn3.connect(DUT.server['ip'])
     conn3.login(acc3)

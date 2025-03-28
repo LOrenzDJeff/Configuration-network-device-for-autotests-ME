@@ -60,6 +60,11 @@ vrf mgmt-intf
   rd 0:0
 exit
 
+ntp vrf mgmt-intf 
+  server 192.168.16.89 
+  exit
+exit
+
 router static
   vrf mgmt-intf
     address-family ipv4 unicast
