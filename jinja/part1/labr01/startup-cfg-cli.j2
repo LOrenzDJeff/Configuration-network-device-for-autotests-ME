@@ -1,0 +1,27 @@
+hostname {{ hostname }}
+telnet vrf default ipv4 server max-servers 10
+interface {{ int }}.{{ vlan1.id }}
+ description {{ vlan1.neighbor }}
+ ipv4 address {{ vlan1.ipv4 }}
+ encapsulation dot1q {{ vlan1.id }}
+!
+interface {{ int }}.{{ vlan2.id }}
+ description {{ vlan2.neighbor }}
+ ipv4 address {{ vlan2.ipv4 }}
+ encapsulation dot1q {{ vlan2.id }}
+!
+interface {{ int }}.{{ vlan3.id }}
+ description {{ vlan3.neighbor }}
+ ipv4 address {{ vlan3.ipv4 }}
+ encapsulation dot1q {{ vlan3.id }}
+!
+interface {{ int }}.{{ vlan }}
+ ipv4 address {{ host_ip }} 255.255.252.0
+ encapsulation dot1q {{ vlan }}
+!
+router static
+ address-family ipv4 unicast
+  192.168.0.0/16 192.168.16.1
+ !
+!
+end

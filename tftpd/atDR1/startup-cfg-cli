@@ -1,0 +1,119 @@
+aaa authentication login TAC 
+  method tacacs
+  method local
+exit
+
+banner login "This device can be used by authorized users only. Unauthorized access is prosecuted by federal law (Federal law 63, article 272 of the Criminal Code of the Russian Federation"
+banner motd "Test motd banner"
+
+hostname R1-G1
+
+interface mgmt0/fmc0/1
+  ipv4 address 192.168.17.34/22
+  vrf mgmt-intf
+exit
+interface bu1
+  description "to_atR2-G1:bundle-ether2"
+  ipv4 address 192.168.1.2/30
+exit
+interface bu2
+  description "to_atR4-G1:bundle-ether2"
+  ipv4 address 192.168.1.5/30
+exit
+interface te0/0/5.151
+  description "to_R3:ge-0/0/0/2.151"
+  encapsulation outer-vid 151
+  ipv4 address 192.168.1.17/30
+exit
+
+interface te0/0/1
+  load-interval 20
+exit
+interface te0/0/2
+  load-interval 20
+exit
+interface te0/0/3
+  load-interval 20
+exit
+interface te0/0/4
+  load-interval 20
+exit
+interface loopback 10
+exit
+
+vrf mgmt-intf 
+  rd 0:0
+exit
+lacp
+  lacp interface bu1
+  exit
+  lacp interface bu2
+  exit
+  lacp interface te0/0/1
+    bundle id 1
+    bundle mode active
+  exit
+  lacp interface te0/0/2
+    bundle id 1
+    bundle mode active
+  exit
+  lacp interface te0/0/3
+    bundle id 2
+    bundle mode active
+  exit
+  lacp interface te0/0/4
+    bundle id 2
+    bundle mode active
+  exit
+exit
+
+
+line ssh login authentication TAC
+line telnet login authentication TAC
+
+router static 
+  vrf mgmt-intf 
+    address-family ipv4 unicast 
+      destination 192.168.0.0/16 192.168.16.1 
+      exit
+      destination 192.168.32.0/20 192.168.16.1 
+      exit
+    exit
+  exit
+exit
+
+snmp server vrf mgmt-intf
+  community label private
+    community-name encrypted BEBD045EB50C5AFE75
+    rights rw
+  exit
+  community label public
+    community-name encrypted 8CA10161B90C
+    version v2c
+  exit
+exit
+
+ntp vrf mgmt-intf 
+  server 192.168.16.89 
+  exit
+exit
+
+ssh server vrf mgmt-intf 
+exit
+telnet server vrf mgmt-intf
+exit
+
+tacacs-server host 192.168.16.112 vrf MGN 
+  password encrypted 8FB1007FB51B
+  source-address 10.10.10.3
+exit
+
+user ad
+  password encrypted $6$T4hZd31JW/J3l/DH$CUcT0ksVznXLJWrOLIUVJHy6kv0nZOQCV1WX7WqgxFtZrgi0COcoVE1LAEZWZ44NonbVS9PnNarPP1ljrX6SJ0
+  privilege p15
+exit
+
+user admin 
+  password encrypted $6$l0YtRh71nZ.zOv/3$ffX5KG61Q7HlhbkZVDoye4dI.wsOcxb.2J8SqHACtK486MCTcQjOIq71bLDcSBSSreZLhUlyU/fSTeB.BFA2v/
+  privilege p15
+exit

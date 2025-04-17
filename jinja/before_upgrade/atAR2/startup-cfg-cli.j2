@@ -1,0 +1,69 @@
+hostname {{ hostname }}
+
+hw-module enable acl-counters 
+hw-module enable acl-default 
+
+interface {{ host_int }}
+  ipv4 address {{ host_ip }}/22
+  vrf mgmt-intf
+exit
+{% for interfaces in int.to_phys1.interface %}interface {{ interfaces }}
+  load-interval 20
+exit
+{% endfor %}{% for interfaces in int.to_phys2.interface %}interface {{ interfaces }}
+  load-interval 20
+exit
+{% endfor %}interface {{ int.lo.interface }}
+exit
+
+vrf mgmt-intf 
+  rd 0:0
+exit
+
+ntp vrf mgmt-intf 
+  server 192.168.16.89 
+  exit
+exit
+
+router static 
+  vrf mgmt-intf 
+    address-family ipv4 unicast 
+      destination 192.168.0.0/16 192.168.16.1 
+      exit
+      destination 192.168.32.0/20 192.168.16.1 
+      exit
+    exit
+  exit
+exit
+
+snmp server vrf mgmt-intf
+  community label private
+    community-name encrypted BEBD045EB50C5AFE75
+    rights rw
+  exit
+  community label public
+    community-name encrypted 8CA10161B90C
+    version v2c
+  exit
+exit
+
+ssh server vrf mgmt-intf 
+exit
+
+telnet server vrf mgmt-intf 
+exit
+
+user ad
+  password encrypted $6$BXtTHZbxfvANpJgr$7mq05sroQF9xEyoO.yMUcYjG3DSSb3BpKL25A2PZPzhHkmJkay.y0ld7OkXS9QxUnV6q.HJu6QqoL5OzFl75A.
+  privilege p15
+exit
+
+user admin 
+  password encrypted $6$UnQIpMX/n7n6a2Xc$GQ94UCp3eRPv1yYFBPE.gTvIcDfYqaN7MGfqJ3/S6xvWrZM55VvtEQGQvRTIS2sSdqTifJ5WCFuyNQyYeDZlt1
+  privilege p15
+exit
+
+user pytest 
+  password encrypted $6$iITXc4IkM9zwahlp$zh.PCpL4GFK1w92fwWqJoFu0n9BN9avx88ohS9m/RzGc.kxizxHVPIiaO71iumXjPcz4yYb2KYnsSc.FFnrxy/
+  privilege p15
+exit

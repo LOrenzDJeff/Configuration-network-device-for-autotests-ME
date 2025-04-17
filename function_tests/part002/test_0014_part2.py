@@ -2,23 +2,17 @@ from conftest import *
 
 @allure.feature('02:Функции управления и базовые show-команды')
 @allure.story('2.007:Проверка системных show-команд')
-@allure.title('В данном тесте будем проверять вывод команды show privilege')
+@allure.title('Проверка вывода команды show privilege')
 @pytest.mark.part2
 @pytest.mark.show_privilege
 @pytest.mark.dependency(depends=["load_config002_dut1","load_config002_dut2","load_config002_dut3"],scope='session')
-@pytest.mark.parametrize("DUT",
-			[
-			 pytest.param(DUT1), 
- 			 pytest.param(DUT2), 
- 			 pytest.param(DUT3)
-			]
-			)
-def test_show_privilege (DUT): 
+@pytest.mark.parametrize('ip , login , password', [(DUT1['host_ip'] , DUT1['login'] , DUT1['password']) , (DUT2['host_ip'] , DUT2['login'] , DUT2['password']) , (DUT3['host_ip'] , DUT3['login'] , DUT3['password'])])
+def test_show_privilege (ip, login, password): 
 # В данном тесте будем проверять вывод команды 'show privilege'      
     resp = ''
     conn = Telnet()
-    acc = Account(DUT.login, DUT.password)
-    conn.connect(DUT.host_ip)
+    acc = Account(login , password)
+    conn.connect(ip)
     conn.login(acc)
     conn.set_prompt('#')        
     conn.execute('show privilege') 

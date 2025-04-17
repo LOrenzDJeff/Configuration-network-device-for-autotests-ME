@@ -1,0 +1,27 @@
+hostname R3-G1
+telnet vrf default ipv4 server max-servers 10
+interface gi 0/0/0/2.151
+ description to_R1:te0/0/5.151
+ ipv4 address 192.168.1.18 255.255.255.252
+ encapsulation dot1q 151
+!
+interface gi 0/0/0/2.152
+ description to_R2:te0/0/11.152
+ ipv4 address 192.168.1.10 255.255.255.252
+ encapsulation dot1q 152
+!
+interface gi 0/0/0/2.154
+ description to_R4:te0/0/11.154
+ ipv4 address 192.168.1.14 255.255.255.252
+ encapsulation dot1q 154
+!
+interface gi 0/0/0/2.3460
+ ipv4 address 192.168.17.8 255.255.252.0
+ encapsulation dot1q 3460
+!
+router static
+ address-family ipv4 unicast
+  192.168.0.0/16 192.168.16.1
+ !
+!
+end

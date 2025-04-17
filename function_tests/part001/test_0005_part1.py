@@ -1,19 +1,5 @@
 from conftest import *
 
-def locate_ipv4_neighbor(conn,interface):
-    conn.execute('terminal datadump')
-    conn.execute('show interface %s'%interface)
-    resp = conn.response
-    template = open('./templates/parse_show_interface.txt')
-    fsm = textfsm.TextFSM(template)
-    processed_result=fsm.ParseTextToDicts(resp)
-    ipv4_int_addr=processed_result[0]['ipv4_addr']
-    int1 = ipaddress.ip_interface(ipv4_int_addr)
-    subnet=ipaddress.ip_network(int1.network)
-    if subnet[1] == int1.ip:
-        return(subnet[2])
-    else :
-        return(subnet[1])
 
 def execute_commands(ip, login, password, interfaces):
     acc = Account(login, password)
@@ -43,23 +29,21 @@ def execute_commands(ip, login, password, interfaces):
 
 @allure.feature('01:Подготовка основного стенда-квадрата')
 @allure.story('1.2:Проверка связности и управления')
-@allure.title('В данном тесте будем  проверять IP связность с P2P соседями маршрутизатора')
+@allure.title('Проверка IP связности с P2P соседями маршрутизатора')
 @pytest.mark.part1
 @pytest.mark.neighbor_connect
-@pytest.mark.dependency(depends=["load_config001_dut1","load_config001_dut2","load_config001_dut3"],scope='session')
-@pytest.mark.parametrize("DUT",
-			[
-			 pytest.param(DUT1), 
- 			 pytest.param(DUT2), 
- 			 pytest.param(DUT3),
-			]
-			)
-
-def test_ping_neighbors_part1(DUT):
+@pytest.mark.dependency(
+    depends=["load_config001_dut1", "load_config001_dut2", "load_config001_dut3", "load_config001_dut6"],
+    scope='session')
+@pytest.mark.parametrize('ip, int1, int2, int3, login, password',
+                         [(DUT1['host_ip'], DUT1['int']["to_phys1"]["int_name"], DUT1['int']["to_phys2"]["int_name"], DUT1['int']["to_virt"]["int_name"], DUT1['login'], DUT1['password']),
+                          (DUT2['host_ip'], DUT2['int']["to_phys1"]["int_name"], DUT2['int']["to_phys2"]["int_name"], DUT2['int']["to_virt"]["int_name"], DUT2['login'], DUT2['password']),
+                          (DUT3['host_ip'], DUT3['int']["to_phys1"]["int_name"], DUT3['int']["to_phys2"]["int_name"], DUT3['int']["to_virt"]["int_name"], DUT3['login'], DUT3['password'])])
+def test_ping_neighbors_part1(ip, int1, int2, int3, login, password):
     allure.attach.file('./network-schemes/part1_ping_neighbors.png', 'Схема теста',
                        attachment_type=allure.attachment_type.PNG)
-    interfaces = [DUT.neighor1["int_name"], DUT.neighor2["int_name"], DUT.neighor3["int_name"]]
-    neighbors, resp_list = execute_commands(DUT.host_ip, DUT.login, DUT.password, interfaces)
+    interfaces = [int1, int2, int3]
+    neighbors, resp_list = execute_commands(ip, login, password, interfaces)
 
     for k in range(3):
         with open('./templates/parse_ping_from_me.txt', 'r') as template:

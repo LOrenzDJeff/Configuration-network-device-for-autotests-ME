@@ -1,0 +1,221 @@
+{
+    "DUT1": 
+    {
+        "dir_hostname": "atAR1",
+        "hostname": "R2-G1",
+        "hardware": "ME5100",
+        "software": "3.9.10.155RC",
+        "proto": "telnet",
+        "host_ip": "192.168.17.35",
+        "login": "admin",
+        "password": "password",
+        "vrf": "mgmt-intf",
+        "host_int": "mgmt0/fmc0/1",
+        "int" : 
+        {
+          "to_phys1" : 
+          {
+              "int_name" : "bu1",
+              "ip" : "192.168.1.1/30",
+              "id" : "1",
+              "mode" : "passive",
+              "interface" : ["te0/0/3","te0/0/4"],
+              "full_interface" : ["Tengigabitethernet0/0/3","Tengigabitethernet0/0/4"],
+              "neighbor" : "to_R1:bundle-ether1"
+          },
+          "to_phys2" : 
+          {
+              "int_name" : "bu2",
+              "ip" : "192.168.1.21/30",
+              "id" : "2",
+              "mode" : "active",
+              "interface" : ["te0/0/1","te0/0/2"],
+              "full_interface" : ["Tengigabitethernet0/0/1","Tengigabitethernet0/0/2"],
+              "neighbor" : "to_R4:bundle-ether1"
+          },
+          "to_virt":
+          {
+              "int_name" : "te0/0/11.152",
+              "ip" : "192.168.1.9/30",
+              "vlan" : "152",
+              "neighbor" : "to_R3:ge0/0/0/2.152"
+          },
+          "lo" : 
+          {
+              "ip" : "1.0.1.2/32",
+              "interface" : "loopback 10"
+          }
+        }
+    },
+    "DUT2": 
+    {
+        "dir_hostname": "atAR2",
+        "hostname": "R4-G1",
+        "hardware": "ME5100",
+        "software": "3.9.10.155RC",
+        "proto": "telnet",
+        "host_ip": "192.168.17.36",
+        "login": "admin",
+        "password": "password",
+        "vrf": "mgmt-intf",
+        "host_int": "mgmt0/fmc0/1",
+        "int" :
+        {
+          "to_phys1" : 
+          {
+              "int_name" : "bu1",
+              "ip" : "192.168.1.6/30",
+              "id" : "1",
+              "mode" : "passive",
+              "interface" : ["te0/0/3","te0/0/4"],
+              "full_interface" : ["Tengigabitethernet0/0/3","Tengigabitethernet0/0/4"],
+              "neighbor" : "to_R1:bundle-ether1"
+          },
+          "to_phys2" : 
+          {
+              "int_name" : "bu2",
+              "ip" : "192.168.1.22/30",
+              "id" : "2",
+              "mode" : "passive",
+              "interface" : ["te0/0/1","te0/0/2"],
+              "full_interface" : ["Tengigabitethernet0/0/1","Tengigabitethernet0/0/2"],
+              "neighbor" : "to_R2:bundle-ether2"
+          },
+          "to_virt":
+          {
+              "int_name" : "te0/0/11.154",
+              "ip" : "192.168.1.13/30",
+              "vlan" : "154",
+              "neighbor" : "to_R3:ge0/0/0/2.154"
+          },
+          "lo" : 
+          {
+              "ip" : "1.0.1.4/32",
+              "interface" : "loopback 10"
+          }
+        }
+    },
+    "DUT3": 
+    {
+        "dir_hostname": "atDR1",
+        "hostname": "R1-G1",
+        "hardware": "ME5100",
+        "software": "3.9.10.155RC",
+        "proto": "telnet",
+        "host_ip": "192.168.17.34",
+        "login": "admin",
+        "password": "password",
+        "vrf": "mgmt-intf",
+        "host_int": "mgmt0/fmc0/1",
+        "int" :
+        {
+          "to_phys1":
+          {
+              "int_name" : "bu1",
+              "id" : "1",
+              "mode" : "active",
+              "ip" : "192.168.1.2/30",
+              "interface" : ["te0/0/1","te0/0/2"],
+              "full_interface" : ["Tengigabitethernet0/0/1","Tengigabitethernet0/0/2"],
+              "neighbor" : "to_atR2-G1:bundle-ether2"
+          },
+          "to_phys2" : 
+          {
+              "int_name" : "bu2",
+              "id" : "2",
+              "mode" : "active",
+              "ip" : "192.168.1.5/30",
+              "interface" : ["te0/0/3","te0/0/4"],
+              "full_interface" : ["Tengigabitethernet0/0/3","Tengigabitethernet0/0/4"],
+              "neighbor" : "to_atR4-G1:bundle-ether2"
+          },
+          "to_virt" : 
+          {
+              "int_name" : "te0/0/5.151",
+              "ip" : "192.168.1.17/30",
+              "vlan" : "151",
+              "neighbor" : "to_R3:ge-0/0/0/2.151"
+          },
+          "lo" : 
+          {
+              "ip" : "1.0.1.1",
+              "interface" : "loopback 10"
+          }
+        }
+    },
+    "DUT4": 
+    {
+        "dir_hostname": "labr01",
+        "hostname": "R3-G1",
+        "hardware": "cisco",
+        "software": "IOS XRv Chassis",
+        "proto": "telnet",
+        "host_ip": "192.168.17.8",
+        "login": "admin",
+        "password": "admin",
+        "int": "gi 0/0/0/2",
+        "vlan": "3460",
+        "vlan1": 
+        {
+            "id" : "151",
+            "ipv4" : "192.168.1.18 255.255.255.252",
+            "neighbor" : "to_R1:te0/0/5.151"
+        },
+        "vlan2": 
+        {
+            "id" : "152",
+            "ipv4" : "192.168.1.10 255.255.255.252",
+            "neighbor" : "to_R2:te0/0/11.152"
+        },
+        "vlan3": 
+        {
+            "id" : "154",
+            "ipv4" : "192.168.1.14 255.255.255.252",
+            "neighbor" : "to_R4:te0/0/11.154"
+        },
+        "lo" : 
+          {
+              "ip" : "1.0.1.3 255.255.255.255",
+              "num" : "0"
+          }
+    },
+    "DUT5" : 
+    {
+        "hostname": "labs01",
+        "hardware": "MES2424FB",
+        "software": "10.3.4",
+        "proto": "telnet",
+        "host_ip": "192.168.17.44",
+        "login": "admin",
+        "password": "admin"
+    },
+    "DUT6" : 
+    {
+        "hostname": "labs01",
+        "hardware": "MES5324",
+        "software": "4.0.11",
+        "proto": "telnet",
+        "host_ip": "192.168.17.137",
+        "login": "admin",
+        "password": "admin"
+    },
+    "DUT7" : 
+    {
+        "ip" : "192.168.16.112",
+        "login" : "avtotest",
+        "password": "ethers"
+    },
+    "DUT9": {
+        "hostname": "atDR1_fmc1",
+        "hardware": "ME5000",
+        "software": "3.5.0.536T",
+        "proto": "telnet",
+        "host_ip": "192.168.17.147",
+        "login": "admin",
+        "password": "password",
+        "int1": "bu1",
+        "int2": "bu2",
+        "int3": "te0/1/5.350",
+        "boot_timer":"360"
+    }
+}

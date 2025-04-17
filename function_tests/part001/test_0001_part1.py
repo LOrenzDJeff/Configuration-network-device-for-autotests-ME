@@ -1,23 +1,19 @@
 from conftest import *
 
+# Обновление ПО на маршрутизаторах стенда перед запуском функциональных тестов
 @allure.epic('00:Загрузка начальной конфигурации')
-@allure.feature('Часть 1')
-@allure.story('Загрузка конфигурации на МЕ маршрутизаторы')
+@allure.feature('Часть 0')
+@allure.story('Загрузка конфигурации на МЕ маршрутизаторы. Перед upgrade-ом')
 @allure.title('Загрузка конфигурации на ME маршрутизатор')
-@pytest.mark.part1
-@pytest.mark.init_config_part1
-@pytest.mark.parametrize("DUT",
-			[
-			 pytest.param(DUT1, marks=pytest.mark.dependency(name="load_config001_dut1")), 
- 			 pytest.param(DUT2, marks=pytest.mark.dependency(name="load_config001_dut2")), 
- 			 pytest.param(DUT3, marks=pytest.mark.dependency(name="load_config001_dut3")),
-			]
-			)
- 
-def test_me_init_config(DUT):
-	DUT.connection()
-	DUT.startup()
-	DUT.lacp()
-	DUT.ipv4()
-	print("Загрузка конфигурации на %s прошла успешно!"%DUT.hostname)
-	DUT.close()
+@pytest.mark.part0
+@pytest.mark.parametrize('ip, hostname, login, password, part', 
+			[(DUT1['host_ip'], DUT1['dir_hostname'], DUT1['login'], DUT1['password'], 'part1'), 
+ 			 (DUT2['host_ip'], DUT2['dir_hostname'], DUT2['login'], DUT2['password'], 'part1'), 
+ 			 (DUT3['host_ip'], DUT3['dir_hostname'], DUT3['login'], DUT3['password'], 'part1')])
+
+@pytest.mark.usefixtures('me_init_configuration')
+def test_me_init_config0_upload (ip, hostname, login, password, part): 
+# В данном тесте будем загружать начальную конфигурацию на ME маршрутизаторы для тестов из Части 0 документа
+	print('Стартовая конфигурация на %s прошла успешно!'%(hostname))
+	if hostname == DUT3['dir_hostname']:
+		time.sleep(10)

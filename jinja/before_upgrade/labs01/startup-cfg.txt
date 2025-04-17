@@ -1,0 +1,165 @@
+spanning-tree priority 36864
+!
+bridge multicast filtering
+!
+vlan database
+ vlan 10,12-13,20,40,50-52,73,74,90,100-4002,4010,4012,4017-4020,4037,4040
+exit
+!
+port jumbo-frame
+!
+no lldp run
+!
+no mac address-table learning vlan 100
+!
+ip igmp snooping
+ip igmp snooping vlan 353
+ip igmp snooping vlan 353 proxy-report version 2
+ip igmp snooping vlan 353 static 225.54.205.135
+ip igmp snooping vlan 353 static 225.54.205.136
+!
+hostname 5324-at-stand-ethlab
+!
+!                                                     
+line telnet
+ exec-timeout 0
+exit
+!
+ip ssh server
+!
+clock timezone NSK +7
+clock source sntp
+!
+sntp unicast client enable
+sntp unicast client poll
+sntp server 192.168.16.36 poll
+!
+interface tengigabitethernet1/0/1
+ description to_AR2_11
+ switchport mode trunk
+ switchport trunk allowed vlan add 10,12,20,40,73,100-4000,4019,4020,4040
+exit
+!
+interface tengigabitethernet1/0/2
+ description to_AR1_11
+ switchport mode trunk                                
+ switchport trunk allowed vlan add 10,12,20,40,74,100-351,353-4000,4010,4040
+ switchport forbidden default-vlan
+ shutdown
+exit
+!
+interface tengigabitethernet1/0/3
+ description to_DR1_5
+ switchport mode trunk
+ switchport trunk allowed vlan add 10,20,40,100-4000,4018,4040
+ switchport forbidden default-vlan
+exit
+!
+interface tengigabitethernet1/0/5
+ description to_AR1_11_me2001
+ switchport mode trunk
+ switchport trunk allowed vlan add 10,12,20,40,74,100-4000,4010,4040
+ switchport forbidden default-vlan
+exit
+!
+interface tengigabitethernet1/0/8
+ description Connection_to_EVE.94-eth2-pnet3
+ switchport mode trunk
+ switchport trunk allowed vlan add 100-4000,4010,4018,4019,4020
+ switchport trunk native vlan 4040
+!
+interface tengigabitethernet1/0/11
+ description to_ESR1000_labr02_te1/0/1
+ spanning-tree disable
+ spanning-tree bpdu filtering
+ switchport mode customer
+ switchport customer vlan 100
+ switchport forbidden default-vlan
+exit
+!
+interface tengigabitethernet1/0/14
+ description "to er03, te_0/0/14"
+ lacp port-priority 31000
+ spanning-tree disable
+ channel-group 1 mode auto
+ load-average 20
+exit
+!
+interface tengigabitethernet1/0/15
+ description "to er01, te_0/8/15"
+ lacp port-priority 32000
+ spanning-tree disable
+ channel-group 1 mode auto
+ switchport mode customer
+ load-average 20
+exit
+!
+interface tengigabitethernet1/0/23                    
+ description "MExxxx customer vlan 4037 from 16.94"
+ spanning-tree disable
+ switchport mode customer
+ switchport customer vlan 4037
+ switchport forbidden default-vlan
+exit
+!
+interface tengigabitethernet1/0/24
+ description "MES 17.136 te0/4"
+ spanning-tree disable
+ switchport mode trunk
+ switchport trunk allowed vlan add 73,74,100-4002,4017,4037,4040
+ switchport forbidden default-vlan
+exit
+!
+interface fortygigabitethernet1/0/1
+ description "selskiy -- ar2 -- fo0/9/1"
+ spanning-tree disable
+ spanning-tree bpdu filtering
+ switchport mode customer
+ switchport customer vlan 4012
+ switchport forbidden default-vlan                    
+exit
+!
+interface fortygigabitethernet1/0/2
+ description "selskiy -- ar2 -- hu0/9/4"
+ spanning-tree bpdu filtering
+ switchport access vlan 4002
+exit
+!
+interface Port-channel1
+ description "MC-LAG labs01<-->er01+er03"
+ switchport mode trunk
+ switchport trunk allowed vlan add 90
+ load-average 20
+exit
+!
+interface vlan 12
+ ip address 192.168.100.2 255.255.255.0
+exit
+!
+interface vlan 50
+ ip address 192.168.50.2 255.255.255.0
+exit                                                  
+!
+interface vlan 90
+ name MC-LAG-Testing
+ ip address 192.168.90.160 255.255.255.0
+exit
+!
+interface vlan 352
+ name Pryakhin-connection_2_EVE
+exit
+!
+interface vlan 353
+ name IPTV_subscribers
+ ip address 10.1.1.254 255.255.255.0
+exit
+!
+interface vlan 4040
+ name Management_in_Stand2
+ ip address 192.168.17.137 255.255.252.0
+exit
+!
+!
+!                                                     
+end
+

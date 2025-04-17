@@ -6,19 +6,17 @@ import time
 @pytest.mark.show_arp_age_part2
 @allure.feature('02:Функции управления и базовые show-команды')
 @allure.story('2.008:Проверка системных Proxy ARP')
-@allure.title('В данном тесте будем проверять частоту обновления arp-таблицы')
+@allure.title('Проверка частоты обновления arp-таблицы')
 @pytest.mark.dependency(depends=["load_config002_dut1","load_config002_dut2","load_config002_dut3"],scope='session')
-@pytest.mark.parametrize("DUT",
-			[
-			 pytest.param(DUT1), 
- 			 pytest.param(DUT2), 
- 			 pytest.param(DUT3)
-			]
-			)
-def test_arp_age(DUT):
+@pytest.mark.parametrize('ip , hostname , login, password, int1', [(DUT1['host_ip'], DUT1['hostname'], DUT1['login'], DUT1['password'], DUT1['int']["to_phys1"]["int_name"]), 
+                                                                   (DUT2['host_ip'], DUT2['hostname'], DUT2['login'], DUT2['password'], DUT2['int']["to_phys1"]["int_name"]), 
+                                                                   (DUT3['host_ip'], DUT3['hostname'], DUT3['login'], DUT3['password'], DUT3['int']["to_phys1"]["int_name"])])
+def test_arp_age(ip, hostname, login, password, int1):
+
+   
     conn = Telnet()
-    acc = Account(DUT.login, DUT.password)
-    conn.connect(DUT.host_ip)
+    acc = Account(login , password)
+    conn.connect(ip)
     conn.login(acc)
     conn.set_prompt('#')
     cmd='config'
@@ -32,7 +30,7 @@ def test_arp_age(DUT):
     time.sleep(5)
     cmd='exit'
     conn.execute(cmd)
-    cmd = 'show arp interfaces '+ DUT.neighor1['int_name']
+    cmd = 'show arp interfaces '+ int1
     conn.execute(cmd)
     resp1 = conn.response
     allure.attach(resp1, 'Результат выполнения команды '+cmd, attachment_type=allure.attachment_type.TEXT)
