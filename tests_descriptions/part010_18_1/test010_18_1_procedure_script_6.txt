@@ -1,0 +1,198 @@
+--------------------------------------------------------------------------------------------------------
+🔸️ШАГ 0.
+--------------------------------------------------------------------------------------------------------
+1. Включаем интерфейсы:
+
+🔹️На atAR1:
+
+0/ME5100:atAR1(config)# interface te0/0/11.3205
+0/ME5100:atAR1(config-tengigabitethernet-sub)# no shutdown 
+0/ME5100:atAR1(config-tengigabitethernet-sub)# commit 
+
+🔹️На atAR2:
+
+0/ME5200:atAR2(config)# interface te0/0/11.3205
+0/ME5200:atAR2(config-tengigabitethernet-sub)# no shutdown 
+0/ME5200:atAR2(config-tengigabitethernet-sub)# commit 
+
+🔹️На atDR1:
+
+0/FMC0:atDR1(config)# interface te0/1/5.3205
+0/FMC0:atDR1(config-tengigabitethernet-sub)# no shutdown 
+0/FMC0:atDR1(config-tengigabitethernet-sub)# commit 
+  
+-------------------------------------------------------------------------------------------------------------
+🔸️ШАГ 1. 
+-------------------------------------------------------------------------------------------------------------
+1. Проверяем наличие соседских отношений после включения интерфейсов.
+
+✅️Ожидаемый результат: 
+1. Пустой вывод команды show ospfv3 neighbors.
+
+🔹️Mon Aug  5 05:37:18 2024
+  Routing Process: 1, ID 1.0.0.3
+    Router is an area border router
+ 
+  
+0/ME5100:atAR1# 
+
+🔹️Mon Aug  5 05:37:17 2024
+  Routing Process: 1, ID 1.0.0.2
+    Router is an area border router
+ 
+  
+0/ME5200:atAR2# 
+
+🔹️Mon Aug  5 12:37:18 2024
+  Routing Process: 1, ID 1.0.0.1
+    Router is not an area border router
+ 
+  
+0/FMC0:atDR1# 
+===========================================================================
+2. Сообщения отладки протокола OSPF должны содержать следующую информацию:
+
+🔹️На atAR1:
+
+🚩️Packet cannot be authenticated. 
+                                                                                          
+🔹️На atAR2:
+
+🚩️Packet cannot be authenticated. 
+
+🔹️На atDR1:
+
+🚩️Packet cannot be authenticated. 
+
+--------------------------------------------------------------------------------------------------------
+🔸️ШАГ 2.
+--------------------------------------------------------------------------------------------------------
+1. Перехватываем пакеты и анализируем.
+
+🔹️На atAR1:
+
+0000  00 01 00 20 00 00 00🚩️ 64🚩️ 00 00 6E 6D 00 00 00 00  ... ...d..nm....
+0010  9A 49 D2 7B 7E 53 5D 64 FB F3 26 86 3A 03 00 7E  .I.{~S]d..&.:..~
+
+Дамп соотвествует части ospfv3 hello пакета:
+
+    OSPF Authentication Trailer
+        Authentication Type: HMAC Cryptographic Authentication (1)
+        Authentication Data Length: 32
+        Reserved: 0x0000
+        Security Association Identifier (SA ID): 0x0064🚩️                  <==== SA ID = 100
+        Cryptographic Sequence Number: 309070141587456
+        Authentication Data: e7e7e8b4584a15f3f918d23e766785b4
+        
+🔹️На atAR2:
+
+0000  00 01 00 20 00 00 00🚩️ 01🚩️ 00 00 6E 67 00 00 00 00  ... ......ng....
+0010  57 95 86 8A 6C 6E BB 6A 3C 68 3A 2E B5 85 8D F7  W...ln.j<h:.....
+
+Дамп соотвествует части ospfv3 hello пакета:
+
+    OSPF Authentication Trailer
+        Authentication Type: HMAC Cryptographic Authentication (1)
+        Authentication Data Length: 32
+        Reserved: 0x0000
+        Security Association Identifier (SA ID): 0x0001🚩️              <==== SA ID = 1
+        Cryptographic Sequence Number: 308992832176128
+        Authentication Data: 6876d8944217577a4839bcb7521ba91b
+        
+🔹️На atDR1:
+
+0000  00 01 00 20 00 00 00🚩️ 00🚩️ 00 00 6E 60 00 00 00 00  ... ......n`....
+0010  19 DB 02 90 E3 A3 B3 B9 18 08 B6 F0 29 00 90 A5  ............)...
+
+Дамп соотвествует части ospfv3 hello пакета:
+
+    OSPF Authentication Trailer
+        Authentication Type: HMAC Cryptographic Authentication (1)
+        Authentication Data Length: 32
+        Reserved: 0x0000
+        Security Association Identifier (SA ID): 0x0000🚩️                       <==== SA ID = 0
+        Cryptographic Sequence Number: 775971741368320
+        Authentication Data: de626d516c9ec12e181f96d353899978
+        
+--------------------------------------------------------------------------------------------------------
+🔸️ШАГ 3.
+--------------------------------------------------------------------------------------------------------
+1. Зададим значения Security Association Identifier равное 0 на atAR1 и atAR2.
+
+На маршрутизаторе atAR1:
+
+0/ME5100:atAR1(config)# router ospfv3 1
+0/ME5100:atAR1(config-ospfv3)# area 0.0.0.255 
+0/ME5100:atAR1(config-area)# interface tengigabitethernet 0/0/11.3205 
+0/ME5100:atAR1(config-tengigabitethernet-sub)# authentication-id 0
+0/ME5100:atAR1(config-tengigabitethernet-sub)# commit 
+
+
+На маршрутизаторе atAR2:
+
+0/ME5200:atAR2(config)# router ospfv3 1
+0/ME5200:atAR2(config-ospfv3)# area 0.0.0.255 
+0/ME5200:atAR2(config-area)# interface tengigabitethernet 0/0/11.3205 
+0/ME5200:atAR2(config-tengigabitethernet-sub)# authentication-id 0
+0/ME5200:atAR2(config-tengigabitethernet-sub)# commit 
+
+-------------------------------------------------------------------------------------------------------
+🔸️ШАГ 4.
+-------------------------------------------------------------------------------------------------------
+1. Проверяем наличие соседских отношений.
+
+✅️Ожидаемый результат:
+
+🔹️На atAR1:
+
+  Routing Process: 1, ID 1.0.0.3
+    Router is an area border router
+ 
+  Neighbor ID      Area ID          Pri  State               BFD           Dead Time  Last state change  Address                                  Interface 
+  ---------------- ---------------- ---- ------------------- ------------- ---------- ------------------ ---------------------------------------- ---------------- 
+  1.0.0.1🚩️        0.0.0.255🚩️      1    full🚩️             not-required  00:00:35   00h00m34s          fe80::aaf9:4bff:fe8b:92a5                te0/0/11.3205🚩️ 
+  1.0.0.2🚩️        0.0.0.255🚩️      1    full-BDR🚩️         not-required  00:00:34   00h00m35s          fe80::e2d9:e3ff:feff:488b                te0/0/11.3205🚩️ 
+  
+🔹️На atAR2:
+
+  Routing Process: 1, ID 1.0.0.2
+    Router is an area border router
+ 
+  Neighbor ID      Area ID          Pri  State               BFD           Dead Time  Last state change  Address                                  Interface 
+  ---------------- ---------------- ---- ------------------- ------------- ---------- ------------------ ---------------------------------------- ---------------- 
+  1.0.0.1🚩️        0.0.0.255🚩️      1    full🚩️             not-required  00:00:35   00h00m34s          fe80::aaf9:4bff:fe8b:92a5                te0/0/11.3205🚩️ 
+  1.0.0.3🚩️        0.0.0.255🚩️      1    full-DR🚩️          not-required  00:00:33   00h00m35s          fe80::e2d9:e3ff:fedf:34ab                te0/0/11.3205🚩️ 
+  
+🔹️На atDR1:
+
+  Routing Process: 1, ID 1.0.0.1
+    Router is not an area border router
+ 
+  Neighbor ID      Area ID          Pri  State               BFD           Dead Time  Last state change  Address                                  Interface 
+  ---------------- ---------------- ---- ------------------- ------------- ---------- ------------------ ---------------------------------------- --------------- 
+  1.0.0.2🚩️        0.0.0.255🚩️      1    full-BDR🚩️         not-required  00:00:33   00h00m34s          fe80::e2d9:e3ff:feff:488b                te0/1/5.3205🚩️ 
+  1.0.0.3🚩️        0.0.0.255🚩️      1    full-DR🚩️          not-required  00:00:32   00h00m29s          fe80::e2d9:e3ff:fedf:34ab                te0/1/5.3205🚩️ 
+    
+--------------------------------------------------------------------------------------------------------
+🔸️ШАГ 5.
+--------------------------------------------------------------------------------------------------------
+1. Выключаем интерфейсы:
+
+🔹️На atAR1:
+
+0/ME5100:atAR1(config)# interface te0/0/11.3205
+0/ME5100:atAR1(config-tengigabitethernet-sub)# shutdown 
+0/ME5100:atAR1(config-tengigabitethernet-sub)# commit 
+
+🔹️На atAR2:
+
+0/ME5200:atAR2(config)# interface te0/0/11.3205
+0/ME5200:atAR2(config-tengigabitethernet-sub)# shutdown 
+0/ME5200:atAR2(config-tengigabitethernet-sub)# commit 
+
+🔹️На atDR1:
+
+0/FMC0:atDR1(config)# interface te0/1/5.3205
+0/FMC0:atDR1(config-tengigabitethernet-sub)# shutdown 
+0/FMC0:atDR1(config-tengigabitethernet-sub)# commit 
+

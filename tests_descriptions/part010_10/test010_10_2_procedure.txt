@@ -1,0 +1,132 @@
+-------------------------------------------------------------------------------------------------------------
+🔸️ШАГ 1. 
+-------------------------------------------------------------------------------------------------------------
+1. Включим интерфейсы.
+
+На маршрутизаторе atAR2:
+
+0/ME5200:atAR2# configure
+0/ME5200:atAR2(config)# interface bu1.3211
+0/ME5200:atAR2(config-bundle-ether-sub)# no shutdown 
+0/ME5200:atAR2(config-bundle-ether-sub)# interface bu1.3218
+0/ME5200:atAR2(config-bundle-ether-sub)# no shutdown 
+0/ME5200:atAR2(config-bundle-ether-sub)# interface bu1.3219
+0/ME5200:atAR2(config-bundle-ether-sub)# no shutdown 
+0/ME5200:atAR2(config-bundle-ether-sub)# commit 
+
+На маршрутизаторе atDR1:
+
+0/FMC0:atDR1# configure
+0/FMC0:atDR1(config)# interface bu2.3211
+0/FMC0:atDR1(config-bundle-ether-sub)# no shutdown 
+0/FMC0:atDR1(config-bundle-ether-sub)# interface bu2.3218
+0/FMC0:atDR1(config-bundle-ether-sub)# no shutdown 
+0/FMC0:atDR1(config-bundle-ether-sub)# interface bu2.3219
+0/FMC0:atDR1(config-bundle-ether-sub)# no shutdown 
+0/FMC0:atDR1(config-bundle-ether-sub)# commit
+    
+--------------------------------------------------------------------------------------------------------
+🔸️ШАГ 2.
+--------------------------------------------------------------------------------------------------------
+1. Проверим вывод команды show ospfv2 neighbors на atAR2.
+
+✅️Ожидаемый результат:
+
+0/ME5200:atAR2# show ospfv2 neighbors 
+Thu May  4 10:04:50 2023
+  Routing Process: 1, ID 1.0.0.2
+    Router is an area border router
+
+  Neighbor ID      Area ID          Pri  State               BFD           Dead Time  Last state change  Address          Interface 
+  ---------------- ---------------- ---- ------------------- ------------- ---------- ------------------ ---------------- ---------- 
+  1.0.0.1🚩️       255.255.255.255    1    full🚩️             not-required  00:00:39   00h04m03s          10.0.222.1       bu1.3211🚩️ 
+  1.0.0.1🚩️       255.255.255.255    1    full🚩️             not-required  00:00:39   00h04m03s          10.0.222.5       bu1.3218🚩️ 
+  1.0.0.1🚩️       255.255.255.255    1    full🚩️             not-required  00:00:39   00h00m00s          10.0.222.9       bu1.3219🚩️ 
+  
+-------------------------------------------------------------------------------------------------------
+🔸️ШАГ 3.
+-------------------------------------------------------------------------------------------------------
+1. Проверим вывод команды show ospfv2 neighbors на atDR1.
+
+✅️Ожидаемый результат:
+
+0/FMC0:atDR1# show ospfv2 neighbors 
+Thu May  4 10:04:50 2023
+  Routing Process: 1, ID 1.0.0.1
+    Router is an area border router
+
+  Neighbor ID      Area ID          Pri  State               BFD           Dead Time  Last state change  Address          Interface 
+  ---------------- ---------------- ---- ------------------- ------------- ---------- ------------------ ---------------- ---------- 
+  1.0.0.2🚩️       255.255.255.255    1    full🚩️             not-required  00:00:39   00h04m03s          10.0.222.1       bu2.3211🚩️ 
+  1.0.0.2🚩️       255.255.255.255    1    full🚩️             not-required  00:00:39   00h04m03s          10.0.222.5       bu2.3218🚩️ 
+  1.0.0.2🚩️       255.255.255.255    1    full🚩️             not-required  00:00:39   00h00m00s          10.0.222.9       bu2.3219🚩️ 
+    
+-----------------------------------------------------------------------------------------------------
+🔸️ШАГ 4.
+-----------------------------------------------------------------------------------------------------
+1. На маршрутизаторе atAR2 выполняем команду show route ipv4 1.0.0.1.
+
+✅️Ожидаемый результат:
+
+0/ME5200:atAR2# show route ipv4 1.0.0.1
+Thu May  4 10:08:24 2023
+  Routing entry for 1.0.0.1/32
+    Last update: 00h07m26s
+    Routing Descriptor Blocks
+      10.0.222.1🚩️, via bu1.3211🚩️
+      Known via ospf, distance 30, metric 2
+        type ospf-intra-area🚩️, protection none, route-type remote
+
+  Entries: 1🚩️
+
+-------------------------------------------------------------------------------------------------------
+🔸️ШАГ 5.
+-------------------------------------------------------------------------------------------------------
+1. На маршрутизаторе atDR1 выполняем команду show route ipv4 1.0.0.2.
+
+✅️Ожидаемый результат:
+
+0/FMC0:atDR1# show route ipv4 1.0.0.2
+Thu May  4 10:09:04 2023
+  Routing entry for 1.0.0.2/32
+    Last update: 00h04m09s
+    Routing Descriptor Blocks
+      10.0.222.6🚩️, via bu2.3218🚩️
+      Known via ospf, distance 30, metric 2
+        type ospf-inter-area🚩️, protection ecmp, route-type remote
+  Routing entry for 10.0.0.2/32
+    Last update: 00h04m09s
+    Routing Descriptor Blocks
+      10.0.222.10🚩️, via bu2.3219🚩️
+      Known via ospf, distance 30, metric 2
+        type ospf-inter-area🚩️, protection ecmp, route-type remote
+  
+  Entries: 2🚩️
+  
+-------------------------------------------------------------------------------------------------------------
+🔸️ШАГ 6. 
+-------------------------------------------------------------------------------------------------------------
+1. Выключим интерфейсы.
+
+На маршрутизаторе atAR2:
+
+0/ME5200:atAR2# configure
+0/ME5200:atAR2(config)# interface bu1.3211
+0/ME5200:atAR2(config-bundle-ether-sub)# shutdown 
+0/ME5200:atAR2(config-bundle-ether-sub)# interface bu1.3218
+0/ME5200:atAR2(config-bundle-ether-sub)# shutdown 
+0/ME5200:atAR2(config-bundle-ether-sub)# interface bu1.3219
+0/ME5200:atAR2(config-bundle-ether-sub)# shutdown 
+0/ME5200:atAR2(config-bundle-ether-sub)# commit 
+
+На маршрутизаторе atDR1:
+
+0/FMC0:atDR1# configure
+0/FMC0:atDR1(config)# interface bu2.3211
+0/FMC0:atDR1(config-bundle-ether-sub)# shutdown 
+0/FMC0:atDR1(config-bundle-ether-sub)# interface bu2.3218
+0/FMC0:atDR1(config-bundle-ether-sub)# no shutdown 
+0/FMC0:atDR1(config-bundle-ether-sub)# interface bu2.3219
+0/FMC0:atDR1(config-bundle-ether-sub)# shutdown 
+0/FMC0:atDR1(config-bundle-ether-sub)# commit
+        

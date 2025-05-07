@@ -1,0 +1,141 @@
+-------------------------------------------------------------------------------------------------------------
+🔸️ШАГ 1. 
+-------------------------------------------------------------------------------------------------------------
+1. Проверяем начилие соседств.
+
+✅️Ожидаемый результат: 
+
+🔹️atAR1:
+
+  Routing Information Protocol in vrf 'prima'
+  QoS class codes for outgoing messages:
+  DSCP: 48
+  VLAN prio: 0
+
+    Timers:
+      Update interval: 30 sec
+      Holddown interval: 180 sec
+      Flush interval: 120 sec
+
+    Interface(s):
+      Interface        Send             Receive          Sent      Recv      Recv bad  Recv bad  
+                                                         updates   updates   packets   routes    
+      ---------------- ---------------- ---------------- --------- --------- --------- --------- 
+      bu2.1205          enabled🚩️        enabled🚩️          3         1         0         0         
+
+    Neighbor(s):
+      IP address                   Interface        Last update      Version          BFD status       Recv bad  Recv bad  
+                                                                                                       packets   routes    
+      ---------------------------- ---------------- ---------------- ---------------- ---------------- --------- --------- 
+      fe80::e2d9:e3ff:feff:48b3🚩️   bu2.1205🚩️         00h00m12s        1                not-required     0         0         
+
+
+🔹️atAR2:
+
+  Routing Information Protocol in vrf 'prima'
+  QoS class codes for outgoing messages:
+  DSCP: 48
+  VLAN prio: 0
+
+    Timers:
+      Update interval: 30 sec
+      Holddown interval: 180 sec
+      Flush interval: 120 sec
+
+    Interface(s):
+      Interface        Send             Receive          Sent      Recv      Recv bad  Recv bad  
+                                                         updates   updates   packets   routes    
+      ---------------- ---------------- ---------------- --------- --------- --------- --------- 
+      bu2.1200         enabled🚩️         enabled🚩️          2         1         1         0         
+
+    Neighbor(s):
+      IP address                   Interface        Last update      Version          BFD status       Recv bad  Recv bad  
+                                                                                                       packets   routes    
+      ---------------------------- ---------------- ---------------- ---------------- ---------------- --------- --------- 
+      fe80::e65a:d4ff:fede:c8a3🚩️  bu2.1200🚩️         00h00m15s        1                not-required     1         0         
+
+🔹️atDR1:
+
+  Routing Information Protocol in vrf 'prima'
+  QoS class codes for outgoing messages:
+  DSCP: 48
+  VLAN prio: 0
+
+    Timers:
+      Update interval: 30 sec
+      Holddown interval: 180 sec
+      Flush interval: 120 sec
+
+    Interface(s):
+      Interface        Send             Receive          Sent      Recv      Recv bad  Recv bad  
+                                                         updates   updates   packets   routes    
+      ---------------- ---------------- ---------------- --------- --------- --------- --------- 
+      bu1.1200         enabled🚩️         enabled🚩️          4         2         0         0         
+
+    Neighbor(s):
+      IP address                   Interface        Last update      Version          BFD status       Recv bad  Recv bad  
+                                                                                                       packets   routes    
+      ---------------------------- ---------------- ---------------- ---------------- ---------------- --------- --------- 
+      fe80::e65a:d4ff:fede:c8a2🚩️   bu1.1200🚩️       00h00m10s        1                not-required     0         0        
+    
+--------------------------------------------------------------------------------------------------------
+🔸️ШАГ 2.
+--------------------------------------------------------------------------------------------------------
+1. Проверяем наличие лупбеков соседей в таблице маршрутизации.
+
+✅️Ожидаемый результат: 
+
+🔹️atAR1:
+
+   R      dead::2:0:0:2/128🚩️    via fe80::e2d9:e3ff:feff:48b3🚩️ [120/2], 00h07m23s, bu2.1205
+  
+🔹️atAR2:
+
+  R      dead::3:0:0:3/128🚩️    via fe80::e65a:d4ff:fede:c8a3🚩️ [120/2], 00h07m27s, bu2.1200
+ 
+🔹️atDR1:
+
+  R      dead::2:0:0:3/128🚩️    via fe80::e65a:d4ff:fede:c8a2🚩️ [120/2], 00h06m46s, bu1.1200
+  
+-------------------------------------------------------------------------------------------------------
+🔸️ШАГ 3.
+-------------------------------------------------------------------------------------------------------
+1. Проверяем пинг между лупбеками.
+
+✅️Ожидаемый результат:
+
+🔹️atAR1:
+
+ ping dead::2:0:0:2 source dead::10:0:0:3 vrf prima🚩️
+Fri Oct 25 07:34:43 2024
+
+Sending 4, 56-byte ICMP Echos to dead::2:0:0:2,
+request send interval is 0.100 seconds,
+response wait timeout is 2.000 seconds:
+!!!!
+
+Success rate is 100🚩️ percent (4/4), round-trip min/avg/max = 0.173/0.191/0.217 ms
+
+🔹️atAR2:
+
+ ping dead::3:0:0:3 source dead::10:0:0:2 vrf prima🚩️
+Fri Oct 25 07:34:45 2024
+
+Sending 4, 56-byte ICMP Echos to dead::3:0:0:3,
+request send interval is 0.100 seconds,
+response wait timeout is 2.000 seconds:
+!!!!
+
+Success rate is 100🚩️ percent (4/4), round-trip min/avg/max = 0.171/0.200/0.242 ms
+
+🔹️atDR1:
+
+ ping dead::2:0:0:3 source dead::10:0:0:1 vrf prima🚩️
+Fri Oct 25 07:34:48 2024
+
+Sending 4, 56-byte ICMP Echos to dead::2:0:0:3,
+request send interval is 0.100 seconds,
+response wait timeout is 2.000 seconds:
+!!!!
+
+Success rate is 100🚩️ percent (4/4), round-trip min/avg/max = 0.151/0.204/0.261 ms

@@ -21,3 +21,4 @@ def test_me_init_config(DUT):
 	DUT.ipv4()
 	print("Загрузка конфигурации на %s прошла успешно!"%DUT.hostname)
 	DUT.close()
+

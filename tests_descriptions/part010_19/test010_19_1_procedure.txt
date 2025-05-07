@@ -1,0 +1,130 @@
+-------------------------------------------------------------------------------------------------------------
+🔸️ШАГ 1. 
+-------------------------------------------------------------------------------------------------------------
+1. Проверяем тип и стоимость маршрута для 200.200.200.200/32 на atAR1.
+
+✅️Ожидаемый результат:
+
+ show route 200.200.200.200/32
+Wed Apr 10 09:46:59 2024
+  Routing entry for 200.200.200.200/32
+    Last update: 00h01m43s
+    Routing Descriptor Blocks
+      10.0.221.2, via bu2.3210🚩️
+      Known via ospf, distance 30, metric 1002🚩️
+        type ospf-intra-area🚩️, protection none, route-type remote
+  
+  Entries: 1
+    
+--------------------------------------------------------------------------------------------------------
+🔸️ШАГ 2.
+--------------------------------------------------------------------------------------------------------
+1. Проверяем тип маршрута для 10.0.200.0/24 на atAR2.
+
+✅️Ожидаемый результат:
+
+ show route 10.0.200.0/24
+Wed Apr 10 09:46:57 2024
+  Routing entry for 10.0.200.0/24
+    Last update: 00h01m26s
+    Routing Descriptor Blocks
+      10.0.221.1, via bu2.3210
+      Known via ospf, distance 30, metric 2
+        type ospf-inter-area🚩️, protection ecmp, route-type remote
+  Routing entry for 10.0.200.0/24
+    Last update: 00h01m26s
+    Routing Descriptor Blocks
+      10.0.222.1, via bu1.3211
+      Known via ospf, distance 30, metric 2
+        type ospf-inter-area🚩️, protection ecmp, route-type remote
+  
+  Entries: 2🚩️
+  
+-------------------------------------------------------------------------------------------------------
+🔸️ШАГ 3.
+-------------------------------------------------------------------------------------------------------
+1. Для включения Multi-Area Adjacency необходимо добавить интерфейсы te0/0/11.3205 на atAR1 и te0/1/5.3205 на atDR1 в Area 0.0.0.1 как multi-area интерфейс.
+
+На atAR1:
+
+0/ME5100:atAR1(config)# router ospfv2 1
+0/ME5100:atAR1(config-ospfv2)# area 0.0.0.1
+0/ME5100:atAR1(config-area)# multi-area-interface tengigabitethernet 0/0/11.3205
+0/ME5100:atAR1(config-tengigabitethernet-sub)# commit 
+
+На atDR1:
+
+0/FMC0:atDR1(config)# router ospfv2 1
+0/FMC0:atDR1(config-ospfv2)# area 0.0.0.1
+0/FMC0:atDR1(config-area)# multi-area-interface tengigabitethernet 0/1/5.3205
+0/FMC0:atDR1(config-tengigabitethernet-sub)# commit 
+
+-----------------------------------------------------------------------------------------------------
+🔸️ШАГ 4.
+-----------------------------------------------------------------------------------------------------
+1. Проверяем вывод команды show ospfv2 neighbors на atAR1 и atDR1.
+
+✅️Ожидаемый результат:
+
+На atAR1:
+
+  Routing Process: 1, ID 1.0.0.3
+    Router is an area border router
+ 
+  Neighbor ID      Area ID          Pri  State               BFD           Dead Time  Last state change  Address          Interface 
+  ---------------- ---------------- ---- ------------------- ------------- ---------- ------------------ ---------------- ---------- 
+  1.0.0.2           0.0.0.1          1    full                not-required  00:00:30   00h08m23s          10.0.221.2       bu2.3210 
+  1.0.0.1🚩️         0.0.0.0🚩️       1    full🚩️              not-required  00:00:37   00h01m38s          10.0.200.1       te0/0/11.3205🚩️ 
+  1.0.0.1🚩️         0.0.0.1🚩️       --   full🚩️              --            00:00:39   00h00m10s          10.0.200.1       MA te0/0/11.3205🚩️ 
+  
+На atDR1:
+
+  Routing Process: 1, ID 1.0.0.1
+    Router is an area border router
+ 
+  Neighbor ID      Area ID          Pri  State               BFD           Dead Time  Last state change  Address          Interface 
+  ---------------- ---------------- ---- ------------------- ------------- ---------- ------------------ ---------------- ---------- 
+  1.0.0.2          0.0.0.1          1    full                not-required  00:00:34   00h02m15s          10.0.222.2       bu2.3211 
+  1.0.0.3🚩️        0.0.0.0🚩️       1    full🚩️              not-required  00:00:33   00h01m39s          10.0.200.2       te0/1/5.3205🚩️ 
+  1.0.0.3🚩️        0.0.0.1🚩️       --   full🚩️              --            00:00:38   00h00m11s          10.0.200.2       MA te0/1/5.3205🚩️
+
+-------------------------------------------------------------------------------------------------------
+🔸️ШАГ 5.
+-------------------------------------------------------------------------------------------------------
+1. Проверяем тип и стоимость маршрута для 200.200.200.200/32 на atAR1.
+
+✅️Ожидаемый результат:
+
+ show route 200.200.200.200/32
+Wed Apr 10 09:47:22 2024
+  Routing entry for 200.200.200.200/32
+    Last update: 00h00m07s
+    Routing Descriptor Blocks
+      10.0.200.1, via te0/0/11.3205🚩️
+      Known via ospf, distance 30, metric 2🚩️
+        type ospf-intra-area🚩️, protection none, route-type remote
+  
+  Entries: 1
+  
+-------------------------------------------------------------------------------------------------------------
+🔸️ШАГ 6. 
+-------------------------------------------------------------------------------------------------------------
+1. Проверяем тип маршрута для 10.0.200.0/24 на atAR2.
+
+ show route 10.0.200.0/24
+Wed Apr 10 09:47:20 2024
+  Routing entry for 10.0.200.0/24
+    Last update: 00h00m06s
+    Routing Descriptor Blocks
+      10.0.221.1, via bu2.3210
+      Known via ospf, distance 30, metric 2
+        type ospf-inter-area🚩️, protection ecmp, route-type remote
+  Routing entry for 10.0.200.0/24
+    Last update: 00h00m06s
+    Routing Descriptor Blocks
+      10.0.222.1, via bu1.3211
+      Known via ospf, distance 30, metric 2
+        type ospf-inter-area🚩️, protection ecmp, route-type remote
+  
+  Entries: 2🚩️
+

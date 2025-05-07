@@ -1,4 +1,4 @@
-Value Unit (0/FMC[01]|0/ME\d+)
+Value Unit (0/FMC[01]|0/ME\d+|0/ME\d+S)
 Value Image ([01])
 Value Run_status (Yes|No)
 Value Boot (\S*)

@@ -1,0 +1,22 @@
+#!/bin/bash
+cd /home/serverg2/autotests-v2/ &&
+bash ./stop_allure.sh
+rm -f ./new_report/*.*
+rm -f ./new_result/*.*
+
+git pull > ./reports/git_pull.log # Сделаем обновление ветки прежде чем приступить к функциональному тестированию
+
+python3 watchdog_console.py > ./reports/watchdog.log
+
+#python3 -m pytest ./function_tests/ -s -v --disable-warnings --alluredir=./new_result/  >./reports/function_test_cron.log
+python3 smtp_send.py > ./reports/send_email.log  # Отправка письма с результатами работы
+python3 parse_function_tests_result_textfsm.py > ./reports/mysql.log # Парсим результаты работы и Сохраняем их в БД
+python3 telegramm_send.py > ./reports/telegramm.log    # Отправка сообщений с отчётом в телеграмм-чаты
+python3 hist_plotting_soft_version_branch.py > ./reports/hist_plotting.log  # Формируем столбчатую гистограмму на основе данных из function_tests_detail_info
+python3 function_tests_rating_list.py   # Отправляем на почту рейтинг успешности выполненных тестов за прошедшие 30 дней
+
+allure generate ./new_result/ --clean -o ./new_report/ > ./reports/allure_gen.log &&
+host_ip=$(python3 read_DUT7_from_config_json.py) # Ищем в config.json ip адрес узла DUT7 чтобы потом указать его в качестве аргумента для генерации allure-отчета
+allure open ./new_report/ --host "$host_ip" -p 33929 > ./reports/allure.log&
+bash ./copy_in_back.sh
+bash ./start_serve.sh

@@ -1,0 +1,65 @@
+--------------------------------------------------------------------------------------------------------
+🔸️ШАГ 0.
+--------------------------------------------------------------------------------------------------------
+1. На маршрутизаторе atAR2 в настройках OSPFv2 интерфейса bu2.3210 зададим следующую конфигурацию:
+
+0/ME5200:atAR2(config)# router ospfv2 1
+0/ME5200:atAR2(config-ospfv2)# area 0.0.0.0
+0/ME5200:atAR2(config-area)# interface bu2.3210
+0/ME5200:atAR2(config-bundle-ether-sub)# authentication-id 4
+0/ME5200:atAR2(config-bundle-ether-sub)# authentication-type hmacsha512 
+0/ME5200:atAR2(config-bundle-ether-sub)# authentication-key eltex_psswd_4
+0/ME5200:atAR2(config-bundle-ether-sub)# commit 
+
+2. Включаем интерфейс bu2.3210:
+
+🔹️На atAR1:
+
+0/ME5100:atAR1(config)# interface bu2.3210
+0/ME5100:atAR1(config-bundle-ether-sub)# no shutdown 
+0/ME5100:atAR1(config-bundle-ether-sub)# commit 
+
+🔹️На atAR2:
+
+0/ME5200:atAR2(config)# interface bu2.3210
+0/ME5200:atAR2(config-bundle-ether-sub)# no shutdown 
+0/ME5200:atAR2(config-bundle-ether-sub)# commit 
+
+-------------------------------------------------------------------------------------------------------------
+🔸️ШАГ 1. 
+-------------------------------------------------------------------------------------------------------------
+1. Проверяем наличие соседских отношений после включения интерфейсов bu2.3210.
+
+✅️Ожидаемый результат: 
+1. Пустой вывод команды show ospfv2 neighbors.
+
+Mon Aug  5 07:04:35 2024
+  Routing Process: 1, ID 1.0.0.3
+    Router is not an area border router
+ 
+  
+0/ME5100:atAR1# 
+
+=======================================
+
+2. Сообщение отладки протокола OSPF на atAR1 должно содержать следующую информацию:
+
+🚩️Packet cannot be authenticated. 
+  
+--------------------------------------------------------------------------------------------------------
+🔸️ШАГ 2.
+--------------------------------------------------------------------------------------------------------
+1. Выключаем интерфейс bu2.3210:
+
+🔹️На atAR1:
+
+0/ME5100:atAR1(config)# interface bu2.3210
+0/ME5100:atAR1(config-bundle-ether-sub)# shutdown 
+0/ME5100:atAR1(config-bundle-ether-sub)# commit 
+
+🔹️На atAR2:
+
+0/ME5200:atAR2(config)# interface bu2.3210
+0/ME5200:atAR2(config-bundle-ether-sub)# shutdown 
+0/ME5200:atAR2(config-bundle-ether-sub)# commit 
+

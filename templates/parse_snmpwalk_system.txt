@@ -1,4 +1,4 @@
-Value SysDescr (Eltex ME[25]\d0[01] carrier router running Network OS for ME5k ver. \d+\.\d+\.\d+\.\S+|Eltex ME5\d00 modular carrier router running Network OS for ME5k ver. \d+\.\d+\.\d+\.\S+)
+Value SysDescr (Eltex ME5200S carrier router running Network OS for ME5k ver. \d+\.\d+\.\d+\.\S+|Eltex ME[25]\d0[01] carrier router running Network OS for ME5k ver. \d+\.\d+\.\d+\.\S+|Eltex ME5\d00 modular carrier router running Network OS for ME5k ver. \d+\.\d+\.\d+\.\S+)
 Value SysContact (\w+\@\w+\.\w+)
 Value SysName (\S+)
 Value SysLocation (\S+)

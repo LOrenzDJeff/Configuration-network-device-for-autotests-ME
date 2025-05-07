@@ -9,19 +9,18 @@ import re
 @pytest.mark.dependency(depends=["load_config003_dut1","load_config003_dut2","load_config003_dut3"],scope='session')
 @pytest.mark.parametrize("DUT",
 			[
-			 pytest.param("DUT1"), 
- 			 pytest.param("DUT2"), 
- 			 pytest.param("DUT3")
+			 pytest.param(DUT1), 
+ 			 pytest.param(DUT2), 
+ 			 pytest.param(DUT3)
 			]
 			)
 def test_show_lldp_stat_part3(DUT):
     allure.attach.file('./network-schemes/part3_show_lldp_statistic.png','Что анализируется в выводе команды:', attachment_type=allure.attachment_type.PNG) 
 # В данном тесте будем проверять вывод команды 'show lldp statistic'      
-    router = setting_ME(DUT)
     resp = ''
     conn = Telnet()
-    acc = Account(router.login , router.password)
-    conn.connect(router.host_ip)
+    acc = Account(DUT.login , DUT.password)
+    conn.connect(DUT.host_ip)
     conn.login(acc)
     conn.set_prompt('#')
     cmd = ('show lld statistic')
@@ -50,24 +49,19 @@ def test_show_lldp_stat_part3(DUT):
     port2 = result[1]['port']
     port3 = result[2]['port']
     port4 = result[3]['port']
-    with open('config_OOP.json', 'r', encoding='utf-8') as file:
-        check = json.load(file)
     
-    if router.hostname == check["DUT1"]['hostname']:
-        assert_that(re.match(check["DUT1"]["int"]["to_phys2"]["interface"][0], port1) != None, f'В выводе команды {cmd} отсуствует (или не соответствует шаблону) порт te0/0/1') 
-        assert_that(re.match(check["DUT1"]["int"]["to_phys2"]["interface"][1], port2) != None, f'В выводе команды {cmd} отсуствует (или не соответствует шаблону) порт te0/0/2')
-        assert_that(re.match(check["DUT1"]["int"]["to_phys1"]["interface"][0], port3) != None, f'В выводе команды {cmd} отсуствует (или не соответствует шаблону) порт te0/0/3')
-        assert_that(re.match(check["DUT1"]["int"]["to_phys1"]["interface"][1], port4) != None, f'В выводе команды {cmd} отсуствует (или не соответствует шаблону) порт te0/0/4')
-    if router.hostname == check["DUT2"]['hostname']:
-        assert_that(re.match(check["DUT2"]["int"]["to_phys1"]["interface"][0], port1) != None, f"В выводе команды {cmd} отсуствует (или не соответствует шаблону) порт te0/0/3") 
-        assert_that(re.match(check["DUT2"]["int"]["to_phys1"]["interface"][1], port2) != None, f"В выводе команды {cmd} отсуствует (или не соответствует шаблону) порт te0/0/4")
-        assert_that(re.match(check["DUT2"]["int"]["to_phys2"]["interface"][0], port3) != None, f"В выводе команды {cmd} отсуствует (или не соответствует шаблону) порт te0/0/7")
-        assert_that(re.match(check["DUT2"]["int"]["to_phys2"]["interface"][1], port4) != None, f"В выводе команды {cmd} отсуствует (или не соответствует шаблону) порт te0/0/8")
-    if router.hostname == check["DUT3"]['hostname']:
-        assert_that(re.match(check["DUT3"]["int"]["to_phys1"]["interface"][0], port1) != None, f"В выводе команды {cmd} отсуствует (или не соответствует шаблону) порт te0/1/13") 
-        assert_that(re.match(check["DUT3"]["int"]["to_phys1"]["interface"][1], port2) != None, f"В выводе команды {cmd} отсуствует (или не соответствует шаблону) порт te0/1/14")
-        assert_that(re.match(check["DUT3"]["int"]["to_phys2"]["interface"][0], port3) != None, f"В выводе команды {cmd} отсуствует (или не соответствует шаблону) порт te0/8/3")
-        assert_that(re.match(check["DUT3"]["int"]["to_phys2"]["interface"][1], port4) != None, f"В выводе команды {cmd} отсуствует (или не соответствует шаблону) порт te0/8/4")   
+    if DUT.host_ip == DUT1.host_ip or DUT.host_ip == DUT2.host_ip:
+        assert_that(re.match(DUT.neighor2["interface"][0], port1) != None, f'В выводе команды {cmd} отсуствует (или не соответствует шаблону) порт te0/0/1') 
+        assert_that(re.match(DUT.neighor2["interface"][1], port2) != None, f'В выводе команды {cmd} отсуствует (или не соответствует шаблону) порт te0/0/2')
+        assert_that(re.match(DUT.neighor1["interface"][0], port3) != None, f'В выводе команды {cmd} отсуствует (или не соответствует шаблону) порт te0/0/3')
+        assert_that(re.match(DUT.neighor1["interface"][1], port4) != None, f'В выводе команды {cmd} отсуствует (или не соответствует шаблону) порт te0/0/4')
+
+    elif DUT.host_ip == DUT3.host_ip:
+        assert_that(re.match(DUT.neighor1["interface"][0], port1) != None, f'В выводе команды {cmd} отсуствует (или не соответствует шаблону) порт te0/0/1') 
+        assert_that(re.match(DUT.neighor1["interface"][1], port2) != None, f'В выводе команды {cmd} отсуствует (или не соответствует шаблону) порт te0/0/2')
+        assert_that(re.match(DUT.neighor2["interface"][0], port3) != None, f'В выводе команды {cmd} отсуствует (или не соответствует шаблону) порт te0/0/3')
+        assert_that(re.match(DUT.neighor2["interface"][1], port4) != None, f'В выводе команды {cmd} отсуствует (или не соответствует шаблону) порт te0/0/4')
+    
     conn.send('quit\r')
     conn.close()
     

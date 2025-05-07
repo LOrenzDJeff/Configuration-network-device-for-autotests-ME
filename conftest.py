@@ -1,6 +1,6 @@
 from configs.config_me import *
-from configs.config_cisco import *
 from configs.config_jun import *
+from configs.config_mes import *
 import ipaddress
 import json
 import time
@@ -36,25 +36,311 @@ from pytest import approx
 from driver import ME5000CliDriver
 from driver import MES5324CliDriver
 
-with open ('./hardware_set.json') as f:
-    templates = json.load(f)
-    hardware_set_id = templates["hardware_set_id"]
-    other_vendor = templates["other_vendor"]
+with open (f'hardware_set.json') as f:
+     templates = json.load(f)
+     DUT1 = setting_ME("DUT1",templates)
+     DUT2 = setting_ME("DUT2",templates)
+     DUT3 = setting_ME("DUT3",templates)
+     DUT4 = setting_vMX("DUT4",templates)
+     DUT5 = setting_MES("DUT5",templates)
+     hardware_set_id = templates['hardware_set_id']
 
-if other_vendor == "cisco":
-    with open (f'./tftpd/{hardware_set_id}/config.json') as f:
-        templates = json.load(f)
-        DUT1 = setting_ME("DUT1",templates,hardware_set_id)
-        DUT2 = setting_ME("DUT2",templates,hardware_set_id)
-        DUT3 = setting_ME("DUT3",templates,hardware_set_id)
-        DUT4 = setting_Cisco("DUT4",templates,hardware_set_id)
-elif other_vendor == "vmx":
-    with open (f'./tftpd/{hardware_set_id}/config.json') as f:
-        templates = json.load(f)
-        DUT1 = setting_ME("DUT1",templates,hardware_set_id)
-        DUT2 = setting_ME("DUT2",templates,hardware_set_id)
-        DUT3 = setting_ME("DUT3",templates,hardware_set_id)
-        DUT4 = setting_vMX("DUT4",templates,hardware_set_id)
+
+class thread_with_trace(threading.Thread):  # Данный класс нужен для генерации параллельных потоков с возможностью килла по таймауту
+    def __init__(self, *args, **keywords):
+        threading.Thread.__init__(self, *args, **keywords)
+        self.killed = False
+
+    def start(self):
+        self.__run_backup = self.run
+        self.run = self.__run
+        threading.Thread.start(self)
+
+    def __run(self):
+        sys.settrace(self.globaltrace)
+        self.__run_backup()
+        self.run = self.__run_backup
+
+    def globaltrace(self, frame, event, arg):
+        if event == 'call':
+            return self.localtrace
+        else:
+            return None
+
+    def localtrace(self, frame, event, arg):
+        if self.killed:
+            if event == 'line':
+                raise SystemExit()
+        return self.localtrace
+
+    def kill(self):
+        self.killed = True
+
+def locate_index_in_ListOfDict(ListOfDict, Searched_Key, Searched_Value, located_index): # ListOfDict это processed_result; Serched_Key - это имя ключа по которому будем искать(Например lsp_name); Searched_Value это значение у Searched_Key   
+    i = 0
+    located_index = 999 # Если это значение вернётся в вызывающий процедуру тест, то в тесте появится возможность обработки ситуации когда по ключу не удалось найти индекс 
+    while i < len(ListOfDict):
+        if ListOfDict[i][Searched_Key] == Searched_Value:
+            print ('Ура! Нашлось в %s-м словаре парсинга'%i)
+            located_index=i
+        i = i + 1
+    return(located_index)
+
+def show_version(ip, login, password):
+    conn = Telnet()
+    acc = Account(login, password)
+    try:
+        conn.connect(ip)
+        conn.login(acc)
+        conn.set_prompt('#')
+        conn.execute('show version')
+        resp = conn.response
+        conn.send('quit\r')
+        allure.attach(resp, 'Вывод команды show version до обновления', attachment_type=allure.attachment_type.TEXT)
+        with open('./templates/parse_show_version.txt', ) as template:
+            fsm = textfsm.TextFSM(template)
+            result = fsm.ParseText(resp)
+    except Exception as e:
+        pytest.fail(f"Error in show_version: {e}")
+    finally:
+        if conn is not None:
+            conn.close()
+
+    return result[0][0]
+
+def locate_download_link(vers, platform):
+    # Формирует ссылку для загрузки ПО в зависимости от версии и платформы
+    v_parts = vers.split('.')
+    if len(v_parts) < 3:
+        raise ValueError("Некорректный формат версии ПО")
+
+    return f'https://validator.eltex.loc/checkerusers/me5k.jenkins/files/{".".join(v_parts[:3])}/firmware_{vers}.{platform}'
+
+def check_software_after_reboot(ip, login, password, hostname, soft_version):
+    conn = Telnet()
+    acc = Account(login, password)
+    try:
+        conn.connect(ip)
+        conn.login(acc)
+        conn.set_prompt('#')
+        conn.execute('firmware confirm')
+        conn.execute('show version')
+        resp = conn.response
+        conn.send('quit\r')
+        allure.attach(resp, 'Вывод команды show version после обновления', attachment_type=allure.attachment_type.TEXT)
+        assert resp.find(soft_version) != -1, f'Обновление ПО до версии {soft_version} на маршрутизаторе {hostname} не удалось'
+        print(f'ПО на маршрутизаторе {hostname} успешно обновлено до версии {soft_version}')
+    except OSError as osE:
+        pytest.fail(f"Failed to connect to the device via Telnet: {osE}")
+    except Exception as e:
+        pytest.fail(f"Error in execute_command: {e}")
+    finally:
+        if conn is not None:
+            conn.close()
+
+def download_software(ip, login, password, hostname, soft_version, platform, vrf):
+    conn = Telnet()
+    acc = Account(login, password)
+    try:
+        conn.connect(ip)
+        conn.login(acc)
+        conn.set_timeout(60)
+        print(f'На маршрутизаторе {hostname} началась загрузка ПО...')
+        conn.execute(f"copy tftp://{DUT1.server['ip']}/firmware_{soft_version}.{platform} fs://firmware {vrf}")
+        conn.execute('firmware select alternate')
+        conn.set_prompt('[n]')
+        conn.execute('reload system')
+        conn.execute('y\r')
+        print(f'Маршрутизатор {hostname} отправлен в перезагрузку')
+    except OSError as osE:
+        pytest.fail(f"Failed to connect to the device via Telnet: {osE}")
+    except Exception as e:
+        pytest.fail(f"Error in download_software: {e}")
+    finally:
+        if conn is not None:
+            conn.close()
+
+def me_software_upgrade(ip, login, password, hostname, software_version, software_path, booting_timer):
+    print(f'\nНачинаем процедуру обновления ПО на маршрутизаторе {hostname}')
+    # Проверим текущую версию ПО
+    current_version = show_version(ip, login, password)
+
+    # Если версия уже актуальная, пропускаем обновление
+    if current_version.find(software_version) != -1:
+        print(f'{hostname} уже имеет актуальную версию ПО ({software_version}), обновление не требуется')
+        return current_version
+
+    # Определяем ссылку для загрузки
+    platform = vrf = ''
+    if hostname == DUT1.hostname:
+        platform = DUT1.hardware
+        vrf = 'vrf MGN'
+    elif hostname == DUT2.hostname:
+        platform = DUT2.hardware
+        vrf = ''
+    elif hostname == DUT3.hostname:
+        platform = DUT3.hardware
+        vrf = 'vrf mgmt-intf'
+    download_link = locate_download_link(software_version, platform)
+
+    # Загружаем файл ПО
+    try:
+        print(f"Скачиваем ПО с {download_link}")
+        subprocess.call(["wget", download_link, "-q", "-N", "--no-check-certificate", "-P", software_path])
+    except Exception as err:
+        print(f"Ошибка при загрузке ПО: {err}")
+        raise
+
+    print(f'ПО {software_version} успешно загружено для {hostname}')
+
+    # Загружаем ПО на устройство и перезагружаем
+    download_software(ip, login, password, hostname, software_version, platform, vrf)
+
+    # Ожидаем окончания обновления
+    print(f'Ждем {booting_timer} секунд для завершения обновления {hostname}')
+    time.sleep(booting_timer)
+
+    # Проверяем версию после обновления
+    check_software_after_reboot(ip, login, password, hostname, software_version)
+
+    return software_version
+
+def read_logs():
+    report_params = [
+        {'total_tests': '', 'passed_tests': '', 'selected_tests': '', 'failed_tests': '', 'skipped_tests': '',
+         'error_tests': '', 'soft_version': '', 'R2v': '', 'R2upt': '', 'R4v': '', 'R4upt': '',
+         'R1v': '', 'R1upt': ''}
+    ]
+    with open('./reports/function_test_cron.log', 'r', encoding='utf-8', errors='ignore') as log_file:
+        data = log_file.read()
+
+        total_tests = re.search(r"\s*Общее количество тестов - (\d+).", data).group(1)
+        report_params[0]['total_tests'] = total_tests
+        print(f'Общее количество тестов - {total_tests}\n')
+        passed_tests = re.search(r"\s*Общее количество PASSED тестов - (\d+).", data).group(1)
+        report_params[0]['passed_tests'] = passed_tests
+        print(f'Общее количество PASSED тестов - {passed_tests}\n')
+        selected_tests = re.search(r"\s*Общее количество SELECTED тестов - (\d+).", data).group(1)
+        report_params[0]['selected_tests'] = selected_tests
+        print(f'Общее количество SELECTED тестов - {selected_tests}\n')
+        failed_tests = re.search(r"\s*Общее количество FAILED тестов - (\d+).", data).group(1)
+        report_params[0]['failed_tests'] = failed_tests
+        print(f'Общее количество FAILED тестов - {failed_tests}\n')
+        skipped_tests = re.search(r"\s*Общее количество SKIPPED тестов - (\d+).", data).group(1)
+        report_params[0]['skipped_tests'] = skipped_tests
+        print(f'Общее количество SKIPPED тестов - {skipped_tests}\n')
+        error_tests = re.search(r"\s*Общее количество ERROR тестов - (\d+).", data).group(1)
+        report_params[0]['error_tests'] = error_tests
+        print(f'Общее количество ERROR тестов - {error_tests}\n')
+
+
+    with open('./reports/monitor_report_atAR1.txt', 'r') as mon_rep:
+        data = mon_rep.read()
+        version_R2 = re.search(r"\s*Версия ПО: (\S+)", data).group(1)
+        report_params[0]['R2v'] = version_R2
+        uptime_R2 = re.search(r"\s*Uptime: (.+)", data).group(1)
+        report_params[0]['R2upt'] = uptime_R2
+    with open('./reports/monitor_report_atAR2.txt', 'r') as mon_rep:
+        data = mon_rep.read()
+        version_R4 = re.search(r"\s*Версия ПО: (\S+)", data).group(1)
+        report_params[0]['R4v'] = version_R4
+        uptime_R4 = re.search(r"\s*Uptime: (.+)", data).group(1)
+        report_params[0]['R4upt'] = uptime_R4
+    with open('./reports/monitor_report_atDR1.txt', 'r') as mon_rep:
+        data = mon_rep.read()
+        version_R1 = re.search(r"\s*Версия ПО: (\S+)", data).group(1)
+        report_params[0]['R1v'] = version_R1
+        uptime_R1 = re.search(r"\s*Uptime: (.+)", data).group(1)
+        report_params[0]['R1upt'] = uptime_R1
+
+    if version_R2 != DUT1.software and version_R4 != DUT2.software and version_R1 != DUT3.software:
+        soft_version = version_R2
+    else:
+        soft_version = DUT1.software
+    report_params[0]['soft_version'] = soft_version
+
+    return report_params[0]
+
+@pytest.hookimpl(trylast=True)
+def pytest_sessionfinish(session: pytest.Session):
+    if (
+        hasattr(session.config, 'workerinput') or
+        session.config.option.collectonly or
+        session.exitstatus == 6
+    ):
+        return
+    terminalreporter = session.config.pluginmanager.get_plugin("terminalreporter")
+    total = terminalreporter._numcollected
+    deselected = len(terminalreporter.stats.get("deselected", []))
+    failed = len(terminalreporter.stats.get('failed', []))
+    passed = len(terminalreporter.stats.get('passed', []))
+    skipped = len(terminalreporter.stats.get('skipped', []))
+    error = len(terminalreporter.stats.get('error', []))
+    xfailed = len(terminalreporter.stats.get("xfailed", []))
+    xpassed = len(terminalreporter.stats.get("xpassed", []))
+    selected = total - deselected
+    time.sleep(40)
+# Пишем в файл эти параметры, чтобы другие скрипты смогли ими воспользоваться для формироавания отчетов в e-mail, telegramm и сохранения в БД
+    file = open('./test_results.txt','w')     
+    print("\rОбщее количество тестов - %s.\r"%total)
+    file.write("Общее количество тестов - %s\r"%total)
+    print("\rОбщее количество PASSED тестов - %s.\r"%passed)
+    file.write("Общее количество PASSED тестов - %s\r"%passed)
+    print("\rОбщее количество SELECTED тестов - %s.\r"%selected)
+    file.write("Общее количество SELECTED тестов - %s\r"%selected)
+    print("\rОбщее количество FAILED тестов - %s.\r"%failed)
+    file.write("Общее количество FAILED тестов - %s\r"%failed)
+    print("\rОбщее количество SKIPPED тестов - %s.\r"%skipped)
+    file.write("Общее количество SKIPPED тестов - %s\r"%skipped)
+    print("\rОбщее количество ERROR тестов - %s.\r"%error)    
+    file.write("Общее количество ERROR тестов - %s\r"%error)
+
+# Читать.... https://docs.pytest.org/en/7.2.x/reference.html?highlight=api#testreport
+
+
+    failed_test_index=0
+    failed_test_list=terminalreporter.stats.get('failed', [])
+
+# Запишем в файл  test_results.txt все FAILED тесты, чтобы потом иметь возможность сохранить их в БД
+    while failed_test_index<len(failed_test_list):
+        failed_test_name_str1=failed_test_list[failed_test_index].nodeid.partition('::')
+#        failed_test_longrepr.reprcrash.message=failed_test_list[failed_test_index].longrepr.reprcrash.message
+        failed_test_assert_message=failed_test_list[failed_test_index].longrepr.reprcrash.message
+        failed_test_name=failed_test_name_str1[2].partition('[')
+        failed_test_param=failed_test_name[2].partition(']')
+        print('failed_test_name - %s, failed_test_param - %s, Assert-message - %s'%(failed_test_name[0],failed_test_param[0], failed_test_assert_message))
+        file.write("failed_test_name - %s, failed_test_param - %s, Assert-message - %s\r"%(failed_test_name[0],failed_test_param[0], failed_test_assert_message))
+        failed_test_index=failed_test_index+1
+
+
+    passed_test_index=0
+    passed_test_list=terminalreporter.stats.get('passed', [])
+
+# Запишем в файл  test_results.txt все PASSED тесты, чтобы потом иметь возможность сохранить их в БД
+    while passed_test_index<len(passed_test_list):
+        passed_test_name_str1=passed_test_list[passed_test_index].nodeid.partition('::')
+        passed_test_duration=passed_test_list[passed_test_index].duration
+        passed_test_name=passed_test_name_str1[2].partition('[')
+        passed_test_param=passed_test_name[2].partition(']')
+        print('passed_test_name - %s, passed_test_param - %s, passed_test_duration - %d'%(passed_test_name[0],passed_test_param[0], passed_test_duration))
+        file.write("passed_test_name - %s, passed_test_param - %s, passed_test_duration - %d\r"%(passed_test_name[0],passed_test_param[0],passed_test_duration))
+        passed_test_index=passed_test_index+1
+
+
+
+    skipped_test_index=0
+    skipped_test_list=terminalreporter.stats.get('skipped', [])
+
+# Запишем в файл  test_results.txt все SKIPPED тесты, чтобы потом иметь возможность сохранить их в БД
+    while skipped_test_index<len(skipped_test_list):
+        skipped_test_name_str1=skipped_test_list[skipped_test_index].nodeid.partition('::')
+        skipped_test_longrepr=skipped_test_list[skipped_test_index].longrepr
+        skipped_test_name=skipped_test_name_str1[2].partition('[')
+        skipped_test_param=skipped_test_name[2].partition(']')
+        print('skipped_test_name - %s, skipped_test_param - %s, skipped_test_longrepr - %s'%(skipped_test_name[0],skipped_test_param[0],skipped_test_longrepr))
+        file.write("skipped_test_name - %s, skipped_test_param - %s, skipped_test_longrepr - %s\r"%(skipped_test_name[0],skipped_test_param[0],skipped_test_longrepr))
+        skipped_test_index=skipped_test_index+1
+    file.close()
 
 def locate_index_in_ListOfDict(ListOfDict, Searched_Key, Searched_Value, located_index): # ListOfDict это processed_result; Serched_Key - это имя ключа по которому будем искать(Например lsp_name); Searched_Value это значение у Searched_Key   
     i = 0

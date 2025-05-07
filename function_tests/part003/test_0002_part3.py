@@ -29,6 +29,7 @@ def parse_show_lldp(ip, login, password):
 
 def check_global_info(info):
     # Получаем значение из словаря по ключу, затем сравниваем с ожидаемым
+    print(info)
     current_value = info[0].get('ADVERT')
     assert current_value == '30', (f'Параметр LLDP advertisements не равен ожидаемому значению 30, '
                                    f'а равен - {current_value}')
@@ -43,27 +44,14 @@ def check_global_info(info):
                                    f'а равен - {current_value}')
 
 
-def check_ports_info(info, hostname):
+def check_ports_info(info, DUT):
     exist_port1 = exist_port2 = exist_port3 = exist_port4 = 0  # Переменные для проверки существования порта в словаре
     port1 = port2 = port3 = port4 = ''
-    with open('config_OOP.json', 'r', encoding='utf-8') as file:
-        check = json.load(file)
     # Разные порты у устройств
-    if hostname == check["DUT1"]['hostname']:
-        port1 = check["DUT1"]["int"]["to_phys2"]["interface"][0]
-        port2 = check["DUT1"]["int"]["to_phys2"]["interface"][1]
-        port3 = check["DUT1"]["int"]["to_phys1"]["interface"][0]
-        port4 = check["DUT1"]["int"]["to_phys1"]["interface"][1]
-    elif hostname == check["DUT2"]['hostname']:
-        port1 = check["DUT2"]["int"]["to_phys1"]["interface"][0]
-        port2 = check["DUT2"]["int"]["to_phys1"]["interface"][1]
-        port3 = check["DUT2"]["int"]["to_phys2"]["interface"][0]
-        port4 = check["DUT2"]["int"]["to_phys2"]["interface"][1]
-    elif hostname == check["DUT3"]['hostname']:
-        port1 = check["DUT3"]["int"]["to_phys1"]["interface"][0]
-        port2 = check["DUT3"]["int"]["to_phys1"]["interface"][1]
-        port3 = check["DUT3"]["int"]["to_phys2"]["interface"][0]
-        port4 = check["DUT3"]["int"]["to_phys2"]["interface"][1]
+    port1 = DUT.neighor2["interface"][0]
+    port2 = DUT.neighor2["interface"][1]
+    port3 = DUT.neighor1["interface"][0]
+    port4 = DUT.neighor1["interface"][1]
     # В цикле обходим список словарей
     for row in info:
         # Проверяем соответствие значений, получая их по ключу
@@ -106,17 +94,16 @@ def check_ports_info(info, hostname):
 @pytest.mark.dependency(depends=["load_config003_dut1","load_config003_dut2","load_config003_dut3"],scope='session')
 @pytest.mark.parametrize("DUT",
 			[
-			 pytest.param("DUT1"), 
- 			 pytest.param("DUT2"), 
- 			 pytest.param("DUT3")
+			 pytest.param(DUT1), 
+ 			 pytest.param(DUT2), 
+ 			 pytest.param(DUT3)
 			]
 			)
 def test_show_lldp_part3(DUT):
     allure.attach.file('./network-schemes/part3_show_lldp.png', 'Что анализируется в выводе команды',
                        attachment_type=allure.attachment_type.PNG)
-    router = setting_ME(DUT)
     # Эта функция подключается к устройству, выполняет команду, парсит результат и возвращает его
-    result = parse_show_lldp(router.host_ip, router.login, router.password)
+    result = parse_show_lldp(DUT.host_ip, DUT.login, DUT.password)
     assert result != 0, 'Парсинг команды вернул пустой результат'
 
     # Разделяем данные на глобальную информацию и информацию о портах
@@ -135,4 +122,4 @@ def test_show_lldp_part3(DUT):
     check_global_info(global_info_cleaned)
     # Если таблица с портами есть, то также проверяем на соответствие ожидаемым значениям
     if ports_info_cleaned:
-        check_ports_info(ports_info_cleaned, router.hostname)
+        check_ports_info(ports_info_cleaned, DUT)

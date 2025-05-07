@@ -1,0 +1,172 @@
+--------------------------------------------------------------------------------------------------------
+🔸️ШАГ 0.
+--------------------------------------------------------------------------------------------------------
+1. Включаем интерфейсы:
+
+🔹️На atAR1:
+
+0/ME5100:atAR1(config)# interface te0/0/11.3205
+0/ME5100:atAR1(config-tengigabitethernet-sub)# no shutdown 
+0/ME5100:atAR1(config-tengigabitethernet-sub)# commit 
+
+🔹️На atAR2:
+
+0/ME5200:atAR2(config)# interface te0/0/11.3205
+0/ME5200:atAR2(config-tengigabitethernet-sub)# no shutdown 
+0/ME5200:atAR2(config-tengigabitethernet-sub)# commit 
+
+🔹️На atDR1:
+
+0/FMC0:atDR1(config)# interface te0/1/5.3205
+0/FMC0:atDR1(config-tengigabitethernet-sub)# no shutdown 
+0/FMC0:atDR1(config-tengigabitethernet-sub)# commit 
+  
+-------------------------------------------------------------------------------------------------------------
+🔸️ШАГ 1. 
+-------------------------------------------------------------------------------------------------------------
+1. Проверяем наличие соседских отношений после включения интерфейсов.
+
+✅️Ожидаемый результат: 
+1. Пустой вывод команды show ospfv2 neighbors.
+
+🔹️Mon Aug  5 05:37:18 2024
+  Routing Process: 1, ID 1.0.0.3
+    Router is an area border router
+ 
+  
+0/ME5100:atAR1# 
+
+🔹️Mon Aug  5 05:37:17 2024
+  Routing Process: 1, ID 1.0.0.2
+    Router is an area border router
+ 
+  
+0/ME5200:atAR2# 
+
+🔹️Mon Aug  5 12:37:18 2024
+  Routing Process: 1, ID 1.0.0.1
+    Router is not an area border router
+ 
+  
+0/FMC0:atDR1# 
+===========================================================================
+2. Сообщения отладки протокола OSPF должны содержать следующую информацию:
+
+🔹️На atAR1:
+
+Packet cannot be authenticated. Diagnostic information for support: 
+Packet data = 0201002C 0A000002 000000FF 00000002 0000 🚩️01 10 0000524B FFFFFF00 000A0001 00000028 0A00C803 00000000 Error code (from A0AUTH_GET_KEY) = 3
+                                                       ^^
+                                                    обозначенный выше байт в заголовке OSPF содержит значение Authentication Key ID = 01 (0x01) - пакет от atAR2
+                                                    
+Packet cannot be authenticated. Diagnostic information for support: 
+Packet data = 0201002C 0A0000C8 000000FF 00000002 0000 🚩️00 10 00005276 FFFFFF00 000A0001 00000028 0A00C801 00000000 Error code (from A0AUTH_GET_KEY) = 3
+                                                       ^^
+                                                    обозначенный выше байт в заголовке OSPF содержит значение Authentication Key ID = 00 (0x00) - пакет от atDR1
+                                                    
+🔹️На atAR2:
+
+Packet cannot be authenticated. Diagnostic information for support: 
+Packet data = 0201002C 0A0000C8 000000FF 00000002 0000 🚩️00 10 0000542E FFFFFF00 000A0001 00000028 0A00C801 00000000 Error code (from A0AUTH_GET_KEY) = 3
+                                                       ^^
+                                                   обозначенный выше байт в заголовке OSPF содержит значение Authentication Key ID = 00 (0x00) - пакет от atDR1
+                                                  
+Packet cannot be authenticated. Diagnostic information for support: 
+Packet data = 0201002C 0A000001 000000FF 00000002 0000 🚩️64 10 0000540D FFFFFF00 000A0001 00000028 0A00C802 00000000 Error code (from A0AUTH_GET_KEY) = 3
+                                                       ^^
+                                                  обозначенный выше байт в заголовке OSPF содержит значение Authentication Key ID = 100 (0x64) - пакет от atAR1
+                                                  
+🔹️На atDR1:
+
+Packet cannot be authenticated. Diagnostic information for support: 
+Packet data = 0201002C 0A000002 000000FF 00000002 0000 🚩️01 10 000054B4 FFFFFF00 000A0001 00000028 0A00C803 00000000 Error code (from A0AUTH_GET_KEY) = 3
+                                                       ^^
+                                                   обозначенный выше байт в заголовке OSPF содержит значение Authentication Key ID = 01 (0x01) - пакет от atAR2
+                                                   
+Packet cannot be authenticated. Diagnostic information for support: 
+Packet data = 0201002C 0A000001 000000FF 00000002 0000 🚩️64 10 000054C0 FFFFFF00 000A0001 00000028 0A00C802 00000000 Error code (from A0AUTH_GET_KEY) = 3
+                                                       ^^
+                                                   обозначенный выше байт в заголовке OSPF содержит значение Authentication Key ID = 100 (0x64) - пакет от atAR1
+
+--------------------------------------------------------------------------------------------------------
+🔸️ШАГ 2.
+--------------------------------------------------------------------------------------------------------
+1. Зададим значения Security Association Identifier равное 0 на atAR1 и atAR2.
+
+На маршрутизаторе atAR1:
+
+0/ME5100:atAR1(config)# router ospfv2 1
+0/ME5100:atAR1(config-ospfv2)# area 0.0.0.255 
+0/ME5100:atAR1(config-area)# interface tengigabitethernet 0/0/11.3205 
+0/ME5100:atAR1(config-tengigabitethernet-sub)# authentication-id 0
+0/ME5100:atAR1(config-tengigabitethernet-sub)# commit 
+
+
+На маршрутизаторе atAR2:
+
+0/ME5200:atAR2(config)# router ospfv2 1
+0/ME5200:atAR2(config-ospfv2)# area 0.0.0.255 
+0/ME5200:atAR2(config-area)# interface tengigabitethernet 0/0/11.3205 
+0/ME5200:atAR2(config-tengigabitethernet-sub)# authentication-id 0
+0/ME5200:atAR2(config-tengigabitethernet-sub)# commit 
+
+-------------------------------------------------------------------------------------------------------
+🔸️ШАГ 3.
+-------------------------------------------------------------------------------------------------------
+1. Проверяем наличие соседских отношений.
+
+✅️Ожидаемый результат:
+
+🔹️На atAR1:
+
+  Routing Process: 1, ID 1.0.0.3
+    Router is an area border router
+ 
+  Neighbor ID      Area ID          Pri  State               BFD           Dead Time  Last state change  Address          Interface 
+  ---------------- ---------------- ---- ------------------- ------------- ---------- ------------------ ---------------- ---------------- 
+  1.0.0.1🚩️        0.0.0.255🚩️      1    full🚩️             not-required  00:00:35   00h00m34s          10.0.200.1       te0/0/11.3205🚩️
+  1.0.0.2🚩️        0.0.0.255🚩️      1    full-BDR🚩️         not-required  00:00:34   00h00m35s          10.0.200.3       te0/0/11.3205🚩️ 
+  
+🔹️На atAR2:
+
+  Routing Process: 1, ID 1.0.0.2
+    Router is an area border router
+ 
+  Neighbor ID      Area ID          Pri  State               BFD           Dead Time  Last state change  Address          Interface 
+  ---------------- ---------------- ---- ------------------- ------------- ---------- ------------------ ---------------- ----------------- 
+  1.0.0.1🚩️        0.0.0.255🚩️      1    full🚩️             not-required  00:00:35   00h00m34s          10.0.200.1       te0/0/11.3205🚩️ 
+  1.0.0.3🚩️        0.0.0.255🚩️      1    full-DR🚩️          not-required  00:00:33   00h00m35s          10.0.200.2       te0/0/11.3205🚩️ 
+  
+🔹️На atDR1:
+
+  Routing Process: 1, ID 1.0.0.1
+    Router is not an area border router
+ 
+  Neighbor ID      Area ID          Pri  State               BFD           Dead Time  Last state change  Address          Interface 
+  ---------------- ---------------- ---- ------------------- ------------- ---------- ------------------ ---------------- ---------------- 
+  1.0.0.3🚩️        0.0.0.255🚩️      1    full-DR🚩️          not-required  00:00:32   00h00m30s          10.0.200.2       te0/1/5.3205🚩️ 
+  1.0.0.2🚩️        0.0.0.255🚩️      1    full-BDR🚩️         not-required  00:00:33   00h00m35s          10.0.200.3       te0/1/5.3205🚩️ 
+    
+--------------------------------------------------------------------------------------------------------
+🔸️ШАГ 4.
+--------------------------------------------------------------------------------------------------------
+1. Выключаем интерфейсы:
+
+🔹️На atAR1:
+
+0/ME5100:atAR1(config)# interface te0/0/11.3205
+0/ME5100:atAR1(config-tengigabitethernet-sub)# shutdown 
+0/ME5100:atAR1(config-tengigabitethernet-sub)# commit 
+
+🔹️На atAR2:
+
+0/ME5200:atAR2(config)# interface te0/0/11.3205
+0/ME5200:atAR2(config-tengigabitethernet-sub)# shutdown 
+0/ME5200:atAR2(config-tengigabitethernet-sub)# commit 
+
+🔹️На atDR1:
+
+0/FMC0:atDR1(config)# interface te0/1/5.3205
+0/FMC0:atDR1(config-tengigabitethernet-sub)# shutdown 
+0/FMC0:atDR1(config-tengigabitethernet-sub)# commit 
+

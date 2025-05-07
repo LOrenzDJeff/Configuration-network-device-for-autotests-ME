@@ -65,50 +65,17 @@ def test_show_interface_description (DUT):
 
     assert_that (Top != '',"Заголовок команды show interface description не соответсвует шаблону")
 # Первый порт смотрит на LABR01, второй порт на pizzabox, третий - на корзиину atDR1        
-    if DUT.host_ip == DUT1.host_ip:
-        assert_that(port1_name=='te0/0/11.352',"Ожидаемое имя первого порта на %s не равен ожидаемому te0/0/11.352, вместо этого он равен -%s"%(DUT1.hostname,port1_name))
-        assert_that(port1_adm_state=='up',"Ожидаемый административный статус первого порта на %s не равен UP "%DUT1.hostname)
-        assert_that(port1_oper_state=='up',"Ожидаемый операционный статус первого порта на %s не равен UP "%DUT1.hostname)
-        assert_that(port1_desc=='to_LABR01:ge-0/0/0.352',"Ожидаемый description первого порта на %s не равен  to_LABR01:ge-0/0/0.352"%DUT1.hostname)
+    assert_that(port1_name==DUT.neighor3["int_name"],"Ожидаемое имя первого порта на %s не равен ожидаемому te0/0/11.352, вместо этого он равен -%s"%(DUT.hostname,port1_name))
+    assert_that(port1_adm_state=='up',"Ожидаемый административный статус первого порта на %s не равен UP "% DUT.hostname)
+    assert_that(port1_oper_state=='up',"Ожидаемый операционный статус первого порта на %s не равен UP "% DUT.hostname)
+    assert_that(port1_desc==DUT.neighor3["neighbor"],"Ожидаемый description первого порта на %s не равен  to_LABR01:ge-0/0/0.352"%DUT.hostname)
+    print(port2_name)
+    assert_that(port2_name==DUT.neighor2["int_name"],"Ожидаемое имя второго порта на %s не равен ожидаемому te0/0/2, вместо этого он равен -%s"%( DUT.hostname,port2_name))
+    assert_that(port2_adm_state=='up',"Ожидаемый административный статус второго порта на %s не равен UP "% DUT.hostname)
+    assert_that(port2_oper_state=='up',"Ожидаемый операционный статус второго порта на %s не равен UP "% DUT.hostname)
+    assert_that(port2_desc==DUT.neighor2["neighbor"],"Ожидаемый description второго порта на %s не равен  to_atAR2:te0/0/2"% DUT.hostname)  
 
-        assert_that(port2_name=='bu2',"Ожидаемое имя второго порта на %s не равен ожидаемому te0/0/2, вместо этого он равен -%s"%(DUT1.hostname,port2_name))
-        assert_that(port2_adm_state=='up',"Ожидаемый административный статус второго порта на %s не равен UP "%DUT1.hostname)
-        assert_that(port2_oper_state=='up',"Ожидаемый операционный статус второго порта на %s не равен UP "%DUT1.hostname)
-        assert_that(port2_desc=='to_atAR2:bundle-ether2',"Ожидаемый description второго порта на %s не равен  to_atAR2:te0/0/2"%DUT1.hostname)  
-
-        assert_that(port3_name=='bu1',"Ожидаемое имя третьего порта на %s не равен ожидаемому bu1, вместо этого он равен -%s"%(DUT1.hostname,port3_name))
-        assert_that(port3_adm_state=='up',"Ожидаемый административный статус третьего порта на %s не равен UP "%DUT1.hostname)
-        assert_that(port3_oper_state=='up',"Ожидаемый операционный статус третьего порта на %s не равен UP "%DUT1.hostname)
-        assert_that(port3_desc=='to_atDR1:bundle-ether1',"Ожидаемый description третьего порта на %s не равен  to_atDR1:bundle-ether1"%DUT1.hostname)
-
-    if DUT.host_ip == DUT2.host_ip:
-        assert_that(port1_name=='te0/0/11.351',"Ожидаемое имя первого порта на %s не равен ожидаемому te0/0/11.351, вместо этого он равен -%s"%(DUT2.hostname,port1_name))
-        assert_that(port1_adm_state=='up',"Ожидаемый административный статус первого порта на %s не равен UP "%DUT2.hostname)
-        assert_that(port1_oper_state=='up',"Ожидаемый операционный статус первого порта на %s не равен UP "%DUT2.hostname)
-        assert_that(port1_desc=='to_LABR01:ge-0/0/0.351',"Ожидаемый description первого порта на %s не равен  to_LABR01:ge-0/0/0.351"%DUT2.hostname)
-
-        assert_that(port2_name=='bu2',"Ожидаемое имя второго порта на %s не равен ожидаемому te0/0/2, вместо этого он равен -%s"%(DUT2.hostname,port2_name))
-        assert_that(port2_adm_state=='up',"Ожидаемый административный статус второго порта на %s не равен UP "%DUT2.hostname)
-        assert_that(port2_oper_state=='up',"Ожидаемый операционный статус второго порта на %s не равен UP "%DUT2.hostname)
-        assert_that(port2_desc=='to_atAR1:bundle-ether2',"Ожидаемый description второго порта на %s не равен  to_atAR1:te0/0/2"%DUT2.hostname)  
-
-        assert_that(port3_name=='bu1',"Ожидаемое имя третьего порта на %s не равен ожидаемому bu1, вместо этого он равен -%s"%(DUT2.hostname,port3_name))
-        assert_that(port3_adm_state=='up',"Ожидаемый административный статус третьего порта на %s не равен UP "%DUT2.hostname)
-        assert_that(port3_oper_state=='up',"Ожидаемый операционный статус третьего порта на %s не равен UP "%DUT2.hostname)
-        assert_that(port3_desc=='to_atDR1:bundle-ether1',"Ожидаемый description третьего порта на %s не равен  to_atDR1:bundle-ether2"%DUT2.hostname)
-
-    if DUT.host_ip == DUT3.host_ip:
-        assert_that(port1_name=='te0/1/5.350',"Ожидаемое имя первого порта на %s не равен ожидаемому te0/1/5.350, вместо этого он равен -%s"%(DUT3.hostname,port1_name))
-        assert_that(port1_adm_state=='up',"Ожидаемый административный статус первого порта на %s не равен UP "%DUT3.hostname)
-        assert_that(port1_oper_state=='up',"Ожидаемый операционный статус первого порта на %s не равен UP "%DUT3.hostname)
-        assert_that(port1_desc=='to_LABR01:ge-0/0/0.350',"Ожидаемый description первого порта на %s не равен  to_LABR01:ge-0/0/0.350"%DUT3.hostname)
-
-        assert_that(port2_name=='bu2',"Ожидаемое имя второго порта на %s не равен ожидаемому bu2, вместо этого он равен -%s"%(DUT3.hostname,port2_name))
-        assert_that(port2_adm_state=='up',"Ожидаемый административный статус второго порта на %s не равен UP "%DUT3.hostname)
-        assert_that(port2_oper_state=='up',"Ожидаемый операционный статус второго порта на %s не равен UP "%DUT3.hostname)
-        assert_that(port2_desc=='to_atAR2:bundle-ether2',"Ожидаемый description второго порта на %s не равен  to_AR2:bundle-ether2"%DUT3.hostname)  
-
-        assert_that(port3_name=='bu1',"Ожидаемое имя третьего порта на %s не равен ожидаемому bu1, вместо этого он равен -%s"%(DUT3.hostname,port3_name))
-        assert_that(port3_adm_state=='up',"Ожидаемый административный статус третьего порта на %s не равен UP "%DUT3.hostname)
-        assert_that(port3_oper_state=='up',"Ожидаемый операционный статус третьего порта на %s не равен UP "%DUT3.hostname)
-        assert_that(port3_desc=='to_atAR1:bundle-ether1',"Ожидаемый description третьего порта на %s не равен  to_atAR1:bundle-ether1"%DUT3.hostname)
+    assert_that(port3_name==DUT.neighor1["int_name"],"Ожидаемое имя третьего порта на %s не равен ожидаемому bu1, вместо этого он равен -%s"%( DUT.hostname,port3_name))
+    assert_that(port3_adm_state=='up',"Ожидаемый административный статус третьего порта на %s не равен UP "% DUT.hostname)
+    assert_that(port3_oper_state=='up',"Ожидаемый операционный статус третьего порта на %s не равен UP "% DUT.hostname)
+    assert_that(port3_desc==DUT.neighor1["neighbor"],"Ожидаемый description третьего порта на %s не равен  to_atDR1:bundle-ether1"% DUT.hostname)

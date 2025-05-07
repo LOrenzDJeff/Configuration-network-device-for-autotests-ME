@@ -1,0 +1,132 @@
+-------------------------------------------------------------------------------------------------------------
+🔸️ШАГ 1. 
+-------------------------------------------------------------------------------------------------------------
+1. Установим вручную значения MTU и IP MTU интерфейса bu2 (IP MTU + 14 must be less than or equal MTU). 
+
+0/ME5100:atAR1(config)# interface bu2
+0/ME5100:atAR1(config-bundle-ether)# mtu 8818
+0/ME5100:atAR1(config-bundle-ether)# ip mtu 8800
+0/ME5100:atAR1(config-bundle-ether)# commit 
+
+0/ME5200:atAR2(config)# interface bu2
+0/ME5200:atAR2(config-bundle-ether)# mtu 8818
+0/ME5200:atAR2(config-bundle-ether)# ip mtu 8800
+0/ME5200:atAR2(config-bundle-ether)# commit 
+
+✅️Ожидаемый результат: 
+Ожидаем, что конфигурация применилась на физических интерфейсах.
+
+0/ME5100:atAR1# show interface bu2
+Wed May  3 11:49:24 2023
+! Configuration version 3.6.0.77T
+interface bundle-ether 2
+  ip mtu 🚩️8800        
+  mtu 🚩️8818
+exit
+
+0/ME5200:atAR2# show interface bu2
+Wed May  3 11:49:27 2023
+! Configuration version 3.6.0.77
+interface bundle-ether 2
+  ip mtu 🚩️8800
+  mtu 🚩️8818
+exit
+    
+--------------------------------------------------------------------------------------------------------
+🔸️ШАГ 2.
+--------------------------------------------------------------------------------------------------------
+1. Выясним текущие значения IP MTU интерфейсов командой show interface для под-интерфейсов bu2.3210.
+
+✅️Ожидаемый результат:
+
+0/ME5100:atAR1#show interfaces bu2.3210 | include MTU
+Wed May  3 10:19:05 2023
+
+    Interface MTU is 🚩️8814 
+    Interface IP MTU is 🚩️8800                                         <====== текушее значение IP MTU (заданное вручную)
+
+0/ME5200:atAR2# show interfaces bu2.3210 | include MTU
+Wed May  3 10:18:22 2023
+ 
+    Interface MTU is 🚩️8814
+    Interface IP MTU is 🚩️8800                                         <====== текушее значение IP MTU(заданное вручную)
+  
+-------------------------------------------------------------------------------------------------------
+🔸️ШАГ 3.
+-------------------------------------------------------------------------------------------------------
+1. Включаем интерфейс bu2.3210 на маршрутизаторах atAR1 и atAR2.
+
+0/ME5100:atAR1(config)# interface bu2.3210
+0/ME5100:atAR1(config-bundle-ether-sub)# no shutdown 
+0/ME5100:atAR1(config-bundle-ether-sub)# commit 
+
+0/ME5200:atAR2(config)# interface bu2.3210
+0/ME5200:atAR2(config-bundle-ether-sub)# no shutdown 
+0/ME5200:atAR2(config-bundle-ether-sub)# commit 
+    
+-----------------------------------------------------------------------------------------------------
+🔸️ШАГ 4.
+-----------------------------------------------------------------------------------------------------
+1. Перехватываем и анализируем пакеты Database Description.
+
+✅️Ожидаемый результат:
+
+Пакет от atAR1:
+
+Frame 119: 70 bytes on wire (560 bits), 70 bytes captured (560 bits) on interface eth3usb, id 0
+Ethernet II, Src: EltexEnt_ff:64:61 (e0:d9:e3:ff:64:61), Dst: IPv4mcast_05 (01:00:5e:00:00:05)
+802.1Q Virtual LAN, PRI: 7, DEI: 0, ID: 3210
+Internet Protocol Version 4, Src: 10.0.221.1, Dst: 224.0.0.5
+Open Shortest Path First
+    OSPF Header
+        Version: 2
+        Message Type: DB Description (2)
+        Packet Length: 32
+        Source OSPF Router: 10.0.0.1
+        Area ID: 0.0.0.0 (Backbone)
+        Checksum: 0xfc3a [correct]
+        Auth Type: Null (0)
+        Auth Data (none): 0000000000000000
+    OSPF DB Description
+        Interface MTU: 🚩️8800                                    <====== значение интерфейс MTU соответствует текущему значению 1500
+        Options: 0x42, O, (E) External Routing
+        DB Description: 0x07, (I) Init, (M) More, (MS) Master
+        DD Sequence: 162833930
+
+
+Пакет от atAR2:
+
+Frame 120: 70 bytes on wire (560 bits), 70 bytes captured (560 bits) on interface eth3usb, id 0
+Ethernet II, Src: EltexEnt_92:3b:e1 (cc:9d:a2:92:3b:e1), Dst: IPv4mcast_05 (01:00:5e:00:00:05)
+802.1Q Virtual LAN, PRI: 7, DEI: 0, ID: 3210
+Internet Protocol Version 4, Src: 10.0.221.2, Dst: 224.0.0.5
+Open Shortest Path First
+    OSPF Header
+        Version: 2
+        Message Type: DB Description (2)
+        Packet Length: 32
+        Source OSPF Router: 10.0.0.2
+        Area ID: 0.0.0.0 (Backbone)
+        Checksum: 0x7f7c [correct]
+        Auth Type: Null (0)
+        Auth Data (none): 0000000000000000
+    OSPF DB Description
+        Interface MTU: 🚩️8800                                   <====== значение интерфейс MTU соответствует текущему значению 1500
+        Options: 0x42, O, (E) External Routing
+        DB Description: 0x07, (I) Init, (M) More, (MS) Master
+        DD Sequence: 68692068
+        
+-------------------------------------------------------------------------------------------------------
+🔸️ШАГ 5.
+-------------------------------------------------------------------------------------------------------
+1. Выключаем интерфейс bu2.3210 на маршрутизаторах atAR1 и atAR2.
+
+0/ME5100:atAR1(config)# interface bu2.3210
+0/ME5100:atAR1(config-bundle-ether-sub)# shutdown 
+0/ME5100:atAR1(config-bundle-ether-sub)# commit 
+
+0/ME5200:atAR2(config)# interface bu2.3210
+0/ME5200:atAR2(config-bundle-ether-sub)# shutdown 
+0/ME5200:atAR2(config-bundle-ether-sub)# commit 
+    
+

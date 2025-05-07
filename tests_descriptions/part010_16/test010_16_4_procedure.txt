@@ -1,0 +1,174 @@
+--------------------------------------------------------------------------------------------------------
+🔸️ШАГ 1.
+--------------------------------------------------------------------------------------------------------
+1. Включаем интерфейсы на всех 3-х маршрутизаторах таким образом чтобы от момента включения первого интерфейса до момента включения третьего прошло не более 20 секунд.
+
+На atAR1:
+
+0/ME5100:atAR1(config)# interface tengigabitethernet 0/0/11.3205
+0/ME5100:atAR1(config-tengigabitethernet-sub)# no shutdown 
+0/ME5100:atAR1(config-tengigabitethernet-sub)# commit 
+
+На atAR2:
+
+0/ME5200:atAR2(config)# interface tengigabitethernet 0/0/11.3205
+0/ME5200:atAR2(config-tengigabitethernet-sub)# no shutdown 
+0/ME5200:atAR2(config-tengigabitethernet-sub)# commit 
+
+На atDR1:
+
+0/FMC0:atDR1(config)# interface fortygigabitethernet 0/1/5.3205
+0/FMC0:atDR1(config-fortygigabitethernet-sub)# no shutdown 
+0/FMC0:atDR1(config-fortygigabitethernet-sub)# commit
+  
+-------------------------------------------------------------------------------------------------------
+🔸️ШАГ 2.
+-------------------------------------------------------------------------------------------------------
+1. Перехватываем OSPF Hello пакеты и анализируем.
+
+✅️Ожидаемый результат:
+
+На atAR1:
+
+###[ OSPFv3 Hello ]### 
+              intid     = 52
+              prio      = 1
+              options   = V6+R
+              hellointerval= 10
+              deadinterval= 40
+              router    = 1.0.0.3🚩️		<==== в качестве DR выбран atAR1
+              backup    = 1.0.0.2🚩️		<==== в качестве BDR выбран atAR2
+              neighbors = [1.0.0.1, 1.0.0.2]🚩️	<==== видны оба соседа
+              
+На atAR2:
+
+###[ OSPFv3 Hello ]### 
+              intid     = 122
+              prio      = 1
+              options   = V6+R
+              hellointerval= 10
+              deadinterval= 40
+              router    = 1.0.0.3🚩️		<==== в качестве DR выбран atAR1
+              backup    = 1.0.0.2🚩️		<==== в качестве BDR выбран atAR2
+              neighbors = [1.0.0.1, 1.0.0.3]🚩️	<==== видны оба соседа
+              
+На atDR1:
+
+###[ OSPFv3 Hello ]### 
+              intid     = 136
+              prio      = 1
+              options   = V6+R
+              hellointerval= 10
+              deadinterval= 40
+              router    = 1.0.0.3🚩️		<==== в качестве DR выбран atAR1
+              backup    = 1.0.0.2🚩️		<==== в качестве BDR выбран atAR2
+              neighbors = [1.0.0.2, 1.0.0.3]🚩️	<==== видны оба соседа
+    
+-----------------------------------------------------------------------------------------------------
+🔸️ШАГ 3.
+-----------------------------------------------------------------------------------------------------
+1. Проверяем вывод команды show ospfv3 interfaces te0/0/11.3205 detailed на atAR1/atAR2 (show ospfv3 interfaces te0/1/5.3205 detailed на atDR1).
+
+✅️Ожидаемый результат:
+
+На atAR1:
+
+  Routing Process: 1, ID 1.0.0.3
+    Router is an area border router
+    
+      Interface Tengigabitethernet0/0/11.3205, state: designated-router, status: up
+        Area 0.0.0.255, metric: 1, Network type: broadcast
+        Changed state: 52 time, Administrative group: 0
+        Designated Router IP addr: 1.0.0.3🚩️		<==== в качестве DR выбран atAR1
+        Backup Designated Router IP addr: 1.0.0.2🚩️	<==== в качестве BDR выбран atAR2
+        Remote interface ID (by Designated Router): 52
+        Remote interface ID (by Backup Designated Router): 122
+        Traffic Engineering: disabled
+        Wait time remaining: 0 ms
+        Hello time remaining: 8916 ms
+        Number of LSA count: 3, checksum: 0x00013e01
+
+На atAR2:
+
+  Routing Process: 1, ID 1.0.0.2
+    Router is an area border router
+    
+      Interface Tengigabitethernet0/0/11.3205, state: backup-designated-router, status: up
+        Area 0.0.0.255, metric: 1, Network type: broadcast
+        Changed state: 81 time, Administrative group: 0
+        Designated Router IP addr: 1.0.0.3🚩️		<==== в качестве DR выбран atAR1
+        Backup Designated Router IP addr: 1.0.0.2🚩️	<==== в качестве BDR выбран atAR2
+        Remote interface ID (by Designated Router): 52
+        Remote interface ID (by Backup Designated Router): 122
+        Traffic Engineering: disabled
+        Wait time remaining: 0 ms
+        Hello time remaining: 8888 ms
+        Number of LSA count: 3, checksum: 0x00013e01
+
+На atDR1:
+
+  Routing Process: 1, ID 1.0.0.1
+    Router is not an area border router
+    
+      Interface Tengigabitethernet0/1/5.3205, state: other-designated-router, status: up
+        Area 0.0.0.255, metric: 1, Network type: broadcast
+        Changed state: 62 time, Administrative group: 0
+        Designated Router IP addr: 1.0.0.3🚩️		<==== в качестве DR выбран atAR1
+        Backup Designated Router IP addr: 1.0.0.2🚩️	<==== в качестве BDR выбран atAR2
+        Remote interface ID (by Designated Router): 52
+        Remote interface ID (by Backup Designated Router): 122
+        Traffic Engineering: disabled
+        Wait time remaining: 0 ms
+        Hello time remaining: 9032 ms
+        Number of LSA count: 3, checksum: 0x00013e01
+        
+-------------------------------------------------------------------------------------------------------
+🔸️ШАГ 4.
+-------------------------------------------------------------------------------------------------------
+1. Проверяем вывод команды show ospfv3 neighbors на atAR1/atAR2/atDR1.
+
+✅️Ожидаемый результат:
+
+На atAR1:
+
+  Neighbor ID      Area ID          Pri  State               BFD           Dead Time  Last state change  Address                      Interface 
+  ---------------- ---------------- ---- ------------------- ------------- ---------- ------------------ --------------------------- ----------------- 
+  1.0.0.1🚩️        0.0.0.255        1    full🚩️              not-required  00:00:38   00h00m07s          fe80::aaf9:4bff:fe8b:92a5   te0/0/11.3205🚩️ 
+  1.0.0.2🚩️        0.0.0.255        1    full-BDR🚩️          not-required  00:00:38   00h00m07s          fe80::e2d9:e3ff:feff:488b   te0/0/11.3205🚩️
+
+На atAR2:
+
+  Neighbor ID      Area ID          Pri  State               BFD           Dead Time  Last state change  Address                      Interface 
+  ---------------- ---------------- ---- ------------------- ------------- ---------- ------------------ --------------------------- ----------------- 
+  1.0.0.1🚩️        0.0.0.255        1    full🚩️              not-required  00:00:38   00h00m02s          fe80::aaf9:4bff:fe8b:92a5   te0/0/11.3205🚩️ 
+  1.0.0.3🚩️        0.0.0.255        1    full-DR🚩️           not-required  00:00:37   00h00m07s          fe80::e2d9:e3ff:fedf:34ab   te0/0/11.3205🚩️ 
+
+На atDR1:
+
+  Neighbor ID      Area ID          Pri  State               BFD           Dead Time  Last state change  Address                      Interface 
+  ---------------- ---------------- ---- ------------------- ------------- ---------- ------------------ --------------------------- ---------------- 
+  1.0.0.3🚩️        0.0.0.255        1    full-DR🚩️           not-required  00:00:36   00h00m08s          fe80::e2d9:e3ff:fedf:34ab   te0/1/5.3205🚩️ 
+  1.0.0.2🚩️        0.0.0.255        1    full-BDR🚩️          not-required  00:00:37   00h00m03s          fe80::e2d9:e3ff:feff:488b   te0/1/5.3205🚩️ 
+  
+-------------------------------------------------------------------------------------------------------------
+🔸️ШАГ 5. 
+-------------------------------------------------------------------------------------------------------------
+1. Выключим интерфейсы.
+
+На atAR1:
+
+0/ME5100:atAR1(config)# interface tengigabitethernet 0/0/11.3205
+0/ME5100:atAR1(config-tengigabitethernet-sub)# shutdown 
+0/ME5100:atAR1(config-tengigabitethernet-sub)# commit 
+
+На atAR2:
+
+0/ME5200:atAR2(config)# interface tengigabitethernet 0/0/11.3205
+0/ME5200:atAR2(config-tengigabitethernet-sub)# shutdown 
+0/ME5200:atAR2(config-tengigabitethernet-sub)# commit 
+
+На atDR1:
+
+0/FMC0:atDR1(config)# interface fortygigabitethernet 0/1/5.3205
+0/FMC0:atDR1(config-fortygigabitethernet-sub)# shutdown 
+0/FMC0:atDR1(config-fortygigabitethernet-sub)# commit

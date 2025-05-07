@@ -1,0 +1,292 @@
+-------------------------------------------------------------------------------------------------------------
+🔸️ШАГ 1. 
+-------------------------------------------------------------------------------------------------------------
+1. Проверяем вывод команды show isis interface.
+
+✅️Ожидаемый результат: 
+
+🔹️На atAR1:
+
+🔸️IS-IS Router test interface:
+    
+  Bundle-ether1🚩️, circuit id: 27
+    Last up: 00h15m52s ago
+    BFD Fast detect: IPv4 enabled, IPv6 disabled
+    Operation state: up🚩️
+    Disabled creating neighborhood on this interface: false
+    Hello padding: enabled🚩️
+    Circuit 3 way: enabled🚩️
+    LDP-IGP synchronization: disabled🚩️
+    T1 timer status: stopped
+    Media Type: p2p🚩️
+    Used PDU: 1500🚩️
+    Administrative tag: 0🚩️
+    IPv4 Address Family: enabled
+    IPv6 Address Family: enabled
+    Circuit level: level-2🚩️ (Interface circuit type is level-1-2)
+                                      Level-1           Level-2
+    ID                                0010.0000.0003    0010.0000.0003🚩️
+    Hostname                          none              atAR1
+    Priority                          64                64
+    Metric                            10                10
+    Key-chain                         none🚩️           none🚩️
+    Authentication                    none🚩️           none🚩️
+    Hello Multiplier                  3                 3
+    Hello Timer, sec                  19🚩️             19🚩️
+    Minimum arrival interval, msec    0                 0
+    CSNP retransmit interval, sec     10                10
+    LSP retransmit interval, sec      10                10
+    
+
+🔸️IS-IS Router test interface:
+    
+  Bundle-ether2🚩️, circuit id: 24
+    Last up: 00h15m36s ago
+    BFD Fast detect: IPv4 enabled, IPv6 disabled
+    Operation state: up🚩️
+    Disabled creating neighborhood on this interface: false
+    Hello padding: enabled🚩️
+    Circuit 3 way: enabled🚩️
+    LDP-IGP synchronization: disabled🚩️
+    T1 timer status: stopped
+    Media Type: p2p🚩️
+    Used PDU: 1500🚩️
+    Administrative tag: 0🚩️
+    IPv4 Address Family: enabled🚩️
+    IPv6 Address Family: enabled🚩️
+    Circuit level: level-2🚩️ (Interface circuit type is level-1-2)
+                                      Level-1           Level-2
+    ID                                0010.0000.0003    0010.0000.0003🚩️
+    Hostname                          none              atAR1
+    Priority                          64                64
+    Metric                            10                10
+    Key-chain                         none🚩️           none🚩️
+    Authentication                    none🚩️           none🚩️
+    Hello Multiplier                  3                 3
+    Hello Timer, sec                  6 🚩️             6🚩️
+    Minimum arrival interval, msec    0                 0
+    CSNP retransmit interval, sec     10                10
+    LSP retransmit interval, sec      10                10
+    
+ 
+🔸️IS-IS Router test interface:
+    
+  Tengigabitethernet0/0/11.352🚩️, circuit id: 26
+    Last up: 03h29m26s ago
+    BFD Fast detect: IPv4 disabled, IPv6 disabled
+    Operation state: up🚩️
+    Disabled creating neighborhood on this interface: false
+    Hello padding: enabled🚩️
+    Circuit 3 way: enabled🚩️
+    LDP-IGP synchronization: disabled🚩️
+    T1 timer status: stopped
+    Media Type: p2p🚩️
+    Used PDU: 1500🚩️
+    Administrative tag: 0🚩️
+    IPv4 Address Family: enabled🚩️
+    IPv6 Address Family: disabled🚩️
+    Circuit level: level-2🚩️ (Interface circuit type is level-1-2)
+                                      Level-1           Level-2
+    ID                                0010.0000.0003    0010.0000.0004🚩️
+    Hostname                          none              LABR01
+    Priority                          64                64
+    Metric                            10                10
+    Key-chain                         none🚩️           none🚩️
+    Authentication                    none🚩️           none🚩️
+    Hello Multiplier                  3                 3
+    Hello Timer, sec                  39🚩️             39🚩️
+    Minimum arrival interval, msec    0                 0
+    CSNP retransmit interval, sec     10                10
+    LSP retransmit interval, sec      10                10
+    
+---------------------------------------------------------------------------
+
+🔹️На atAR2:
+
+🔸️IS-IS Router test interface:
+    
+  Bundle-ether1🚩️, circuit id: 49
+    Last up: 00h15m55s ago
+    BFD Fast detect: IPv4 enabled, IPv6 disabled
+    Operation state: up🚩️
+    Disabled creating neighborhood on this interface: false
+    Hello padding: enabled🚩️
+    Circuit 3 way: enabled🚩️
+    LDP-IGP synchronization: disabled🚩️
+    T1 timer status: stopped
+    Media Type: broadcast🚩️
+    Used PDU: 1500🚩️
+    Administrative tag: 0🚩️
+    IPv4 Address Family: enabled🚩️
+    IPv6 Address Family: enabled🚩️
+    Circuit level: level-2🚩️ (Interface circuit type is level-1-2)
+                                      Level-1           Level-2
+    Designated ID                     none              0010.0000.0002🚩️
+    Designated Hostname               none              none
+    Priority                          64                64
+    Metric                            10                10
+    Key-chain                         none🚩️           none🚩️
+    Authentication                    none🚩️           none🚩️
+    Hello Multiplier                  3                 3
+    Hello Timer, sec                  23                23
+    Minimum arrival interval, msec    0                 0
+    CSNP retransmit interval, sec     10                10
+    LSP retransmit interval, sec      10                10
+    
+
+🔸️IS-IS Router test interface:
+    
+  Bundle-ether2🚩️, circuit id: 42
+    Last up: 00h15m38s ago
+    BFD Fast detect: IPv4 enabled, IPv6 disabled
+    Operation state: up🚩️
+    Disabled creating neighborhood on this interface: false
+    Hello padding: enabled🚩️
+    Circuit 3 way: enabled🚩️
+    LDP-IGP synchronization: disabled🚩️
+    T1 timer status: stopped
+    Media Type: p2p🚩️
+    Used PDU: 1500🚩️
+    Administrative tag: 0🚩️
+    IPv4 Address Family: enabled🚩️
+    IPv6 Address Family: enabled🚩️
+    Circuit level: level-2🚩️ (Interface circuit type is level-1-2)
+                                      Level-1           Level-2
+    ID                                0010.0000.0002    0010.0000.0003🚩️
+    Hostname                          none              atAR1
+    Priority                          64                64
+    Metric                            10                10
+    Key-chain                         none🚩️           none🚩️
+    Authentication                    none🚩️           none🚩️
+    Hello Multiplier                  3                 3
+    Hello Timer, sec                  29🚩️             29🚩️
+    Minimum arrival interval, msec    0                 0
+    CSNP retransmit interval, sec     10                10
+    LSP retransmit interval, sec      10                10
+    
+    
+🔸️IS-IS Router test interface:
+    
+  Tengigabitethernet0/0/11.351🚩️, circuit id: 41
+    Last up: 01h08m07s ago
+    BFD Fast detect: IPv4 disabled, IPv6 disabled
+    Operation state: up🚩️
+    Disabled creating neighborhood on this interface: false
+    Hello padding: enabled🚩️
+    Circuit 3 way: enabled🚩️
+    LDP-IGP synchronization: disabled🚩️
+    T1 timer status: stopped
+    Media Type: p2p🚩️
+    Used PDU: 1500🚩️
+    Administrative tag: 0🚩️
+    IPv4 Address Family: enabled🚩️
+    IPv6 Address Family: enabled🚩️
+    Circuit level: level-2🚩️ (Interface circuit type is level-1-2)
+                                      Level-1           Level-2
+    ID                                0010.0000.0002    0010.0000.0004🚩️
+    Hostname                          none              LABR01
+    Priority                          64                64
+    Metric                            10                10
+    Key-chain                         none🚩️           none🚩️
+    Authentication                    none🚩️           none🚩️
+    Hello Multiplier                  3                 3
+    Hello Timer, sec                  25🚩️             25🚩️
+    Minimum arrival interval, msec    0                 0
+    CSNP retransmit interval, sec     10                10
+    LSP retransmit interval, sec      10                10
+    
+----------------------------------------------------------------------------
+
+🔹️На atDR1:
+
+🔸️IS-IS Router test interface:
+    
+  Bundle-ether1🚩️, circuit id: 60
+    Last up: 00h15m54s ago
+    BFD Fast detect: IPv4 disabled, IPv6 disabled
+    Operation state: up🚩️
+    Disabled creating neighborhood on this interface: false
+    Hello padding: enabled🚩️
+    Circuit 3 way: enabled🚩️
+    LDP-IGP synchronization: disabled🚩️
+    T1 timer status: stopped
+    Media Type: p2p🚩️
+    Used PDU: 1500🚩️
+    Administrative tag: 0🚩️
+    IPv4 Address Family: enabled🚩️
+    IPv6 Address Family: enabled🚩️
+    Circuit level: level-2🚩️ (Interface circuit type is level-1-2)
+                                      Level-1           Level-2
+    ID                                0010.0000.0001    0010.0000.0003🚩️
+    Hostname                          none              atAR1
+    Priority                          64                64
+    Metric                            10                10
+    Key-chain                         none🚩️           none🚩️
+    Authentication                    none🚩️           none🚩️
+    Hello Multiplier                  3                 3
+    Hello Timer, sec                  9🚩️              9🚩️
+    Minimum arrival interval, msec    0                 0
+    CSNP retransmit interval, sec     10                10
+    LSP retransmit interval, sec      10                10
+    
+    
+🔸️IS-IS Router test interface:
+    
+  Bundle-ether2🚩️, circuit id: 61
+    Last up: 00h15m55s ago
+    BFD Fast detect: IPv4 enabled, IPv6 disabled
+    Operation state: up🚩️
+    Disabled creating neighborhood on this interface: false
+    Hello padding: enabled🚩️
+    Circuit 3 way: enabled🚩️
+    LDP-IGP synchronization: disabled🚩️
+    T1 timer status: stopped
+    Media Type: broadcast🚩️
+    Used PDU: 1500🚩️
+    Administrative tag: 0🚩️
+    IPv4 Address Family: enabled🚩️
+    IPv6 Address Family: enabled🚩️
+    Circuit level: level-2🚩️ (Interface circuit type is level-1-2)
+                                      Level-1           Level-2
+    Designated ID                     none              0010.0000.0002🚩️
+    Designated Hostname               none              none
+    Priority                          64                64
+    Metric                            10                10
+    Key-chain                         none🚩️           none🚩️
+    Authentication                    none🚩️           none🚩️
+    Hello Multiplier                  3                 3
+    Hello Timer, sec                  3🚩️              3🚩️
+    Minimum arrival interval, msec    0                 0
+    CSNP retransmit interval, sec     10                10
+    LSP retransmit interval, sec      10                10
+    
+    
+🔸️IS-IS Router test interface:
+    
+  Tengigabitethernet0/0/5.350🚩️, circuit id: 8255
+    Last up: 01h18m35s ago
+    BFD Fast detect: IPv4 disabled, IPv6 disabled
+    Operation state: up🚩️
+    Disabled creating neighborhood on this interface: false
+    Hello padding: enabled🚩️
+    Circuit 3 way: enabled🚩️
+    LDP-IGP synchronization: disabled🚩️
+    T1 timer status: stopped
+    Media Type: p2p🚩️
+    Used PDU: 1500🚩️
+    Administrative tag: 0🚩️
+    IPv4 Address Family: enabled🚩️
+    IPv6 Address Family: enabled🚩️
+    Circuit level: level-2🚩️ (Interface circuit type is level-1-2)
+                                      Level-1           Level-2
+    ID                                0010.0000.0001    0010.0000.0004🚩️
+    Hostname                          none              LABR01
+    Priority                          64                64
+    Metric                            10                10
+    Key-chain                         none🚩️           none🚩️
+    Authentication                    none🚩️           none🚩️
+    Hello Multiplier                  3                 3
+    Hello Timer, sec                  5🚩️              5🚩️
+    Minimum arrival interval, msec    0                 0
+    CSNP retransmit interval, sec     10                10
+    LSP retransmit interval, sec      10                10

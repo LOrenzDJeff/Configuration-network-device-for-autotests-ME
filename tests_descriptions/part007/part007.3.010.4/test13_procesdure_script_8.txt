@@ -1,0 +1,321 @@
+-------------------------------------------------------------------------------------------------------------
+В этом разделе выполним проверку редистрибуции маршрутов из протокола ISIS в BGP на основании значения route-type (path-type). 
+Установку атрибутов для импортируемых префиксов не выполнять, т.к. проверено в предыдущих параграфах.
+-------------------------------------------------------------------------------------------------------------
+8.1. Конфигурация
+8.1.1. Удалить правила
+
+Удалить из конфигурации устройств предыдущие правила редистрибуции.
+
+🚩️Для atDR1
+
+configure
+router bgp 64050
+  address-family vpnv4 unicast
+    no redistribution isis CE1
+    no redistribution isis CE2
+  exit
+  address-family vpnv6 unicast
+    no redistribution isis CE1
+    no redistribution isis CE2
+  exit
+exit
+commit
+
+	
+🚩️Для atAR1
+configure
+router bgp 64051
+  address-family vpnv4 unicast
+    no redistribution isis CE1
+    no redistribution isis CE2
+    no redistribution isis CE3
+  exit
+  address-family vpnv6 unicast
+    no redistribution isis CE1
+    no redistribution isis CE2
+    no redistribution isis CE3
+  exit
+exit
+commit
+
+	
+🚩️Для atAR2
+configure
+router bgp 64052
+  address-family vpnv4 unicast
+    no redistribution isis CE1-CE3
+    no redistribution isis CE2
+  exit
+  address-family vpnv6 unicast
+    no redistribution isis CE1-CE3
+    no redistribution isis CE2
+  exit
+exit
+commit
+
+8.1.2. Добавить новые правила
+
+🚩️Для atDR1
+
+router bgp 64050
+  address-family vpnv4 unicast
+    redistribution isis l2-internal
+      match path-type isis-level2-internal
+    exit
+  exit
+  address-family vpnv6 unicast
+    redistribution isis l2-external
+      match path-type isis-level2-external
+    exit
+    redistribution isis l2-internal
+      match path-type isis-level2-internal
+    exit
+  exit
+exit
+
+	
+🚩️Для atAR1
+router bgp 64051
+  address-family vpnv4 unicast
+    redistribution isis l1-internal
+      match path-type isis-level2-internal
+    exit
+  exit
+  address-family vpnv6 unicast
+    redistribution isis l1-internal
+      match path-type isis-level2-internal
+    exit
+  exit
+exit
+
+
+	
+🚩️Для atAR2
+
+router bgp 64052
+  address-family vpnv4 unicast
+    redistribution isis tag_isis
+      match admin-tag 100
+    exit
+  exit
+  address-family vpnv6 unicast
+    redistribution isis tag_isis
+      match admin-tag 100
+    exit
+  exit
+exit
+
+
+8.2. Проверка количества маршрутов
+
+Для устройств atDR1, atAR1 и atAR2 выполнить команды
+
+     show bgp vpnv4 unicast
+    show bgp vpnv6 unicast,
+
+
+проконтролировать для каждого из устройств по каждой команде вывод количества префиксов (Total entries) в соответствии с таблицей ниже. 
+Для примера приведён вывод всех show команд на всех роутерах.
+
+🚩️для atDR1:
+
+0/FMC0:atDR1# show bgp vpnv4 unicast 
+Fri Aug  2 14:17:26 2024
+  BGP router identifier 10.0.0.50, local AS number 64050 
+  Graceful Restart is disabled
+  BGP table state: active
+  
+  Status codes: d damped, h history, > best, b backup, S stale, * active, u untracked, i internal
+  Origin codes: i igp, e egp, ? incomplete
+  
+  Route Distinguisher        IP Prefix             Next hop         Metric  Rcvd/Lcl label  LocPrf  Weight  Path 
+  -------------------------- --------------------- ---------------- ------- --------------- ------- ------- ----- 
+  u>   123:123               6.6.6.132/32                           0       -/19            100     32768   ? 
+  u>   123:123               60.60.60.0/24                          0       -/19            100     32768   ? 
+  u>   123:123               192.168.113.0/24                       0       -/19            100     32768   ? 
+  u>   223:223               10.0.0.52/32                           0       -/17            100     32768   ? 
+  u>   223:223               172.22.2.0/24                          0       -/17            100     32768   ? 
+
+  Total entries: 5
+0/FMC0:atDR1#
+
+0/FMC0:atDR1# show bgp vpnv6 unicast 
+Fri Aug  2 14:17:31 2024
+  BGP router identifier 10.0.0.50, local AS number 64050 
+  Graceful Restart is disabled
+  BGP table state: active
+  
+  Status codes: d damped, h history, > best, b backup, S stale, * active, u untracked, i internal
+  Origin codes: i igp, e egp, ? incomplete
+  
+  Route Distinguisher        IP Prefix                                    Next hop                                 Metric  Rcvd/Lcl label  LocPrf  Weight  Path 
+  -------------------------- -------------------------------------------- ---------------------------------------- ------- --------------- ------- ------- ----- 
+  u>   123:123               2001:60:60::/64                                                                       0       -/19            100     32768   ? 
+  u>   123:123               2001:192:168:113::/64                                                                 0       -/19            100     32768   ? 
+  u>   123:123               2003:0:6:6::132/128                                                                   0       -/19            100     32768   ? 
+  u>   223:223               2001:172:22:2::/64                                                                    0       -/17            100     32768   ? 
+  u>   223:223               2003:0:52:52::52/128                                                                  0       -/17            100     32768   ? 
+
+  Total entries: 5
+0/FMC0:atDR1#
+
+
+🚩️для atAR1:
+
+0/ME5100:atAR1# show bgp vpnv4 unicast 
+Fri Aug  2 13:26:23 2024
+  BGP router identifier 10.0.0.51, local AS number 64051 
+  Graceful Restart is disabled
+  BGP table state: active
+  
+  Status codes: d damped, h history, > best, b backup, S stale, * active, u untracked, i internal
+  Origin codes: i igp, e egp, ? incomplete
+  
+  Route Distinguisher        IP Prefix             Next hop         Metric  Rcvd/Lcl label  LocPrf  Weight  Path 
+  -------------------------- --------------------- ---------------- ------- --------------- ------- ------- ----- 
+  u>   123:123               7.7.7.132/32                           0       -/18            100     32768   ? 
+  u>   123:123               70.70.70.0/24                          0       -/18            100     32768   ? 
+  u>   123:123               192.168.114.0/24                       0       -/18            100     32768   ? 
+  u>   223:223               4.4.4.132/32                           0       -/17            100     32768   ? 
+  u>   223:223               40.40.40.0/24                          0       -/17            100     32768   ? 
+  u>   223:223               192.168.109.0/24                       0       -/17            100     32768   ? 
+  u>   323:323               10.0.0.50/32                           0       -/16            100     32768   ? 
+  u>   323:323               172.22.1.0/24                          0       -/16            100     32768   ? 
+
+  Total entries: 8
+0/ME5100:atAR1#
+
+0/ME5100:atAR1# show bgp vpnv6 unicast 
+Fri Aug  2 13:26:40 2024
+  BGP router identifier 10.0.0.51, local AS number 64051 
+  Graceful Restart is disabled
+  BGP table state: active
+  
+  Status codes: d damped, h history, > best, b backup, S stale, * active, u untracked, i internal
+  Origin codes: i igp, e egp, ? incomplete
+  
+  Route Distinguisher        IP Prefix                                    Next hop                                 Metric  Rcvd/Lcl label  LocPrf  Weight  Path 
+  -------------------------- -------------------------------------------- ---------------------------------------- ------- --------------- ------- ------- ----- 
+  u>   323:323               2001:172:22:1::/64                                                                    0       -/16            100     32768   ? 
+  u>   323:323               2003:0:50:50::50/128                                                                  0       -/16            100     32768   ? 
+
+  Total entries: 2
+0/ME5100:atAR1#
+
+
+🚩️для atAR2:
+
+0/ME5200:atAR2# show bgp vpnv4 unicast 
+Fri Aug  2 14:08:04 2024
+  BGP router identifier 10.0.0.52, local AS number 64052 
+  Graceful Restart is disabled
+  BGP table state: active
+  
+  Status codes: d damped, h history, > best, b backup, S stale, * active, u untracked, i internal
+  Origin codes: i igp, e egp, ? incomplete
+  
+  Route Distinguisher        IP Prefix             Next hop         Metric  Rcvd/Lcl label  LocPrf  Weight  Path 
+  -------------------------- --------------------- ---------------- ------- --------------- ------- ------- ----- 
+  u>   123:123               10.0.0.4/32                            0       -/16            100     32768   ? 
+
+  Total entries: 1
+0/ME5200:atAR2# 
+
+0/ME5200:atAR2# show bgp vpnv6 unicast 
+Fri Aug  2 14:08:07 2024
+  BGP router identifier 10.0.0.52, local AS number 64052 
+  Graceful Restart is disabled
+  BGP table state: active
+  
+  Status codes: d damped, h history, > best, b backup, S stale, * active, u untracked, i internal
+  Origin codes: i igp, e egp, ? incomplete
+  
+  Route Distinguisher        IP Prefix                                    Next hop                                 Metric  Rcvd/Lcl label  LocPrf  Weight  Path 
+  -------------------------- -------------------------------------------- ---------------------------------------- ------- --------------- ------- ------- ----- 
+  u>   123:123               2003:0:10:10::4/128                                                                   0       -/16            100     32768   ? 
+
+  Total entries: 1
+0/ME5200:atAR2#
+
+
+Значения "Total entries" по каждому устройству:
+-----------------------------------
+   show bgp vpnv4 unicast         |
+   show bgp vpnv6 unicast         | 
+-----------------------------------
+Маршрутизатор  | Total entries    |
+atDR1          |       5          |
+-----------------------------------
+               |    vpnv4 - 8     |
+atAR1          |    vpnv6 - 2     |
+-----------------------------------
+atAR2          |        1         |
+-----------------------------------
+
+8.3. Проверка префиксов
+
+Для устройств atDR1, atAR1 и atAR2 выполнить команды
+
+    show bgp vpnv4 unicast
+    show bgp vpnv6 unicast,
+
+проконтролировать для каждого из устройств по каждой команде наличие конкретных префиксов (IP Prefix) в соответствии с таблицей ниже.
+
+
+Проверить наличие следующих префиксов "IP Prefix" в выводе show команд по каждому устройству:
+-----------------------------------
+     show bgp vpnv4 unicast       |
+-----------------------------------
+Маршрутизатор   |  IP Prefix      |
+-----------------------------------
+atDR1	        |6.6.6.132/32     |
+                |60.60.60.0/24    |
+                |192.168.113.0/24 |
+                |10.0.0.52/32     |
+                |172.22.2.0/24    |
+-----------------------------------
+atAR1	        |7.7.7.132/32     |
+                |70.70.70.0/24    |
+                |192.168.114.0/24 |
+                |4.4.4.132/32     |
+                |40.40.40.0/24    | 
+                |192.168.109.0/24 |
+                |10.0.0.50/32     |
+                |172.22.1.0/24    |
+-----------------------------------
+atAR2           |10.0.0.4/32      |
+-----------------------------------
+     show bgp vpnv6 unicast       |
+-----------------------------------
+Маршрутизатор |    IP Prefix      |
+-----------------------------------
+atDR1         |2003:0:6:6::132/128   |
+              |2001:192:168:113::/64 |
+              |2001:60:60::/64       |
+              |2003:0:52:52::52/128  | 
+              |2001:172:22:2::/64    |
+-------------------------------------  
+atAR1         |2001:172:22:1::/64    |
+              |2003:0:50:50::50/128  |
+-------------------------------------|
+atAR2         |2003:0:10:10::4/128   |
+-------------------------------------
+
+9. Разобрать BGP
+🚩️для atDR1:
+configure 
+no router bgp 64050
+commit
+
+	
+🚩️для atAR1:
+configure 
+no router bgp 64051
+commit 
+
+	
+🚩️для atAR2:
+configure 
+no router bgp 64052
+commit

@@ -1,0 +1,185 @@
+-------------------------------------------------------------------------------------------------------------
+🔸️ШАГ 1. 
+-------------------------------------------------------------------------------------------------------------
+1. Анализируем ISIS Hello пакеты в VRF.
+
+✅️Ожидаемый результат: 
+
+🔹️На atAR1:
+
+🔸️ Tengigabitethernet0/0/11.10043
+###[ Ethernet ]### 
+  dst       = 09:00:2b:00:00:05
+  src       = e0:d9:e3:df:35:8b
+  type      = n_802_1Q
+###[ 802.1Q ]### 
+     prio      = 7
+     id        = 0
+     vlan      = 100
+     type      = n_802_1Q
+###[ 802.1Q ]### 
+        prio      = 7
+        id        = 0
+        vlan      = 43
+        type      = 0x5dc
+###[ LLC ]### 
+           dsap      = 0xfe
+           ssap      = 0xfe
+           ctrl      = 3
+###[ ISIS Common Header ]### 
+              nlpid     = ISO 10589 IS-IS
+              hdrlen    = 20
+              version   = 1
+              idlen     = 6
+              pdutype   = P2P Hello🚩️
+              pduversion= 1
+              hdrreserved= 0
+              maxareaaddr= 3
+###[ ISIS Point-to-Point Hello PDU ]### 
+                 circuittype= L2
+                 sourceid  = '0030.0000.0001'🚩️
+                 holdingtime= 72🚩️
+                 pdulength = 1497🚩️
+                 localcircuitid= 0
+                 \tlvs      \
+                  |###[ ISIS Protocols Supported TLV ]### 
+                  |  type      = Protocols Supported TLV
+                  |  len       = 1
+                  |  nlpids    = [IPv4]
+                  |###[ ISIS Area TLV ]### 
+                  |  type      = Area TLV
+                  |  len       = 4
+                  |  \areas     \
+                  |   |###[ ISIS Area Entry ]### 
+                  |   |  arealen   = 3
+                  |   |  areaid    = '49.0003'
+                  |###[ ISIS P2P Adjacency State TLV ]### 
+                  |  type      = Point-to-Point Three-Way Adjacency TLV
+                  |  len       = 15
+                  |  state     = Up
+                  |  extlocalcircuitid= 28
+                  |  neighboursystemid= '0030.0000.0003'🚩️
+                  |  neighbourextlocalcircuitid= 1
+            
+---------------------------------------------------------------------------
+
+🔹️На atAR2:
+
+🔸️ Tengigabitethernet0/0/11.10042
+###[ Ethernet ]### 
+  dst       = 01:80:c2:00:00:14
+  src       = e0:d9:e3:df:6e:8b
+  type      = n_802_1Q
+###[ 802.1Q ]### 
+     prio      = 7
+     id        = 0
+     vlan      = 100
+     type      = n_802_1Q
+###[ 802.1Q ]### 
+        prio      = 7
+        id        = 0
+        vlan      = 42
+        type      = 0x5dc
+###[ LLC ]### 
+           dsap      = 0xfe
+           ssap      = 0xfe
+           ctrl      = 3
+###[ ISIS Common Header ]### 
+              nlpid     = ISO 10589 IS-IS
+              hdrlen    = 27
+              version   = 1
+              idlen     = 6
+              pdutype   = L1 LAN Hello🚩️
+              pduversion= 1
+              hdrreserved= 0
+              maxareaaddr= 3
+###[ ISIS L1 LAN Hello PDU ]### 
+                 circuittype= L1
+                 sourceid  = '0020.0000.0001'🚩️
+                 holdingtime= 42🚩️
+                 pdulength = 1497🚩️
+                 priority  = 64
+                 lanid     = '0020.0000.0001.01'
+                 \tlvs      \
+                  |###[ ISIS Protocols Supported TLV ]### 
+                  |  type      = Protocols Supported TLV
+                  |  len       = 1
+                  |  nlpids    = [IPv4]
+                  |###[ ISIS Area TLV ]### 
+                  |  type      = Area TLV
+                  |  len       = 4
+                  |  \areas     \
+                  |   |###[ ISIS Area Entry ]### 
+                  |   |  arealen   = 3
+                  |   |  areaid    = '49.0002'
+                  |###[ ISIS IS Neighbour TLV ]### 
+                  |  type      = IS Neighbour TLV
+                  |  len       = 6
+                  |  neighbours= [de:ad:be:af:00:42]🚩️
+                  |###[ ISIS Generic TLV ]### 
+                  |  type      = 211
+                  |  len       = 3
+                  |  val       = '\x00\x00\x00'
+                  |###[ ISIS IP Interface Address TLV ]### 
+                  |  type      = IP Interface Address TLV
+                  |  len       = 4
+                  |  addresses = [192.168.42.1]
+
+----------------------------------------------------------------------------
+
+🔹️На atDR1:
+
+🔸️ Tengigabitethernet0/0/5.10041
+###[ Ethernet ]### 
+  dst       = 09:00:2b:00:00:05
+  src       = 68:13:e2:d8:16:85
+  type      = n_802_1Q
+###[ 802.1Q ]### 
+     prio      = 7
+     id        = 0
+     vlan      = 100
+     type      = n_802_1Q
+###[ 802.1Q ]### 
+        prio      = 7
+        id        = 0
+        vlan      = 41
+        type      = 0x5dc
+###[ LLC ]### 
+           dsap      = 0xfe
+           ssap      = 0xfe
+           ctrl      = 3
+###[ ISIS Common Header ]### 
+              nlpid     = ISO 10589 IS-IS
+              hdrlen    = 20
+              version   = 1
+              idlen     = 6
+              pdutype   = P2P Hello🚩️
+              pduversion= 1
+              hdrreserved= 0
+              maxareaaddr= 3
+###[ ISIS Point-to-Point Hello PDU ]### 
+                 circuittype= L1
+                 sourceid  = '0040.0000.0004'🚩️
+                 holdingtime= 12🚩️
+                 pdulength = 1497🚩️
+                 localcircuitid= 0
+                 \tlvs      \
+                  |###[ ISIS Protocols Supported TLV ]### 
+                  |  type      = Protocols Supported TLV
+                  |  len       = 1
+                  |  nlpids    = [IPv4]
+                  |###[ ISIS Area TLV ]### 
+                  |  type      = Area TLV
+                  |  len       = 4
+                  |  \areas     \
+                  |   |###[ ISIS Area Entry ]### 
+                  |   |  arealen   = 3
+                  |   |  areaid    = '49.0004'
+                  |###[ ISIS P2P Adjacency State TLV ]### 
+                  |  type      = Point-to-Point Three-Way Adjacency TLV
+                  |  len       = 15
+                  |  state     = Up
+                  |  extlocalcircuitid= 8266
+                  |  neighboursystemid= '0040.0000.0001'🚩️
+                  |  neighbourextlocalcircuitid= 1
+

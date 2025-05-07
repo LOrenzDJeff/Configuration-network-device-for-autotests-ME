@@ -8,9 +8,9 @@ from conftest import *
 @pytest.mark.dependency(depends=["load_config003_dut1","load_config003_dut2","load_config003_dut3"],scope='session')
 @pytest.mark.parametrize("DUT",
 			[
-			 pytest.param("DUT1"), 
- 			 pytest.param("DUT2"), 
- 			 pytest.param("DUT3")
+			 pytest.param(DUT1), 
+ 			 pytest.param(DUT2), 
+ 			 pytest.param(DUT3)
 			]
 			)
 									  
@@ -18,10 +18,9 @@ from conftest import *
 def test_show_lldp_interface_part3 (DUT): 
     allure.attach.file('./network-schemes/part3_show_lldp_interface.png','Что анализируется в выводе команды:', attachment_type=allure.attachment_type.PNG)
 # В данном тесте будем проверять вывод команды 'show lldp interface'
-    router = setting_ME(DUT)
     conn = Telnet()
-    acc = Account(router.login , router.password)
-    conn.connect(router.host_ip)
+    acc = Account(DUT.login , DUT.password)
+    conn.connect(DUT.host_ip)
     conn.login(acc)
     conn.set_prompt('#')
     conn.execute('terminal datadump')
@@ -30,7 +29,7 @@ def test_show_lldp_interface_part3 (DUT):
     arr_name = [] # массив параметров
     arr_value = [] # массив значений параметров 
     
-    for interface in [router.neighor1["full_interface"][0], router.neighor1["full_interface"][1], router.neighor2["full_interface"][0],router.neighor2["full_interface"][1]]:
+    for interface in [DUT.neighor1["full_interface"][0], DUT.neighor1["full_interface"][1], DUT.neighor2["full_interface"][0],DUT.neighor2["full_interface"][1]]:
         arr_name.clear()
         arr_value.clear()
         conn.execute('show lldp interface %s'%interface) 

@@ -9,9 +9,17 @@ from conftest import *
 @pytest.mark.mes_init_config0
 @pytest.mark.parametrize("DUT",
 			[ DUT5 ])
-#@pytest.mark.usefixtures('mes_init_configuration')
-@pytest.mark.usefixtures('mes_init_reboot')
 def test_mes_init_config_reboot_part0(DUT): 
 # В данном тесте будем загружать начальную конфигурацию на MES LABS01 для тестов из Части 5 документа     
     DUT.init_reboot()
-    DUT.connection()
+    conn = Telnet()
+    acc = Account(DUT.login, DUT.password)
+    conn.connect(DUT.host_ip)
+    conn.login(acc)
+    conn.set_prompt(DUT.hardware)
+    conn.execute('show system information')
+    conn.send('quit\r')
+    conn.close()
+    print("Перезпуск прошёл успешно")
+
+    

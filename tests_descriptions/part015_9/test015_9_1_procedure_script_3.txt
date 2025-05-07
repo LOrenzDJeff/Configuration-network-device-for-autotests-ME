@@ -1,0 +1,78 @@
+-------------------------------------------------------------------------------------------------------------
+🔸️ШАГ 1. 
+-------------------------------------------------------------------------------------------------------------
+1. Проверяем вывод команды show interface tunnel-ip 2.
+
+✅️Ожидаемый результат: 
+
+🔹️На atAR1:
+
+  Tunnel-ip2 is up🚩️
+    Interface index is 87
+    Hardware is Tunnel-ip
+    Encapsulation: GRE🚩️
+    Tunnel source 2.0.0.3🚩️, destination 2.0.0.1🚩️
+    Link is up for 0 hours, 0 minutes, 1 seconds
+    Description is not set
+    IPv4 address is 10.0.2.1/30🚩️
+    No IPv6 address assigned
+    Interface is bound to VRF default
+    Interface is in layer3 forwarding mode
+    Interface MTU is 1400
+    Tunnel statistics is not enabled
+
+🔹️На atDR1:
+
+  Tunnel-ip2 is up🚩️
+    Interface index is 8318
+    Hardware is Tunnel-ip
+    Encapsulation: GRE🚩️
+    Tunnel source 2.0.0.1🚩️, destination 2.0.0.3🚩️
+    Link is up for 0 hours, 0 minutes, 1 seconds
+    Description is not set
+    IPv4 address is 10.0.2.2/30🚩️
+    No IPv6 address assigned
+    Interface is bound to VRF default
+    Interface is in layer3 forwarding mode
+    Interface MTU is 1400
+    Tunnel statistics is not enabled
+    
+-------------------------------------------------------------------------------------------------------------
+🔸️ШАГ 2. 
+-------------------------------------------------------------------------------------------------------------
+1. Проверяем вывод команды show route | include tu2.
+
+✅️Ожидаемый результат: 
+
+🔹️На atAR1:
+
+  S      192.168.41.0/24🚩️    via 10.0.2.2🚩️ [1/1], 00h00m01s, tu2🚩️
+
+
+🔹️На atDR1:
+
+  S      192.168.43.0/24🚩️    via 10.0.2.1🚩️ [1/1], 00h00m02s, tu2🚩️
+  
+-------------------------------------------------------------------------------------------------------------
+🔸️ШАГ 3. 
+-------------------------------------------------------------------------------------------------------------
+1. Проверяем связность между 192.168.41.2 192.168.43.2.
+
+✅️Ожидаемый результат: 
+
+🔹️ping vrf vrf41 192.168.43.2 source ip 192.168.41.2
+PING 192.168.43.2 (192.168.43.2) from 192.168.41.2 : 56 bytes of data.
+!!!!!
+--- 192.168.43.2 ping statistics ---
+5 packets transmitted, 5 received, 0%🚩️ packet loss, time 4005ms
+rtt min/avg/max/mdev = 0.125/0.144/0.170/0.018 ms
+
+
+🔹️ping vrf vrf43 192.168.41.2 source ip 192.168.43.2
+PING 192.168.41.2 (192.168.41.2) from 192.168.43.2 : 56 bytes of data.
+!!!!!
+--- 192.168.41.2 ping statistics ---
+5 packets transmitted, 5 received, 0%🚩️ packet loss, time 4005ms
+rtt min/avg/max/mdev = 0.131/0.144/0.169/0.015 ms
+  
+

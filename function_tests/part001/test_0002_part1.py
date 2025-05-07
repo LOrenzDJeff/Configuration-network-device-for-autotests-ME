@@ -11,12 +11,12 @@ from conftest import *
 			[
 			 pytest.param(DUT4, marks=pytest.mark.dependency(name="load_config001_dut4"))
 			]
-        )			
+        )
 
 def test_junos_init_config_upload_part1 (DUT): 
 # В данном тесте будем загружать начальную конфигурацию на Junos LABR01 для тестов из Части 1 документа     
     DUT.connection()
-    DUT.startup()
+    DUT.interfaces()
     DUT.ipv4()
     DUT.close()
     print("Загрузка конфигурации на %s прошла успешно!"%DUT.hostname)

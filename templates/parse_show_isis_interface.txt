@@ -1,6 +1,6 @@
 Value Top1 (Interface\s+Oper\s+Last Up\s+Adjcs\s+Metric\s+Priority\s+PDU\s+Mode\s+BFD)
 Value Top2 (State\s+L1/L2\s+L1/L2\s+L1/L2\s+IPv4/v6\s+)
-Value int_name (bu[12]|te0/1/5.350|te0/0/11.35[12]|lo10)
+Value int_name (bu[12]|te0/1/5.350|te0/0/11.35[12]|lo10|te0/0/11.\d+|te0/0/5.\d+)
 Value int_oper_state (up|down)
 Value int_last_up (\d+[dh]\d+[hm]\d+[ms]|never)
 Value int_l1_adj (-|\d+)

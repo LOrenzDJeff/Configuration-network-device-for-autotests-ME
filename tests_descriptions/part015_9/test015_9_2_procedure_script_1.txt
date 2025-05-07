@@ -1,0 +1,214 @@
+-------------------------------------------------------------------------------------------------------------
+🔸️ШАГ 1. 
+-------------------------------------------------------------------------------------------------------------
+1. Проверяем вывод команды show interface tunnel-ip 3.
+
+✅️Ожидаемый результат: 
+
+🔹️На atAR1:
+
+Mon Apr  7 09:08:49 2025
+  Tunnel-ip3 is up🚩️
+    Interface index is 90
+    Hardware is Tunnel-ip
+    Encapsulation: GRE🚩️
+    Tunnel source 1.0.0.3🚩️, destination 1.0.0.1🚩️
+    Link is up for 0 hours, 0 minutes, 7 seconds
+    Description is not set
+    IPv4 address is 10.0.3.1/30🚩️
+    No IPv6 address assigned
+    Interface is bound to VRF default
+    Interface is in layer3 forwarding mode
+    Interface MTU is 1400
+    Tunnel statistics is not enabled
+
+🔹️На atDR1:
+
+  Tunnel-ip3 is up🚩️
+    Interface index is 8320
+    Hardware is Tunnel-ip
+    Encapsulation: GRE🚩️
+    Tunnel source 1.0.0.1🚩️, destination 1.0.0.3🚩️
+    Link is up for 0 hours, 0 minutes, 7 seconds
+    Description is not set
+    IPv4 address is 10.0.3.2/30🚩️
+    No IPv6 address assigned
+    Interface is bound to VRF default
+    Interface is in layer3 forwarding mode
+    Interface MTU is 1400
+    Tunnel statistics is not enabled
+    
+-------------------------------------------------------------------------------------------------------------
+🔸️ШАГ 2. 
+-------------------------------------------------------------------------------------------------------------
+1. Проверяем вывод команды show ospfv2 neighbors.
+
+✅️Ожидаемый результат: 
+
+🔹️На atAR1:
+
+  Routing Process: ce, ID 1.0.0.3
+    Router is not an area border router
+ 
+  Neighbor ID      Area ID          Pri  State               BFD           Dead Time  Last state change  Address          Interface 
+  ---------------- ---------------- ---- ------------------- ------------- ---------- ------------------ ---------------- ---------- 
+  0.0.0.43         0.0.0.0          128  full-DR             not-required  00:00:32   00h11m57s          192.168.43.2     te0/0/11.10043 
+  1.0.0.1🚩️        0.0.0.0🚩️       1    full-BDR🚩️          not-required  00:00:37   00h00m02s          10.0.3.2🚩️         tu3🚩️ 
+  
+  Routing Process: pe, ID 1.0.0.3
+    Router is not an area border router
+ 
+  Neighbor ID      Area ID          Pri  State               BFD           Dead Time  Last state change  Address          Interface 
+  ---------------- ---------------- ---- ------------------- ------------- ---------- ------------------ ---------------- ---------- 
+  1.0.0.1          0.0.0.0          1    full-BDR            not-required  00:00:32   00h00m52s          192.168.55.2     bu1 
+  1.0.0.2          0.0.0.0          1    full-BDR            not-required  00:00:30   00h00m57s          192.168.55.22    bu2 
+
+
+🔹️На atDR1:
+
+  Routing Process: ce, ID 1.0.0.1
+    Router is not an area border router
+ 
+  Neighbor ID      Area ID          Pri  State               BFD           Dead Time  Last state change  Address          Interface 
+  ---------------- ---------------- ---- ------------------- ------------- ---------- ------------------ ---------------- ---------- 
+  0.0.0.41         0.0.0.0          128  full-DR             not-required  00:00:31   00h11m58s          192.168.41.2     te0/0/5.10041 
+  1.0.0.3🚩️        0.0.0.0🚩️       1    full-DR🚩️           not-required  00:00:37   00h00m02s          10.0.3.1🚩️         tu3🚩️ 
+  
+  Routing Process: pe, ID 1.0.0.1
+    Router is not an area border router
+ 
+  Neighbor ID      Area ID          Pri  State               BFD           Dead Time  Last state change  Address          Interface 
+  ---------------- ---------------- ---- ------------------- ------------- ---------- ------------------ ---------------- ---------- 
+  1.0.0.3          0.0.0.0          1    full-DR             not-required  00:00:37   00h00m52s          192.168.55.1     bu1 
+  1.0.0.2          0.0.0.0          1    full-DR             not-required  00:00:30   00h00m54s          192.168.55.6     bu2 
+  
+-------------------------------------------------------------------------------------------------------------
+🔸️ШАГ 3. 
+-------------------------------------------------------------------------------------------------------------
+1. Проверяем вывод команды show route | include tu3.
+
+✅️Ожидаемый результат: 
+
+🔹️atAR1:
+
+ O🚩️ EA   192.168.41.0/24🚩️    via 10.0.3.2🚩️ [30/2], 00h00m03s, tu3🚩️
+
+🔹️atDR1:
+  
+ O🚩️ EA   192.168.43.0/24🚩️    via 10.0.3.1🚩️ [30/2], 00h00m03s, tu3🚩️
+ 
+-------------------------------------------------------------------------------------------------------------
+🔸️ШАГ 4. 
+-------------------------------------------------------------------------------------------------------------
+1. Проверяем связность между 192.168.41.2 192.168.43.2.
+
+✅️Ожидаемый результат: 
+
+🔹️ping vrf vrf41 192.168.43.2 source ip 192.168.41.2
+PING 192.168.43.2 (192.168.43.2) from 192.168.41.2 : 56 bytes of data.
+!!!!!
+--- 192.168.43.2 ping statistics ---
+5 packets transmitted, 5 received, 0%🚩️ packet loss, time 4005ms
+rtt min/avg/max/mdev = 0.125/0.144/0.170/0.018 ms
+
+
+🔹️ping vrf vrf43 192.168.41.2 source ip 192.168.43.2
+PING 192.168.41.2 (192.168.41.2) from 192.168.43.2 : 56 bytes of data.
+!!!!!
+--- 192.168.41.2 ping statistics ---
+5 packets transmitted, 5 received, 0%🚩️ packet loss, time 4005ms
+rtt min/avg/max/mdev = 0.131/0.144/0.169/0.015 ms
+
+-------------------------------------------------------------------------------------------------------------
+🔸️ШАГ 5. 
+-------------------------------------------------------------------------------------------------------------
+1. Отправляем интерфейс bu1 на atAR1 в shutdown.
+
+0/ME2001:atAR1# configure 
+
+0/ME2001:atAR1(config)# interface bu1 
+
+0/ME2001:atAR1(config-bundle-ether)# shutdown 
+
+0/ME2001:atAR1(config-bundle-ether)# commit
+
+-------------------------------------------------------------------------------------------------------------
+🔸️ШАГ 6. 
+-------------------------------------------------------------------------------------------------------------
+1. Проверяем вывод команды show ospfv2 neighbors.
+
+✅️Ожидаемый результат: 
+
+🔹️На atAR1:
+
+  Routing Process: ce, ID 1.0.0.3
+    Router is not an area border router
+ 
+  Neighbor ID      Area ID          Pri  State               BFD           Dead Time  Last state change  Address          Interface 
+  ---------------- ---------------- ---- ------------------- ------------- ---------- ------------------ ---------------- ---------- 
+  0.0.0.43         0.0.0.0          128  full-DR             not-required  00:00:32   00h11m57s          192.168.43.2     te0/0/11.10043 
+  1.0.0.1🚩️        0.0.0.0🚩️       1    full-BDR🚩️          not-required  00:00:37   00h00m02s          10.0.3.2🚩️         tu3🚩️ 
+  
+  Routing Process: pe, ID 1.0.0.3
+    Router is not an area border router
+ 
+  Neighbor ID      Area ID          Pri  State               BFD           Dead Time  Last state change  Address          Interface 
+  ---------------- ---------------- ---- ------------------- ------------- ---------- ------------------ ---------------- ---------- 
+  1.0.0.1          0.0.0.0          1    full-BDR            not-required  00:00:32   00h00m52s          192.168.55.2     bu1 
+  1.0.0.2          0.0.0.0          1    full-BDR            not-required  00:00:30   00h00m57s          192.168.55.22    bu2 
+
+
+🔹️На atDR1:
+
+  Routing Process: ce, ID 1.0.0.1
+    Router is not an area border router
+ 
+  Neighbor ID      Area ID          Pri  State               BFD           Dead Time  Last state change  Address          Interface 
+  ---------------- ---------------- ---- ------------------- ------------- ---------- ------------------ ---------------- ---------- 
+  0.0.0.41         0.0.0.0          128  full-DR             not-required  00:00:31   00h11m58s          192.168.41.2     te0/0/5.10041 
+  1.0.0.3🚩️        0.0.0.0🚩️       1    full-DR🚩️           not-required  00:00:37   00h00m02s          10.0.3.1🚩️         tu3🚩️ 
+  
+  Routing Process: pe, ID 1.0.0.1
+    Router is not an area border router
+ 
+  Neighbor ID      Area ID          Pri  State               BFD           Dead Time  Last state change  Address          Interface 
+  ---------------- ---------------- ---- ------------------- ------------- ---------- ------------------ ---------------- ---------- 
+  1.0.0.3          0.0.0.0          1    full-DR             not-required  00:00:37   00h00m52s          192.168.55.1     bu1 
+  1.0.0.2          0.0.0.0          1    full-DR             not-required  00:00:30   00h00m54s          192.168.55.6     bu2 
+  
+-------------------------------------------------------------------------------------------------------------
+🔸️ШАГ 7. 
+-------------------------------------------------------------------------------------------------------------
+1. Проверяем вывод команды show route | include tu3.
+
+✅️Ожидаемый результат: 
+
+🔹️atAR1:
+
+ O🚩️ EA   192.168.41.0/24🚩️    via 10.0.3.2🚩️ [30/2], 00h00m03s, tu3🚩️
+
+🔹️atDR1:
+  
+ O🚩️ EA   192.168.43.0/24🚩️    via 10.0.3.1🚩️ [30/2], 00h00m03s, tu3🚩️
+ 
+-------------------------------------------------------------------------------------------------------------
+🔸️ШАГ 8. 
+-------------------------------------------------------------------------------------------------------------
+1. Проверяем связность между 192.168.41.2 192.168.43.2.
+
+✅️Ожидаемый результат: 
+
+🔹️ping vrf vrf41 192.168.43.2 source ip 192.168.41.2
+PING 192.168.43.2 (192.168.43.2) from 192.168.41.2 : 56 bytes of data.
+!!!!!
+--- 192.168.43.2 ping statistics ---
+5 packets transmitted, 5 received, 0%🚩️ packet loss, time 4005ms
+rtt min/avg/max/mdev = 0.125/0.144/0.170/0.018 ms
+
+
+🔹️ping vrf vrf43 192.168.41.2 source ip 192.168.43.2
+PING 192.168.41.2 (192.168.41.2) from 192.168.43.2 : 56 bytes of data.
+!!!!!
+--- 192.168.41.2 ping statistics ---
+5 packets transmitted, 5 received, 0%🚩️ packet loss, time 4005ms
+rtt min/avg/max/mdev = 0.131/0.144/0.169/0.015 ms

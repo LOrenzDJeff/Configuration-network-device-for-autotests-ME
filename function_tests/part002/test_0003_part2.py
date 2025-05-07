@@ -42,14 +42,28 @@ def test_syslog_part2(DUT):
     conn3 = SSH2()
     acc3 = Account(DUT.server['login'], DUT.server['password'])
     conn3.connect(DUT.server['ip'])   # Подключаемся к syslog-серверу
+    conn3.set_prompt('$')
     conn3.login(acc3)
-    conn3.set_prompt('meatests') # Укажем промпт явно, иначе на следующем шаге частенько excecption timeout возникает.
+    conn3.set_prompt(':')
+    conn3.execute('sudo su')
+    conn3.set_prompt('#')
+    conn3.execute(DUT.server['password'])
     conn3.execute('grep -e "%s" /var/log/me5000/%s/me5k.log'%(cmd,DUT.host_ip))
     resp1 = conn3.response
-    print("\nРезультат парсинга  команды grep -e - %s\n"%resp1)
+    #print("\nРезультат парсинга  команды grep -e - %s\n"%resp1)
     allure.attach(resp1,'Парсинг syslog-файла на предмет нахождения в нем команды-маркера %s'%cmd)
     number = resp1.count('command: \'%s\''%cmd) # Считаем сколько раз команда-маркер встречается в log-файле
     # print('Кол-во обнаруженных маркеров number1 - %i\r'%number1)
+
+    conn2.execute('configure')
+    if DUT.hostname == DUT1.hostname:
+        conn2.execute('no logging host %s vrf MGN'%DUT.server['ip'])
+    elif DUT.hostname == DUT2.hostname:
+        conn2.execute('no logging host %s vrf default'%DUT.server['ip'])
+    elif DUT.hostname == DUT3.hostname:
+        conn2.execute('logging host %s vrf mgmt-intf'%DUT.server['ip'])    
+    conn2.execute('commit')
+    conn2.execute('end')
     conn2.send('quit\r')
     # conn2.close()
     # conn3.close()     

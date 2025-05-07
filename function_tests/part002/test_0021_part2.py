@@ -14,6 +14,7 @@ from conftest import *
 			]
 			)
 @pytest.mark.usefixtures('run_tacacs_server')
+@pytest.mark.skip(reason="Сервер не поддерживает docker")
 def test_banner_login_tacacs(DUT):
     banner_login='This device can be used by authorized users only. Unauthorized access is prosecuted by federal law (Federal law 63, article 272 of the Criminal Code of the Russian Federation'
     banner_login_1='Access to this device is allowed only for authorized users. STOP if you are not authorized! Violation of this rule is prosecuted by federal law.'

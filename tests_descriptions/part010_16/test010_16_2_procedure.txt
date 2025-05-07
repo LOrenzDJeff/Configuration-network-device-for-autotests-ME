@@ -1,0 +1,111 @@
+-------------------------------------------------------------------------------------------------------------
+🔸️ШАГ 1. 
+-------------------------------------------------------------------------------------------------------------
+1. Включаем интерфейс bu2.3210.
+
+На маршрутизаторе atAR1:
+
+0/ME5100:atAR1# configure
+0/ME5100:atAR1(config)# interface bu2.3210
+0/ME5100:atAR1(config-bundle-ether-sub)# no shutdown 
+0/ME5100:atAR1(config-bundle-ether-sub)# commit 
+
+На маршрутизаторе atAR2:
+
+0/ME5200:atAR2# configure
+0/ME5200:atAR2(config)# interface bu2.3210
+0/ME5200:atAR2(config-bundle-ether-sub)# no shutdown 
+0/ME5200:atAR2(config-bundle-ether-sub)# commit 
+    
+--------------------------------------------------------------------------------------------------------
+🔸️ШАГ 2.
+--------------------------------------------------------------------------------------------------------
+1. Перехватываем OSPF пакеты и анализируем.
+
+✅️Ожидаемый результат:
+
+На atAR1:
+
+###[ OSPFv3 Hello ]### 
+              intid     = 97
+              prio      = 1
+              options   = V6+E+R
+              hellointerval= 10
+              deadinterval= 40
+              router    = 0.0.0.0🚩️	<==== atAR1 не производил выбор DR
+              backup    = 0.0.0.0🚩️	<==== atAR1 не производил выбор BDR
+              neighbors = [1.0.0.3]🚩️	<==== atAR1 обнаружил соседа
+
+На atAR2:
+
+###[ OSPFv3 Hello ]### 
+              intid     = 39
+              prio      = 1
+              options   = V6+E+R
+              hellointerval= 10
+              deadinterval= 40
+              router    = 0.0.0.0🚩️	<==== atAR2 не производил выбор DR
+              backup    = 0.0.0.0🚩️	<==== atAR2 не производил выбор BDR
+              neighbors = [1.0.0.2]🚩️	<==== atAR2 обнаружил соседа
+
+-------------------------------------------------------------------------------------------------------
+🔸️ШАГ 3.
+-------------------------------------------------------------------------------------------------------
+1. Проверяем вывод команды show ospfv3 interfaces bu2.3210 detailed.
+
+✅️Ожидаемый результат:
+
+На atAR1:
+
+  Routing Process: 1, ID 1.0.0.3
+    Router is not an area border router
+    
+      Interface Bundle-ether2.3210, state: point-to-point, status: up
+        Area 0.0.0.0, metric: 1, Network type: point-to-point
+        Changed state: 59 time, Administrative group: 0
+        Designated Router IP addr: 0.0.0.0🚩️		<==== atAR1 не производил выбор DR
+        Backup Designated Router IP addr: 0.0.0.0🚩️	<==== atAR1 не производил выбор BDR
+        Remote interface ID (by Designated Router): 0
+        Remote interface ID (by Backup Designated Router): 0
+        Traffic Engineering: disabled
+        Wait time remaining: 0 ms
+        Hello time remaining: 9064 ms
+        Number of LSA count: 2, checksum: 0x00004178
+        
+На atAR2:
+
+  Routing Process: 1, ID 1.0.0.2
+    Router is not an area border router
+    
+      Interface Bundle-ether2.3210, state: point-to-point, status: up
+        Area 0.0.0.0, metric: 1, Network type: point-to-point
+        Changed state: 32 time, Administrative group: 0
+        Designated Router IP addr: 0.0.0.0🚩️		<==== atAR2 не производил выбор DR
+        Backup Designated Router IP addr: 0.0.0.0🚩️	<==== atAR2 не производил выбор BDR
+        Remote interface ID (by Designated Router): 0
+        Remote interface ID (by Backup Designated Router): 0
+        Traffic Engineering: disabled
+        Wait time remaining: 0 ms
+        Hello time remaining: 9540 ms
+        Number of LSA count: 2, checksum: 0x00004178
+        
+-------------------------------------------------------------------------------------------------------------
+🔸️ШАГ 4. 
+-------------------------------------------------------------------------------------------------------------
+1. Выключаем интерфейс bu2.3210.
+
+На маршрутизаторе atAR1:
+
+0/ME5100:atAR1# configure
+0/ME5100:atAR1(config)# interface bu2.3210
+0/ME5100:atAR1(config-bundle-ether-sub)# shutdown 
+0/ME5100:atAR1(config-bundle-ether-sub)# commit 
+
+На маршрутизаторе atAR2:
+
+0/ME5200:atAR2# configure
+0/ME5200:atAR2(config)# interface bu2.3210
+0/ME5200:atAR2(config-bundle-ether-sub)# shutdown 
+0/ME5200:atAR2(config-bundle-ether-sub)# commit 
+    
+

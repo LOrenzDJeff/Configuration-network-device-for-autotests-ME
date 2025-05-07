@@ -1,7 +1,7 @@
-Value int (te0/[08]/[34]|te0/1/[345]|te0/0/[12]|te0/0/11|bu1|bu2)
+Value int (te0/[08]/[345]|te0/1/[345]|te0/0/[12]|te0/0/11|bu1|bu2)
 
 Start
-  ^\s+${int}\s+300\s+\d+\s+\d+\s+\d+\s+\d+\s+ -> Record
+  ^\s+${int}\s+20\s+\d+\s+\d+\s+\d+\s+\d+\s+ -> Record
 
 
 #Пример вывода команды 'show interface utilization' на ME5100

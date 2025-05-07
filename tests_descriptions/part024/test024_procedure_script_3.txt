@@ -1,0 +1,94 @@
+--------------------------------------------------------------------------------------------------------
+🔸️ШАГ 1.
+--------------------------------------------------------------------------------------------------------
+1. Проверяем наличие лупбеков соседей в таблице маршрутизации.
+
+✅️Ожидаемый результат: 
+
+🔹️atAR1(vrf uno):
+
+  R      dead::2:0:0:2/128🚩️    via fe80::aaf9:4bff:fe8b:9402🚩️ [120/2], 00h05m55s, bu1.1200
+  R      dead::3:0:0:3/128🚩️    via fe80::aaf9:4bff:fe8b:9402🚩️ [120/2], 00h05m51s, bu1.1200
+  
+🔹️atAR1(vrf dos):
+
+  R      dead::2:0:0:2/128🚩️    via fe80::e2d9:e3ff:feff:48b3🚩️ [120/2], 00h06m35s, bu2.1200
+  R      dead::2:0:0:3/128🚩️    via fe80::e2d9:e3ff:feff:48b3🚩️ [120/2], 00h05m56s, bu2.1200
+  
+🔹️atAR2(vrf tres):
+
+  R      dead::2:0:0:3/128🚩️    via fe80::e65a:d4ff:fede:c8a3🚩️ [120/2], 00h05m56s, bu2.1205
+  R      dead::3:0:0:3/128🚩️    via fe80::e65a:d4ff:fede:c8a3🚩️ [120/2], 00h06m36s, bu2.1205
+  
+-------------------------------------------------------------------------------------------------------
+🔸️ШАГ 2.
+-------------------------------------------------------------------------------------------------------
+1. Проверяем пинг между лупбеками.
+
+✅️Ожидаемый результат:
+
+🔹️atAR1(vrf uno):
+
+ ping dead::2:0:0:2 source dead::2:0:0:3 vrf uno🚩️
+Fri Oct 25 07:34:53 2024
+
+Sending 4, 56-byte ICMP Echos to dead::2:0:0:2,
+request send interval is 0.100 seconds,
+response wait timeout is 2.000 seconds:
+!!!!
+
+Success rate is 100🚩️ percent (4/4), round-trip min/avg/max = 0.158/0.186/0.216 ms
+-----------------------------------------------------------------------------------
+ ping dead::3:0:0:3 source dead::2:0:0:3 vrf uno🚩️
+Fri Oct 25 07:34:53 2024
+
+Sending 4, 56-byte ICMP Echos to dead::3:0:0:3,
+request send interval is 0.100 seconds,
+response wait timeout is 2.000 seconds:
+!!!!
+
+Success rate is 100🚩️ percent (4/4), round-trip min/avg/max = 0.149/0.183/0.208 ms
+
+🔹️atAR1(vrf dos):
+
+ ping dead::2:0:0:2 source dead::3:0:0:3 vrf dos🚩️
+Fri Oct 25 07:34:54 2024
+
+Sending 4, 56-byte ICMP Echos to dead::2:0:0:2,
+request send interval is 0.100 seconds,
+response wait timeout is 2.000 seconds:
+!!!!
+
+Success rate is 100🚩️ percent (4/4), round-trip min/avg/max = 0.158/0.194/0.237 ms
+--------------------------------------------------------------------------------
+ ping dead::2:0:0:3 source dead::3:0:0:3 vrf dos🚩️
+Fri Oct 25 07:34:54 2024
+
+Sending 4, 56-byte ICMP Echos to dead::2:0:0:3,
+request send interval is 0.100 seconds,
+response wait timeout is 2.000 seconds:
+!!!!
+
+Success rate is 100🚩️ percent (4/4), round-trip min/avg/max = 0.146/0.182/0.219 ms
+
+🔹️atAR2(vrf tres):
+
+ ping dead::2:0:0:3 source dead::2:0:0:2 vrf tres🚩️
+Fri Oct 25 07:34:54 2024
+
+Sending 4, 56-byte ICMP Echos to dead::2:0:0:3,
+request send interval is 0.100 seconds,
+response wait timeout is 2.000 seconds:
+!!!!
+
+Success rate is 100🚩️ percent (4/4), round-trip min/avg/max = 0.159/0.188/0.253 ms
+--------------------------------------------------------------------------------
+ ping dead::3:0:0:3 source dead::2:0:0:2 vrf tres🚩️
+Fri Oct 25 07:34:55 2024
+
+Sending 4, 56-byte ICMP Echos to dead::3:0:0:3,
+request send interval is 0.100 seconds,
+response wait timeout is 2.000 seconds:
+!!!!
+
+Success rate is 100🚩️ percent (4/4), round-trip min/avg/max = 0.166/0.222/0.263 ms

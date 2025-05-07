@@ -1,0 +1,94 @@
+--------------------------------------------------------------------------------------------------------
+🔸️ШАГ 1.
+--------------------------------------------------------------------------------------------------------
+1. Проверяем наличие лупбеков соседей в таблице маршрутизации.
+
+✅️Ожидаемый результат: 
+
+🔹️atAR1(vrf uno):
+
+  R      2.0.0.2/32🚩️    via 10.12.1.1🚩️ [120/2], 05h26m47s, bu1.1200
+  R      3.0.0.3/32🚩️    via 10.12.1.1🚩️ [120/2], 05h26m17s, bu1.1200
+  
+🔹️atAR1(vrf dos):
+
+  R      2.0.0.2/32🚩️    via 10.12.2.1🚩️ [120/2], 05h26m25s, bu2.1200
+  R      2.0.0.3/32🚩️    via 10.12.2.1🚩️ [120/2], 05h26m17s, bu2.1200
+  
+🔹️atAR2(vrf tres):
+
+  R      2.0.0.3/32🚩️    via 10.12.3.1🚩️ [120/2], 05h26m48s, bu2.1205
+  R      3.0.0.3/32🚩️    via 10.12.3.1🚩️ [120/2], 05h26m26s, bu2.1205
+  
+-------------------------------------------------------------------------------------------------------
+🔸️ШАГ 2.
+-------------------------------------------------------------------------------------------------------
+1. Проверяем пинг между лупбеками.
+
+✅️Ожидаемый результат:
+
+🔹️atAR1(vrf uno):
+
+ ping 2.0.0.2 source 2.0.0.3 vrf uno🚩️
+Tue Sep 24 08:19:04 2024
+
+Sending 4, 56-byte ICMP Echos to 2.0.0.2,
+request send interval is 0.100 seconds,
+response wait timeout is 2.000 seconds:
+!!!!
+
+Success rate is 100🚩️ percent (4/4), round-trip min/avg/max = 0.136/0.159/0.179 ms
+-----------------------------------------------------------------------------------
+ ping 3.0.0.3 source 2.0.0.3 vrf uno🚩️
+Tue Sep 24 08:19:04 2024
+
+Sending 4, 56-byte ICMP Echos to 3.0.0.3,
+request send interval is 0.100 seconds,
+response wait timeout is 2.000 seconds:
+!!!!
+
+Success rate is 100🚩️ percent (4/4), round-trip min/avg/max = 0.140/0.166/0.188 ms
+
+🔹️atAR1(vrf dos):
+
+ ping 2.0.0.2 source 3.0.0.3 vrf dos🚩️
+Tue Sep 24 08:19:05 2024
+
+Sending 4, 56-byte ICMP Echos to 2.0.0.2,
+request send interval is 0.100 seconds,
+response wait timeout is 2.000 seconds:
+!!!!
+
+Success rate is 100🚩️ percent (4/4), round-trip min/avg/max = 0.137/0.161/0.210 ms
+--------------------------------------------------------------------------------
+ ping 2.0.0.3 source 3.0.0.3 vrf dos🚩️
+Tue Sep 24 08:19:05 2024
+
+Sending 4, 56-byte ICMP Echos to 2.0.0.3,
+request send interval is 0.100 seconds,
+response wait timeout is 2.000 seconds:
+!!!!
+
+Success rate is 100🚩️ percent (4/4), round-trip min/avg/max = 0.134/0.159/0.180 ms
+
+🔹️atAR2(vrf tres):
+
+ ping 2.0.0.3 source 2.0.0.2 vrf tres🚩️
+Tue Sep 24 08:19:04 2024
+
+Sending 4, 56-byte ICMP Echos to 2.0.0.3,
+request send interval is 0.100 seconds,
+response wait timeout is 2.000 seconds:
+!!!!
+
+Success rate is 100🚩️ percent (4/4), round-trip min/avg/max = 0.146/0.166/0.187 ms
+--------------------------------------------------------------------------------
+ ping 3.0.0.3 source 2.0.0.2 vrf tres🚩️
+Tue Sep 24 08:19:05 2024
+
+Sending 4, 56-byte ICMP Echos to 3.0.0.3,
+request send interval is 0.100 seconds,
+response wait timeout is 2.000 seconds:
+!!!!
+
+Success rate is 100🚩️ percent (4/4), round-trip min/avg/max = 0.167/0.185/0.199 ms

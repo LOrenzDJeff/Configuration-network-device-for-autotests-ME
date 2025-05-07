@@ -26,7 +26,7 @@ def test_show_interface_utilization(DUT):
 # Определим тип маршрутизатора (ME5000 или ME2001 или ME5200)
     conn.execute('show system')
     resp =conn.response
-    for RTtype in ['ME5000', 'ME2001', 'ME5200']:
+    for RTtype in ['ME5000', 'ME2001', 'ME5200', 'ME5100']:
         index = resp.find(RTtype)
         if index!= -1:
             SysType=RTtype
@@ -39,7 +39,7 @@ def test_show_interface_utilization(DUT):
     allure.attach(resp_output[2], 'Вывод команды show interface utilization', attachment_type=allure.attachment_type.TEXT)      
 #    print('show interface utilization  - %s'%resp)  # Раскомментируй, если хочешь посмотреть вывод команды 'show int utilization'
 # C помощью магии модуля textFSM сравниваем вывод команды 'show int utilization' c шаблоном в файле parse_show_int_utilization_pizzabox_me.txt 
-    if (SysType == 'ME2001')^(SysType == 'ME5200'):
+    if (SysType == 'ME2001')^(SysType == 'ME5200')^(SysType == 'ME5200'):
         template = open('./templates/parse_show_int_utilization_pizzabox_me.txt')
         fsm = textfsm.TextFSM(template)
         result = fsm.ParseText(resp)

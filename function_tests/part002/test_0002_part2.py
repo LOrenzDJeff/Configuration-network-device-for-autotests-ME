@@ -19,8 +19,14 @@ def test_backup_part2(DUT):
     conn3 = SSH2()
     acc3 = Account(DUT.server['login'], DUT.server['password'])
     conn3.connect(DUT.server['ip'])
+    conn3.set_prompt('$')
     conn3.login(acc3)
-    cmd=("rm -f /home/pryahin/me5k/tftpd/%s/*.*"%DUT.hostname)
+    conn3.set_prompt(':')
+    conn3.execute('sudo su')
+    conn3.set_prompt('#')
+    conn3.execute(DUT.server['password'])
+
+    cmd=("rm -f /tftp/%s/*.*"%DUT.dir)
     conn3.execute(cmd)
 #    conn3.execute('rm -f /home/pryahin/me5k/tftpd/%s/*.*'%hostname) # Папка /tftd/ является домашней директорией tftp-сервера на момент написания этого теста
 
@@ -32,11 +38,11 @@ def test_backup_part2(DUT):
     conn2.set_prompt('#')
     conn2.execute('configure')
     if DUT.hostname==DUT1.hostname:
-        conn2.execute('backup to tftp://%s/%s/ interval 60 pre-commit vrf MGN'%(DUT.server['ip'],DUT.hostname))
+        conn2.execute('backup to tftp://%s/%s/ interval 60 pre-commit vrf MGN'%(DUT.server['ip'],DUT.dir))
     elif DUT.hostname == DUT2.hostname:
-        conn2.execute('backup to tftp://%s/%s/ daily 13:00:00 post-commit'%(DUT.server['ip'],DUT.hostname))
+        conn2.execute('backup to tftp://%s/%s/ daily 13:00:00 post-commit'%(DUT.server['ip'],DUT.dir))
     elif DUT.hostname == DUT3.hostname:
-        conn2.execute('backup to tftp://%s/%s/ pre-commit vrf mgmt-intf'%(DUT.server['ip'],DUT.hostname))    
+        conn2.execute('backup to tftp://%s/%s/ pre-commit vrf mgmt-intf'%(DUT.server['ip'],DUT.dir))    
     conn2.execute('commit')
 
     conn2.execute('exit')
@@ -44,16 +50,24 @@ def test_backup_part2(DUT):
     conn2.execute('commit')
     conn2.execute('hostname %s' %DUT.hostname)
     conn2.execute('commit')
+
+    if DUT.hostname==DUT1.hostname:
+        conn2.execute('no backup to tftp://%s/%s/'%(DUT.server['ip'],DUT.dir))
+    elif DUT.hostname == DUT2.hostname:
+        conn2.execute('no backup to tftp://%s/%s/'%(DUT.server['ip'],DUT.dir))
+    elif DUT.hostname == DUT3.hostname:
+        conn2.execute('no backup to tftp://%s/%s/'%(DUT.server['ip'],DUT.dir))    
+    conn2.execute('commit')
     conn2.execute('exit')
     conn2.send('quit\r')
     conn2.close()
-    conn3.execute('ls -lah /home/pryahin/me5k/tftpd/%s/'%DUT.hostname) # Путь к backup файлам на виртуальном syslog-сервере
+    conn3.execute('ls -lah /tftp/%s/'%DUT.dir) # Путь к backup файлам на виртуальном syslog-сервере
     resp = conn3.response
     allure.attach(resp)
     number =resp.find('backup_cfg')
-
-    conn3.send('exit')
-    conn3.close()
+    conn3.set_prompt('$')
+    conn3.send('exit\r')
+    conn3.send('exit\r')
     assert_that(number > 1,"backup_cfg файл не найден на tftp сервере %s"%DUT.server['ip'])
 #    assert  number > 1 # Значит искомые backup файлы присутсвуют в каталоге
     return

@@ -1,4 +1,4 @@
-Value SysType (Eltex ME\d+ carrier router|Eltex ME5000M? modular carrier router)
+Value SysType (Eltex ME\d+ carrier router|Eltex ME\d+S carrier router|Eltex ME5000M? modular carrier router)
 Value SysName (\S+)
 Value SysVersion (\d+\.\d+\.\d+\.\S+)
 Value SysUptime (\d+ hours, \d+ minutes, \d+ seconds|\d+ days, \d+ hours, \d+ minutes|\d+ weeks, \d+ days, \d+ hours, \d+ minutes)

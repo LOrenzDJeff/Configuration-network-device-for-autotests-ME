@@ -52,327 +52,382 @@ def test_arp_part2(DUT):
     result3 = fsm3.ParseTextToDicts(resp3)
     
     # Проверяем заполнилась ли arp таблица
-    loc_index=0
+    # Проверяем заполнилась ли arp таблица
+    loc_index = 0
     if DUT.hostname == DUT1.hostname:
-        located_index1 = locate_index_in_ListOfDict(result2, 'IP', '192.168.55.2', loc_index)
-        if located_index1==999:
-            conn.execute('ping 192.168.55.2')
+        located_index1 = locate_index_in_ListOfDict(result2, 'IP', '192.168.1.2', loc_index)
+        if located_index1 == 999:
+            conn.execute('ping 192.168.1.2')
             conn.execute(cmd)
             resp2 = conn.response
             fsm2 = textfsm.TextFSM(template2)
             result2 = fsm2.ParseTextToDicts(resp2)
-            located_index1 = locate_index_in_ListOfDict(result2, 'IP', '192.168.55.2', loc_index)
-            assert_that(located_index1!=999, "В выводе команды %s не обнаружен адрес 192.168.55.2" % cmd)
-        located_index = locate_index_in_ListOfDict(result2, 'IP', '192.168.55.1', loc_index)
-        assert_that(located_index!=999, "В выводе команды %s не обнаружен адрес 192.168.55.1" % cmd)
-        allure.attach(resp2, 'Вывод команды '+ cmd, attachment_type=allure.attachment_type.TEXT)
-               
-        located_index3 = locate_index_in_ListOfDict(result1, 'IP', '192.168.55.22', loc_index)
-        if located_index3==999:
-            conn.execute('ping 192.168.55.22')
+            located_index1 = locate_index_in_ListOfDict(result2, 'IP', '192.168.1.2', loc_index)
+            assert_that(located_index1 != 999, "В выводе команды %s не обнаружен адрес 192.168.1.2" % cmd)
+        located_index = locate_index_in_ListOfDict(result2, 'IP', '192.168.1.1', loc_index)
+        assert_that(located_index != 999, "В выводе команды %s не обнаружен адрес 192.168.1.1" % cmd)
+        allure.attach(resp2, 'Вывод команды ' + cmd, attachment_type=allure.attachment_type.TEXT)
+
+        located_index3 = locate_index_in_ListOfDict(result1, 'IP', '192.168.1.22', loc_index)
+        if located_index3 == 999:
+            conn.execute('ping 192.168.1.22')
             conn.execute(cmd1)
             resp1 = conn.response
             fsm1 = textfsm.TextFSM(template1)
-            result1= fsm1.ParseTextToDicts(resp1)
-            located_index3 = locate_index_in_ListOfDict(result1, 'IP', '192.168.55.22', loc_index)
-            assert_that(located_index3!=999, "В выводе команды %s не обнаружен адрес 192.168.55.22" % cmd1)	
-        located_index2 = locate_index_in_ListOfDict(result1, 'IP', '192.168.55.21', loc_index)
-        assert_that(located_index2!=999, "В выводе команды %s не обнаружен адрес 192.168.55.21" % cmd1) 
-        allure.attach(resp1, 'Вывод команды '+ cmd1, attachment_type=allure.attachment_type.TEXT)
-                
-        located_index5 = locate_index_in_ListOfDict(result3, 'IP', '192.168.55.10', loc_index)
-        if located_index5==999:
-            conn.execute('ping 192.168.55.10')
+            result1 = fsm1.ParseTextToDicts(resp1)
+            located_index3 = locate_index_in_ListOfDict(result1, 'IP', '192.168.1.22', loc_index)
+            assert_that(located_index3 != 999, "В выводе команды %s не обнаружен адрес 192.168.1.22" % cmd1)
+        located_index2 = locate_index_in_ListOfDict(result1, 'IP', '192.168.1.21', loc_index)
+        assert_that(located_index2 != 999, "В выводе команды %s не обнаружен адрес 192.168.1.21" % cmd1)
+        allure.attach(resp1, 'Вывод команды ' + cmd1, attachment_type=allure.attachment_type.TEXT)
+
+        located_index5 = locate_index_in_ListOfDict(result3, 'IP', '192.168.1.10', loc_index)
+        if located_index5 == 999:
+            conn.execute('ping 192.168.1.10')
             conn.execute(cmd2)
             resp3 = conn.response
-            fsm3= textfsm.TextFSM(template3)
+            fsm3 = textfsm.TextFSM(template3)
             result3 = fsm3.ParseTextToDicts(resp3)
-            located_index5 = locate_index_in_ListOfDict(result3, 'IP', '192.168.55.10', loc_index)
-            assert_that(located_index5!=999, "В выводе команды %s не обнаружен адрес 192.168.55.10" % cmd2)	 
-        located_index4 = locate_index_in_ListOfDict(result3, 'IP', '192.168.55.9', loc_index)
-        assert_that(located_index4!=999, "В выводе команды %s не обнаружен адрес 192.168.55.9" % cmd2)
+            located_index5 = locate_index_in_ListOfDict(result3, 'IP', '192.168.1.10', loc_index)
+            assert_that(located_index5 != 999, "В выводе команды %s не обнаружен адрес 192.168.1.10" % cmd2)
+        located_index4 = locate_index_in_ListOfDict(result3, 'IP', '192.168.1.9', loc_index)
+        assert_that(located_index4 != 999, "В выводе команды %s не обнаружен адрес 192.168.1.9" % cmd2)
         allure.attach(resp3, 'Вывод команды ' + cmd2, attachment_type=allure.attachment_type.TEXT)
-        
-    
-    
+
     if DUT.hostname == DUT2.hostname:
-        located_index1 = locate_index_in_ListOfDict(result2, 'IP', '192.168.55.5', loc_index)
-        if located_index1==999:
-            conn.execute('ping 192.168.55.5')
+        located_index1 = locate_index_in_ListOfDict(result2, 'IP', '192.168.1.5', loc_index)
+        if located_index1 == 999:
+            conn.execute('ping 192.168.1.5')
             conn.execute(cmd)
             resp2 = conn.response
             fsm2 = textfsm.TextFSM(template2)
-            result2 = fsm2.ParseTextToDicts(resp2)            
-            located_index1 = locate_index_in_ListOfDict(result2, 'IP', '192.168.55.5', loc_index)
-            assert_that(located_index1!=999, "В выводе команды %s не обнаружен адрес 192.168.55.5" % cmd)	
-        located_index = locate_index_in_ListOfDict(result2, 'IP', '192.168.55.6', loc_index)
-        assert_that(located_index!=999, "В выводе команды %s не обнаружен адрес 192.168.55.6" % cmd)
-        allure.attach(resp2, 'Вывод команды '+ cmd, attachment_type=allure.attachment_type.TEXT)
-             
-        located_index3 = locate_index_in_ListOfDict(result1, 'IP', '192.168.55.21', loc_index)
-        if located_index3==999:
-            conn.execute('ping 192.168.55.21')
+            result2 = fsm2.ParseTextToDicts(resp2)
+            located_index1 = locate_index_in_ListOfDict(result2, 'IP', '192.168.1.5', loc_index)
+            assert_that(located_index1 != 999, "В выводе команды %s не обнаружен адрес 192.168.1.5" % cmd)
+        located_index = locate_index_in_ListOfDict(result2, 'IP', '192.168.1.6', loc_index)
+        assert_that(located_index != 999, "В выводе команды %s не обнаружен адрес 192.168.1.6" % cmd)
+        allure.attach(resp2, 'Вывод команды ' + cmd, attachment_type=allure.attachment_type.TEXT)
+
+        located_index3 = locate_index_in_ListOfDict(result1, 'IP', '192.168.1.21', loc_index)
+        if located_index3 == 999:
+            conn.execute('ping 192.168.1.21')
             conn.execute(cmd1)
             resp1 = conn.response
             fsm1 = textfsm.TextFSM(template1)
-            result1= fsm1.ParseTextToDicts(resp1)            
-            located_index3 = locate_index_in_ListOfDict(result1, 'IP', '192.168.55.21', loc_index)
-            assert_that(located_index3!=999, "В выводе команды %s не обнаружен адрес 192.168.55.21" % cmd1)	
-        located_index2 = locate_index_in_ListOfDict(result1, 'IP', '192.168.55.22', loc_index)
-        assert_that(located_index2!=999, "В выводе команды %s не обнаружен адрес 192.168.55.22" % cmd1)   
-        allure.attach(resp1, 'Вывод команды '+ cmd1, attachment_type=allure.attachment_type.TEXT)
-              
-        located_index5 = locate_index_in_ListOfDict(result3, 'IP', '192.168.55.14', loc_index)
-        if located_index5==999:
-            conn.execute('ping 192.168.55.14')
+            result1 = fsm1.ParseTextToDicts(resp1)
+            located_index3 = locate_index_in_ListOfDict(result1, 'IP', '192.168.1.21', loc_index)
+            assert_that(located_index3 != 999, "В выводе команды %s не обнаружен адрес 192.168.1.21" % cmd1)
+        located_index2 = locate_index_in_ListOfDict(result1, 'IP', '192.168.1.22', loc_index)
+        assert_that(located_index2 != 999, "В выводе команды %s не обнаружен адрес 192.168.1.22" % cmd1)
+        allure.attach(resp1, 'Вывод команды ' + cmd1, attachment_type=allure.attachment_type.TEXT)
+
+        located_index5 = locate_index_in_ListOfDict(result3, 'IP', '192.168.1.14', loc_index)
+        if located_index5 == 999:
+            conn.execute('ping 192.168.1.14')
             conn.execute(cmd2)
             resp3 = conn.response
-            fsm3= textfsm.TextFSM(template3)
+            fsm3 = textfsm.TextFSM(template3)
             result3 = fsm3.ParseTextToDicts(resp3)
-            located_index5 = locate_index_in_ListOfDict(result3, 'IP', '192.168.55.14', loc_index)
-            assert_that(located_index5!=999, "В выводе команды %s не обнаружен адрес 192.168.55.14" % cmd2)	
-        located_index4 = locate_index_in_ListOfDict(result3, 'IP', '192.168.55.13', loc_index)
-        assert_that(located_index4!=999, "В выводе команды %s не обнаружен адрес 192.168.55.13" % cmd2)  
+            located_index5 = locate_index_in_ListOfDict(result3, 'IP', '192.168.1.14', loc_index)
+            assert_that(located_index5 != 999, "В выводе команды %s не обнаружен адрес 192.168.1.14" % cmd2)
+        located_index4 = locate_index_in_ListOfDict(result3, 'IP', '192.168.1.13', loc_index)
+        assert_that(located_index4 != 999, "В выводе команды %s не обнаружен адрес 192.168.1.13" % cmd2)
         allure.attach(resp3, 'Вывод команды ' + cmd2, attachment_type=allure.attachment_type.TEXT)
-        
-        
+
     if DUT.hostname == DUT3.hostname:
-        located_index1 = locate_index_in_ListOfDict(result2, 'IP', '192.168.55.1', loc_index)
-        if located_index1==999:
-            conn.execute('ping 192.168.55.1')
+        located_index1 = locate_index_in_ListOfDict(result2, 'IP', '192.168.1.1', loc_index)
+        if located_index1 == 999:
+            conn.execute('ping 192.168.1.1')
             conn.execute(cmd)
             resp2 = conn.response
             fsm2 = textfsm.TextFSM(template2)
-            result2 = fsm2.ParseTextToDicts(resp2) 
-            located_index1 = locate_index_in_ListOfDict(result2, 'IP', '192.168.55.1', loc_index)
-            assert_that(located_index1!=999, "В выводе команды %s не обнаружен адрес 192.168.55.1" % cmd)
-        located_index = locate_index_in_ListOfDict(result2, 'IP', '192.168.55.2', loc_index)
-        assert_that(located_index!=999, "В выводе команды %s не обнаружен адрес 192.168.55.2" % cmd)
-        allure.attach(resp2, 'Вывод команды '+ cmd, attachment_type=allure.attachment_type.TEXT)
-               
-        located_index3 = locate_index_in_ListOfDict(result1, 'IP', '192.168.55.6', loc_index)
-        if located_index3==999:
-            conn.execute('ping 192.168.55.6')
+            result2 = fsm2.ParseTextToDicts(resp2)
+            located_index1 = locate_index_in_ListOfDict(result2, 'IP', '192.168.1.1', loc_index)
+            assert_that(located_index1 != 999, "В выводе команды %s не обнаружен адрес 192.168.1.1" % cmd)
+        located_index = locate_index_in_ListOfDict(result2, 'IP', '192.168.1.2', loc_index)
+        assert_that(located_index != 999, "В выводе команды %s не обнаружен адрес 192.168.1.2" % cmd)
+        allure.attach(resp2, 'Вывод команды ' + cmd, attachment_type=allure.attachment_type.TEXT)
+
+        located_index3 = locate_index_in_ListOfDict(result1, 'IP', '192.168.1.6', loc_index)
+        if located_index3 == 999:
+            conn.execute('ping 192.168.1.6')
             conn.execute(cmd1)
             resp1 = conn.response
             fsm1 = textfsm.TextFSM(template1)
-            result1= fsm1.ParseTextToDicts(resp1)    
-            located_index3 = locate_index_in_ListOfDict(result1, 'IP', '192.168.55.6', loc_index)
-            assert_that(located_index3!=999, "В выводе команды %s не обнаружен адрес 192.168.55.6" % cmd1)	
-        located_index2 = locate_index_in_ListOfDict(result1, 'IP', '192.168.55.5', loc_index)
-        assert_that(located_index2!=999, "В выводе команды %s не обнаружен адрес 192.168.55.5" % cmd1) 
-        allure.attach(resp1, 'Вывод команды '+ cmd1, attachment_type=allure.attachment_type.TEXT)
-               
-        located_index5 = locate_index_in_ListOfDict(result3, 'IP', '192.168.55.18', loc_index)
-        if located_index5==999:
-            conn.execute('ping 192.168.55.18')
+            result1 = fsm1.ParseTextToDicts(resp1)
+            located_index3 = locate_index_in_ListOfDict(result1, 'IP', '192.168.1.6', loc_index)
+            assert_that(located_index3 != 999, "В выводе команды %s не обнаружен адрес 192.168.1.6" % cmd1)
+        located_index2 = locate_index_in_ListOfDict(result1, 'IP', '192.168.1.5', loc_index)
+        assert_that(located_index2 != 999, "В выводе команды %s не обнаружен адрес 192.168.1.5" % cmd1)
+        allure.attach(resp1, 'Вывод команды ' + cmd1, attachment_type=allure.attachment_type.TEXT)
+
+        located_index5 = locate_index_in_ListOfDict(result3, 'IP', '192.168.1.18', loc_index)
+        if located_index5 == 999:
+            conn.execute('ping 192.168.1.18')
             conn.execute(cmd2)
             resp3 = conn.response
-            fsm3= textfsm.TextFSM(template3)
+            fsm3 = textfsm.TextFSM(template3)
             result3 = fsm3.ParseTextToDicts(resp3)
-            located_index5 = locate_index_in_ListOfDict(result3, 'IP', '192.168.55.18', loc_index)
-            assert_that(located_index5!=999, "В выводе команды %s не обнаружен адрес 192.168.55.18" % cmd2)	
-        located_index4 = locate_index_in_ListOfDict(result3, 'IP', '192.168.55.17', loc_index)
-        assert_that(located_index4!=999, "В выводе команды %s не обнаружен адрес 192.168.55.17" % cmd2)      
-        allure.attach(resp3, 'Вывод команды ' + cmd2, attachment_type=allure.attachment_type.TEXT)	
-        
-        
-    if (DUT.neighor1['int_name'] == DUT1.neighor1['int_name'] and DUT.host_ip== DUT1.host_ip):
+            located_index5 = locate_index_in_ListOfDict(result3, 'IP', '192.168.1.18', loc_index)
+            assert_that(located_index5 != 999, "В выводе команды %s не обнаружен адрес 192.168.1.18" % cmd2)
+        located_index4 = locate_index_in_ListOfDict(result3, 'IP', '192.168.1.17', loc_index)
+        assert_that(located_index4 != 999, "В выводе команды %s не обнаружен адрес 192.168.1.17" % cmd2)
+        allure.attach(resp3, 'Вывод команды ' + cmd2, attachment_type=allure.attachment_type.TEXT)
+
+    if (DUT.neighor1["int_name"] == DUT1.neighor1['int_name'] and DUT.host_ip ==  DUT1.host_ip):
         IP = result2[located_index]['IP']
-        assert_that(IP =='192.168.55.1','Параметр IP в выводе команды для интерфейса '+  DUT.neighor1['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению 192.168.55.1, а равен - %s"%IP)
+        assert_that(f"{IP}/30" == DUT1.neighor1['ip'],
+                    'Параметр IP в выводе команды для интерфейса ' + DUT.neighor1["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению 192.168.1.1, а равен - %s" % IP)
         age = result2[located_index]['age']
-        assert_that(age !=' ','Параметр Age в выводе команды для интерфейса '+  DUT.neighor1['int_name'] + ' ' +DUT.hostname +" пуст")
+        assert_that(age != ' ', 'Параметр Age в выводе команды для интерфейса ' + DUT.neighor1["int_name"] + ' ' + DUT.hostname + " пуст")
         mac = result2[located_index]['mac']
-        assert_that(mac=='e4:5a:d4:de:c8:a2','Параметр Hardware address в выводе команды для интерфейса '+  DUT.neighor1['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению e4:5a:d4:de:c8:a2, а равен - %s"%mac)
+        assert_that(mac != '',
+                    'Параметр Hardware address в выводе команды для интерфейса ' + DUT.neighor1["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению e0:d9:e3:df:35:96, а равен - %s" % mac)
         state = result2[located_index]['state']
-        assert_that(state=='Interface','Параметр State в выводе команды для интерфейса '+  DUT.neighor1['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению Interface, а равен - %s"%state)
+        assert_that(state == 'Interface',
+                    'Параметр State в выводе команды для интерфейса ' + DUT.neighor1["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению Interface, а равен - %s" % state)
         Int = result2[located_index]['Int']
-        assert_that(Int=='bu1','Параметр Interface в выводе команды для интерфейса '+  DUT.neighor1['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению bu1, а равен - %s"%Int)
+        assert_that(Int == DUT1.neighor1['int_name'],
+                    'Параметр Interface в выводе команды для интерфейса ' + DUT.neighor1["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению bu1, а равен - %s" % Int)
         IP = result2[located_index1]['IP']
-        assert_that(IP =='192.168.55.2','Параметр IP в выводе команды для интерфейса '+  DUT.neighor1['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению 192.168.55.2, а равен - %s"%IP)
+        assert_that(f"{IP}/30" == DUT3.neighor1['ip'],
+                    'Параметр IP в выводе команды для интерфейса ' + DUT.neighor1["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению 192.168.1.2, а равен - %s" % IP)
         age = result2[located_index1]['age']
-        assert_that(age !=' ','Параметр Age в выводе команды для интерфейса '+  DUT.neighor1['int_name'] + ' ' +DUT.hostname +" пуст")
+        assert_that(age != ' ', 'Параметр Age в выводе команды для интерфейса ' + DUT.neighor1["int_name"] + ' ' + DUT.hostname + " пуст")
         mac = result2[located_index1]['mac']
-        assert_that(mac=='a8:f9:4b:8b:94:02','Параметр Hardware address в выводе команды для интерфейса '+  DUT.neighor1['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению a8:f9:4b:8b:94:02, а равен - %s"%mac)
+        assert_that(mac != '',
+                    'Параметр Hardware address в выводе команды для интерфейса ' + DUT.neighor1["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению 68:13:e2:d8:16:ba, а равен - %s" % mac)
         state = result2[located_index1]['state']
-        assert_that(state=='Dynamic','Параметр State в выводе команды для интерфейса '+  DUT.neighor1['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению Dynamic, а равен - %s"%state)
+        assert_that(state == 'Dynamic',
+                    'Параметр State в выводе команды для интерфейса ' + DUT.neighor1["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению Dynamic, а равен - %s" % state)
         Int = result2[located_index1]['Int']
-        assert_that(Int=='bu1','Параметр Interface в выводе команды для интерфейса '+  DUT.neighor1['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению bu1, а равен - %s"%Int)
-    
-    elif (DUT.neighor2['int_name'] == DUT1.neighor2['int_name']  and DUT.host_ip== DUT1.host_ip):
+        assert_that(Int == DUT3.neighor1['int_name'],
+                    'Параметр Interface в выводе команды для интерфейса ' + DUT.neighor1["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению bu1, а равен - %s" % Int)
+
+    elif (DUT.neighor2["int_name"] == DUT1.neighor2['int_name'] and DUT.host_ip ==  DUT1.host_ip):
         IP = result1[located_index2]['IP']
-        assert_that(IP =='192.168.55.21','Параметр IP в выводе команды для интерфейса '+  DUT.neighor2['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению 192.168.55.21, а равен - %s"%IP)
+        assert_that(f"{IP}/30" == DUT1.neighor2['ip'],
+                    'Параметр IP в выводе команды для интерфейса ' + DUT.neighor2["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению 192.168.1.21, а равен - %s" % IP)
         age = result1[located_index2]['age']
-        assert_that(age !=' ','Параметр Age в выводе команды для интерфейса '+  DUT.neighor2['int_name'] + ' ' +DUT.hostname +" пуст")
+        assert_that(age != ' ', 'Параметр Age в выводе команды для интерфейса ' + DUT.neighor2["int_name"] + ' ' + DUT.hostname + " пуст")
         mac = result1[located_index2]['mac']
-        assert_that(mac=='e4:5a:d4:de:c8:a3','Параметр Hardware address в выводе команды для интерфейса '+  DUT.neighor2['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению e4:5a:d4:de:c8:a3, а равен - %s"%mac)
+        assert_that(mac != '',
+                    'Параметр Hardware address в выводе команды для интерфейса ' + DUT.neighor2["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению e0:d9:e3:df:35:97, а равен - %s" % mac)
         state = result1[located_index2]['state']
-        assert_that(state=='Interface','Параметр State в выводе команды для интерфейса '+  DUT.neighor2['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению Interface, а равен - %s"%state)
+        assert_that(state == 'Interface',
+                    'Параметр State в выводе команды для интерфейса ' + DUT.neighor2["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению Interface, а равен - %s" % state)
         Int = result1[located_index2]['Int']
-        assert_that(Int=='bu2','Параметр Interface в выводе команды для интерфейса '+  DUT.neighor2['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению bu2, а равен - %s"%Int)
+        assert_that(Int == DUT1.neighor2['int_name'],
+                    'Параметр Interface в выводе команды для интерфейса ' + DUT.neighor2["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению bu2, а равен - %s" % Int)
         IP = result1[located_index3]['IP']
-        assert_that(IP =='192.168.55.22','Параметр IP в выводе команды для интерфейса '+  DUT.neighor2['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению 192.168.55.22, а равен - %s"%IP)
+        assert_that(f"{IP}/30" == DUT2.neighor2['ip'],
+                    'Параметр IP в выводе команды для интерфейса ' + DUT.neighor2["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению 192.168.1.22, а равен - %s" % IP)
         age = result1[located_index3]['age']
-        assert_that(age !=' ','Параметр Age в выводе команды для интерфейса '+  DUT.neighor2['int_name'] + ' ' +DUT.hostname +" пуст")
+        assert_that(age != ' ', 'Параметр Age в выводе команды для интерфейса ' + DUT.neighor2["int_name"] + ' ' + DUT.hostname + " пуст")
         mac = result1[located_index3]['mac']
-        assert_that(mac=='e0:d9:e3:ff:48:b3','Параметр Hardware address в выводе команды для интерфейса '+  DUT.neighor2['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению 'e0:d9:e3:ff:48:b3', а равен - %s"%mac)
+        assert_that(mac != '',
+                    'Параметр Hardware address в выводе команды для интерфейса ' + DUT.neighor2["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению 'e0:d9:e3:df:6e:b3', а равен - %s" % mac)
         state = result1[located_index3]['state']
-        assert_that(state=='Dynamic','Параметр State в выводе команды для интерфейса '+  DUT.neighor2['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению Dynamic, а равен - %s"%state)
+        assert_that(state == 'Dynamic',
+                    'Параметр State в выводе команды для интерфейса ' + DUT.neighor2["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению Dynamic, а равен - %s" % state)
         Int = result1[located_index3]['Int']
-        assert_that(Int=='bu2','Параметр Interface в выводе команды для интерфейса '+  DUT.neighor2['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению bu2, а равен - %s"%Int)
-    
-    elif (DUT.neighor3['int_name'] == DUT1.neighor3['int_name']  and DUT.host_ip== DUT1.host_ip):
+        assert_that(Int == DUT2.neighor2['int_name'],
+                    'Параметр Interface в выводе команды для интерфейса ' + DUT.neighor2["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению bu2, а равен - %s" % Int)
+
+    elif (DUT.neighor3["int_name"] == DUT1.neighor3['int_name'] and DUT.host_ip ==  DUT1.host_ip):
         IP = result3[located_index4]['IP']
-        assert_that(IP =='192.168.55.9','Параметр IP в выводе команды для интерфейса '+  DUT.neighor3['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению 192.168.55.9, а равен - %s"%IP)
+        assert_that(f"{IP}/30" == DUT1.neighor3['ip'],
+                    'Параметр IP в выводе команды для интерфейса ' + DUT.neighor3["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению 192.168.1.9, а равен - %s" % IP)
         age = result3[located_index4]['age']
-        assert_that(age !=' ','Параметр Age в выводе команды для интерфейса '+  DUT.neighor3['int_name'] + ' ' +DUT.hostname +" пуст")
+        assert_that(age != ' ', 'Параметр Age в выводе команды для интерфейса ' + DUT.neighor3["int_name"] + ' ' + DUT.hostname + " пуст")
         mac = result3[located_index4]['mac']
-        assert_that(mac=='e4:5a:d4:de:c8:8b','Параметр Hardware address в выводе команды для интерфейса '+  DUT.neighor3['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению e4:5a:d4:de:c8:8b, а равен - %s"%mac)
+        assert_that(mac != '',
+                    'Параметр Hardware address в выводе команды для интерфейса ' + DUT.neighor3["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению e0:d9:e3:df:35:8b, а равен - %s" % mac)
         state = result3[located_index4]['state']
-        assert_that(state=='Interface','Параметр State в выводе команды для интерфейса '+  DUT.neighor3['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению Interface, а равен - %s"%state)
+        assert_that(state == 'Interface',
+                    'Параметр State в выводе команды для интерфейса ' + DUT.neighor3["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению Interface, а равен - %s" % state)
         Int = result3[located_index4]['Int']
-        assert_that(Int=='te0/0/11.352','Параметр Interface в выводе команды для интерфейса '+  DUT.neighor3['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению te0/0/11.352, а равен - %s"%Int)
+        assert_that(Int == DUT1.neighor3['int_name'],
+                    'Параметр Interface в выводе команды для интерфейса ' + DUT.neighor3["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению te0/0/11.352, а равен - %s" % Int)
         IP = result3[located_index5]['IP']
-        assert_that(IP =='192.168.55.10','Параметр IP в выводе команды для интерфейса '+  DUT.neighor3['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению 192.168.55.10, а равен - %s"%IP)
+        assert_that(f"{IP}/30" == DUT4['vlan2']['ip'],
+                    'Параметр IP в выводе команды для интерфейса ' + DUT.neighor3["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению 192.168.1.10, а равен - %s" % IP)
         age = result3[located_index5]['age']
-        assert_that(age !=' ','Параметр Age в выводе команды для интерфейса '+  DUT.neighor3['int_name'] + ' ' +DUT.hostname +" пуст")
+        assert_that(age != ' ', 'Параметр Age в выводе команды для интерфейса ' + DUT.neighor3["int_name"] + ' ' + DUT.hostname + " пуст")
         mac = result3[located_index5]['mac']
-        assert_that(mac=='50:00:00:02:00:02','Параметр Hardware address в выводе команды для интерфейса '+  DUT.neighor3['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению 50:00:00:02:00:02, а равен - %s"%mac)
+        assert_that(mac != '',
+                    'Параметр Hardware address в выводе команды для интерфейса ' + DUT.neighor3["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению 50:00:00:13:00:02, а равен - %s" % mac)
         state = result3[located_index5]['state']
-        assert_that(state=='Dynamic','Параметр State в выводе команды для интерфейса '+  DUT.neighor3['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению Dynamic, а равен - %s"%state)
+        assert_that(state == 'Dynamic',
+                    'Параметр State в выводе команды для интерфейса ' + DUT.neighor3["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению Dynamic, а равен - %s" % state)
         Int = result3[located_index5]['Int']
-        assert_that(Int=='te0/0/11.352','Параметр Interface в выводе команды для интерфейса '+  DUT.neighor3['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению te0/0/11.352, а равен - %s"%Int)
-   
-   
-    elif (DUT.neighor1['int_name'] == DUT2.neighor1['int_name']  and DUT.host_ip== DUT2.host_ip):
+        assert_that(Int == f"{DUT4['int']}.{DUT4['vlan2']['id']}",
+                    'Параметр Interface в выводе команды для интерфейса ' + DUT.neighor3["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению te0/0/11.352, а равен - %s" % Int)
+
+
+    elif (DUT.neighor1["int_name"] == DUT2.neighor1['int_name'] and DUT.host_ip ==  DUT2.host_ip):
         IP = result2[located_index1]['IP']
-        assert_that(IP =='192.168.55.5','Параметр IP в выводе команды для интерфейса '+  DUT.neighor1['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению 192.168.55.5, а равен - %s"%IP)
+        assert_that(f"{IP}/30" == DUT3.neighor2['ip'],
+                    'Параметр IP в выводе команды для интерфейса ' + DUT.neighor1["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению 192.168.1.5, а равен - %s" % IP)
         age = result2[located_index1]['age']
-        assert_that(age !=' ','Параметр Age в выводе команды для интерфейса '+  DUT.neighor1['int_name'] + ' ' +DUT.hostname +" пуст")
+        assert_that(age != ' ', 'Параметр Age в выводе команды для интерфейса ' + DUT.neighor1["int_name"] + ' ' + DUT.hostname + " пуст")
         mac = result2[located_index1]['mac']
-        assert_that(mac=='a8:f9:4b:8b:94:03','Параметр Hardware address в выводе команды для интерфейса '+  DUT.neighor1['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению a8:f9:4b:8b:94:03, а равен - %s"%mac)
+        assert_that(mac != '',
+                    'Параметр Hardware address в выводе команды для интерфейса ' + DUT.neighor1["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению 68:13:e2:d8:16:bb, а равен - %s" % mac)
         state = result2[located_index1]['state']
-        assert_that(state=='Dynamic','Параметр State в выводе команды для интерфейса '+  DUT.neighor1['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению Dynamic, а равен - %s"%state)
+        assert_that(state == 'Dynamic',
+                    'Параметр State в выводе команды для интерфейса ' + DUT.neighor1["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению Dynamic, а равен - %s" % state)
         Int = result2[located_index1]['Int']
-        assert_that(Int=='bu1','Параметр Interface в выводе команды для интерфейса '+  DUT.neighor1['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению bu1, а равен - %s"%Int)
+        assert_that(Int == DUT2.neighor1['int_name'],
+                    'Параметр Interface в выводе команды для интерфейса ' + DUT.neighor1["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению bu1, а равен - %s" % Int)
+
+    elif (DUT.neighor2["int_name"] == DUT2.neighor2['int_name'] and DUT.host_ip ==  DUT2.host_ip):
+        IP = result1[located_index3]['IP']
+        assert_that(f"{IP}/30" == DUT2.neighor2['ip'],
+                    'Параметр IP в выводе команды для интерфейса ' + DUT.neighor2["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению 192.168.1.21, а равен - %s" % IP)
+        age = result1[located_index3]['age']
+        assert_that(age != ' ', 'Параметр Age в выводе команды для интерфейса ' + DUT.neighor2["int_name"] + ' ' + DUT.hostname + " пуст")
+        mac = result1[located_index3]['mac']
+        assert_that(mac != '',
+                    'Параметр Hardware address в выводе команды для интерфейса ' + DUT.neighor2["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению e0:d9:e3:df:35:97, а равен - %s" % mac)
+        state = result1[located_index3]['state']
+        assert_that(state == 'Dynamic',
+                    'Параметр State в выводе команды для интерфейса ' + DUT.neighor2["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению Dynamic, а равен - %s" % state)
+        Int = result1[located_index3]['Int']
+        assert_that(Int == DUT2.neighor2['int_name'],
+                    'Параметр Interface в выводе команды для интерфейса ' + DUT.neighor2["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению bu2, а равен - %s" % Int)
+        IP = result1[located_index2]['IP']
+        assert_that(f"{IP}/30" == DUT1.neighor2['ip'],
+                    'Параметр IP в выводе команды для интерфейса ' + DUT.neighor2["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению 192.168.1.22, а равен - %s" % IP)
+        age = result1[located_index2]['age']
+        assert_that(age != ' ', 'Параметр Age в выводе команды для интерфейса ' + DUT.neighor2["int_name"] + ' ' + DUT.hostname + " пуст")
+        mac = result1[located_index2]['mac']
+        assert_that(mac == '',
+                    'Параметр Hardware address в выводе команды для интерфейса ' + DUT.neighor2["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению e0:d9:e3:df:6e:b3, а равен - %s" % mac)
+        state = result1[located_index2]['state']
+        assert_that(state == 'Interface',
+                    'Параметр State в выводе команды для интерфейса ' + DUT.neighor2["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению Interface, а равен - %s" % state)
+        Int = result1[located_index2]['Int']
+        assert_that(Int == DUT1.neighor2['int_name'],
+                    'Параметр Interface в выводе команды для интерфейса ' + DUT.neighor2["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению bu2, а равен - %s" % Int)
+
+    elif (DUT.neighor3["int_name"] == DUT2.neighor3['int_name'] and DUT.host_ip ==  DUT2.host_ip):
+        IP = result3[located_index4]['IP']
+        assert_that(f"{IP}/30" == DUT2.neighor3['ip'],
+                    'Параметр IP в выводе команды для интерфейса ' + DUT.neighor3["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению 192.168.1.13, а равен - %s" % IP)
+        age = result3[located_index4]['age']
+        assert_that(age != ' ', 'Параметр Age в выводе команды для интерфейса ' + DUT.neighor3["int_name"] + ' ' + DUT.hostname + " пуст")
+        mac = result3[located_index4]['mac']
+        assert_that(mac != '',
+                    'Параметр Hardware address в выводе команды для интерфейса ' + DUT.neighor3["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению e0:d9:e3:df:6e:8b, а равен - %s" % mac)
+        state = result3[located_index4]['state']
+        assert_that(state == 'Interface',
+                    'Параметр State в выводе команды для интерфейса ' + DUT.neighor3["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению Interface, а равен - %s" % state)
+        Int = result3[located_index4]['Int']
+        assert_that(Int == DUT2.neighor3['int_name'],
+                    'Параметр Interface в выводе команды для интерфейса ' + DUT.neighor3["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению te0/0/11.351, а равен - %s" % Int)
+        IP = result3[located_index5]['IP']
+        assert_that(DUT.host_ip == DUT4['vlan3']['ip'],
+                    'Параметр IP в выводе команды для интерфейса ' + DUT.neighor3["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению 192.168.1.14, а равен - %s" % IP)
+        age = result3[located_index5]['age']
+        assert_that(age != ' ', 'Параметр Age в выводе команды для интерфейса ' + DUT.neighor3["int_name"] + ' ' + DUT.hostname + " пуст")
+        mac = result3[located_index5]['mac']
+        assert_that(mac != '',
+                    'Параметр Hardware address в выводе команды для интерфейса ' + DUT.neighor3["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению 50:00:00:13:00:02, а равен - %s" % mac)
+        state = result3[located_index5]['state']
+        assert_that(state == 'Dynamic',
+                    'Параметр State в выводе команды для интерфейса ' + DUT.neighor3["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению Dynamic, а равен - %s" % state)
+        Int = result3[located_index5]['Int']
+        assert_that(Int == f"{DUT4['int']}.{DUT4['vlan2']['id']}",
+                    'Параметр Interface в выводе команды для интерфейса ' + DUT.neighor3["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению te0/0/11.351, а равен - %s" % Int)
+
+
+    elif (DUT.neighor1["int_name"] == DUT3.neighor1['int_name'] and DUT.host_ip ==  DUT3.host_ip):
+        IP = result2[located_index1]['IP']
+        assert_that(f"{IP}/30" == DUT1.neighor1['ip'],
+                    'Параметр IP в выводе команды для интерфейса ' + DUT.neighor1["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению 192.168.1.1, а равен - %s" % IP)
+        age = result2[located_index1]['age']
+        assert_that(age != ' ', 'Параметр Age в выводе команды для интерфейса ' + DUT.neighor1["int_name"] + ' ' + DUT.hostname + " пуст")
+        mac = result2[located_index1]['mac']
+        assert_that(mac != '',
+                    'Параметр Hardware address в выводе команды для интерфейса ' + DUT.neighor1["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению e0:d9:e3:df:35:96, а равен - %s" % mac)
+        state = result2[located_index1]['state']
+        assert_that(state == 'Dynamic',
+                    'Параметр State в выводе команды для интерфейса ' + DUT.neighor1["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению Dynamic, а равен - %s" % state)
+        Int = result2[located_index1]['Int']
+        assert_that(Int == DUT3.neighor1['int_name'],
+                    'Параметр Interface в выводе команды для интерфейса ' + DUT.neighor1["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению bu1, а равен - %s" % Int)
         IP = result2[located_index]['IP']
-        assert_that(IP =='192.168.55.6','Параметр IP в выводе команды для интерфейса '+  DUT.neighor1['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению 192.168.55.6, а равен - %s"%IP)
+        assert_that(f"{IP}/30" == DUT3.neighor1['ip'],
+                    'Параметр IP в выводе команды для интерфейса ' + DUT.neighor1["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению 192.168.1.2, а равен - %s" % IP)
         age = result2[located_index]['age']
-        assert_that(age !=' ','Параметр Age в выводе команды для интерфейса '+  DUT.neighor1['int_name'] + ' ' +DUT.hostname +" пуст")
+        assert_that(age != ' ', 'Параметр Age в выводе команды для интерфейса ' + DUT.neighor1["int_name"] + ' ' + DUT.hostname + " пуст")
         mac = result2[located_index]['mac']
-        assert_that(mac=='e0:d9:e3:ff:48:b2','Параметр Hardware address в выводе команды для интерфейса '+  DUT.neighor1['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению e0:d9:e3:ff:48:b2, а равен - %s"%mac)
+        assert_that(mac != '',
+                    'Параметр Hardware address в выводе команды для интерфейса ' + DUT.neighor1["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению 68:13:e2:d8:16:ba, а равен - %s" % mac)
         state = result2[located_index]['state']
-        assert_that(state=='Interface','Параметр State в выводе команды для интерфейса '+  DUT.neighor1['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению Interface, а равен - %s"%state)
+        assert_that(state == 'Interface',
+                    'Параметр State в выводе команды для интерфейса ' + DUT.neighor1["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению Interface, а равен - %s" % state)
         Int = result2[located_index]['Int']
-        assert_that(Int=='bu1','Параметр Interface в выводе команды для интерфейса '+  DUT.neighor1['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению bu1, а равен - %s"%Int)
-    
-    elif (DUT.neighor2['int_name'] == DUT2.neighor2['int_name']  and DUT.host_ip== DUT2.host_ip):
-        IP = result1[located_index3]['IP']
-        assert_that(IP =='192.168.55.21','Параметр IP в выводе команды для интерфейса '+  DUT.neighor2['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению 192.168.55.21, а равен - %s"%IP)
-        age = result1[located_index3]['age']
-        assert_that(age !=' ','Параметр Age в выводе команды для интерфейса '+  DUT.neighor2['int_name'] + ' ' +DUT.hostname +" пуст")
-        mac = result1[located_index3]['mac']
-        assert_that(mac=='e0:d9:e3:ff:48:b2','Параметр Hardware address в выводе команды для интерфейса '+  DUT.neighor2['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению e0:d9:e3:ff:48:b2, а равен - %s"%mac)
-        state = result1[located_index3]['state']
-        assert_that(state=='Dynamic','Параметр State в выводе команды для интерфейса '+  DUT.neighor2['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению Dynamic, а равен - %s"%state)
-        Int = result1[located_index3]['Int']
-        assert_that(Int=='bu2','Параметр Interface в выводе команды для интерфейса '+  DUT.neighor2['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению bu2, а равен - %s"%Int)
+        assert_that(Int == DUT1.neighor1['int_name'],
+                    'Параметр Interface в выводе команды для интерфейса ' + DUT.neighor1["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению bu1, а равен - %s" % Int)
+
+    elif (DUT.neighor2["int_name"] == DUT3.neighor2['int_name'] and DUT.host_ip ==  DUT3.host_ip):
         IP = result1[located_index2]['IP']
-        assert_that(IP =='192.168.55.22','Параметр IP в выводе команды для интерфейса '+  DUT.neighor2['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению 192.168.55.22, а равен - %s"%IP)
+        assert_that(f"{IP}/30" == DUT3.neighor2['ip'],
+                    'Параметр IP в выводе команды для интерфейса ' + DUT.neighor2["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению 192.168.1.21, а равен - %s" % IP)
         age = result1[located_index2]['age']
-        assert_that(age !=' ','Параметр Age в выводе команды для интерфейса '+  DUT.neighor2['int_name'] + ' ' +DUT.hostname +" пуст")
+        assert_that(age != ' ', 'Параметр Age в выводе команды для интерфейса ' + DUT.neighor2["int_name"] + ' ' + DUT.hostname + " пуст")
         mac = result1[located_index2]['mac']
-        assert_that(mac=='e0:d9:e3:ff:48:b3','Параметр Hardware address в выводе команды для интерфейса '+  DUT.neighor2['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению e0:d9:e3:ff:48:b3, а равен - %s"%mac)
+        assert_that(mac != '',
+                    'Параметр Hardware address в выводе команды для интерфейса ' + DUT.neighor2["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению e0:d9:e3:df:35:97, а равен - %s" % mac)
         state = result1[located_index2]['state']
-        assert_that(state=='Interface','Параметр State в выводе команды для интерфейса '+  DUT.neighor2['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению Interface, а равен - %s"%state)
+        assert_that(state == 'Interface',
+                    'Параметр State в выводе команды для интерфейса ' + DUT.neighor2["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению Interface, а равен - %s" % state)
         Int = result1[located_index2]['Int']
-        assert_that(Int=='bu2','Параметр Interface в выводе команды для интерфейса '+  DUT.neighor2['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению bu2, а равен - %s"%Int)
-    
-    elif (DUT.neighor3['int_name'] == DUT2.neighor3['int_name']  and DUT.host_ip== DUT2.host_ip):
-        IP = result3[located_index4]['IP']
-        assert_that(IP =='192.168.55.13','Параметр IP в выводе команды для интерфейса '+  DUT.neighor3['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению 192.168.55.13, а равен - %s"%IP)
-        age = result3[located_index4]['age']
-        assert_that(age !=' ','Параметр Age в выводе команды для интерфейса '+  DUT.neighor3['int_name'] + ' ' +DUT.hostname +" пуст")
-        mac = result3[located_index4]['mac']
-        assert_that(mac=='e0:d9:e3:ff:48:8b','Параметр Hardware address в выводе команды для интерфейса '+  DUT.neighor3['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению e0:d9:e3:ff:48:8b, а равен - %s"%mac)
-        state = result3[located_index4]['state']
-        assert_that(state=='Interface','Параметр State в выводе команды для интерфейса '+  DUT.neighor3['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению Interface, а равен - %s"%state)
-        Int = result3[located_index4]['Int']
-        assert_that(Int=='te0/0/11.351','Параметр Interface в выводе команды для интерфейса '+  DUT.neighor3['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению te0/0/11.351, а равен - %s"%Int)
-        IP = result3[located_index5]['IP']
-        assert_that(IP =='192.168.55.14','Параметр IP в выводе команды для интерфейса '+  DUT.neighor3['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению 192.168.55.14, а равен - %s"%IP)
-        age = result3[located_index5]['age']
-        assert_that(age !=' ','Параметр Age в выводе команды для интерфейса '+  DUT.neighor3['int_name'] + ' ' +DUT.hostname +" пуст")
-        mac = result3[located_index5]['mac']
-        assert_that(mac=='50:00:00:02:00:02','Параметр Hardware address в выводе команды для интерфейса '+  DUT.neighor3['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению 50:00:00:02:00:02, а равен - %s"%mac)
-        state = result3[located_index5]['state']
-        assert_that(state=='Dynamic','Параметр State в выводе команды для интерфейса '+  DUT.neighor3['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению Dynamic, а равен - %s"%state)
-        Int = result3[located_index5]['Int']
-        assert_that(Int=='te0/0/11.351','Параметр Interface в выводе команды для интерфейса '+  DUT.neighor3['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению te0/0/11.351, а равен - %s"%Int)    
-    
-    
-    elif (DUT.neighor1['int_name'] == DUT3.neighor1['int_name'] and DUT.host_ip== DUT3.host_ip):
-        IP = result2[located_index1]['IP']
-        assert_that(IP =='192.168.55.1','Параметр IP в выводе команды для интерфейса '+  DUT.neighor1['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению 192.168.55.1, а равен - %s"%IP)
-        age = result2[located_index1]['age']
-        assert_that(age !=' ','Параметр Age в выводе команды для интерфейса '+  DUT.neighor1['int_name'] + ' ' +DUT.hostname +" пуст")
-        mac = result2[located_index1]['mac']
-        assert_that(mac=='e4:5a:d4:de:c8:a2','Параметр Hardware address в выводе команды для интерфейса '+  DUT.neighor1['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению e4:5a:d4:de:c8:a2, а равен - %s"%mac)
-        state = result2[located_index1]['state']
-        assert_that(state=='Dynamic','Параметр State в выводе команды для интерфейса '+  DUT.neighor1['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению Dynamic, а равен - %s"%state)
-        Int = result2[located_index1]['Int']
-        assert_that(Int=='bu1','Параметр Interface в выводе команды для интерфейса '+  DUT.neighor1['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению bu1, а равен - %s"%Int)
-        IP = result2[located_index]['IP']
-        assert_that(IP =='192.168.55.2','Параметр IP в выводе команды для интерфейса '+  DUT.neighor1['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению 192.168.55.2, а равен - %s"%IP)
-        age = result2[located_index]['age']
-        assert_that(age !=' ','Параметр Age в выводе команды для интерфейса '+  DUT.neighor1['int_name'] + ' ' +DUT.hostname +" пуст")
-        mac = result2[located_index]['mac']
-        assert_that(mac=='a8:f9:4b:8b:94:02','Параметр Hardware address в выводе команды для интерфейса '+  DUT.neighor1['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению a8:f9:4b:8b:94:02, а равен - %s"%mac)
-        state = result2[located_index]['state']
-        assert_that(state=='Interface','Параметр State в выводе команды для интерфейса '+  DUT.neighor1['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению Interface, а равен - %s"%state)
-        Int = result2[located_index]['Int']
-        assert_that(Int=='bu1','Параметр Interface в выводе команды для интерфейса '+  DUT.neighor1['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению bu1, а равен - %s"%Int)
-    
-    elif (DUT.neighor2['int_name'] == DUT3.neighor2['int_name'] and DUT.host_ip== DUT3.host_ip):
-        IP = result1[located_index2]['IP']
-        assert_that(IP =='192.168.55.5','Параметр IP в выводе команды для интерфейса '+  DUT.neighor2['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению 192.168.55.5, а равен - %s"%IP)
-        age = result1[located_index2]['age']
-        assert_that(age !=' ','Параметр Age в выводе команды для интерфейса '+  DUT.neighor2['int_name'] + ' ' +DUT.hostname +" пуст")
-        mac = result1[located_index2]['mac']
-        assert_that(mac=='a8:f9:4b:8b:94:03','Параметр Hardware address в выводе команды для интерфейса '+  DUT.neighor2['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению a8:f9:4b:8b:94:03, а равен - %s"%mac)
-        state = result1[located_index2]['state']
-        assert_that(state=='Interface','Параметр State в выводе команды для интерфейса '+  DUT.neighor2['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению Interface, а равен - %s"%state)
-        Int = result1[located_index2]['Int']
-        assert_that(Int=='bu2','Параметр Interface в выводе команды для интерфейса '+  DUT.neighor2['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению bu2, а равен - %s"%Int)
+        assert_that(Int == DUT3.neighor1['int_name'],
+                    'Параметр Interface в выводе команды для интерфейса ' + DUT.neighor2["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению bu2, а равен - %s" % Int)
         IP = result1[located_index3]['IP']
-        assert_that(IP =='192.168.55.6','Параметр IP в выводе команды для интерфейса '+  DUT.neighor2['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению 192.168.55.6, а равен - %s"%IP)
+        assert_that(f"{IP}/30" == DUT2.neighor1['ip'],
+                    'Параметр IP в выводе команды для интерфейса ' + DUT.neighor2["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению 192.168.1.22, а равен - %s" % IP)
         age = result1[located_index3]['age']
-        assert_that(age !=' ','Параметр Age в выводе команды для интерфейса '+  DUT.neighor2['int_name'] + ' ' +DUT.hostname +" пуст")
+        assert_that(age != ' ', 'Параметр Age в выводе команды для интерфейса ' + DUT.neighor2["int_name"] + ' ' + DUT.hostname + " пуст")
         mac = result1[located_index3]['mac']
-        assert_that(mac=='e0:d9:e3:ff:48:b2','Параметр Hardware address в выводе команды для интерфейса '+  DUT.neighor2['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению e0:d9:e3:ff:48:b2, а равен - %s"%mac)
+        assert_that(mac != '',
+                    'Параметр Hardware address в выводе команды для интерфейса ' + DUT.neighor2["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению 'e0:d9:e3:df:6e:b3', а равен - %s" % mac)
         state = result1[located_index3]['state']
-        assert_that(state=='Dynamic','Параметр State в выводе команды для интерфейса '+  DUT.neighor2['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению Dynamic, а равен - %s"%state)
+        assert_that(state == 'Dynamic',
+                    'Параметр State в выводе команды для интерфейса ' + DUT.neighor2["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению Dynamic, а равен - %s" % state)
         Int = result1[located_index3]['Int']
-        assert_that(Int=='bu2','Параметр Interface в выводе команды для интерфейса '+  DUT.neighor2['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению bu2, а равен - %s"%Int)
-    
-    elif (DUT.neighor1['int_name'] == DUT3.neighor1['int_name'] and DUT.host_ip== DUT3.host_ip):
+        assert_that(Int == DUT2.neighor1['int_name'],
+                    'Параметр Interface в выводе команды для интерфейса ' + DUT.neighor2["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению bu2, а равен - %s" % Int)
+
+    elif (DUT.neighor3["int_name"] == DUT3.neighor3['int_name'] and DUT.host_ip ==  DUT3.host_ip):
         IP = result3[located_index4]['IP']
-        assert_that(IP =='192.168.55.17','Параметр IP в выводе команды для интерфейса '+  DUT.neighor3['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению 192.168.55.17, а равен - %s"%IP)
+        assert_that(f"{IP}/30" == DUT3.neighor3['ip'],
+                    'Параметр IP в выводе команды для интерфейса ' + DUT.neighor3["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению 192.168.1.9, а равен - %s" % IP)
         age = result3[located_index4]['age']
-        assert_that(age !=' ','Параметр Age в выводе команды для интерфейса '+  DUT.neighor3['int_name'] + ' ' +DUT.hostname +" пуст")
+        assert_that(age != ' ', 'Параметр Age в выводе команды для интерфейса ' + DUT.neighor3["int_name"] + ' ' + DUT.hostname + " пуст")
         mac = result3[located_index4]['mac']
-        assert_that(mac=='a8:f9:4b:8b:92:99','Параметр Hardware address в выводе команды для интерфейса '+  DUT.neighor3['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению a8:f9:4b:8b:92:99, а равен - %s"%mac)
+        assert_that(mac != '',
+                    'Параметр Hardware address в выводе команды для интерфейса ' + DUT.neighor3["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению e0:d9:e3:df:35:8b, а равен - %s" % mac)
         state = result3[located_index4]['state']
-        assert_that(state=='Interface','Параметр State в выводе команды для интерфейса '+  DUT.neighor3['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению Interface, а равен - %s"%state)
+        assert_that(state == 'Interface',
+                    'Параметр State в выводе команды для интерфейса ' + DUT.neighor3["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению Interface, а равен - %s" % state)
         Int = result3[located_index4]['Int']
-        assert_that(Int=='te0/1/5.350','Параметр Interface в выводе команды для интерфейса '+  DUT.neighor3['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению te0/1/5.350, а равен - %s"%Int)
+        assert_that(Int == DUT3.neighor3['int_name'],
+                    'Параметр Interface в выводе команды для интерфейса ' + DUT.neighor3["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению te0/0/11.352, а равен - %s" % Int)
         IP = result3[located_index5]['IP']
-        assert_that(IP =='192.168.55.18','Параметр IP в выводе команды для интерфейса '+  DUT.neighor3['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению 192.168.55.18, а равен - %s"%IP)
+        assert_that(DUT.host_ip == DUT4['vlan1']['ip'],
+                    'Параметр IP в выводе команды для интерфейса ' + DUT.neighor3["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению 192.168.1.10, а равен - %s" % IP)
         age = result3[located_index5]['age']
-        assert_that(age !=' ','Параметр Age в выводе команды для интерфейса '+  DUT.neighor3['int_name'] + ' ' +DUT.hostname +" пуст")
+        assert_that(age != ' ', 'Параметр Age в выводе команды для интерфейса ' + DUT.neighor3["int_name"] + ' ' + DUT.hostname + " пуст")
         mac = result3[located_index5]['mac']
-        assert_that(mac=='50:00:00:02:00:02','Параметр Hardware address в выводе команды для интерфейса '+  DUT.neighor3['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению 50:00:00:02:00:02, а равен - %s"%mac)
+        assert_that(mac != '',
+                    'Параметр Hardware address в выводе команды для интерфейса ' + DUT.neighor3["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению 50:00:00:13:00:02, а равен - %s" % mac)
         state = result3[located_index5]['state']
-        assert_that(state=='Dynamic','Параметр State в выводе команды для интерфейса '+  DUT.neighor3['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению Dynamic, а равен - %s"%state)
+        assert_that(state == 'Dynamic',
+                    'Параметр State в выводе команды для интерфейса ' + DUT.neighor3["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению Dynamic, а равен - %s" % state)
         Int = result3[located_index5]['Int']
-        assert_that(Int=='te0/1/5.350','Параметр Interface в выводе команды для интерфейса '+  DUT.neighor3['int_name'] + ' ' +DUT.hostname +" не соответсвует ожидаемому значению te0/1/5.350, а равен - %s"%Int)  
+        assert_that(Int == f"{DUT4['int']}.{DUT4['vlan1']['id']}",
+                    'Параметр Interface в выводе команды для интерфейса ' + DUT.neighor3["int_name"] + ' ' + DUT.hostname + " не соответствует ожидаемому значению te0/0/11.352, а равен - %s" % Int)

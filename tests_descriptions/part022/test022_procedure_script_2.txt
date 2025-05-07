@@ -1,0 +1,135 @@
+-------------------------------------------------------------------------------------------------------------
+🔸️ШАГ 1. 
+-------------------------------------------------------------------------------------------------------------
+1. Проверяем начилие соседств.
+
+✅️Ожидаемый результат: 
+
+🔹️atAR1:
+
+  Routing Information Protocol in vrf 'prima'
+
+    Timers:
+      Update interval: 30 sec
+      Holddown interval: 180 sec
+      Flush interval: 120 sec
+
+    Interface(s):
+      Interface        Send             Receive          Sent      Recv      Recv bad  Recv bad  
+                                                         updates   updates   packets   routes    
+      ---------------- ---------------- ---------------- --------- --------- --------- --------- 
+      bu2.1205         enabled🚩️        enabled🚩️          2         1         0         0         
+
+
+    Neighbor(s):
+      IP address                   Interface        Last update      Version          BFD status       Recv bad  Recv bad  
+                                                                                                       packets   routes    
+      ---------------------------- ---------------- ---------------- ---------------- ---------------- --------- --------- 
+      10.12.3.2🚩️                  bu2.1205🚩️       00h00m14s        2                not-required     0         0   
+
+🔹️atAR2:
+
+  Routing Information Protocol in vrf 'prima'
+
+    Timers:
+      Update interval: 30 sec
+      Holddown interval: 180 sec
+      Flush interval: 120 sec
+
+    Interface(s):
+      Interface        Send             Receive          Sent      Recv      Recv bad  Recv bad  
+                                                         updates   updates   packets   routes    
+      ---------------- ---------------- ---------------- --------- --------- --------- --------- 
+      bu2.1200         enabled🚩️        enabled🚩️          3         1         0         0         
+
+
+    Neighbor(s):
+      IP address                   Interface        Last update      Version          BFD status       Recv bad  Recv bad  
+                                                                                                       packets   routes    
+      ---------------------------- ---------------- ---------------- ---------------- ---------------- --------- --------- 
+      10.12.2.2🚩️                  bu2.1200🚩️       00h00m14s        2                not-required     0         0         
+ 
+
+🔹️atDR1:
+
+  Routing Information Protocol in vrf 'prima'
+
+    Timers:
+      Update interval: 30 sec
+      Holddown interval: 180 sec
+      Flush interval: 120 sec
+
+    Interface(s):
+      Interface        Send             Receive          Sent      Recv      Recv bad  Recv bad  
+                                                         updates   updates   packets   routes    
+      ---------------- ---------------- ---------------- --------- --------- --------- --------- 
+      bu1.1200         enabled🚩️        enabled🚩️          4         1         0         0         
+
+
+    Neighbor(s):
+      IP address                   Interface        Last update      Version          BFD status       Recv bad  Recv bad  
+                                                                                                       packets   routes    
+      ---------------------------- ---------------- ---------------- ---------------- ---------------- --------- --------- 
+      10.12.1.2🚩️                  bu1.1200🚩️       00h00m02s        2                not-required     0         0         
+    
+--------------------------------------------------------------------------------------------------------
+🔸️ШАГ 2.
+--------------------------------------------------------------------------------------------------------
+1. Проверяем наличие лупбеков соседей в таблице маршрутизации.
+
+✅️Ожидаемый результат: 
+
+🔹️atAR1:
+
+  R      2.0.0.2/32🚩️    via 10.12.3.2🚩️ [120/2], 05h26m44s, bu2.1205
+  
+🔹️atAR2:
+
+  R      3.0.0.3/32🚩️    via 10.12.2.2🚩️ [120/2], 05h26m45s, bu2.1200
+ 
+🔹️atDR1:
+
+  R      2.0.0.3/32🚩️    via 10.12.1.2🚩️ [120/2], 05h27m32s, bu1.1200
+  
+-------------------------------------------------------------------------------------------------------
+🔸️ШАГ 3.
+-------------------------------------------------------------------------------------------------------
+1. Проверяем пинг между лупбеками.
+
+✅️Ожидаемый результат:
+
+🔹️atAR1:
+
+ ping 2.0.0.2 source 10.0.0.3 vrf prima🚩️
+Tue Sep 24 08:19:01 2024
+
+Sending 4, 56-byte ICMP Echos to 2.0.0.2,
+request send interval is 0.100 seconds,
+response wait timeout is 2.000 seconds:
+!!!!
+
+Success rate is 100🚩️ percent (4/4), round-trip min/avg/max = 0.142/0.175/0.208 ms
+
+🔹️atAR2:
+
+ ping 3.0.0.3 source 10.0.0.2 vrf prima🚩️
+Tue Sep 24 08:19:00 2024
+
+Sending 4, 56-byte ICMP Echos to 3.0.0.3,
+request send interval is 0.100 seconds,
+response wait timeout is 2.000 seconds:
+!!!!
+
+Success rate is 100🚩️ percent (4/4), round-trip min/avg/max = 0.133/0.158/0.183 ms
+
+🔹️atDR1:
+
+ ping 2.0.0.3 source 10.0.0.1 vrf prima🚩️
+Tue Sep 24 08:19:01 2024
+
+Sending 4, 56-byte ICMP Echos to 2.0.0.3,
+request send interval is 0.100 seconds,
+response wait timeout is 2.000 seconds:
+!!!!
+
+Success rate is 100🚩️ percent (4/4), round-trip min/avg/max = 0.126/0.154/0.183 ms

@@ -7,8 +7,9 @@ Start
   ^${line1}
   ^${line2}
   ^\s+i\s+L2\s+${route_ipv6}\s+\d+[wdh]\d+[dhm]\d+[hms],\s+te0/0/11.352
-  ^\s+i\s+L2\s+${route_ipv6}\s+\d+[wdh]\d+[dhm]\d+[hms],\s+te0/0/11.351
+  ^\s+i\s+L2\s+${route_ipv6}\s+\d+[wdh]\d+[dhm]\d+[hms],\s+te0/0/11.\d+
   ^\s+i\s+L2\s+${route_ipv6}\s+\d+[wdh]\d+[dhm]\d+[hms],\s+te0/1/5.350  
+  ^\s+i\s+L2\s+${route_ipv6}\s+\d+[wdh]\d+[dhm]\d+[hms],\s+te0/0/5.\d+
   ^\s+Total entries: ${total_count}
 
 #0/FMC0:atDR1# show route isis ipv6

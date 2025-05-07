@@ -1,0 +1,138 @@
+-------------------------------------------------------------------------------------------------------------
+🔸️ШАГ 1. 
+-------------------------------------------------------------------------------------------------------------
+1. Включим интерфейсы.
+
+На маршрутизаторе atAR1:
+
+0/ME5100:atAR1# configure
+0/ME5100:atAR1(config)# interface bu2.3210
+0/ME5100:atAR1(config-bundle-ether-sub)# no shutdown 
+0/ME5100:atAR1(config-bundle-ether-sub)# interface bu2.3216
+0/ME5100:atAR1(config-bundle-ether-sub)# no shutdown 
+0/ME5100:atAR1(config-bundle-ether-sub)# interface bu2.3217
+0/ME5100:atAR1(config-bundle-ether-sub)# no shutdown 
+0/ME5100:atAR1(config-bundle-ether-sub)# commit 
+
+На маршрутизаторе atAR2:
+
+0/ME5200:atAR2# configure
+0/ME5200:atAR2(config)# interface bu2.3210
+0/ME5200:atAR2(config-bundle-ether-sub)# no shutdown 
+0/ME5200:atAR2(config-bundle-ether-sub)# interface bu2.3216
+0/ME5200:atAR2(config-bundle-ether-sub)# no shutdown 
+0/ME5200:atAR2(config-bundle-ether-sub)# interface bu2.3217
+0/ME5200:atAR2(config-bundle-ether-sub)# no shutdown 
+0/ME5200:atAR2(config-bundle-ether-sub)# commit
+    
+--------------------------------------------------------------------------------------------------------
+🔸️ШАГ 2.
+--------------------------------------------------------------------------------------------------------
+1. Проверим вывод команды show ospfv2 neighbors на atAR1.
+
+✅️Ожидаемый результат:
+
+0/ME5100:atAR1# show ospfv2 neighbors 
+Thu May  4 09:13:11 2023
+  Routing Process: 1, ID 1.0.0.3
+    Router is not an area border router
+
+  Neighbor ID      Area ID          Pri  State               BFD           Dead Time  Last state change  Address           Interface 
+  ---------------- ---------------- ---- ------------------- ------------- ---------- ------------------ ----------------  ------------ 
+  1.0.0.2🚩️         0.0.0.0          1    full🚩️                not-required  00:00:30   00h02m43s          10.0.221.2     bu2.3210🚩️ 
+  1.0.0.2🚩️         0.0.0.0          1    full🚩️                not-required  00:00:34   00h00m13s          10.0.221.6     bu2.3216🚩️ 
+  1.0.0.2🚩️         0.0.0.0          1    full-BDR🚩️            not-required  00:00:30   00h02m43s          10.0.221.10    bu2.3217🚩️
+  
+-------------------------------------------------------------------------------------------------------
+🔸️ШАГ 3.
+-------------------------------------------------------------------------------------------------------
+1. Проверим вывод команды show ospfv2 neighbors на atAR2.
+
+✅️Ожидаемый результат:
+
+0/ME5200:atAR2# show ospfv2 neighbors 
+Thu May  4 09:13:03 2023
+  Routing Process: 1, ID 1.0.0.2
+    Router is not an area border router
+
+  Neighbor ID      Area ID          Pri  State               BFD           Dead Time  Last state change  Address          Interface 
+  ---------------- ---------------- ---- ------------------- ------------- ---------- ------------------ ---------------- ------------- 
+  1.0.0.3🚩️         0.0.0.0          1    full🚩️                not-required  00:00:38   00h02m35s          10.0.221.1    bu2.3210🚩️ 
+  1.0.0.3🚩️         0.0.0.0          1    full🚩️                not-required  00:00:38   00h00m05s          10.0.221.5    bu2.3216🚩️ 
+  1.0.0.3🚩️         0.0.0.0          1    full-DR🚩️             not-required  00:00:38   00h02m35s          10.0.221.9    bu2.3217🚩️ 
+    
+-----------------------------------------------------------------------------------------------------
+🔸️ШАГ 4.
+-----------------------------------------------------------------------------------------------------
+1. На маршрутизаторе atAR1 выполняем команду show route ipv4 1.0.0.2.
+
+✅️Ожидаемый результат:
+
+0/ME5100:atAR1# show route ipv4 1.0.0.2
+Thu May  4 09:25:39 2023
+  Routing entry for 1.0.0.2/32
+    Last update: 00h12m33s
+    Routing Descriptor Blocks
+      10.0.221.10🚩️, via bu2.3217🚩️
+      Known via ospf, distance 30, metric 2
+        type ospf-intra-area🚩️, protection ecmp, route-type remote
+  Routing entry for 1.0.0.2/32
+    Last update: 00h12m33s
+    Routing Descriptor Blocks
+      10.0.221.2🚩️, via bu2.3210🚩️
+      Known via ospf, distance 30, metric 2
+        type ospf-intra-area🚩️, protection ecmp, route-type remote
+  Routing entry for 1.0.0.2/32
+    Last update: 00h12m33s
+    Routing Descriptor Blocks
+      10.0.221.6🚩️, via bu2.3216🚩️
+      Known via ospf, distance 30, metric 2
+        type ospf-intra-area🚩️, protection ecmp, route-type remote
+  
+  Entries: 3🚩️
+
+-------------------------------------------------------------------------------------------------------
+🔸️ШАГ 5.
+-------------------------------------------------------------------------------------------------------
+1. На маршрутизаторе atAR2 выполняем команду show route ipv4 1.0.0.3.
+
+✅️Ожидаемый результат:
+
+0/ME5200:atAR2# show route ipv4 1.0.0.3
+Thu May  4 09:30:28 2023
+  Routing entry for 1.0.0.3/32
+    Last update: 00h17m23s
+    Routing Descriptor Blocks
+      10.0.221.1🚩️, via bu2.3210🚩️
+      Known via ospf, distance 30, metric 2
+        type ospf-intra-area🚩️, protection none, route-type remote
+ 
+  Entries: 1🚩️
+  
+-------------------------------------------------------------------------------------------------------------
+🔸️ШАГ 6. 
+-------------------------------------------------------------------------------------------------------------
+1. Выключим интерфейсы.
+
+На маршрутизаторе atAR1:
+
+0/ME5100:atAR1# configure
+0/ME5100:atAR1(config)# interface bu2.3210
+0/ME5100:atAR1(config-bundle-ether-sub)# shutdown 
+0/ME5100:atAR1(config-bundle-ether-sub)# interface bu2.3216
+0/ME5100:atAR1(config-bundle-ether-sub)# shutdown 
+0/ME5100:atAR1(config-bundle-ether-sub)# interface bu2.3217
+0/ME5100:atAR1(config-bundle-ether-sub)# shutdown 
+0/ME5100:atAR1(config-bundle-ether-sub)# commit 
+
+На маршрутизаторе atAR2:
+
+0/ME5200:atAR2# configure
+0/ME5200:atAR2(config)# interface bu2.3210
+0/ME5200:atAR2(config-bundle-ether-sub)# shutdown 
+0/ME5200:atAR2(config-bundle-ether-sub)# interface bu2.3216
+0/ME5200:atAR2(config-bundle-ether-sub)# shutdown 
+0/ME5200:atAR2(config-bundle-ether-sub)# interface bu2.3217
+0/ME5200:atAR2(config-bundle-ether-sub)# shutdown 
+0/ME5200:atAR2(config-bundle-ether-sub)# commit
+        

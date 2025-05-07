@@ -1,4 +1,4 @@
-Value int_name (Bundle-ether[12]|Tengigabitethernet0/0/11.35[12]|Tengigabitethernet0/1/5.350)
+Value int_name (Bundle-ether[12]|Tengigabitethernet0/0/11.\d+|Tengigabitethernet0/0/5.\d+|Tengigabitethernet0/1/5.350)
 Value int_isis_pdu_lvl1_rec (\d+)
 Value int_isis_pdu_lvl1_sent (\d+)
 Value int_isis_pdu_lvl2_rec (\d+)

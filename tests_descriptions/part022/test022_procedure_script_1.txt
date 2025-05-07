@@ -1,0 +1,173 @@
+-------------------------------------------------------------------------------------------------------------
+🔸️ШАГ 1. 
+-------------------------------------------------------------------------------------------------------------
+1. Проверяем начилие соседств.
+
+✅️Ожидаемый результат: 
+
+🔹️atAR1:
+
+  Routing Information Protocol:
+
+    Timers:
+      Update interval: 30 sec
+      Holddown interval: 180 sec
+      Flush interval: 120 sec
+
+    Interface(s):
+      Interface        Send             Receive          Sent      Recv      Recv bad  Recv bad  
+                                                         updates   updates   packets   routes    
+      ---------------- ---------------- ---------------- --------- --------- --------- --------- 
+      bu1              enabled🚩️        enabled🚩️          4         4         0         0         
+      bu2              enabled🚩️        enabled🚩️          2         4         0         0         
+
+
+    Neighbor(s):
+      IP address                   Interface        Last update      Version          BFD status       Recv bad  Recv bad  
+                                                                                                       packets   routes    
+      ---------------------------- ---------------- ---------------- ---------------- ---------------- --------- --------- 
+      192.168.55.2🚩️               bu1🚩️              00h00m27s        2              not-required     0         0         
+      192.168.55.22🚩️              bu2🚩️              00h00m09s        2              not-required     0         0         
+
+🔹️atAR2:
+
+  Routing Information Protocol:
+
+    Timers:
+      Update interval: 30 sec
+      Holddown interval: 180 sec
+      Flush interval: 120 sec
+
+    Interface(s):
+      Interface        Send             Receive          Sent      Recv      Recv bad  Recv bad  
+                                                         updates   updates   packets   routes    
+      ---------------- ---------------- ---------------- --------- --------- --------- --------- 
+      bu1              enabled🚩️        enabled🚩️          1         4         0         0         
+      bu2              enabled🚩️        enabled🚩️          4         4         0         0         
+
+
+    Neighbor(s):
+      IP address                   Interface        Last update      Version          BFD status       Recv bad  Recv bad  
+                                                                                                       packets   routes    
+      ---------------------------- ---------------- ---------------- ---------------- ---------------- --------- --------- 
+      192.168.55.5🚩️               bu1🚩️              00h00m27s        2              not-required     0         0         
+      192.168.55.21🚩️              bu2🚩️              00h00m27s        2              not-required     0         0         
+
+🔹️atDR1:
+
+  Routing Information Protocol:
+
+    Timers:
+      Update interval: 30 sec
+      Holddown interval: 180 sec
+      Flush interval: 120 sec
+
+    Interface(s):
+      Interface        Send             Receive          Sent      Recv      Recv bad  Recv bad  
+                                                         updates   updates   packets   routes    
+      ---------------- ---------------- ---------------- --------- --------- --------- --------- 
+      bu1              enabled🚩️        enabled🚩️          4         4         0         0         
+      bu2              enabled🚩️        enabled🚩️          2         6         0         0         
+
+
+    Neighbor(s):
+      IP address                   Interface        Last update      Version          BFD status       Recv bad  Recv bad  
+                                                                                                       packets   routes    
+      ---------------------------- ---------------- ---------------- ---------------- ---------------- --------- --------- 
+      192.168.55.1🚩️               bu1🚩️              00h00m27s        2              not-required     0         0         
+      192.168.55.6🚩️               bu2🚩️              00h00m09s        2              not-required     0         0        
+    
+--------------------------------------------------------------------------------------------------------
+🔸️ШАГ 2.
+--------------------------------------------------------------------------------------------------------
+1. Проверяем наличие лупбеков соседей в таблице маршрутизации.
+
+✅️Ожидаемый результат: 
+
+🔹️atAR1:
+
+  R      1.0.0.1/32🚩️    via 192.168.55.2🚩️ [10/2], 05h27m27s, bu1
+  R      1.0.0.2/32🚩️    via 192.168.55.22🚩️ [10/2], 05h26m39s, bu2
+  
+🔹️atAR2:
+
+  R      1.0.0.1/32🚩️    via 192.168.55.5🚩️ [10/2], 05h26m34s, bu1
+  R      1.0.0.3/32🚩️    via 192.168.55.21🚩️ [10/2], 05h26m39s, bu2
+
+🔹️atDR1:
+
+  R      1.0.0.2/32🚩️    via 192.168.55.6🚩️ [10/2], 05h26m39s, bu2
+  R      1.0.0.3/32🚩️    via 192.168.55.1🚩️ [10/2], 05h27m27s, bu1
+  
+-------------------------------------------------------------------------------------------------------
+🔸️ШАГ 3.
+-------------------------------------------------------------------------------------------------------
+1. Проверяем пинг между лупбеками.
+
+✅️Ожидаемый результат:
+
+🔹️atAR1:
+
+ ping 1.0.0.1 source 1.0.0.3🚩️
+Tue Sep 24 08:18:55 2024
+
+Sending 4, 56-byte ICMP Echos to 1.0.0.1,
+request send interval is 0.100 seconds,
+response wait timeout is 2.000 seconds:
+!!!!
+
+Success rate is 100🚩️ percent (4/4), round-trip min/avg/max = 0.145/0.156/0.172 ms
+-----------------------------------------------------------------------------------
+ ping 1.0.0.2 source 1.0.0.3🚩️
+Tue Sep 24 08:18:56 2024
+
+Sending 4, 56-byte ICMP Echos to 1.0.0.2,
+request send interval is 0.100 seconds,
+response wait timeout is 2.000 seconds:
+!!!!
+
+Success rate is 100🚩️ percent (4/4), round-trip min/avg/max = 0.119/0.138/0.179 ms
+
+🔹️atAR2:
+
+ ping 1.0.0.1 source 1.0.0.2🚩️
+Tue Sep 24 08:18:55 2024
+
+Sending 4, 56-byte ICMP Echos to 1.0.0.1,
+request send interval is 0.100 seconds,
+response wait timeout is 2.000 seconds:
+!!!!
+
+Success rate is 100🚩️ percent (4/4), round-trip min/avg/max = 0.136/0.154/0.178 ms
+--------------------------------------------------------------------------------
+ ping 1.0.0.3 source 1.0.0.2🚩️
+Tue Sep 24 08:18:56 2024
+
+Sending 4, 56-byte ICMP Echos to 1.0.0.3,
+request send interval is 0.100 seconds,
+response wait timeout is 2.000 seconds:
+!!!!
+
+Success rate is 100🚩️ percent (4/4), round-trip min/avg/max = 0.131/0.159/0.194 ms
+
+🔹️atDR1:
+
+ ping 1.0.0.2 source 1.0.0.1🚩️
+Tue Sep 24 08:18:57 2024
+
+Sending 4, 56-byte ICMP Echos to 1.0.0.2,
+request send interval is 0.100 seconds,
+response wait timeout is 2.000 seconds:
+!!!!
+
+Success rate is 100🚩️ percent (4/4), round-trip min/avg/max = 0.146/0.175/0.198 ms
+--------------------------------------------------------------------------------
+ ping 1.0.0.3 source 1.0.0.1🚩️
+Tue Sep 24 08:18:57 2024
+
+Sending 4, 56-byte ICMP Echos to 1.0.0.3,
+request send interval is 0.100 seconds,
+response wait timeout is 2.000 seconds:
+!!!!
+
+Success rate is 100🚩️ percent (4/4), round-trip min/avg/max = 0.117/0.157/0.216 ms

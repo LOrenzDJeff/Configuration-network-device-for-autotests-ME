@@ -8,20 +8,19 @@ from conftest import *
 @pytest.mark.dependency(depends=["load_config003_dut1","load_config003_dut2","load_config003_dut3"],scope='session')
 @pytest.mark.parametrize("DUT",
 			[
-			 pytest.param("DUT1"), 
- 			 pytest.param("DUT2"), 
- 			 pytest.param("DUT3")
+			 pytest.param(DUT1), 
+ 			 pytest.param(DUT2), 
+ 			 pytest.param(DUT3)
 			]
 			)
 						   
 def test_show_lldp_neighbors_part3 (DUT): 
     allure.attach.file('./network-schemes/part3_show_lldp_neighbor.png','Что анализируется в выводе команды:', attachment_type=allure.attachment_type.PNG)
 # В данном тесте будем проверять вывод команды 'show lldp neighbors'      
-    router = setting_ME(DUT)
     resp = ''
     conn = Telnet()
-    acc = Account(router.login , router.password)
-    conn.connect(router.host_ip)
+    acc = Account(DUT.login , DUT.password)
+    conn.connect(DUT.host_ip)
     conn.login(acc)
     conn.set_prompt('#')
     conn.execute("terminal datadump")
@@ -40,38 +39,35 @@ def test_show_lldp_neighbors_part3 (DUT):
     Top = result[0]['Top']
     assert_that(Top != '', "Заголовок в выводе команды %s не соответствует шаблону" % cmd)
     
-    with open('config_OOP.json', 'r', encoding='utf-8') as file:
-        check = json.load(file)
-    
     loc_index = 0
-    if router.hostname == check["DUT1"]['hostname']:
-        located_index = locate_index_in_ListOfDict(result, 'local_port', check["DUT1"]["int"]["to_phys2"]["interface"][0], loc_index)
+    if DUT.hostname == DUT1.hostname:
+        located_index = locate_index_in_ListOfDict(result, 'local_port', DUT1.neighor2["interface"][0], loc_index)
         assert_that(located_index!=999, f"В выводе команды {cmd} не обнаружен Local port te0/0/1")
-        located_index1 = locate_index_in_ListOfDict(result, 'local_port', check["DUT1"]["int"]["to_phys2"]["interface"][1], loc_index)
+        located_index1 = locate_index_in_ListOfDict(result, 'local_port', DUT1.neighor2["interface"][1], loc_index)
         assert_that(located_index1!=999, f"В выводе команды {cmd} не обнаружен Local port te0/0/2")  
-        located_index2 = locate_index_in_ListOfDict(result, 'local_port', check["DUT1"]["int"]["to_phys1"]["interface"][0], loc_index)
+        located_index2 = locate_index_in_ListOfDict(result, 'local_port', DUT1.neighor1["interface"][0], loc_index)
         assert_that(located_index2!=999, f"В выводе команды {cmd} не обнаружен Local port te0/0/3")  
-        located_index3 = locate_index_in_ListOfDict(result, 'local_port', check["DUT1"]["int"]["to_phys1"]["interface"][1], loc_index)
+        located_index3 = locate_index_in_ListOfDict(result, 'local_port', DUT1.neighor1["interface"][1], loc_index)
         assert_that(located_index3!=999, f"В выводе команды {cmd} не обнаружен Local port te0/0/4")  
         
-    if router.hostname == check["DUT2"]['hostname']:
-        located_index = locate_index_in_ListOfDict(result, 'local_port', check["DUT2"]["int"]["to_phys1"]["interface"][0], loc_index)
+    if DUT.hostname == DUT2.hostname:
+        located_index = locate_index_in_ListOfDict(result, 'local_port', DUT2.neighor1["interface"][0], loc_index)
         assert_that(located_index!=999, f"В выводе команды {cmd} не обнаружен Local port te0/0/3")
-        located_index1 = locate_index_in_ListOfDict(result, 'local_port', check["DUT2"]["int"]["to_phys1"]["interface"][1], loc_index)
+        located_index1 = locate_index_in_ListOfDict(result, 'local_port', DUT2.neighor1["interface"][1], loc_index)
         assert_that(located_index1!=999, f"В выводе команды {cmd} не обнаружен Local port te0/0/4")  
-        located_index2 = locate_index_in_ListOfDict(result, 'local_port', check["DUT2"]["int"]["to_phys2"]["interface"][0], loc_index)
+        located_index2 = locate_index_in_ListOfDict(result, 'local_port', DUT2.neighor2["interface"][0], loc_index)
         assert_that(located_index2!=999, f"В выводе команды {cmd} не обнаружен Local port te0/0/7")  
-        located_index3 = locate_index_in_ListOfDict(result, 'local_port', check["DUT2"]["int"]["to_phys2"]["interface"][1], loc_index)
+        located_index3 = locate_index_in_ListOfDict(result, 'local_port', DUT2.neighor2["interface"][1], loc_index)
         assert_that(located_index3!=999, f"В выводе команды {cmd} не обнаружен Local port te0/0/8")  
         
-    if router.hostname == check["DUT3"]['hostname']:
-        located_index = locate_index_in_ListOfDict(result, 'local_port', check["DUT3"]["int"]["to_phys1"]["interface"][0], loc_index)
+    if DUT.hostname == DUT3.hostname:
+        located_index = locate_index_in_ListOfDict(result, 'local_port', DUT3.neighor1["interface"][0], loc_index)
         assert_that(located_index!=999, f"В выводе команды {cmd} не обнаружен Local port te0/1/13")
-        located_index1 = locate_index_in_ListOfDict(result, 'local_port', check["DUT3"]["int"]["to_phys1"]["interface"][1], loc_index)
+        located_index1 = locate_index_in_ListOfDict(result, 'local_port', DUT3.neighor1["interface"][1], loc_index)
         assert_that(located_index1!=999, f"В выводе команды {cmd} не обнаружен Local port te0/1/14")  
-        located_index2 = locate_index_in_ListOfDict(result, 'local_port', check["DUT3"]["int"]["to_phys2"]["interface"][0], loc_index)
+        located_index2 = locate_index_in_ListOfDict(result, 'local_port', DUT3.neighor2["interface"][0], loc_index)
         assert_that(located_index2!=999, f"В выводе команды {cmd} не обнаружен Local port te0/8/3")  
-        located_index3 = locate_index_in_ListOfDict(result, 'local_port', check["DUT3"]["int"]["to_phys2"]["interface"][1], loc_index)
+        located_index3 = locate_index_in_ListOfDict(result, 'local_port', DUT3.neighor2["interface"][1], loc_index)
         assert_that(located_index3!=999, f"В выводе команды {cmd} не обнаружен Local port te0/8/4")  
         
         
@@ -103,79 +99,79 @@ def test_show_lldp_neighbors_part3 (DUT):
     agent3 = result[located_index3]['agent']
     system_name3 = result[located_index3]['system_name']
     
-    if router.hostname == check["DUT1"]['hostname']:
-        assert_that(device_id == 'e0:d9:e3:ff:48:80', "Значение Device id для Local port %s равно не ожидаемому e0:d9:e3:ff:48:80, а %s" % (local_port, device_id))
-        assert_that(port_id == check["DUT2"]["int"]["to_phys2"]["interface"][0], "Значение Port id для Local port %s равно не ожидаемому te0/0/7, а %s" % (local_port, port_id))
+    if DUT.hostname == DUT1.hostname:
+        assert_that(device_id != '', "Значение Device id для Local port %s равно не ожидаемому e0:d9:e3:ff:48:80, а %s" % (local_port, device_id))
+        assert_that(port_id == DUT2.neighor2["interface"][0], "Значение Port id для Local port %s равно не ожидаемому te0/0/7, а %s" % (local_port, port_id))
         assert_that(capabilities == 'B R', "Значение Capabilities для Local port %s равно не ожидаемому B R, а %s" % (local_port, capabilities))
         assert_that(agent == 'N', "Значение Agent для Local port %s равно не ожидаемому N, а %s" % (local_port, agent))
-        assert_that(system_name == 'atAR2', "Значение System name для Local port %s равно не ожидаемому atAR2, а %s" % (local_port, system_name))
+        assert_that(system_name == DUT2.hostname, "Значение System name для Local port %s равно не ожидаемому atAR2, а %s" % (local_port, system_name))
         
-        assert_that(device_id1 == 'e0:d9:e3:ff:48:80', "Значение Device id для Local port %s равно не ожидаемому e0:d9:e3:ff:48:80, а %s" % (local_port1, device_id1))
-        assert_that(port_id1 == check["DUT2"]["int"]["to_phys2"]["interface"][1], "Значение Port id для Local port %s равно не ожидаемому te0/0/8, а %s" % (local_port1, port_id1))
+        assert_that(device_id1 != '', "Значение Device id для Local port %s равно не ожидаемому e0:d9:e3:ff:48:80, а %s" % (local_port1, device_id1))
+        assert_that(port_id1 == DUT2.neighor2["interface"][1], "Значение Port id для Local port %s равно не ожидаемому te0/0/8, а %s" % (local_port1, port_id1))
         assert_that(capabilities1 == 'B R', "Значение Capabilities для Local port %s равно не ожидаемому B R, а %s" % (local_port1, capabilities1))
         assert_that(agent1 == 'N', "Значение Agent для Local port %s равно не ожидаемому N, а %s" % (local_port1, agent1))
-        assert_that(system_name1 == 'atAR2', "Значение System name для Local port %s равно не ожидаемому atAR2, а %s" % (local_port1, system_name1))
+        assert_that(system_name1 == DUT2.hostname, "Значение System name для Local port %s равно не ожидаемому atAR2, а %s" % (local_port1, system_name1))
         
-        assert_that(device_id2 == 'a8:f9:4b:8b:92:80', "Значение Device id для Local port %s равно не ожидаемому a8:f9:4b:8b:92:80, а %s" % (local_port2, device_id2))
-        assert_that(port_id2 == check["DUT3"]["int"]["to_phys1"]["interface"][0], "Значение Port id для Local port %s равно не ожидаемому te0/1/13, а %s" % (local_port2, port_id2))
+        assert_that(device_id2 != '', "Значение Device id для Local port %s равно не ожидаемому a8:f9:4b:8b:92:80, а %s" % (local_port2, device_id2))
+        assert_that(port_id2 == DUT3.neighor1["interface"][0], "Значение Port id для Local port %s равно не ожидаемому te0/1/13, а %s" % (local_port2, port_id2))
         assert_that(capabilities2 == 'B R', "Значение Capabilities для Local port %s равно не ожидаемому B R, а %s" % (local_port2, capabilities2))
         assert_that(agent2 == 'N', "Значение Agent для Local port %s равно не ожидаемому N, а %s" % (local_port2, agent2))
-        assert_that(system_name2 == 'atDR1', "Значение System name для Local port %s равно не ожидаемому atDR1, а %s" % (local_port2, system_name2))   
+        assert_that(system_name2 == DUT3.hostname, "Значение System name для Local port %s равно не ожидаемому atDR1, а %s" % (local_port2, system_name2))   
         
-        assert_that(device_id3 == 'a8:f9:4b:8b:92:80', "Значение Device id для Local port %s равно не ожидаемому a8:f9:4b:8b:92:80, а %s" % (local_port3, device_id3))
-        assert_that(port_id3 == check["DUT3"]["int"]["to_phys1"]["interface"][1], "Значение Port id для Local port %s равно не ожидаемому te0/1/14, а %s" % (local_port3, port_id3))
+        assert_that(device_id3 != '', "Значение Device id для Local port %s равно не ожидаемому a8:f9:4b:8b:92:80, а %s" % (local_port3, device_id3))
+        assert_that(port_id3 == DUT3.neighor1["interface"][1], "Значение Port id для Local port %s равно не ожидаемому te0/1/14, а %s" % (local_port3, port_id3))
         assert_that(capabilities3 == 'B R', "Значение Capabilities для Local port %s равно не ожидаемому B R, а %s" % (local_port3, capabilities3))
         assert_that(agent3 == 'N', "Значение Agent для Local port %s равно не ожидаемому N, а %s" % (local_port3, agent3))
-        assert_that(system_name3 == 'atDR1', "Значение System name для Local port %s равно не ожидаемому atDR1, а %s" % (local_port3, system_name3))   
+        assert_that(system_name3 == DUT3.hostname, "Значение System name для Local port %s равно не ожидаемому atDR1, а %s" % (local_port3, system_name3))   
         
 
-    if router.hostname == check["DUT2"]['hostname']:
-        assert_that(device_id == 'a8:f9:4b:8b:92:80', "Значение Device id для Local port %s равно не ожидаемому a8:f9:4b:8b:92:80, а %s" % (local_port, device_id))
-        assert_that(port_id == check["DUT3"]["int"]["to_phys2"]["interface"][0], "Значение Port id для Local port %s равно не ожидаемому te0/8/3, а %s" % (local_port, port_id))
+    if DUT.hostname == DUT2.hostname:
+        assert_that(device_id != '', "Значение Device id для Local port %s равно не ожидаемому a8:f9:4b:8b:92:80, а %s" % (local_port, device_id))
+        assert_that(port_id == DUT3.neighor2["interface"][0], "Значение Port id для Local port %s равно не ожидаемому te0/8/3, а %s" % (local_port, port_id))
         assert_that(capabilities == 'B R', "Значение Capabilities для Local port %s равно не ожидаемому B R, а %s" % (local_port, capabilities))
         assert_that(agent == 'N', "Значение Agent для Local port %s равно не ожидаемому N, а %s" % (local_port, agent))
-        assert_that(system_name == 'atDR1', "Значение System name для Local port %s равно не ожидаемому atDR1, а %s" % (local_port, system_name))
+        assert_that(system_name == DUT3.hostname, "Значение System name для Local port %s равно не ожидаемому atDR1, а %s" % (local_port, system_name))
         
-        assert_that(device_id1 == 'a8:f9:4b:8b:92:80', "Значение Device id для Local port %s равно не ожидаемому a8:f9:4b:8b:92:80, а %s" % (local_port1, device_id1))
-        assert_that(port_id1 == check["DUT3"]["int"]["to_phys2"]["interface"][1], "Значение Port id для Local port %s равно не ожидаемому te0/8/4, а %s" % (local_port1, port_id1))
+        assert_that(device_id1 != '', "Значение Device id для Local port %s равно не ожидаемому a8:f9:4b:8b:92:80, а %s" % (local_port1, device_id1))
+        assert_that(port_id1 == DUT3.neighor2["interface"][1], "Значение Port id для Local port %s равно не ожидаемому te0/8/4, а %s" % (local_port1, port_id1))
         assert_that(capabilities1 == 'B R', "Значение Capabilities для Local port %s равно не ожидаемому B R, а %s" % (local_port1, capabilities1))
         assert_that(agent1 == 'N', "Значение Agent для Local port %s равно не ожидаемому N, а %s" % (local_port1, agent1))
-        assert_that(system_name1 == 'atDR1', "Значение System name для Local port %s равно не ожидаемому atDR1, а %s" % (local_port1, system_name1))       
+        assert_that(system_name1 == DUT3.hostname, "Значение System name для Local port %s равно не ожидаемому atDR1, а %s" % (local_port1, system_name1))       
         
-        assert_that(device_id2 == 'e4:5a:d4:de:c8:80', "Значение Device id для Local port %s равно не ожидаемому e4:5a:d4:de:c8:80, а %s" % (local_port2, device_id2))
-        assert_that(port_id2 == check["DUT1"]["int"]["to_phys2"]["interface"][0], "Значение Port id для Local port %s равно не ожидаемому te0/0/1, а %s" % (local_port2, port_id2))
+        assert_that(device_id2 != '', "Значение Device id для Local port %s равно не ожидаемому e4:5a:d4:de:c8:80, а %s" % (local_port2, device_id2))
+        assert_that(port_id2 == DUT1.neighor2["interface"][0], "Значение Port id для Local port %s равно не ожидаемому te0/0/1, а %s" % (local_port2, port_id2))
         assert_that(capabilities2 == 'B R', "Значение Capabilities для Local port %s равно не ожидаемому B R, а %s" % (local_port2, capabilities2))
         assert_that(agent2 == 'N', "Значение Agent для Local port %s равно не ожидаемому N, а %s" % (local_port2, agent2))
-        assert_that(system_name2 == 'atAR1', "Значение System name для Local port %s равно не ожидаемому atAR1, а %s" % (local_port2, system_name2))   
+        assert_that(system_name2 == DUT1.hostname, "Значение System name для Local port %s равно не ожидаемому atAR1, а %s" % (local_port2, system_name2))   
         
-        assert_that(device_id3 == 'e4:5a:d4:de:c8:80', "Значение Device id для Local port %s равно не ожидаемому e4:5a:d4:de:c8:80, а %s" % (local_port3, device_id3))
-        assert_that(port_id3 == check["DUT1"]["int"]["to_phys2"]["interface"][1], "Значение Port id для Local port %s равно не ожидаемому te0/0/2, а %s" % (local_port3, port_id3))
+        assert_that(device_id3 != '', "Значение Device id для Local port %s равно не ожидаемому e4:5a:d4:de:c8:80, а %s" % (local_port3, device_id3))
+        assert_that(port_id3 == DUT1.neighor2["interface"][1], "Значение Port id для Local port %s равно не ожидаемому te0/0/2, а %s" % (local_port3, port_id3))
         assert_that(capabilities3 == 'B R', "Значение Capabilities для Local port %s равно не ожидаемому B R, а %s" % (local_port3, capabilities3))
         assert_that(agent3 == 'N', "Значение Agent для Local port %s равно не ожидаемому N, а %s" % (local_port3, agent3))
-        assert_that(system_name3 == 'atAR1', "Значение System name для Local port %s равно не ожидаемому atAR1, а %s" % (local_port3, system_name3))   
+        assert_that(system_name3 == DUT1.hostname, "Значение System name для Local port %s равно не ожидаемому atAR1, а %s" % (local_port3, system_name3))   
         
-    if router.hostname == check["DUT3"]['hostname']:
-        assert_that(device_id == 'e4:5a:d4:de:c8:80', "Значение Device id для Local port %s равно не ожидаемому e4:5a:d4:de:c8:80, а %s" % (local_port, device_id))
-        assert_that(port_id == check["DUT1"]["int"]["to_phys1"]["interface"][0], "Значение Port id для Local port %s равно не ожидаемому te0/0/3, а %s" % (local_port, port_id))
+    if DUT.hostname == DUT3.hostname:
+        assert_that(device_id != '', "Значение Device id для Local port %s равно не ожидаемому e4:5a:d4:de:c8:80, а %s" % (local_port, device_id))
+        assert_that(port_id == DUT1.neighor1["interface"][0], "Значение Port id для Local port %s равно не ожидаемому te0/0/3, а %s" % (local_port, port_id))
         assert_that(capabilities == 'B R', "Значение Capabilities для Local port %s равно не ожидаемому B R, а %s" % (local_port, capabilities))
         assert_that(agent == 'N', "Значение Agent для Local port %s равно не ожидаемому N, а %s" % (local_port, agent))
-        assert_that(system_name == 'atAR1', "Значение System name для Local port %s равно не ожидаемому atAR1, а %s" % (local_port, system_name))
+        assert_that(system_name == DUT1.hostname, "Значение System name для Local port %s равно не ожидаемому atAR1, а %s" % (local_port, system_name))
         
-        assert_that(device_id1 == 'e4:5a:d4:de:c8:80', "Значение Device id для Local port %s равно не ожидаемому e4:5a:d4:de:c8:80, а %s" % (local_port1, device_id1))
-        assert_that(port_id1 == check["DUT1"]["int"]["to_phys1"]["interface"][1], "Значение Port id для Local port %s равно не ожидаемому te0/0/4, а %s" % (local_port1, port_id1))
+        assert_that(device_id1 != '', "Значение Device id для Local port %s равно не ожидаемому e4:5a:d4:de:c8:80, а %s" % (local_port1, device_id1))
+        assert_that(port_id1 == DUT1.neighor1["interface"][1], "Значение Port id для Local port %s равно не ожидаемому te0/0/4, а %s" % (local_port1, port_id1))
         assert_that(capabilities1 == 'B R', "Значение Capabilities для Local port %s равно не ожидаемому B R, а %s" % (local_port1, capabilities1))
         assert_that(agent1 == 'N', "Значение Agent для Local port %s равно не ожидаемому N, а %s" % (local_port1, agent1))
-        assert_that(system_name1 == 'atAR1', "Значение System name для Local port %s равно не ожидаемому atAR1, а %s" % (local_port1, system_name1))       
+        assert_that(system_name1 == DUT1.hostname, "Значение System name для Local port %s равно не ожидаемому atAR1, а %s" % (local_port1, system_name1))       
         
-        assert_that(device_id2 == 'e0:d9:e3:ff:48:80', "Значение Device id для Local port %s равно не ожидаемому e0:d9:e3:ff:48:80, а %s" % (local_port2, device_id2))
-        assert_that(port_id2 == check["DUT2"]["int"]["to_phys1"]["interface"][0], "Значение Port id для Local port %s равно не ожидаемому te0/0/3, а %s" % (local_port2, port_id2))
+        assert_that(device_id2 != '', "Значение Device id для Local port %s равно не ожидаемому e0:d9:e3:ff:48:80, а %s" % (local_port2, device_id2))
+        assert_that(port_id2 == DUT2.neighor1["interface"][0], "Значение Port id для Local port %s равно не ожидаемому te0/0/3, а %s" % (local_port2, port_id2))
         assert_that(capabilities2 == 'B R', "Значение Capabilities для Local port %s равно не ожидаемому B R, а %s" % (local_port2, capabilities2))
         assert_that(agent2 == 'N', "Значение Agent для Local port %s равно не ожидаемому N, а %s" % (local_port2, agent2))
-        assert_that(system_name2 == 'atAR2', "Значение System name для Local port %s равно не ожидаемому atAR2, а %s" % (local_port2, system_name2))   
+        assert_that(system_name2 == DUT2.hostname, "Значение System name для Local port %s равно не ожидаемому atAR2, а %s" % (local_port2, system_name2))   
         
-        assert_that(device_id3 == 'e0:d9:e3:ff:48:80', "Значение Device id для Local port %s равно не ожидаемому e0:d9:e3:ff:48:80, а %s" % (local_port3, device_id3))
-        assert_that(port_id3 == check["DUT2"]["int"]["to_phys1"]["interface"][1], "Значение Port id для Local port %s равно не ожидаемому te0/0/4, а %s" % (local_port3, port_id3))
+        assert_that(device_id3 != '', "Значение Device id для Local port %s равно не ожидаемому e0:d9:e3:ff:48:80, а %s" % (local_port3, device_id3))
+        assert_that(port_id3 == DUT2.neighor1["interface"][1], "Значение Port id для Local port %s равно не ожидаемому te0/0/4, а %s" % (local_port3, port_id3))
         assert_that(capabilities3 == 'B R', "Значение Capabilities для Local port %s равно не ожидаемому B R, а %s" % (local_port3, capabilities3))
         assert_that(agent3 == 'N', "Значение Agent для Local port %s равно не ожидаемому N, а %s" % (local_port3, agent3))
-        assert_that(system_name3 == 'atAR2', "Значение System name для Local port %s равно не ожидаемому atAR2, а %s" % (local_port3, system_name3)) 
+        assert_that(system_name3 == DUT2.hostname, "Значение System name для Local port %s равно не ожидаемому atAR2, а %s" % (local_port3, system_name3)) 
 

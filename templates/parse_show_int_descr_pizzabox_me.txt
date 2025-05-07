@@ -2,15 +2,15 @@ Value Top (\s+Interface\s+Admin state\s+Oper state\s+Description\s+)
 Value port1_name (te0/\d+/\d+.\d+)
 Value port1_adm_state (up|down)
 Value port1_oper_state (up|down)
-Value port1_desc (to_LABR01:ge-0\/0\/0.\d+)
+Value port1_desc (to_LABR01:ge-0\/0\/0.\d+|to_R3:ge0\/0\/0\/2.\d+)
 Value port2_name (te0/0/\d+|bu2)
 Value port2_adm_state (up|down)
 Value port2_oper_state (up|down)
-Value port2_desc (to_atAR[12]:bundle-ether[12])
+Value port2_desc (to_atAR[12]:bundle-ether[12]|to_R[124]:bundle-ether[12])
 Value port3_name (te0/0/\d+|bu1)
 Value port3_adm_state (up|down)
 Value port3_oper_state (up|down)
-Value port3_desc (to_atDR1:bundle-ether[12]|to_atAR1:bundle-ether[12])
+Value port3_desc (to_atDR1:bundle-ether[12]|to_atAR1:bundle-ether[12]|to_R[124]:bundle-ether[12])
 
 Start
   ^${Top}

@@ -1,0 +1,106 @@
+-------------------------------------------------------------------------------------------------------------
+🔸️ШАГ 1. 
+-------------------------------------------------------------------------------------------------------------
+1. Проверяем вывод команды show isis vrf interface.
+
+✅️Ожидаемый результат: 
+
+🔹️На atAR1:
+
+🔸️IS-IS Router test, VRF VRF40, interface:
+    
+  Tengigabitethernet0/0/11.10043🚩️, circuit id: 28
+    Last up: 00h16m13s ago
+    BFD Fast detect: IPv4 disabled, IPv6 disabled
+    Operation state: up🚩️
+    Disabled creating neighborhood on this interface: false
+    Hello padding: enabled🚩️
+    Circuit 3 way: enabled🚩️
+    LDP-IGP synchronization: disabled🚩️
+    T1 timer status: stopped
+    Media Type: p2p🚩️
+    Used PDU: 1500🚩️
+    Administrative tag: 0🚩️
+    IPv4 Address Family: enabled🚩️
+    IPv6 Address Family: disabled🚩️
+    Circuit level: level-2🚩️ (Interface circuit type is level-1-2)
+                                      Level-1           Level-2
+    ID                                0030.0000.0001    0030.0000.0003🚩️
+    Hostname                          none              labr02🚩️
+    Priority                          64                64
+    Metric                            10                10
+    Key-chain                         none🚩️           none🚩️
+    Authentication                    none🚩️           none🚩️
+    Hello Multiplier                  3                 3
+    Hello Timer, sec                  24🚩️             24🚩️
+    Minimum arrival interval, msec    0                 0
+    CSNP retransmit interval, sec     10                10
+    LSP retransmit interval, sec      10                10
+    
+---------------------------------------------------------------------------
+
+🔹️На atAR2:
+
+🔸️IS-IS Router test, VRF VRF40, interface:
+    
+  Tengigabitethernet0/0/11.10042🚩️, circuit id: 47
+    Last up: 00h16m04s ago
+    BFD Fast detect: IPv4 disabled, IPv6 disabled
+    Operation state: up🚩️
+    Disabled creating neighborhood on this interface: false
+    Hello padding: enabled🚩️
+    Circuit 3 way: enabled🚩️
+    LDP-IGP synchronization: disabled🚩️
+    T1 timer status: stopped
+    Media Type: broadcast🚩️
+    Used PDU: 1500🚩️
+    Administrative tag: 0🚩️
+    IPv4 Address Family: enabled🚩️
+    IPv6 Address Family: disabled🚩️
+    Circuit level: level-1🚩️ (Interface circuit type is level-1-2)
+                                      Level-1           Level-2
+    Designated ID                     0020.0000.0001🚩️  none
+    Designated Hostname               none              none
+    Priority                          64                64
+    Metric                            10                10
+    Key-chain                         none🚩️           none🚩️
+    Authentication                    none🚩️           none🚩️
+    Hello Multiplier                  3                 3
+    Hello Timer, sec                  14🚩️             14🚩️
+    Minimum arrival interval, msec    0                 0
+    CSNP retransmit interval, sec     10                10
+    LSP retransmit interval, sec      10                10
+
+----------------------------------------------------------------------------
+
+🔹️На atDR1:
+
+🔸️IS-IS Router test, VRF VRF40, interface:
+    
+  Tengigabitethernet0/0/5.10041🚩️, circuit id: 8266
+    Last up: 00h16m01s ago
+    BFD Fast detect: IPv4 disabled, IPv6 disabled
+    Operation state: up🚩️
+    Disabled creating neighborhood on this interface: false
+    Hello padding: enabled🚩️
+    Circuit 3 way: enabled🚩️
+    LDP-IGP synchronization: disabled🚩️
+    T1 timer status: stopped
+    Media Type: p2p🚩️
+    Used PDU: 1500🚩️
+    Administrative tag: 0🚩️
+    IPv4 Address Family: enabled🚩️
+    IPv6 Address Family: disabled🚩️
+    Circuit level: level-1🚩️ (Interface circuit type is level-1-2)
+                                      Level-1           Level-2
+    ID                                0040.0000.0004🚩️    0040.0000.0004
+    Hostname                          atDR1_CE1🚩️         none
+    Priority                          64                64
+    Metric                            10                10
+    Key-chain                         none🚩️           none🚩️
+    Authentication                    none🚩️           none🚩️
+    Hello Multiplier                  3                 3
+    Hello Timer, sec                  4🚩️              4🚩️
+    Minimum arrival interval, msec    0                 0
+    CSNP retransmit interval, sec     10                10
+    LSP retransmit interval, sec      10                10

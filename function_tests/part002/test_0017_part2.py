@@ -61,4 +61,13 @@ def test_arp_age(DUT):
       run_time = int(time.time()-start_time + time_to_update_start)
       assert_that(run_time <= 30,'ARP-таблица обновляется слишком медленно, вместо ожидаемых 30 секунд - %s'%run_time)
       allure.attach('Время обновления arp-таблицы %d'%run_time + ' сек.','Тест успешно пройден, результат: ', attachment_type=allure.attachment_type.TEXT)
+      cmd='config'
+      conn.execute(cmd)
+      cmd='no arp'
+      conn.execute(cmd)
+      cmd='commit'
+      conn.execute(cmd)
+      time.sleep(5)
+      cmd='exit'
+      conn.execute(cmd)
       conn.close()
