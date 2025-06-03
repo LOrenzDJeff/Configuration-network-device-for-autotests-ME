@@ -19,6 +19,9 @@ class setting_vMX():
         self.vlanipv6_1 = authorization[DUT]["vlan1"]["ipv6"]
         self.vlanipv6_2 = authorization[DUT]["vlan2"]["ipv6"]
         self.vlanipv6_3 = authorization[DUT]["vlan3"]["ipv6"]
+        self.ip1 = authorization[DUT]["vlan1"]["ip"]
+        self.ip2 = authorization[DUT]["vlan2"]["ip"]
+        self.ip3 = authorization[DUT]["vlan3"]["ip"]
         self.loip = authorization[DUT]["lo"]["ip"]
         self.loipv6 = authorization[DUT]["lo"]["ipv6"]
         self.lonum = authorization[DUT]["lo"]["num"]
@@ -164,6 +167,16 @@ class setting_vMX():
             self.tn.read_until(b'# ', timeout=30)
         
         self.tn.write(b"set interfaces lo0 unit 0 family iso address " + self.isis.encode('ascii') +b"\n")
+        self.tn.read_until(b'# ', timeout=30)
+        self.tn.write(b"commit\n")
+        self.tn.read_until(b'#', timeout=30)
+        self.tn.write(b'exit\n')
+        self.tn.read_until(b'#', timeout=30)
+    
+    def isis_metric(self, vlan, metric):
+        self.tn.write(b"config\n")
+        self.tn.read_until(b"#", timeout=30)
+        self.tn.write(b"set protocols isis interface " + self.int.encode('ascii') + b"." + vlan.encode('ascii') + b" level 2 metric " + str(metric).encode('ascii') + b"\n")
         self.tn.read_until(b'# ', timeout=30)
         self.tn.write(b"commit\n")
         self.tn.read_until(b'#', timeout=30)

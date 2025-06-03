@@ -1,5 +1,5 @@
 Value header (\s+Peer\s+Uptime\s+Expires\s+Adjcs\s+Addrs\s+Labels\s+GR|\s+Peer\s+Up/Down time\s+Expires\s+Adjcs\s+Addrs\s+Labels\s+GR)
-Value neighbor (1.0.0.\d:0)
+Value neighbor (1.0.\d.\d:0)
 Value uptime (\d+[wdh]\d+[dhm]\d+[hms])
 Value expires (\d+)
 Value adjcs (\d+)

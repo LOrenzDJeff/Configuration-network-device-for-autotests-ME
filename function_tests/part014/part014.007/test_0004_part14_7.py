@@ -1,0 +1,201 @@
+from conftest import *
+
+
+# Передаём в фикстуру параметры: ip - адрес куда подключаемся; hostname -имя узла куда подключаемся
+@pytest.fixture(scope='function')
+def restore_config_after_test4_part14_7(ip, login, password):
+    yield
+    conn = Telnet()
+    acc = Account(login, password)
+    conn.connect(ip)
+    conn.login(acc)
+    conn.execute('config')
+    conn.execute('interface bu1')
+    conn.execute('no shutdown')
+    conn.execute('commit')
+
+
+debug_cmd_list = ['debug pp-mgr cmd', 'debug pp-mgr general', 'debug pp-mgr egress', 'debug netconf debug3']
+
+
+@allure.epic('14:RSVP TE и Traffic Engineering')
+@allure.feature('14.7:Функциональное тестирование MPLS TE FRR link-protection')
+@allure.title('Проверка свичинга ICMP пакетов при срабатывании TE FRR Facility protection NHOP на atDR1')
+@pytest.mark.part14_7
+# @pytest.mark.timeout(timeout=180, method='signal')
+@pytest.mark.switching_L3VPN_TE_FRR_Faclity_NHOP_protection
+@pytest.mark.dependency(
+    depends=["load_config147_dut1", "load_config147_dut2", "load_config147_dut3", "load_config147_dut6",
+             "load_config147_dut4"], scope='session')
+@pytest.mark.parametrize('ip, login, password,hostname, int1, debug_cmd_list',
+                         [(DUT3['host_ip'], DUT3['login'], DUT3['password'], DUT3['hostname'], 'bu1', debug_cmd_list)])
+@pytest.mark.usefixtures('restore_config_after_test4_part14_7')
+def test_switching_L3VPN_TE_FRR_Faclity_NHOP_protection_atDR1_part14_7(me_open_debug_collect_logs, ip, login, password,
+                                                                       hostname, int1, debug_cmd_list):
+    # В данном тесте запустим пинг между 192.168.41.2 (CE1) и 192.168.42.2 (CE2) а затем вызовем переключение TE FRR protection.
+    # Т.е. защищаемый RSVP LSP to_atAR2@atDR1_to_atAR2-lsp1 будет перенаправлен в защитный RSVP LSP bypass
+
+    result_loss = 0  # Данная переменная нужна для процедуры generate_uu_trafic_from_labr02
+
+    allure.attach.file('./network-schemes/part14_7_switching_L3VPN_TE_FRR_Facility_NHOP_protection_atDR1.png',
+                       'Схема теста', attachment_type=allure.attachment_type.PNG)
+    conn = Telnet()
+    acc = Account(login, password)
+    conn.connect(ip)
+    conn.login(acc)
+    conn.set_prompt('#')
+
+    # Шаг1. Начинаем проверку по переключению трафика путем отправки в shutdown интерфейса bu1 на atDR1
+    conn.execute('terminal datadump ')
+    cmd = 'show mpls rsvp lsps tunnel to_atAR2'
+    conn.execute(cmd)
+    resp = conn.response
+    allure.attach(resp, 'Шаг1. Вывод команды %s' % cmd, attachment_type=allure.attachment_type.TEXT)
+
+    cmd1 = 'show mpls rsvp lsps tunnel bypass'
+    conn.execute(cmd1)
+    resp = conn.response
+    allure.attach(resp, 'Шаг1. Вывод команды %s' % cmd1, attachment_type=allure.attachment_type.TEXT)
+    # Подождем пока появится маршрутная информация на CE1 о префиксах CE2. Часто тест заканчивается по причине Network Unreachable
+    time.sleep(15)
+
+    # Запустим генерацию трафика с ESR-a путем запуска функции generate_uu_trafic_from_labr02 данный способ позволяет получить результат из функции в родительский thread
+    with concurrent.futures.ThreadPoolExecutor() as executor:
+        future = executor.submit(generate_slow_trafic_from_labr02, DUT4['host_ip'], '100', DUT4['login'],
+                                 DUT4['password'], '192.168.42.2', 'vrf41', 200, result_loss)
+        conn.execute('config')
+        cmd1 = ('interface %s' % int1)
+        conn.execute(cmd1)
+        conn.execute('shutdown')
+        time.sleep(5)  # Подождем пока трфик генерируется в параллельном потоке через защищаемый RSVP LSP
+        conn.execute('commit')  # После этого ожидаем что трафик переключится в bypass RSVP LSP
+        conn.execute('end')
+        print('Шаг1. Выполнили shutdown интерфейса %s на %s\r' % (int1, hostname))
+        param_list = future.result()  # Получаем из параллельного потока значение % потерянных пакетов и кол-во отправленных и принятых пакетов!
+        packet_loss = param_list[0]
+        packet_sent = param_list[1]
+        packet_recv = param_list[2]
+    if int(packet_sent) != int(packet_recv):
+        final_result = f'Обнаружены потери пакетов ({packet_loss} %) между CE1 и CE2. Отправлено - {packet_sent} пакетов, получено - {packet_recv} пакетов'
+        allure.attach(final_result, 'Результат НЕ успешного теста на Шаге 1')
+    elif int(packet_sent) == int(packet_recv):
+        final_result = f'Потери пакетов между CE1 и CE2 НЕ обнаружены. Отправлено - {packet_sent} пакетов, получено - {packet_recv} пакетов'
+        allure.attach(final_result, 'Результат успешного теста на Шаге 1')
+
+    # Шаг2. Анализируем вывод команды show mpls rsvp lsp tunnel to_atAR2 после перевода защищаемого туннеля в bypass
+    time.sleep(30)
+    conn.execute(cmd)
+    resp = conn.response
+    allure.attach(resp, 'Шаг2. Вывод команды %s' % cmd, attachment_type=allure.attachment_type.TEXT)
+    with open('./templates/parse_show_mpls_rsvp_lsps_tunnel_name.txt', 'r') as template:
+        fsm = textfsm.TextFSM(template)
+        result = fsm.ParseTextToDicts(resp)
+    #    print(result)
+
+    # Проверим что в выводе команды присутствуют нужные нам lsp
+    number_of_elements = len(result)
+    assert_that(number_of_elements != 0, "Шаг2. Парсинг вывода команды %s вернул пустой результат" % cmd)
+
+    tun_name = result[0]['tun_name']
+    tun_id_step2 = result[0]['tun_id']
+    lsp_name = result[0]['lsp_name']
+    lsp_signal_name = result[0]['lsp_signal_name']
+    lsp_id_step2 = result[0]['lsp_id']
+    lsp_src = result[0]['lsp_src']
+    lsp_dst = result[0]['lsp_dst']
+    lsp_state = result[0]['lsp_state']
+    plr_id = result[0]['plr_id']
+    lsp_signal_int = result[0]['lsp_signal_int']
+
+    assert_that(lsp_signal_int == 'Tunnel-rsvpto_atAR1@bypass',
+                "Шаг2. В выводе команды %s параметр Signalling interface не равен ожидаемому значению Tunnel-rsvpto_atAR1@bypass, а равен - %s" % (
+                    cmd, lsp_signal_int))
+    assert_that(plr_id == '1.0.0.1',
+                "Шаг2. В выводе команды %s параметр PLR (LSP repaired at) не равен ожидаемому значению 1.0.0.1, а равен - %s" % (
+                    cmd, plr_id))
+
+    assert_that(tun_name == 'to_atAR2',
+                "Шаг2. Имя туннеля в выводе команды не соответствует ожидаемому to_atAR2, вместо этого значение равно %s" % tun_name)
+    assert_that(lsp_name == 'lsp1',
+                "Шаг2. Имя LSP в выводе команды не соответствует ожидаемому lsp1, вместо этого значение равно %s" % lsp_name)
+    assert_that(lsp_signal_name == 'to_atAR2@lsp1',
+                "Шаг2. Сигнальное имя LSP в выводе команды не соответствует ожидаемому to_atAR2@lsp1, вместо этого значение равно %s" % lsp_signal_name)
+    assert_that(lsp_src == '1.0.0.1',
+                "Шаг2. Source IP для RSVP LSP в выводе команды не соответствует ожидаемому 1.0.0.1, вместо этого значение равно %s" % lsp_src)
+    assert_that(lsp_dst == '1.0.0.2',
+                "Шаг2. Destination IP для RSVP LSP в выводе команды не соответствует ожидаемому 1.0.0.2, вместо этого значение равно %s" % lsp_dst)
+    assert_that(lsp_state == 'up',
+                "Шаг2. Статус RSVP LSP в выводе команды не соответствует ожидаемому up, вместо этого значение равно %s" % lsp_state)
+
+    # Шаг3. Проверяем работспособность после возвращения на исходный путь
+    # Поднимаем интерфейс bu1 и ждем пока вернётся трафик обратно на исходный путь обозначенный синим пунктиром на схеме.
+
+    # Запустим генерацию трафика с ESR-a путем запуска функции generate_uu_trafic_from_labr02 данный способ позволяет получить результат из функции в родительский thread
+    with concurrent.futures.ThreadPoolExecutor() as executor:
+        future = executor.submit(generate_slow_trafic_from_labr02, DUT4['host_ip'], '1000', DUT4['login'],
+                                 DUT4['password'], '192.168.42.2', 'vrf41', 200, result_loss)
+        conn.execute('config')
+        cmd1 = ('interface %s' % int1)
+        conn.execute(cmd1)
+        conn.execute('no shutdown')
+        time.sleep(5)  # Подождем пока трфик генерируется в параллельном потоке через защищаемый RSVP LSP
+        conn.execute('commit')  # После этого ожидаем что трафик вернётся на исходный путь т.е. уйдет из bypass RSVP LSP
+        conn.execute('end')
+        print('Шаг3. Выполнили no shutdown интерфейса %s на %s\r' % (int1, hostname))
+        param_list = future.result()  # Получаем из параллельного потока значение % потерянных пакетов и кол-во отправленных и принятых пакетов!
+        packet_loss = param_list[0]
+        packet_sent = param_list[1]
+        packet_recv = param_list[2]
+    if int(packet_sent) != int(packet_recv):
+        final_result = f'Обнаружены потери пакетов ({packet_loss} %) между CE1 и CE2. Отправлено - {packet_sent} пакетов, получено - {packet_recv} пакетов'
+        allure.attach(final_result, 'Результат НЕ успешного теста на Шаге 3:')
+    elif int(packet_sent) == int(packet_recv):
+        final_result = f'Потери пакетов между CE1 и CE2 НЕ обнаружены. Отправлено - {packet_sent} пакетов, получено - {packet_recv} пакетов'
+        allure.attach(final_result, 'Результат успешного теста на Шаге 3:')
+
+    # Шаг4. Анализируем вывод команды show mpls rsvp lsp tunnel to_atAR2 после ухода из bypass туннеля
+    conn.execute(cmd)
+    resp = conn.response
+    conn.send('logout\r')
+    conn.close()
+
+    allure.attach(resp, 'Шаг4. Вывод команды %s' % cmd, attachment_type=allure.attachment_type.TEXT)
+    with open('./templates/parse_show_mpls_rsvp_lsps_tunnel_name.txt', 'r') as template:
+        fsm = textfsm.TextFSM(template)
+        result = fsm.ParseTextToDicts(resp)
+    #    print(result)
+
+    # Проверим что в выводе команды присутствуют нужные нам lsp
+    number_of_elements = len(result)
+    assert_that(number_of_elements != 0, "Шаг4. Парсинг вывода команды %s вернул пустой результат" % cmd)
+
+    tun_name = result[0]['tun_name']
+    tun_id_step4 = result[0]['tun_id']
+    lsp_name = result[0]['lsp_name']
+    lsp_signal_name = result[0]['lsp_signal_name']
+    lsp_id_step4 = result[0]['lsp_id']
+    lsp_src = result[0]['lsp_src']
+    lsp_dst = result[0]['lsp_dst']
+    lsp_state = result[0]['lsp_state']
+    plr_id = result[0]['plr_id']
+    lsp_signal_int = result[0]['lsp_signal_int']
+
+    assert_that(lsp_signal_int == 'Bundle-ether1',
+                "Шаг4. В выводе команды %s параметр Signalling interface не равен ожидаемому значению Bundle-ether1, а равен - %s" % (
+                    cmd, lsp_signal_int))
+    assert_that(plr_id == '',
+                "Шаг4. В выводе команды %s параметр PLR (LSP repaired at) обнаружен и равен - %s, хотя его быть не должно" % (
+                    cmd, plr_id))
+
+    assert_that(tun_name == 'to_atAR2',
+                "Шаг2. Имя туннеля в выводе команды не соответствует ожидаемому to_atAR2, вместо этого значение равно %s" % tun_name)
+    assert_that(lsp_name == 'lsp1',
+                "Шаг2. Имя LSP в выводе команды не соответствует ожидаемому lsp1, вместо этого значение равно %s" % lsp_name)
+    assert_that(lsp_signal_name == 'to_atAR2@lsp1',
+                "Шаг2. Сигнальное имя LSP в выводе команды не соответствует ожидаемому to_atAR2@lsp1, вместо этого значение равно %s" % lsp_signal_name)
+    assert_that(lsp_src == '1.0.0.1',
+                "Шаг2. Source IP для RSVP LSP в выводе команды не соответствует ожидаемому 1.0.0.1, вместо этого значение равно %s" % lsp_src)
+    assert_that(lsp_dst == '1.0.0.2',
+                "Шаг2. Destination IP для RSVP LSP в выводе команды не соответствует ожидаемому 1.0.0.2, вместо этого значение равно %s" % lsp_dst)
+    assert_that(lsp_state == 'up',
+                "Шаг2. Статус RSVP LSP в выводе команды не соответствует ожидаемому up, вместо этого значение равно %s" % lsp_state)

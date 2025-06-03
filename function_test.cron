@@ -6,9 +6,9 @@ rm -f ./new_result/*.*
 
 git pull > ./reports/git_pull.log # Сделаем обновление ветки прежде чем приступить к функциональному тестированию
 
-python3 watchdog_console.py > ./reports/watchdog.log
+#python3 watchdog_console.py > ./reports/watchdog.log
 
-#python3 -m pytest ./function_tests/ -s -v --disable-warnings --alluredir=./new_result/  >./reports/function_test_cron.log
+python3 -m pytest ./function_autotests/ -s -v --disable-warnings --alluredir=./new_result/  >./reports/function_test_cron.log
 python3 smtp_send.py > ./reports/send_email.log  # Отправка письма с результатами работы
 python3 parse_function_tests_result_textfsm.py > ./reports/mysql.log # Парсим результаты работы и Сохраняем их в БД
 python3 telegramm_send.py > ./reports/telegramm.log    # Отправка сообщений с отчётом в телеграмм-чаты

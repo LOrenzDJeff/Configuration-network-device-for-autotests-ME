@@ -1,4 +1,4 @@
-Value prefix (1.0.0.4/32|2004:0:10:1::4/128)
+Value prefix (1.0.2.3/32|2004:0:10:1::4/128)
 Value next_hop (\d+.\d+.\d+.\d+|\w+::\w+:\w+:\w+:\w+)
 Value LFA_addr (\d+.\d+.\d+.\d+|\w+::\w+:\w+:\w+:\w+)
 Value time (\d+[wdh]\d+[dhm]\d+[hms])

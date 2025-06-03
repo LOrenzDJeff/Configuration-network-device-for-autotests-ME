@@ -352,6 +352,38 @@ def locate_index_in_ListOfDict(ListOfDict, Searched_Key, Searched_Value, located
         i = i + 1
     return(located_index)
 
+def locate_neighbor(conn,type, interface): # Функция будет определять соседа на P2P интерфейсе. Тип соседа может быть ipv4 либо ipv6
+    if type == 'ipv4':
+        conn.execute('show arp interface %s'%interface)
+        resp = conn.response 
+#        print('show arp interface  - %s'%resp)  # Раскомментируй, если хочешь посмотреть вывод команды 'show arp interface'
+# C помощью магии модуля textFSM сравниваем вывод команды 'show route isis' c шаблоном в файле parse_show_route_isis_lfa_protect_disable.txt 
+        template = open('./templates/parse_show_arp_interface.txt')
+    elif type == 'ipv6':
+        conn.execute('show ipv6 neighbor interface %s'%interface)
+        resp = conn.response 
+#        print('show ipv6 neighbor interface  - %s'%resp)  # Раскомментируй, если хочешь посмотреть вывод команды 'show ipv6 neighbor interface'
+# C помощью магии модуля textFSM сравниваем вывод команды 'show ipv6 neighbor interface' c шаблоном в файле parse_show_ipv6_neighbor_interface.txt 
+        resp = conn.response 
+        template = open('./templates/parse_show_ipv6_neighbor_interface.txt')
+    else:
+        return False
+    fsm = textfsm.TextFSM(template)
+    result = fsm.ParseText(resp)
+#    print(result) # Хочешь посмотреть результат парсинга - раскомментируй
+    neighbor_addr = result[0][0]     
+    return(neighbor_addr)
+
+def locate2_index_in_ListOfDict(ListOfDict, Searched_Key1, Searched_Value1, Searched_Key2, Searched_Value2, located_index_list): 
+    i = 0
+    located_index = 999 # Если это значение вернётся в вызывающий процедуру тест, то в тесте появится возможность обработки ситуации когда по ключу не удалось найти индекс
+    while i < len(ListOfDict):
+        if (ListOfDict[i][Searched_Key1] == Searched_Value1) and (ListOfDict[i][Searched_Key2] == Searched_Value2):
+            print ('Ура! Нашлось в %s-м словаре парсинга'%i)
+            located_index=i
+        i = i + 1
+    return(located_index)
+
 def arp_proxy_on(host_ip, hostname, login, password, int1, int2):
      conn = Telnet()
      acc = Account(login, password)
