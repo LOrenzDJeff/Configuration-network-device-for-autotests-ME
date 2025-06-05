@@ -1,4 +1,4 @@
-from configs.config_me import *
+from configs.new_config_me import *
 from configs.config_jun import *
 from configs.config_mes import *
 import ipaddress
