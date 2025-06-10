@@ -1,0 +1,43 @@
+ do show l3forwarding 192.168.73.0
+Tue Jun 10 05:22:29 2025
+  
+  Subnet: 192.168.73.0/24 Nexthop: 192.168.3.18 
+  Interface: Tengigabitethernet0/0/1
+  Src MAC: e0:d9:e3:df:35:e1
+  Dst MAC: e0:d9:e3:df:35:41
+  Outer VID: 0 Inner VID: 0
+  MTU: 1500
+  Outgoing label: --
+  HW information:
+    FEC: 0x2000042d, ECMP FEC: 0x20000002, encap-id: 0x4000200c
+  
+  Subnet: 192.168.73.0/24 Nexthop: 192.168.3.22 
+  Interface: Tengigabitethernet0/0/2
+  Src MAC: e0:d9:e3:df:35:e2
+  Dst MAC: e0:d9:e3:df:35:42
+  Outer VID: 0 Inner VID: 0
+  MTU: 1500
+  Outgoing label: --
+  HW information:
+    FEC: 0x2000042e, ECMP FEC: 0x20000002, encap-id: 0x4000200e
+  
+  Subnet: 192.168.73.0/24 Nexthop: 192.168.2.10 
+  Interface: Tengigabitethernet0/0/3
+  Src MAC: e0:d9:e3:df:35:e3
+  Dst MAC: e4:5a:d4:de:00:01
+  Outer VID: 0 Inner VID: 0
+  MTU: 1500
+  Outgoing label: --
+  HW information:
+    FEC: 0x2000042b, ECMP FEC: 0x20000002, encap-id: 0x40002038
+  
+  Subnet: 192.168.73.0/24 Nexthop: 192.168.2.13 
+  Interface: Tengigabitethernet0/0/4
+  Src MAC: e0:d9:e3:df:35:e4
+  Dst MAC: e4:5a:d4:de:00:02
+  Outer VID: 0 Inner VID: 0
+  MTU: 1500
+  Outgoing label: --
+  HW information:
+    FEC: 0x2000042c, ECMP FEC: 0x20000002, encap-id: 0x4000204e
+0/ME5100:R2-G2(config-equal-cost)# 

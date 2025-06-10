@@ -1,0 +1,11 @@
+ show arp interfaces bu2
+Tue Jun 10 04:26:15 2025
+  Global ARP aging time is 240 minutes
+  
+  IP address       Age         Hardware address   State       Timeout     Interface 
+  ---------------- ----------- ------------------ ----------- ----------- ---------- 
+  192.168.1.21     00:00:00    e0:d9:e3:df:35:f7  Interface   00:00:00    bu2 
+  192.168.1.22     00:01:12    e0:d9:e3:df:35:57  Dynamic     04:00:00    bu2 
+  
+  Total entries: 2
+0/ME5100:R2-G2# 

@@ -1,0 +1,31 @@
+
+Tue Jun 10 04:25:51 2025
+  Interface        Media        Duplex    Speed     Link       Flow ctrl  Link State            Up Time 
+  ---------------- ------------ --------- --------- ---------- ---------- --------------------- -------- 
+  te0/0/1          10G-Copper   Full      10G       auto       rx         Up                    05d02h11m 
+  te0/0/2          10G-Copper   Full      10G       auto       rx         Up                    00h43m57s 
+  te0/0/3          10G-Copper   Full      10G       auto       rx         Up                    05d02h11m 
+  te0/0/4          10G-Copper   Full      10G       auto       rx         Up                    00h36m55s 
+  te0/0/5          10G-Copper   Full      10G       auto       rx         Up                    21h31m00s 
+  te0/0/6          --           --        --        --         --         LowLayerDwn           -- 
+  te0/0/7          --           --        --        --         --         LowLayerDwn           -- 
+  te0/0/8          --           --        --        --         --         LowLayerDwn           -- 
+  te0/0/9          --           --        --        --         --         LowLayerDwn           -- 
+  te0/0/10         --           --        --        --         --         LowLayerDwn           -- 
+  te0/0/11         --           --        --        --         --         LowLayerDwn           -- 
+  te0/0/12         --           --        --        --         --         LowLayerDwn           -- 
+  te0/0/13         --           --        --        --         --         LowLayerDwn           -- 
+  te0/0/14         --           --        --        --         --         LowLayerDwn           -- 
+  te0/0/15         --           --        --        --         --         LowLayerDwn           -- 
+  te0/0/16         --           --        --        --         --         LowLayerDwn           -- 
+  te0/0/17         --           --        --        --         --         LowLayerDwn           -- 
+  te0/0/18         --           --        --        --         --         LowLayerDwn           -- 
+  te0/0/19         --           --        --        --         --         LowLayerDwn           -- 
+  te0/0/20         --           --        --        --         --         LowLayerDwn           -- 
+  mgmt0/fmc0/1     1G-Copper    Full      1G        auto       --         Up                    05d02h14m 
+ 
+  Interface             Duplex    BW   Link       Flow ctrl  Link State            
+  --------------------- --------- ---- ---------- ---------- --------------------- 
+  bu1                   --        --   auto       --         Up                    
+  bu2                   --        --   auto       --         Up                    
+0/ME5100:R1-G2# 

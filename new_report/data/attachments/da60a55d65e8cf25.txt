@@ -1,0 +1,17 @@
+ show lldp interface Tengigabitethernet0/0/4
+Tue Jun 10 04:37:30 2025
+  
+  Interface Tengigabitethernet0/0/4
+  
+  Agent type: nearest-bridge
+  Tx: enabled
+  Rx: enabled
+  Optional TLVS: 
+    Enable management address TLV is transmited
+    Enable port description TLV is transmited
+    Enable system capabilities TLV is transmited
+    Enable system description TLV is transmited
+    Enable system name TLV is transmited
+  Notification tables is enabled
+  Notification device is enabled
+0/ME5100:R4-G2# 

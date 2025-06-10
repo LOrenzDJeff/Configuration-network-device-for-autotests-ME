@@ -1,0 +1,18 @@
+
+Tue Jun 10 04:41:27 2025
+  
+  Route Source       IPv4 Routes    IPv6 Routes
+  ----------------   -------------- --------------
+  static             0              0
+  connected          3              3
+  local              4              4
+  ospf               0              0
+  isis               13             13
+  bgp                0              0
+  rip                0              0
+  lfa                0              0
+  summary address    0              0
+  default origin     0              0
+  FIB installed      13             13
+  
+0/ME5100:R1-G2# 

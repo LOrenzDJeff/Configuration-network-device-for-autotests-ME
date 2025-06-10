@@ -1,0 +1,17 @@
+
+sysDescr.0 OCTETSTR = Eltex ME5100 carrier router running Network OS for ME5k ver. 3.9.9.9RC (02-May-2025 06:55:55)
+sysObjectID.0 OBJECTID = .1.3.6.1.4.1.35265.1.151
+sysUpTime.0 TICKS = 44019647
+sysContact.0 OCTETSTR = eltex@eltex.nsk.ru
+sysName.0 OCTETSTR = R1-G2
+sysLocation.0 OCTETSTR = Eltex
+sysORLastChange.0 TICKS = 17961
+sysORID.1 OBJECTID = .1.3.6.1.6.3.10.3.1.1
+sysORID.2 OBJECTID = .1.3.6.1.6.3.11.3.1.1
+sysORID.3 OBJECTID = .1.3.6.1.6.3.15.2.1.1
+sysORDescr.1 OCTETSTR = The SNMP Management Architecture MIB.
+sysORDescr.2 OCTETSTR = The MIB for Message Processing and Dispatching.
+sysORDescr.3 OCTETSTR = The management information definitions for the SNMP User-based Security Model.
+sysORUpTime.1 TICKS = 17961
+sysORUpTime.2 TICKS = 17961
+sysORUpTime.3 TICKS = 17961

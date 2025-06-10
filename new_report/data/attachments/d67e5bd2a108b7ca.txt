@@ -1,0 +1,11 @@
+ show arp interfaces te0/0/11.255
+Tue Jun 10 04:26:17 2025
+  Global ARP aging time is 240 minutes
+  
+  IP address       Age         Hardware address   State       Timeout     Interface 
+  ---------------- ----------- ------------------ ----------- ----------- ---------- 
+  192.168.1.13     00:00:00    e0:d9:e3:df:35:4b  Interface   00:00:00    te0/0/11.255 
+  192.168.1.14     00:00:01    50:00:00:0a:00:02  Dynamic     04:00:00    te0/0/11.255 
+  
+  Total entries: 2
+0/ME5100:R4-G2# 

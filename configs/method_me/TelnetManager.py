@@ -9,10 +9,11 @@ class TelnetManager:
         self.port = port
         self.login = login
         self.password = password
-        self.tn = telnetlib.Telnet(self.host, self.port)
+        self.tn = None
 
     #Установка соединения с устройством
     def connect(self):
+        self.tn = telnetlib.Telnet(self.host, self.port)
         self.tn.write(b"\n")
         self.tn.read_until(b"login: ", timeout=30)
         self.tn.write(self.login.encode('ascii') + b"\n")
@@ -22,6 +23,5 @@ class TelnetManager:
 
     #Закрытие соединения
     def close(self):
-        if self.tn:
-            self.tn.write(b"quit\n")
-            self.tn.close()
+        self.tn.write(b"quit\n")
+        self.tn.close()

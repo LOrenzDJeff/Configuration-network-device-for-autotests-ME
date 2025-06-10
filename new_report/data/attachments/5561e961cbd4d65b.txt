@@ -1,0 +1,30 @@
+ do show route 192.168.70.0
+Tue Jun 10 05:22:39 2025
+  Routing entry for 192.168.70.0/24
+    Last update: 00h00m31s
+    Routing Descriptor Blocks
+      192.168.3.17, via te0/0/1
+      Known via ospf, distance 110, metric 0
+        type ospf-type2-external, protection ecmp, route-type remote
+  Routing entry for 192.168.70.0/24
+    Last update: 00h00m31s
+    Routing Descriptor Blocks
+      192.168.3.21, via te0/0/2
+      Known via ospf, distance 110, metric 0
+        type ospf-type2-external, protection ecmp, route-type remote
+  Routing entry for 192.168.70.0/24
+    Last update: 00h00m31s
+    Routing Descriptor Blocks
+      192.168.1.13, via te0/0/3
+      Known via ospf, distance 110, metric 0
+        type ospf-type2-external, protection ecmp, route-type remote
+  Routing entry for 192.168.70.0/24
+    Last update: 00h00m31s
+    Routing Descriptor Blocks
+      192.168.1.10, via te0/0/4
+      Known via ospf, distance 110, metric 0
+        type ospf-type2-external, protection ecmp, route-type remote
+  
+  Entries: 4
+  
+0/ME5100:R4-G2(config-equal-cost)# 

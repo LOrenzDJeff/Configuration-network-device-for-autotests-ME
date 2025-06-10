@@ -1,0 +1,21 @@
+ do show route isis
+Tue Jun 10 04:44:52 2025
+  Codes: i - IS-IS, L1 - IS-IS level-1, L2 - IS-IS level-2
+      LE1 - IS-IS level1 external, LE2 - IS-IS level2 external
+  
+  
+  i L2   1.0.2.1/32    via 192.168.1.2 (backup local-lfa, address: 192.168.1.22) [116/11], 00h02m32s, bu1
+  i L2   1.0.2.3/32    via 192.168.1.10 (backup local-lfa, address: 192.168.1.22) [116/20], 00h03m00s, te0/0/11.254
+  i L2   1.0.2.4/32    via 192.168.1.22 (backup local-lfa, address: 192.168.1.10) [116/9], 00h02m37s, bu2
+  i L2   192.168.1.4/30    via 192.168.1.22 (backup local-lfa, address: 192.168.1.10) [116/20], 00h02m26s, bu2
+  i L2   192.168.1.12/30    via 192.168.1.22 (backup local-lfa, address: 192.168.1.10) [116/29], 00h02m37s, bu2
+  i L2   192.168.1.16/30    via 192.168.1.2 (backup local-lfa, address: 192.168.1.10) [116/31], 00h01m43s, bu1
+  i L2   2001:0:10:1::1/128    via fe80::e65a:d4ff:fede:16 (backup local-lfa, address: fe80::e2d9:e3ff:fedf:3557) [116/11], 00h02m32s, bu1
+  i L2   2001:db8:cafe:a001::/64    via fe80::e2d9:e3ff:fedf:3557 (backup local-lfa, address: fe80::5200:0:fe0a:2) [116/20], 00h02m26s, bu2
+  i L2   2001:db8:cafe:a011::/64    via fe80::e65a:d4ff:fede:16 (backup local-lfa, address: fe80::5200:0:fe0a:2) [116/31], 00h01m43s, bu1
+  i L2   2001:db8:cafe:a012::/64    via fe80::e2d9:e3ff:fedf:3557 (backup local-lfa, address: fe80::5200:0:fe0a:2) [116/29], 00h02m37s, bu2
+  i L2   2002:0:10:1::2/128    via fe80::e2d9:e3ff:fedf:3557 (backup local-lfa, address: fe80::5200:0:fe0a:2) [116/9], 00h02m37s, bu2
+  i L2   2004:0:10:1::4/128    via fe80::5200:0:fe0a:2 (backup local-lfa, address: fe80::e2d9:e3ff:fedf:3557) [116/20], 00h03m00s, te0/0/11.254
+  
+  Total entries: 12
+0/ME5100:R2-G2(config-bundle-ether)# 

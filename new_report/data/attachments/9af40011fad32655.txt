@@ -1,0 +1,12 @@
+ show route 192.168.74.0
+Tue Jun 10 05:04:33 2025
+  Routing entry for 192.168.74.0/24
+    Last update: 00h01m35s
+    Routing Descriptor Blocks
+      192.168.2.9, via te0/0/1
+      Known via isis, distance 116, metric 20
+        type isis-level2-internal, protection none, route-type remote
+  
+  Entries: 1
+  
+0/ME5100:R1-G2# 

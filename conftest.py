@@ -1,4 +1,4 @@
-from configs.new_config_me import *
+from configs.config_me import *
 from configs.config_jun import *
 from configs.config_mes import *
 import ipaddress
@@ -33,8 +33,6 @@ from threading import Thread
 from hamcrest import *
 from scapy.all import *
 from pytest import approx
-from driver import ME5000CliDriver
-from driver import MES5324CliDriver
 
 with open (f'hardware_set.json') as f:
      templates = json.load(f)
@@ -43,6 +41,7 @@ with open (f'hardware_set.json') as f:
      DUT3 = setting_ME("DUT3",templates)
      DUT4 = setting_vMX("DUT4",templates)
      DUT5 = setting_MES("DUT5",templates)
+     DUT6 = templates["DUT6"]
      hardware_set_id = templates['hardware_set_id']
 
 
@@ -497,7 +496,7 @@ def connection_test_ssh(host_ip,login,password):
 def connection_test(host_ip, login, password, part):
      conn = Telnet()
      acc = Account(login, password)
-     conn.set_driver(ME5000CliDriver())
+     #conn.set_driver(ME5000CliDriver())
      conn.connect(host_ip)
      if part == 'part2':
         conn.waitfor('Username:')
@@ -524,3 +523,24 @@ def run_tacacs_server():
                               shell=True)
         result, _ = services.communicate()
         allure.attach(result.decode(), 'Логи работы сервера tacacs')
+
+def start_udp_esr_iperf3_server_client_queue(server_ip, duration, bandwidth, vrf_client):
+    start_traffic_time=time.time()  # Фиксируем время начала генерации трафика
+    start_traffic_time_struct=time.localtime(start_traffic_time)
+    print("\r %s Пытаемся запустить iperf на esr \r"%(time.strftime('%H:%M:%S',start_traffic_time_struct)))
+
+    tn = telnetlib.Telnet(DUT6["host_ip"])
+    tn.read_until(b"login: ", timeout=10)
+    tn.write(b"techsupport\n")
+    tn.read_until(b"Password: ", timeout=10)
+    tn.write(b"password\n")
+    tn.read_until(b'$', timeout=10)
+    tn.write(b"sudo ip netns exec %s iperf -c %s -u -P 15 -b %s -l 1000 -t %s\n"%(vrf_client.encode('ascii'),server_ip.encode('ascii'), bandwidth.encode('ascii'),str(duration).encode('ascii')))
+    tn.read_until(b'Password:', timeout=10)
+    tn.write(b"password\n")
+    print("\r iperf на esr запустился \r")
+    time.sleep(int(duration)) # Обязательно нужна эта задержка чтобы долждаться завершения работы iperf-a в параллельном процессе
+    stop_traffic_time=time.time()  # Фиксируем время начала генерации трафика
+    stop_traffic_time_struct=time.localtime(stop_traffic_time)
+
+    print("\rЗавершение работы процедуры iperf")

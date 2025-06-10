@@ -1,10 +1,17 @@
-import telnetlib
-import time
+from configs.method_me.TelnetManager import *
+from configs.method_me.InterfaceManager import *
+from configs.method_me.ISISManager import *
+from configs.method_me.MPLSManager import *
+from configs.method_me.LDPManager import *
+from configs.method_me.BalanceManager import *
+from configs.method_me.BGPManager import *
+from configs.method_me.OSPFManager import *
 
-class setting_ME():
-    #Инициализация устройства
+# Основной класс
+class setting_ME:
     def __init__(self, DUT, authorization):
         try:
+            # Инициализация параметров из json
             self.boot = authorization[DUT]["boot_timer"]
             self.hostname = authorization[DUT]["hostname"]
             self.dir = authorization[DUT]["dir_hostname"]
@@ -21,742 +28,153 @@ class setting_ME():
             self.loopback = authorization[DUT]["int"]["lo"]
             self.server = authorization["DUT7"]
             self.stend = authorization['stend']
-            self.isis = authorization[DUT]["isis"]
-        except KeyError:
-            print("В файле json не достаёт ключа")
+            self.isis_conf = authorization[DUT]["isis"]
+            
+            # Инициализация подключения
+            self.telnet = TelnetManager(
+                self.server['ip'], 
+                self.port, 
+                self.login, 
+                self.password
+            )
+            
+        except KeyError as e:
+            print(f"Отсутствует ключ в JSON: {e}")
 
-    def connection(self):
-        self.tn = telnetlib.Telnet(self.server['ip'], self.port)
-        self.tn.write(b"\n")
-        self.tn.read_until(b"login: ", timeout=30)
-        self.tn.write(self.login.encode('ascii') + b"\n")
-        self.tn.read_until(b"Password: ", timeout=30)
-        self.tn.write(self.password.encode('ascii') + b"\n")
-        self.tn.read_until(b"#", timeout=30)
-
-    def close(self):
-        self.tn.write(b"quit\n")
-        self.tn.close()
-
+    #Загрузка стартовой конфигурации
     def startup(self):
         if self.vrf == "default":
-            self.tn.write(b"copy tftp://%s/%s/startup_config/%s/startup-cfg-cli fs://candidate-config\n"%(self.server['ip'].encode('ascii'),  self.stend.encode('ascii'),  self.hostname.encode('ascii')))
+            self.telnet.tn.write(b"copy tftp://%s/%s/startup_config/%s/startup-cfg-cli fs://candidate-config\n"%(self.server['ip'].encode('ascii'),  self.stend.encode('ascii'),  self.hostname.encode('ascii')))
         else:
-            self.tn.write(b"copy tftp://%s/%s/startup_config/%s/startup-cfg-cli fs://candidate-config vrf %s\n"%( self.server['ip'].encode('ascii'), self.stend.encode('ascii'), self.hostname.encode('ascii'), self.vrf.encode('ascii')))
-        self.tn.read_until(b"#", timeout=30)
-        self.tn.write(b"commit replace\n")
-        self.tn.read_until(b"[n]", timeout=30)
-        self.tn.write(b"y\n")
-        self.tn.read_until(b"#", timeout=30)
-        self.tn.write(b"end\n")
+            self.telnet.tn.write(b"copy tftp://%s/%s/startup_config/%s/startup-cfg-cli fs://candidate-config vrf %s\n"%( self.server['ip'].encode('ascii'), self.stend.encode('ascii'), self.hostname.encode('ascii'), self.vrf.encode('ascii')))
+        self.telnet.tn.read_until(b"#", timeout=30)
+        self.telnet.tn.write(b"commit replace\n")
+        self.telnet.tn.read_until(b"[n]", timeout=30)
+        self.telnet.tn.write(b"y\n")
+        self.telnet.tn.read_until(b"#", timeout=30)
+        self.telnet.tn.write(b"end\n")
         time.sleep(2)
-
-    #Добавление ipv4 из config.json
-    def ipv4(self):
-        self.tn.write(b"config\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"int " + self.neighor1['int_name'].encode('ascii') + b"\n")
-        self.tn.read_until(b"(config-bundle-ether)#", timeout=30)
-        self.tn.write(b"ipv4 address " + self.neighor1['ip'].encode('ascii') + b"\n")
-        self.tn.write(b"description " + self.neighor1['neighbor'].encode('ascii') + b"\n")
-        self.tn.write(b"exit\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"int " + self.neighor2['int_name'].encode('ascii') + b"\n")
-        self.tn.read_until(b"(config-bundle-ether)#", timeout=30)
-        self.tn.write(b"ipv4 address " + self.neighor2['ip'].encode('ascii') + b"\n")
-        self.tn.write(b"description " + self.neighor2['neighbor'].encode('ascii') + b"\n")
-        self.tn.write(b"exit\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"int " + self.neighor3['int_name'].encode('ascii') + b"\n")
-        self.tn.read_until(b"(config-tengigabitethernet-sub)#", timeout=30)
-        self.tn.write(b"ipv4 address " + self.neighor3['ip'].encode('ascii') + b"\n")
-        self.tn.write(b"description " + self.neighor3['neighbor'].encode('ascii') + b"\n")
-        self.tn.write(b"encapsulation outer-vid " + self.neighor3['vlan'].encode('ascii') + b"\n")
-        self.tn.write(b"exit\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"commit\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"end\n")
-        self.tn.read_until(b"#", timeout=30)
-    
-    def ipv6(self):
-        self.tn.write(b"config\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"int " + self.neighor1['int_name'].encode('ascii') + b"\n")
-        self.tn.read_until(b"(config-bundle-ether)#", timeout=30)
-        self.tn.write(b"ipv6 address " + self.neighor1['ipv6'].encode('ascii') + b"\n")
-        self.tn.write(b"description " + self.neighor1['neighbor'].encode('ascii') + b"\n")
-        self.tn.write(b"exit\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"int " + self.neighor2['int_name'].encode('ascii') + b"\n")
-        self.tn.read_until(b"(config-bundle-ether)#", timeout=30)
-        self.tn.write(b"ipv6 address " + self.neighor2['ipv6'].encode('ascii') + b"\n")
-        self.tn.write(b"description " + self.neighor2['neighbor'].encode('ascii') + b"\n")
-        self.tn.write(b"exit\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"int " + self.neighor3['int_name'].encode('ascii') + b"\n")
-        self.tn.read_until(b"(config-tengigabitethernet-sub)#", timeout=30)
-        self.tn.write(b"ipv6 address " + self.neighor3['ipv6'].encode('ascii') + b"\n")
-        self.tn.write(b"description " + self.neighor3['neighbor'].encode('ascii') + b"\n")
-        self.tn.write(b"encapsulation outer-vid " + self.neighor3['vlan'].encode('ascii') + b"\n")
-        self.tn.write(b"exit\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"commit\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"end\n")
-        self.tn.read_until(b"#", timeout=30)
-    
-    def add_subint(self, interface, vlan, ip, vrf):
-        self.tn.write(b"config\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"int " + interface.encode('ascii') + b"\n")
-        self.tn.read_until(b"(config-tengigabitethernet-sub)#", timeout=30)
-        self.tn.write(b"encapsulation outer-vid " + vlan.encode('ascii') + b"\n")
-        self.tn.write(b"ipv4 address " + ip.encode('ascii') + b"\n")
-        if vrf != "default":
-            self.tn.write(b"vrf " + vrf.encode('ascii') + b"\n")
-        self.tn.write(b"exit\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"commit\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"end\n")
-        self.tn.read_until(b"#", timeout=30)
-
-    def add_double_subint(self, interface, outvlan, invlan, ip, vrf):
-        self.tn.write(b"config\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"int " + interface.encode('ascii') + b"\n")
-        self.tn.read_until(b"(config-tengigabitethernet-sub)#", timeout=30)
-        self.tn.write(b"encapsulation outer-vid " + outvlan.encode('ascii') + b" inner-vid " + invlan.encode('ascii') + b"\n")
-        self.tn.write(b"ipv4 address " + ip.encode('ascii') + b"\n")
-        if vrf != "default":
-            self.tn.write(b"vrf " + vrf.encode('ascii') + b"\n")
-        self.tn.write(b"exit\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"commit\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"end\n")
-        self.tn.read_until(b"#", timeout=30)
-
-    def add_vrf(self, name, e, i, rd):
-        self.tn.write(b"config\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"vrf " + name.encode('ascii') + b"\n")
-        self.tn.read_until(b"(config-vrf)#", timeout=30)
-        self.tn.write(b"export route-target " + e.encode('ascii') + b"\n")
-        self.tn.write(b"import route-target " + i.encode('ascii') + b"\n")
-        self.tn.write(b"rd " + rd.encode('ascii') + b"\n")
-        self.tn.write(b"exit\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"commit\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"end\n")
-        self.tn.read_until(b"#", timeout=30)
-
-    #Изменение ip в одном интерфейсе
-    def change_ipv4(self, int, old_ip, new_ip):
-        self.tn.write(b"config\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"int " + int.encode('ascii') + b"\n")
-        self.tn.read_until(b"#", timeout=30)
-        self.tn.write(b"no ipv4 address " + old_ip.encode('ascii') + b"\n")
-        self.tn.write(b"ipv4 address " + new_ip.encode('ascii') + b"\n")
-        self.tn.write(b"exit\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"commit\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"end\n")
-        self.tn.read_until(b"#", timeout=30)
-
-    #Удаление всех ipv4, которые находятся в config_OOP.json
-    def no_ipv4(self):
-        self.tn.write(b"config\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"int " + self.neighor1['int_name'].encode('ascii') + b"\n")
-        self.tn.read_until(b"(config-bundle-ether)#", timeout=30)
-        self.tn.write(b"no ipv4 address " +  self.neighor1['ip'].encode('ascii') + b"\n")
-        self.tn.write(b"exit\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"int " +  self.neighor2['int_name'].encode('ascii') + b"\n")
-        self.tn.read_until(b"(config-bundle-ether)#", timeout=30)
-        self.tn.write(b"no ipv4 address " + self.neighor2['i[]'].encode('ascii') + b"\n")
-        self.tn.write(b"exit\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"no int " + self.neighor3['int_name'].encode('ascii') + b"\n")
-        self.tn.write(b"commit\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"end\n")
-        self.tn.read_until(b"#", timeout=30)
-
-    def no_ipv6(self):
-        self.tn.write(b"config\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"int " + self.neighor1['int_name'].encode('ascii') + b"\n")
-        self.tn.read_until(b"(config-bundle-ether)#", timeout=30)
-        self.tn.write(b"no ipv6 address " +  self.neighor1['ipv6'].encode('ascii') + b"\n")
-        self.tn.write(b"exit\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"int " +  self.neighor2['int_name'].encode('ascii') + b"\n")
-        self.tn.read_until(b"(config-bundle-ether)#", timeout=30)
-        self.tn.write(b"no ipv6 address " + self.neighor2['ipv6'].encode('ascii') + b"\n")
-        self.tn.write(b"exit\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"no int " + self.neighor3['int_name'].encode('ascii') + b"\n")
-        self.tn.write(b"commit\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"end\n")
-        self.tn.read_until(b"#", timeout=30)
-    
-    #Добавление loopback из config_OOP.json
-    def loopback_ipv4(self):
-        self.tn.write(b"config\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"int loopback " + self.loopback['num'].encode('ascii') + b"\n")
-        self.tn.read_until(b"(config-loopback)#", timeout=30)
-        self.tn.write(b"ipv4 address " + self.loopback['ip'].encode('ascii') + b"\n")
-        self.tn.read_until(b"(config-loopback)#", timeout=30)
-        self.tn.write(b"exit\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"commit\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"end\n")
-        self.tn.read_until(b"#", timeout=30)
-
-    def loopback_ipv6(self):
-        self.tn.write(b"config\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"int loopback " + self.loopback['num'].encode('ascii') + b"\n")
-        self.tn.read_until(b"(config-loopback)#", timeout=30)
-        self.tn.write(b"ipv6 address " + self.loopback['ipv6'].encode('ascii') + b"\n")
-        self.tn.read_until(b"(config-loopback)#", timeout=30)
-        self.tn.write(b"exit\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"commit\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"end\n")
-        self.tn.read_until(b"#", timeout=30)
-
-    #Добавление нового loopback
-    def add_new_loopback(self, id, ip):
-        self.tn.write(b"config\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"int loopback " + id.encode('ascii') + b"\n")
-        self.tn.read_until(b"(config-loopback)#", timeout=30)
-        self.tn.write(b"ipv4 address " + ip.encode('ascii') + b"\n")
-        self.tn.write(b"exit\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"commit\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"end\n")
-        self.tn.read_until(b"#", timeout=30)
-
-    #Изменение ipv4 у указанного loopback
-    def change_loopback(self, id, old_ip, new_ip):
-        self.tn.write(b"config\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"int loopback " + id.encode('ascii') + b"\n")
-        self.tn.read_until(b"(config-loopback)#", timeout=30)
-        self.tn.write(b"no ipv4 address " + old_ip.encode('ascii') + b"\n")
-        self.tn.write(b"ipv4 address " + new_ip.encode('ascii') + b"\n")
-        self.tn.write(b"exit\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"commit\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"end\n")
-        self.tn.read_until(b"#", timeout=30)
-
-    #Удаление указанного loopback
-    def deleted_othet_loopback(self, id):
-        self.tn.write(b"config\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"no int loopback " + id.encode('ascii') + b"\n")
-        self.tn.write(b"commit\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"end\n")
-        self.tn.read_until(b"#", timeout=30)
-
-    #Удаление loopback, который находится в config_OOP.json
-    def no_loopback(self):
-        self.tn.write(b"config\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"no int loopback " + self.loopback["num"].encode('ascii') + b"\n")
-        self.tn.write(b"commit\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"end\n")
-        self.tn.read_until(b"#", timeout=30)
-
-    #Агрегирование интерфейсов из config_OOP.json
+    # Подключение к рутеру
+    def connection(self):
+        # Инициализация менеджеров в ./method_me
+        self.telnet.connect()
+        self.interface = InterfaceManager(
+                self.telnet.tn, 
+                self.neighor1,
+                self.neighor2,
+                self.neighor3,
+                self.loopback
+            )
+        self.isis = ISISManager(
+                self.telnet.tn,
+                self.isis_conf,
+                self.hostname, 
+                self.neighor1,
+                self.neighor2,
+                self.neighor3,
+                self.loopback
+            )
+        self.mpls = MPLSManager(
+                self.telnet.tn, 
+                self.neighor1,
+                self.neighor2,
+                self.neighor3,
+                self.loopback
+            )
+        self.ldp = LDPManager(
+                self.telnet.tn, 
+                self.neighor1,
+                self.neighor2,
+                self.neighor3,
+                self.loopback
+            )
+        self.balance = BalanceManager(
+            self.telnet.tn
+        )
+        self.bgp = BGPManager(
+            self.telnet.tn,
+            self.neighor1,
+            self.neighor2,
+            self.neighor3,
+            self.loopback
+        )
+        self.ospf = OSPFManager(
+                self.telnet.tn,
+                self.neighor1,
+                self.neighor2,
+                self.neighor3,
+                self.loopback
+        )
+    # Отключение от рутера
+    def close(self):
+        self.telnet.close()
+    # Конфигурирование lacp черзе json
     def lacp(self):
-        self.tn.write(b"config\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"int " + self.neighor1['int_name'].encode('ascii') + b"\n")
-        self.tn.read_until(b"(config-bundle-ether)#", timeout=30)
-        self.tn.write(b"int " + self.neighor2['int_name'].encode('ascii') + b"\n")
-        self.tn.read_until(b"(config-bundle-ether)#", timeout=30)
-        self.tn.write(b"lacp\n")
-        self.tn.read_until(b"(config-lacp)#", timeout=30)
-        self.tn.write(b"int " + self.neighor1['int_name'].encode('ascii') + b"\n")
-        self.tn.read_until(b"(config-bundle-ether)#", timeout=30)
-        self.tn.write(b"int " + self.neighor2['int_name'].encode('ascii') + b"\n")
-        self.tn.read_until(b"(config-bundle-ether)#", timeout=30)
-        for i in self.neighor1['interface']:
-            self.tn.write(b"int " + i.encode('ascii') + b"\n")
-            self.tn.read_until(b"(config-tengigabitethernet)", timeout=30)
-            self.tn.write(b"bundle id " + self.neighor1['id'].encode('ascii') + b"\n")
-            self.tn.read_until(b"(config-tengigabitethernet)", timeout=30)
-            self.tn.write(b"bundle mode " + self.neighor1['mode'].encode('ascii') + b"\n")
-        for i in self.neighor2['interface']:
-            self.tn.write(b"int " + i.encode('ascii') + b"\n")
-            self.tn.read_until(b"(config-tengigabitethernet)", timeout=30)
-            self.tn.write(b"bundle id " + self.neighor2['id'].encode('ascii') + b"\n")
-            self.tn.read_until(b"(config-tengigabitethernet)", timeout=30)
-            self.tn.write(b"bundle mode " + self.neighor2['mode'].encode('ascii') + b"\n")
-        self.tn.read_until(b"(config-tengigabitethernet)", timeout=30)
-        self.tn.write(b"exit\n")
-        self.tn.read_until(b"(config-lacp)#", timeout=30)
-        self.tn.write(b"exit\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"commit\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"end\n")
-        self.tn.read_until(b"#", timeout=30)
-
-    #Удаление агрегации из config_OOP.json
-    def no_lacp(self):
-        self.tn.write(b"config\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"no int " + self.neighor1['int_name'].encode('ascii') + b"\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"no int " + self.neighor2['int_name'].encode('ascii') + b"\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"no lacp\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"commit\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"end\n")
-        self.tn.read_until(b"#", timeout=30)
-
+        self.interface.base_configure_lacp()
+    # Конфигурирование ipv4 через json
+    def ipv4(self):
+        self.interface.base_configure_ipv4()
+    # Конфигурирование ipv6 через json
+    def ipv6(self):
+        self.interface.base_configure_ipv6()
+    # Конфигурирование интерфейса через параметр
+    def ip_custom(self, vers, int, ip, vrf = 'default'):
+        self.interface.custom_configure_interface(vers, int, ip, vrf)
+    # Конфигурирование интерфейса с двумя тегами
+    def double_subint(self, int, out, inv, ip, vrf = "default"):
+        self.interface.custom_configure_subinterface_doubletag(int,out,inv,ip,vrf)
+    # Конфигурирование ipv6 loopback через json
+    def loopback_ipv6(self):
+        self.interface.loopback_ipv6()
+    # Конфигурирование ipv4 loopback через json
+    def loopback_ipv4(self):
+        self.interface.loopback_ipv4()
+    # Конфигурирование lldp через json
     def lldp_agent_add(self):
-        self.tn.write(b"config\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"lldp\n")
-        self.tn.read_until(b"(config-lldp)#", timeout=30)
-        for i in range(2):
-            self.tn.write(b"interface " + self.neighor1['interface'][i].encode('ascii') + b"\n")
-            self.tn.read_until(b"(config-tengigabitethernet)#", timeout=30)
-            self.tn.write(b"agent nearest-bridge\n")
-            self.tn.read_until(b"(config-agent)#", timeout=30)
-            self.tn.write(b"exit\n")
-            self.tn.read_until(b"(config-tengigabitethernet)#", timeout=30)
-        for i in range(2):
-            self.tn.write(b"interface " + self.neighor2['interface'][i].encode('ascii') + b"\n")
-            self.tn.read_until(b"(config-tengigabitethernet)#", timeout=30)
-            self.tn.write(b"agent nearest-bridge\n")
-            self.tn.read_until(b"(config-agent)#", timeout=30)
-            self.tn.write(b"exit\n")
-            self.tn.read_until(b"(config-tengigabitethernet)#", timeout=30)
-        self.tn.write(b"exit\n")
-        self.tn.read_until(b"(config-lldp)#", timeout=30)
-        self.tn.write(b"commit\n")
-        self.tn.read_until(b"(config-lldp)#", timeout=30)
-        self.tn.write(b"end\n")
-        self.tn.read_until(b"#", timeout=30)
-        time.sleep(5)
-
+        self.interface.base_configure_lldp()
+    # Конфигурирование isis через json
     def isis_add(self):
-        self.tn.write(b"config\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"router isis test\n")
-        self.tn.read_until(b"(config-isis)#", timeout=30)
-
-        for i in [self.neighor1['int_name'], self.neighor2['int_name']]:
-            self.tn.write(b"interface " + i.encode('ascii') + b"\n")
-            self.tn.read_until(b"(config-bundle-ether)#", timeout=30)
-            self.tn.write(b"address-family ipv4 unicast\n")
-            self.tn.read_until(b"(config-unicast)#", timeout=30)
-            self.tn.write(b"bfd fast-detect\n")
-            self.tn.read_until(b"(config-unicast)#", timeout=30)
-            self.tn.write(b"exit\n")
-            self.tn.read_until(b"(config-bundle-ether)#", timeout=30)
-            self.tn.write(b"address-family ipv6 unicast\n")
-            self.tn.read_until(b"(config-unicast)#", timeout=30)
-            self.tn.write(b"exit\n")
-            self.tn.read_until(b"(config-bundle-ether)#", timeout=30)
-            self.tn.write(b"point-to-point\n")
-            self.tn.read_until(b"(config-bundle-ether)#", timeout=30)
-            self.tn.write(b"exit\n")
-            self.tn.read_until(b"(config-isis)#", timeout=30)
-
-        for i in [self.neighor3['int_name'], self.loopback['interface']]:
-            self.tn.write(b"interface " + i.encode('ascii') + b"\n")
-            if i == self.neighor3['int_name']:
-                self.tn.read_until(b"(config-tengigabitethernet-sub)#", timeout=30)
-                self.tn.write(b"point-to-point\n")
-                self.tn.read_until(b"(config-tengigabitethernet-sub)#", timeout=30)
-            else:
-                self.tn.read_until(b"(config-loopback)#", timeout=30)
-                self.tn.write(b"passive\n")
-                self.tn.read_until(b"(config-loopback)#", timeout=30)
-            self.tn.write(b"address-family ipv4 unicast\n")
-            self.tn.read_until(b"(config-unicast)#", timeout=30)
-            self.tn.write(b"exit\n")
-            self.tn.write(b"address-family ipv6 unicast\n")
-            self.tn.read_until(b"(config-unicast)#", timeout=30)
-            self.tn.write(b"exit\n")
-            self.tn.write(b"exit\n")
-            self.tn.read_until(b"(config-isis)#", timeout=30)
-
-        self.tn.write(b"host-name %s\n"%self.hostname.encode('ascii'))
-        self.tn.read_until(b"(config-isis)#", timeout=30)
-        self.tn.write(b"is-level level-2\n")
-        self.tn.read_until(b"(config-isis)#", timeout=30)
-        for i in ['level level-2', 'level level-1']:
-            self.tn.write(i.encode('ascii') + b"\n")
-            self.tn.read_until(b"(config-level)#", timeout=30)
-            self.tn.write(b"metric-style wide\n")
-            self.tn.read_until(b"(config-level)#", timeout=30)
-            self.tn.write(b"exit\n")
-            self.tn.read_until(b"(config-isis)#", timeout=30)
-        
-        self.tn.write(b"net %s\n"%self.isis.encode('ascii'))
-        self.tn.read_until(b"(config-isis)#", timeout=30)
-        self.tn.write(b"exit\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"commit\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"end\n")
-        self.tn.read_until(b"#", timeout=30)
-
-    def isis_add_custom(self,interface):
-        self.tn.write(b"config\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"router isis test\n")
-        self.tn.read_until(b"(config-isis)#", timeout=30)
-
-        self.tn.write(b"interface " + interface.encode('ascii') + b"\n")
-        self.tn.write(b"address-family ipv4 unicast\n")
-        self.tn.read_until(b"(config-unicast)#", timeout=30)
-        self.tn.write(b"bfd fast-detect\n")
-        self.tn.read_until(b"(config-unicast)#", timeout=30)
-        self.tn.write(b"exit\n")
-        self.tn.write(b"address-family ipv6 unicast\n")
-        self.tn.read_until(b"(config-unicast)#", timeout=30)
-        self.tn.write(b"exit\n")
-        self.tn.write(b"point-to-point\n")
-        self.tn.write(b"exit\n")
-        self.tn.read_until(b"(config-isis)#", timeout=30)
-
-        self.tn.write(b"interface " + self.loopback['interface'].encode('ascii') + b"\n")
-        self.tn.read_until(b"(config-loopback)#", timeout=30)
-        self.tn.write(b"passive\n")
-        self.tn.read_until(b"(config-loopback)#", timeout=30)
-        self.tn.write(b"address-family ipv4 unicast\n")
-        self.tn.read_until(b"(config-unicast)#", timeout=30)
-        self.tn.write(b"exit\n")
-        self.tn.write(b"address-family ipv6 unicast\n")
-        self.tn.read_until(b"(config-unicast)#", timeout=30)
-        self.tn.write(b"exit\n")
-        self.tn.write(b"exit\n")
-        self.tn.read_until(b"(config-isis)#", timeout=30)
-
-        self.tn.write(b"host-name %s\n"%self.hostname.encode('ascii'))
-        self.tn.read_until(b"(config-isis)#", timeout=30)
-        self.tn.write(b"is-level level-2\n")
-        self.tn.read_until(b"(config-isis)#", timeout=30)
-        for i in ['level level-2', 'level level-1']:
-            self.tn.write(i.encode('ascii') + b"\n")
-            self.tn.read_until(b"(config-level)#", timeout=30)
-            self.tn.write(b"metric-style wide\n")
-            self.tn.read_until(b"(config-level)#", timeout=30)
-            self.tn.write(b"exit\n")
-            self.tn.read_until(b"(config-isis)#", timeout=30)
-        
-        self.tn.write(b"net %s\n"%self.isis.encode('ascii'))
-        self.tn.read_until(b"(config-isis)#", timeout=30)
-        self.tn.write(b"exit\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"commit\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"end\n")
-        self.tn.read_until(b"#", timeout=30)
-    
-    def isis_delete(self):
-        self.tn.write(b"config\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"no router isis test\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"commit\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"end\n")
-        self.tn.read_until(b"#", timeout=30)
-
+        self.isis.base_configure_isis()
+    # Конфигурирование isis через параметры
+    def isis_custom(self,int):
+        self.isis.custom_isis(int)
+    # Добавление lfa в isis
     def isis_add_lfa(self):
-        self.tn.write(b"config\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"router isis test\n")
-        self.tn.read_until(b"(config-isis)#", timeout=30)
-        self.tn.write(b"address-family ipv4 unicast\n")
-        self.tn.read_until(b"(config-unicast)#", timeout=30)
-        self.tn.write(b"lfa include-all\n")
-        self.tn.write(b"exit\n")
-        self.tn.read_until(b"(config-isis)#", timeout=30)
-        self.tn.write(b"address-family ipv6 unicast\n")
-        self.tn.read_until(b"(config-unicast)#", timeout=30)
-        self.tn.write(b"lfa include-all\n")
-        self.tn.write(b"exit\n")
-        self.tn.read_until(b"(config-isis)#", timeout=30)
-        self.tn.write(b"commit\n")
-        self.tn.read_until(b"(config-isis)#", timeout=30)
-        self.tn.write(b"end\n")
-        self.tn.read_until(b"#", timeout=30)
-
+        self.isis.lfa()
+    # Добавление метрики в isis
     def isis_metric(self, interface, metric):
-        self.tn.write(b"config\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"router isis test\n")
-        self.tn.read_until(b"(config-isis)#", timeout=30)
-        self.tn.write(b"interface " + interface.encode('ascii') + b"\n")
-        self.tn.write(b"level level-2\n")
-        self.tn.read_until(b"(config-level)#", timeout=30)
-        self.tn.write(b"metric " + str(metric).encode('ascii') + b"\n")
-        self.tn.write(b"exit\n")
-        self.tn.write(b"exit\n")
-        self.tn.read_until(b"(config-isis)#", timeout=30)
-        self.tn.write(b"commit\n")
-        self.tn.read_until(b"(config-isis)#", timeout=30)
-        self.tn.write(b"end\n")
-        self.tn.read_until(b"#", timeout=30)
-
+        self.isis.metric(interface, metric)
+    def isis_redistribution(self):
+        self.isis.redistribution()
+    def vrf_add(self,name,e,i,rd):
+        self.mpls.vrf(name,e,i,rd)
+    # Конфигурирование mpls через json
     def mpls_add(self):
-        self.tn.write(b"config\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"mpls\n")
-        self.tn.read_until(b"(config-mpls)#", timeout=30)
-        self.tn.write(b"forwarding\n")
-        self.tn.read_until(b"(config-forwarding)#", timeout=30)
-        for i in [self.neighor1['int_name'], self.neighor2['int_name'],self.neighor3['int_name'],self.loopback['interface']]:
-            self.tn.write(b"interface " + i.encode('ascii') + b"\n")
-        self.tn.write(b"exit\n")
-        self.tn.read_until(b"(config-mpls)#", timeout=30)
-        self.tn.write(b"router-id " + self.loopback['ip_witout_mask'].encode('ascii') + b"\n")
-        self.tn.write(b"transport-address " + self.loopback['ip_witout_mask'].encode('ascii') + b"\n")
-        self.tn.write(b"commit\n")
-        self.tn.read_until(b"(config-mpls)#", timeout=30)
-        self.tn.write(b"end\n")
-        self.tn.read_until(b"#", timeout=30)
-
-    def mpls_delete(self):
-        self.tn.write(b"config\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"no mpls\n")
-        self.tn.write(b"commit\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"end\n")
-        self.tn.read_until(b"#", timeout=30)
-
-    def mpls_custom(self, interface):
-        self.tn.write(b"config\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"mpls\n")
-        self.tn.read_until(b"(config-mpls)#", timeout=30)
-        self.tn.write(b"forwarding\n")
-        self.tn.read_until(b"(config-forwarding)#", timeout=30)
-        for i in [interface, self.loopback['interface']]:
-            self.tn.write(b"interface " + i.encode('ascii') + b"\n")
-        self.tn.write(b"exit\n")
-        self.tn.read_until(b"(config-mpls)#", timeout=30)
-        self.tn.write(b"router-id " + self.loopback['ip_witout_mask'].encode('ascii') + b"\n")
-        self.tn.write(b"transport-address " + self.loopback['ip_witout_mask'].encode('ascii') + b"\n")
-        self.tn.write(b"commit\n")
-        self.tn.read_until(b"(config-mpls)#", timeout=30)
-        self.tn.write(b"end\n")
-        self.tn.read_until(b"#", timeout=30)
-
+        self.mpls.base_configure_mpls()
+    def mpls_custom(self,int):
+        self.mpls.custom_mpls(int)
+    # Конфигурирование ldp через json
     def ldp_add(self):
-        self.tn.write(b"config\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"mpls\n")
-        self.tn.read_until(b"(config-mpls)#", timeout=30)
-        self.tn.write(b"ldp\n")
-        self.tn.read_until(b"(config-ldp)#", timeout=30)
-        for i in [self.neighor1['int_name'], self.neighor2['int_name'],self.neighor3['int_name']]:
-            self.tn.write(b"discovery interface " + i.encode('ascii') + b"\n")
-            self.tn.write(b"exit\n")
-        self.tn.write(b"exit\n")
-        self.tn.read_until(b"(config-mpls)#", timeout=30)
-        self.tn.write(b"commit\n")
-        self.tn.read_until(b"(config-mpls)#", timeout=30)
-        self.tn.write(b"end\n")
-        self.tn.read_until(b"#", timeout=30)
-    
-    def ldp_add_custom(self, interface):
-        self.tn.write(b"config\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"mpls\n")
-        self.tn.read_until(b"(config-mpls)#", timeout=30)
-        self.tn.write(b"ldp\n")
-        self.tn.read_until(b"(config-ldp)#", timeout=30)
-        self.tn.write(b"discovery interface " + interface.encode('ascii') + b"\n")
-        self.tn.write(b"exit\n")
-        self.tn.write(b"exit\n")
-        self.tn.read_until(b"(config-mpls)#", timeout=30)
-        self.tn.write(b"commit\n")
-        self.tn.read_until(b"(config-mpls)#", timeout=30)
-        self.tn.write(b"end\n")
-        self.tn.read_until(b"#", timeout=30)
-
-    def ldp_delete(self):
-        self.tn.write(b"config\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"mpls\n")
-        self.tn.read_until(b"(config-mpls)#", timeout=30)
-        self.tn.write(b"no ldp\n")
-        self.tn.write(b"commit\n")
-        self.tn.read_until(b"(config-mpls)#", timeout=30)
-        self.tn.write(b"end\n")
-        self.tn.read_until(b"#", timeout=30)
-        
-    def add_neighbor_ldp(self, neighbor):
-        self.tn.write(b"config\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"mpls\n")
-        self.tn.read_until(b"(config-mpls)#", timeout=30)
-        self.tn.write(b"ldp\n")
-        self.tn.read_until(b"(config-ldp)#", timeout=30)
-        self.tn.write(b"neighbor " + neighbor.encode('ascii') + b"\n")
-        self.tn.write(b"exit\n")
-        self.tn.write(b"exit\n")
-        self.tn.read_until(b"(config-mpls)#", timeout=30)
-        self.tn.write(b"commit\n")
-        self.tn.read_until(b"(config-mpls)#", timeout=30)
-        self.tn.write(b"end\n")
-        self.tn.read_until(b"#", timeout=30)
-
+        self.ldp.base_configure_ldp()
+    def ldp_custom(self,int):
+        self.ldp.custom_ldp(int)
+    # Добавление соседей в ldp
+    def add_neighbor_ldp(self, interface):
+        self.ldp.neighbor(interface)
+    # Добавление hash-field
+    def hash_field(self,type,direction):
+        self.balance.hash_field(type, direction)
     def bgp_add(self):
-        self.tn.write(b"config\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"router bgp 65100\n")
-        self.tn.read_until(b"(config-bgp)#", timeout=30)
-        self.tn.write(b"bgp router-id " + self.loopback['ip_witout_mask'].encode('ascii') + b"\n")
-        for i in [self.neighor1['loopback'], self.neighor2['loopback']]:
-            self.tn.write(b"neighbor " + self.i.encode('ascii') + b"\n")
-            self.tn.read_until(b"(config-neighbor)#", timeout=30)
-            self.tn.write(b"peer-group-name Internal\n")
-            self.tn.write(b"update-source " + self.loopback['ip_witout_mask'].encode('ascii') + b"\n")
-            self.tn.write(b"exit\n")
-            self.tn.read_until(b"(config-bgp)#", timeout=30)
-        
-        self.tn.write(b"peer-group Internal\n")
-        self.tn.read_until(b"(config-peer-group)#", timeout=30)
-        for i in ['ipv4','ipv6']:
-            self.tn.write(b"address-family " + i.encode('ascii') + b" unicast\n")
-            self.tn.read_until(b"(config-peer-group)#", timeout=30)
-            self.tn.write(b"exit\n")
-            self.tn.read_until(b"(config-peer-group)#", timeout=30)
-        self.tn.write(b"remote-as 65100\n")
-        self.tn.write(b"send-community\n")
-        self.tn.write(b"send-community-ext\n")
-        self.tn.write(b"exit\n")
-        self.tn.read_until(b"(config-bgp)#", timeout=30)
-        self.tn.write(b"commit\n")
-        self.tn.read_until(b"(config-bgp)#", timeout=30)
-        self.tn.write(b"end\n")
-        self.tn.read_until(b"#", timeout=30)
-
-    def bgp_del(self):
-        self.tn.write(b"config\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"no router bgp 65100\n")
-        self.tn.write(b"commit\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"end\n")
-        self.tn.read_until(b"#", timeout=30)
-
-    def bgp_add_custom(self, numas, neighbor, address_family, vrf):
-        self.tn.write(b"config\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"router bgp " + numas.encode('ascii') + b"\n")
-        self.tn.read_until(b"(config-bgp)#", timeout=30)
-        
-        self.tn.write(b"neighbor " + neighbor.encode('ascii') + b"\n")
-        self.tn.read_until(b"(config-neighbor)#", timeout=30)
-        self.tn.write(b"peer-group-name Internal\n")
-        self.tn.write(b"update-source " + self.loopback['ip_witout_mask'].encode('ascii') + b"\n")
-        self.tn.write(b"exit\n")
-        self.tn.read_until(b"(config-bgp)#", timeout=30)
-        
-        self.tn.write(b"peer-group Internal\n")
-        self.tn.read_until(b"(config-peer-group)#", timeout=30)
-        self.tn.write(b"address-family " + address_family.encode('ascii') + b"\n")
-        self.tn.write(b"exit\n")
-        self.tn.read_until(b"(config-peer-group)#", timeout=30)
-        self.tn.write(b"remote-as " + numas.encode('ascii') + b"\n")
-        self.tn.write(b"send-community\n")
-        self.tn.write(b"send-community-ext\n")
-        self.tn.write(b"exit\n")
-        self.tn.read_until(b"(config-bgp)#", timeout=30)
-        if vrf != 'default':
-            self.tn.write(b"vrf " + vrf.encode('ascii') + b"\n")
-        self.tn.write(b"bgp router-id " + self.loopback['ip_witout_mask'].encode('ascii') + b"\n")
-        self.tn.write(b"commit\n")
-        self.tn.read_until(b"#", timeout=30)
-        self.tn.write(b"end\n")
-        self.tn.read_until(b"#", timeout=30)
-
-    def bgp_add_redistribution(self, numas, family, type, rule, redist, name, vrf):
-        self.tn.write(b"config\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"router bgp " + numas.encode('ascii') + b"\n")
-        self.tn.read_until(b"(config-bgp)#", timeout=30)
-        self.tn.write(b"address-family " + family.encode('ascii') + b" " + type.encode('ascii') + b"\n")
-        self.tn.read_until(b"#", timeout=30)
-        self.tn.write(b"redistribution " + redist.encode('ascii') + b" " + rule.encode('ascii') + b"\n")
-        self.tn.write(b"exit\n")
-        self.tn.read_until(b"(config-bgp)#", timeout=30)
-
-        if vrf != "default":
-            self.tn.write(b"vrf " + vrf.encode('ascii') + b"\n")
-            self.tn.read_until(b"(config-vrf)#", timeout=30)
-        
-        self.tn.write(b"address-family " + family.encode('ascii') + b" " + type.encode('ascii') + b"\n")
-        self.tn.read_until(b"#", timeout=30)
-        self.tn.write(b"redistribution " + redist.encode('ascii') + b" " + name.encode('ascii') + b"\n")
-        self.tn.write(b"commit\n")
-        self.tn.read_until(b"#", timeout=30)
-        self.tn.write(b"end\n")
-        self.tn.read_until(b"#", timeout=30)
-
-    def add_static(self, family, type, destination, hop, vrf):
-        self.tn.write(b"config\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"router static\n")
-        self.tn.read_until(b"(config-static)#", timeout=30)
-
-        if vrf != "default":
-            self.tn.write(b"vrf " + vrf.encode('ascii') + b"\n")
-            self.tn.read_until(b"(config-vrf)#", timeout=30)
-
-        self.tn.write(b"address-family " + family.encode('ascii') + b" " + type.encode('ascii') + b"\n")
-        self.tn.read_until(b"(config-unicast)#", timeout=30)
-        self.tn.write(b"destination " + destination.encode('ascii') + b" " + hop.encode('ascii') + b"\n")
-        self.tn.write(b"commit\n")
-        self.tn.read_until(b"(config-unicast)#", timeout=30)
-        self.tn.write(b"end\n")
-        self.tn.read_until(b"#", timeout=30)
-    
-    def add_rsvp(self):
-        self.tn.write(b"config\n")
-        self.tn.read_until(b"(config)#", timeout=30)
-        self.tn.write(b"mpls\n")
-        self.tn.read_until(b"(config-mpls)#", timeout=30)
-        self.tn.write(b"rsvp\n")
-        self.tn.read_until(b"(config-rsvp)#", timeout=30)
-        for i in [self.neighor1['int_name'], self.neighor2['int_name'],self.neighor3['int_name']]:
-            self.tn.write(b"interface " + i.encode('ascii') + b"\n")
-            self.tn.write(b"exit\n")
-        self.tn.write(b"exit\n")
-        self.tn.read_until(b"(config-mpls)#", timeout=30)
-        self.tn.write(b"commit\n")
-        self.tn.read_until(b"(config-mpls)#", timeout=30)
-        self.tn.write(b"end\n")
-        self.tn.read_until(b"#", timeout=30)
+        self.bgp.base_configure_bgp()
+    def bgp_custom(self,num,neigb,add,vrf="default"):
+        self.bgp.custom_bgp(num,neigb,add,vrf)
+    def bgp_redistribution(self,num,fam,type,rule,redist,name,vrf = "default"):
+        self.bgp.redistribution(num,fam,type,rule,redist,name,vrf)
+    def bgp_simple_custom(self,num,neigh,src,red):
+        self.bgp.bgp_simple(num,neigh,src,red)
+    def ospf_custom(self,area,int):
+        self.ospf.custom_OSPF(area,int)
+    def ospf_metric(self,area,int,met):
+        self.ospf.metric(area,int,met)
+    def ospf_redistribution(self):
+        self.ospf.redistribution()

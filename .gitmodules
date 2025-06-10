@@ -1,0 +1,3 @@
+[submodule "function_autotests"]
+	path = function_autotests
+	url = https://github.com/LOrenzDJeff/function_autotests.git

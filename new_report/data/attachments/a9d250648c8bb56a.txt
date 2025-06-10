@@ -1,0 +1,7 @@
+This device can be used by authorized users only. Unauthorized access is prosecuted by federal law (Federal law 63, article 272 of the Criminal Code of the Russian Federation
+Successfully connected to klish server
+Test motd banner
+
+System has 1 active alarm(s)
+
+0/ME5100:R1-G2# 

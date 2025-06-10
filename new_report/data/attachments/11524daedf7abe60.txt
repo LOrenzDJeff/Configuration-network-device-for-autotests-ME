@@ -1,0 +1,17 @@
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 EOF in transport thread
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 EOF in transport thread
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 EOF in transport thread
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 EOF in transport thread
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 EOF in transport thread
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 EOF in transport thread
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 EOF in transport thread
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 EOF in transport thread
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 EOF in transport thread
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 EOF in transport thread
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 EOF in transport thread
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 EOF in transport thread
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 EOF in transport thread
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 EOF in transport thread
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 EOF in transport thread
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 EOF in transport thread
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 EOF in transport thread

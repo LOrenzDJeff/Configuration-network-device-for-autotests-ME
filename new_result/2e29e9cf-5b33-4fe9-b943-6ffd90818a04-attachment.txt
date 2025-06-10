@@ -1,0 +1,13 @@
+ show ospfv2 neighbors
+Tue Jun 10 05:49:05 2025
+  Routing Process: test, ID 1.0.2.2
+    Router is not an area border router
+ 
+  Neighbor ID      Area ID          Pri  State               BFD           Dead Time  Last state change  Address          Interface 
+  ---------------- ---------------- ---- ------------------- ------------- ---------- ------------------ ---------------- ---------- 
+  1.0.2.4          0.0.0.0          1    full                not-required  00:00:39   00h01m18s          192.168.3.18     te0/0/1 
+  1.0.2.4          0.0.0.0          1    full                not-required  00:00:39   00h01m18s          192.168.3.22     te0/0/2 
+  1.0.2.1          0.0.0.0          1    full                not-required  00:00:39   00h00m08s          192.168.2.10     te0/0/3 
+  1.0.2.1          0.0.0.0          1    full                not-required  00:00:39   00h00m07s          192.168.2.13     te0/0/4 
+  
+0/ME5100:R2-G2# 

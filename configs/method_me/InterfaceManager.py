@@ -10,7 +10,6 @@ class InterfaceManager:
 
     #Добавление IPv4 на интерфейсы указанных в json
     def base_configure_ipv4(self):
-        """Базовая настройка IPv4 на интерфейсах"""
         self.tn.write(b"config\n")
         self.tn.read_until(b"(config)#", timeout=30)
         self.tn.write(b"int " + self.neighor1['int_name'].encode('ascii') + b"\n")
@@ -71,6 +70,7 @@ class InterfaceManager:
         self.tn.read_until(b"(config)#", timeout=30)
         self.tn.write(b"int " + interface.encode('ascii') + b"\n")
         self.tn.write(version.encode('ascii') + b" address " + ip.encode('ascii') + b"\n")
+        self.tn.write(b"load-interval 20\n")
         if vrf != "default":
             self.tn.write(b"vrf " + vrf.encode('ascii') + b"\n")
         self.tn.write(b"exit\n")
@@ -155,6 +155,20 @@ class InterfaceManager:
         self.tn.write(b"end\n")
         self.tn.read_until(b"#", timeout=30)
 
+    #Создание loopback указанный в параметре
+    def custom_loopback(self, id, ip):
+        self.tn.write(b"config\n")
+        self.tn.read_until(b"(config)#", timeout=30)
+        self.tn.write(b"int loopback " + id.encode('ascii') + b"\n")
+        self.tn.read_until(b"(config-loopback)#", timeout=30)
+        self.tn.write(b"ipv4 address " + ip.encode('ascii') + b"\n")
+        self.tn.write(b"exit\n")
+        self.tn.read_until(b"(config)#", timeout=30)
+        self.tn.write(b"commit\n")
+        self.tn.read_until(b"(config)#", timeout=30)
+        self.tn.write(b"end\n")
+        self.tn.read_until(b"#", timeout=30)
+
     #Настройка lacp взятых из json
     def base_configure_lacp(self):
         self.tn.write(b"config\n")
@@ -192,7 +206,7 @@ class InterfaceManager:
         self.tn.read_until(b"#", timeout=30)
 
     #Настройка lldp взятых из json
-    def lldp_agent_add(self):
+    def base_configure_lldp(self):
         self.tn.write(b"config\n")
         self.tn.read_until(b"(config)#", timeout=30)
         self.tn.write(b"lldp\n")

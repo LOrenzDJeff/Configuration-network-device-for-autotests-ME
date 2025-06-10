@@ -1,0 +1,1 @@
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Unhandled channel request "exit-signal"

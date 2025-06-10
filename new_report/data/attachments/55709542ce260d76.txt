@@ -1,0 +1,16 @@
+ show lldp neighbors
+Tue Jun 10 04:37:16 2025
+  Capability codes:
+        (R) Router, (B) Bridge, (T) Telephone, (D) DOCSIS Cable Device
+        (W) WLAN Access Point, (r) Repeater, (H) Host, (s) Station only
+        (TP) - Two Ports MAC Relay, (S) - S-VLAN, (C) - C-VLAN, (O) Other
+  LLDP agent codes:
+        (N) Nearest Bridge, (NnT) Nearest non-TPMR Bridge
+        (NC) Nearest Customer Bridge
+  local port      device id          port id            capabilities          agent  system name 
+  --------------- ------------------ ------------------ --------------------- ------ ------------ 
+  te0/0/1         e0:d9:e3:df:35:40  te0/0/1            B R                   N      R4-G2 
+  te0/0/2         e0:d9:e3:df:35:40  te0/0/2            B R                   N      R4-G2 
+  te0/0/3         e4:5a:d4:de:00:00  te0/0/1            B R                   N      R1-G2 
+  te0/0/4         e4:5a:d4:de:00:00  te0/0/2            B R                   N      R1-G2 
+0/ME5100:R2-G2# 

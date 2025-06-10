@@ -1,0 +1,4 @@
+
+Tue Jun 10 04:25:45 2025
+Eltex ME5100 carrier router running Network OS for ME5k ver. 3.9.9.9RC (02-May-2025 06:55:55)
+0/ME5100:R1-G2# 
