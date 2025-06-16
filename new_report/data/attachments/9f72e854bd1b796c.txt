@@ -1,5 +1,0 @@
- show interfaces utilization | incl " 20 | Interf"
-Tue Jun 10 05:11:45 2025
-  Interface        Period, s  Sent, Kbit/s  Recv, Kbit/s  Frames sent, pps  Frames recv, pps  
-  te0/0/1          20         297336        7             35541             10                
-0/ME5100:R4-G2# 

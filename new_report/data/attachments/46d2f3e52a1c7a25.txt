@@ -1,0 +1,10 @@
+ ping 192.168.1.6 count 10
+Mon Jun 16 09:22:57 2025
+
+Sending 10, 56-byte ICMP Echos to 192.168.1.6,
+request send interval is 0.100 seconds,
+response wait timeout is 2.000 seconds:
+!!!!!!!!!!
+
+Success rate is 100 percent (10/10), round-trip min/avg/max = 0.112/0.131/0.179 ms
+0/ME5100:R1-G2# 

@@ -1,4 +1,0 @@
-[33mWARNING [0m ttp.ttp:ttp.py:1808 group.get_regexes: variable not found in line: '    Routing Descriptor Blocks'
-[33mWARNING [0m ttp.ttp:ttp.py:1808 group.get_regexes: variable not found in line: '  HW information:'
-[33mWARNING [0m ttp.ttp:ttp.py:1808 group.get_regexes: variable not found in line: '    Routing Descriptor Blocks'
-[33mWARNING [0m ttp.ttp:ttp.py:1808 group.get_regexes: variable not found in line: '  HW information:'

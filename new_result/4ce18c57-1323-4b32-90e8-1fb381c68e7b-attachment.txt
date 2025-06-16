@@ -1,5 +1,0 @@
- do show hw-module maximum | include "Used|ECMP"
-Tue Jun 10 05:22:30 2025
-  Resource                Current      Configured   Approx. Cap.  Used 
-  ECMP                    1022         N/S          N/S           2 
-0/ME5100:R2-G2(config-equal-cost)# 

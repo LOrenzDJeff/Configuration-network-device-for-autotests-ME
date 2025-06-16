@@ -1,0 +1,13 @@
+ show route | include /32
+Mon Jun 16 09:43:27 2025
+  L      1.0.2.1/32     is directly connected, 00h01m01s, lo10
+  i L2   1.0.2.2/32    via 192.168.1.1 (backup local-lfa, address: 192.168.1.6) [116/10], 00h00m47s, bu1
+         1.0.2.2/32    via 192.168.1.6 [0/20], 00h00m33s, bu2
+         1.0.2.3/32    via 192.168.1.6 [0/20], 00h00m33s, bu2
+  i L2   1.0.2.3/32    via 192.168.1.18 (backup local-lfa, address: 192.168.1.6) [116/10], 00h00m57s, te0/0/5.253
+         1.0.2.4/32    via 192.168.1.1 [0/20], 00h00m33s, bu1
+  i L2   1.0.2.4/32    via 192.168.1.6 (backup local-lfa, address: 192.168.1.1) [116/10], 00h00m47s, bu2
+  L      192.168.1.2/32     is directly connected, 00h00m59s, bu1
+  L      192.168.1.5/32     is directly connected, 00h00m59s, bu2
+  L      192.168.1.17/32     is directly connected, 00h01m01s, te0/0/5.253
+0/ME5100:R1-G2# 

@@ -1,7 +1,0 @@
- ls -lah /tftp/atDR1/
-total 16K
-drwxrwxrwx 2 pryahin pryahin 4,0K Ð¸ÑÐ½ 10 11:24 .
-drwxrwxrwx 8 tftp    tftp    4,0K Ð¼Ð°Ñ 30 10:00 ..
--rw-rw-rw- 1 tftp    tftp    1,1K Ð¸ÑÐ½ 10 11:24 R1-G2-20250610_042448-backup_cfg-pre_commit.gz
--rw-rw-rw- 1 tftp    tftp    1,1K Ð¸ÑÐ½ 10 11:24 R1-G2-XYZ-20250610_042448-backup_cfg-pre_commit.gz
-root@eve-ng-lab:/home/avtotest

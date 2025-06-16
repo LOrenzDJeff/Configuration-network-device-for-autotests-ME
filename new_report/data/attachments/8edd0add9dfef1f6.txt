@@ -1,0 +1,7 @@
+show mpls ldp neighbors
+Mon Jun 16 09:43:08 2025
+  Peer                    Up/Down time  Expires    Adjcs  Addrs  Labels  GR
+  ----------------------- ------------- ---------- ------ ------ ------- ---
+  1.0.2.1:0               00h00m19s     34s        2      4      2       N
+  1.0.2.2:0               00h00m49s     38s        2      4      2       N
+0/ME5100:R4-G2# 

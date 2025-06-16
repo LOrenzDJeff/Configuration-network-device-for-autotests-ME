@@ -1,0 +1,6 @@
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Sending global request "keepalive@lag.net"
+[33mWARNING [0m ttp.ttp:ttp.py:1808 group.get_regexes: variable not found in line: '    Routing Descriptor Blocks'
+[33mWARNING [0m ttp.ttp:ttp.py:1808 group.get_regexes: variable not found in line: '    Routing Descriptor Blocks'
+[33mWARNING [0m ttp.ttp:ttp.py:1808 group.get_regexes: variable not found in line: '  HW information:'
+[33mWARNING [0m ttp.ttp:ttp.py:1808 group.get_regexes: variable not found in line: '    Routing Descriptor Blocks'
+[33mWARNING [0m ttp.ttp:ttp.py:1808 group.get_regexes: variable not found in line: '  HW information:'

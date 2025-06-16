@@ -1,0 +1,12 @@
+ show route vrf VRF40 192.168.70.0
+Mon Jun 16 10:14:18 2025
+  Routing entry for 192.168.70.0/24
+    Last update: 00h00m04s
+    Routing Descriptor Blocks
+      1.0.2.1 
+      Known via bgp, distance 200, metric 0
+        type bgp-vpn, protection none, route-type remote
+  
+  Entries: 1
+  
+0/ME5100:R4-G2# 

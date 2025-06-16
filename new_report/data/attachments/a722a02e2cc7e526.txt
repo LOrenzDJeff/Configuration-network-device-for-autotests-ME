@@ -1,5 +1,0 @@
- show hw-module maximum | include "Used|ECMP"
-Tue Jun 10 05:22:41 2025
-  Resource                Current      Configured   Approx. Cap.  Used 
-  ECMP                    1022         N/S          N/S           0 
-0/ME5100:R1-G2# 

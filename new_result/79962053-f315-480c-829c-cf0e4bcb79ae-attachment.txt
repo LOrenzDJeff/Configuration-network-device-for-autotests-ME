@@ -1,0 +1,13 @@
+show mpls ldp forwarding
+Mon Jun 16 09:43:31 2025
+  Codes:
+    R = Remote LFA FRR backup
+    E = Entropy Label Capability
+  
+  Prefix                Label(s) out  Outgoing Interface  Next Hop              flags  
+  --------------------- ------------- ------------------- --------------------- ------ 
+  1.0.2.1/32            ImpNull       bu1                 192.168.1.5                  
+  1.0.2.1/32            17            bu2                 192.168.1.21          R      
+  1.0.2.2/32            17            bu1                 192.168.1.5           R      
+  1.0.2.2/32            ImpNull       bu2                 192.168.1.21                 
+0/ME5100:R4-G2# 

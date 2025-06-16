@@ -1,0 +1,972 @@
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Received global request "keepalive@openssh.com"
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Rejecting "keepalive@openssh.com" global request from server.
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Sending global request "keepalive@lag.net"
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Received global request "keepalive@openssh.com"
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Rejecting "keepalive@openssh.com" global request from server.
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 EOF in transport thread
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 starting thread (client mode): 0x7c6a5850
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Local version/idstring: SSH-2.0-paramiko_3.5.1
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Remote version/idstring: SSH-2.0-OpenSSH_9.0
+[32mINFO    [0m paramiko.transport:transport.py:1944 Connected (version 2.0, client OpenSSH_9.0)
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === Key exchange possibilities ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex algos: curve25519-sha256@libssh.org, diffie-hellman-group-exchange-sha256
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server key: rsa-sha2-512, rsa-sha2-256, ssh-rsa, ssh-ed25519
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client encrypt: chacha20-poly1305@openssh.com, aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server encrypt: chacha20-poly1305@openssh.com, aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client mac: hmac-sha2-512-etm@openssh.com, hmac-sha2-256-etm@openssh.com, umac-128-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server mac: hmac-sha2-512-etm@openssh.com, hmac-sha2-256-etm@openssh.com, umac-128-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client compress: none, zlib@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server compress: none, zlib@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client lang: <none>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server lang: <none>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex follows: False
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === Key exchange agreements ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Kex: curve25519-sha256@libssh.org
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 HostKey: ssh-ed25519
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Cipher: aes128-ctr
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 MAC: hmac-sha2-256-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Compression: none
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === End of kex handshake ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex engine KexCurve25519 specified hash_algo <built-in function openssl_sha256>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Switch to new keys ...
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Got EXT_INFO: {'server-sig-algs': b'ssh-ed25519,sk-ssh-ed25519@openssh.com,ssh-rsa,rsa-sha2-256,rsa-sha2-512,ssh-dss,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ecdsa-sha2-nistp256@openssh.com,webauthn-sk-ecdsa-sha2-nistp256@openssh.com', 'publickey-hostbound@openssh.com': b'0'}
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Auth banner: b'This device can be used by authorized users only. Unauthorized access is prosecuted by federal law (Federal law 63, article 272 of the Criminal Code of the Russian Federation\n'
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Authentication type (none) not permitted.
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Allowed methods: ['publickey', 'password', 'keyboard-interactive']
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Authentication (publickey) failed.
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Authentication (password) successful!
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Max packet in: 32768 bytes
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Received global request "hostkeys-00@openssh.com"
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Rejecting "hostkeys-00@openssh.com" global request from server.
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Max packet out: 32768 bytes
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Secsh channel 0 opened.
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Sesch channel 0 request ok
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Sesch channel 0 request ok
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 starting thread (client mode): 0x7c77bbc0
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Local version/idstring: SSH-2.0-paramiko_3.5.1
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Remote version/idstring: SSH-2.0-OpenSSH_9.0
+[32mINFO    [0m paramiko.transport:transport.py:1944 Connected (version 2.0, client OpenSSH_9.0)
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === Key exchange possibilities ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex algos: curve25519-sha256@libssh.org, diffie-hellman-group-exchange-sha256
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server key: rsa-sha2-512, rsa-sha2-256, ssh-rsa, ssh-ed25519
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client encrypt: chacha20-poly1305@openssh.com, aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server encrypt: chacha20-poly1305@openssh.com, aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client mac: hmac-sha2-512-etm@openssh.com, hmac-sha2-256-etm@openssh.com, umac-128-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server mac: hmac-sha2-512-etm@openssh.com, hmac-sha2-256-etm@openssh.com, umac-128-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client compress: none, zlib@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server compress: none, zlib@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client lang: <none>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server lang: <none>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex follows: False
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === Key exchange agreements ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Kex: curve25519-sha256@libssh.org
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 HostKey: ssh-ed25519
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Cipher: aes128-ctr
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 MAC: hmac-sha2-256-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Compression: none
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === End of kex handshake ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex engine KexCurve25519 specified hash_algo <built-in function openssl_sha256>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Switch to new keys ...
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Got EXT_INFO: {'server-sig-algs': b'ssh-ed25519,sk-ssh-ed25519@openssh.com,ssh-rsa,rsa-sha2-256,rsa-sha2-512,ssh-dss,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ecdsa-sha2-nistp256@openssh.com,webauthn-sk-ecdsa-sha2-nistp256@openssh.com', 'publickey-hostbound@openssh.com': b'0'}
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Auth banner: b'This device can be used by authorized users only. Unauthorized access is prosecuted by federal law (Federal law 63, article 272 of the Criminal Code of the Russian Federation\n'
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Authentication type (none) not permitted.
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Allowed methods: ['publickey', 'password', 'keyboard-interactive']
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Authentication (publickey) failed.
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Authentication (password) successful!
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Max packet in: 32768 bytes
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Received global request "hostkeys-00@openssh.com"
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Rejecting "hostkeys-00@openssh.com" global request from server.
+[32mINFO    [0m paramiko.transport:transport.py:1944 Disconnect (code 12): session limit exceeded
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] EOF sent (0)
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 starting thread (client mode): 0x7c5a7f50
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Local version/idstring: SSH-2.0-paramiko_3.5.1
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Remote version/idstring: SSH-2.0-OpenSSH_9.0
+[32mINFO    [0m paramiko.transport:transport.py:1944 Connected (version 2.0, client OpenSSH_9.0)
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === Key exchange possibilities ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex algos: curve25519-sha256@libssh.org, diffie-hellman-group-exchange-sha256
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server key: rsa-sha2-512, rsa-sha2-256, ssh-rsa, ssh-ed25519
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client encrypt: chacha20-poly1305@openssh.com, aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server encrypt: chacha20-poly1305@openssh.com, aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client mac: hmac-sha2-512-etm@openssh.com, hmac-sha2-256-etm@openssh.com, umac-128-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server mac: hmac-sha2-512-etm@openssh.com, hmac-sha2-256-etm@openssh.com, umac-128-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client compress: none, zlib@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server compress: none, zlib@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client lang: <none>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server lang: <none>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex follows: False
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === Key exchange agreements ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Kex: curve25519-sha256@libssh.org
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 HostKey: ssh-ed25519
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Cipher: aes128-ctr
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 MAC: hmac-sha2-256-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Compression: none
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === End of kex handshake ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex engine KexCurve25519 specified hash_algo <built-in function openssl_sha256>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Switch to new keys ...
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Got EXT_INFO: {'server-sig-algs': b'ssh-ed25519,sk-ssh-ed25519@openssh.com,ssh-rsa,rsa-sha2-256,rsa-sha2-512,ssh-dss,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ecdsa-sha2-nistp256@openssh.com,webauthn-sk-ecdsa-sha2-nistp256@openssh.com', 'publickey-hostbound@openssh.com': b'0'}
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Auth banner: b'This device can be used by authorized users only. Unauthorized access is prosecuted by federal law (Federal law 63, article 272 of the Criminal Code of the Russian Federation\n'
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Authentication type (none) not permitted.
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Allowed methods: ['publickey', 'password', 'keyboard-interactive']
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Authentication (publickey) failed.
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Authentication (password) successful!
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Max packet in: 32768 bytes
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Received global request "hostkeys-00@openssh.com"
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Rejecting "hostkeys-00@openssh.com" global request from server.
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Max packet out: 32768 bytes
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Secsh channel 0 opened.
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Sesch channel 0 request ok
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Sesch channel 0 request ok
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Sending global request "keepalive@lag.net"
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 starting thread (client mode): 0x7e79a240
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Local version/idstring: SSH-2.0-paramiko_3.5.1
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Remote version/idstring: SSH-2.0-OpenSSH_9.0
+[32mINFO    [0m paramiko.transport:transport.py:1944 Connected (version 2.0, client OpenSSH_9.0)
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === Key exchange possibilities ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex algos: curve25519-sha256@libssh.org, diffie-hellman-group-exchange-sha256
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server key: rsa-sha2-512, rsa-sha2-256, ssh-rsa, ssh-ed25519
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client encrypt: chacha20-poly1305@openssh.com, aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server encrypt: chacha20-poly1305@openssh.com, aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client mac: hmac-sha2-512-etm@openssh.com, hmac-sha2-256-etm@openssh.com, umac-128-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server mac: hmac-sha2-512-etm@openssh.com, hmac-sha2-256-etm@openssh.com, umac-128-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client compress: none, zlib@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server compress: none, zlib@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client lang: <none>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server lang: <none>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex follows: False
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === Key exchange agreements ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Kex: curve25519-sha256@libssh.org
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 HostKey: ssh-ed25519
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Cipher: aes128-ctr
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 MAC: hmac-sha2-256-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Compression: none
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === End of kex handshake ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex engine KexCurve25519 specified hash_algo <built-in function openssl_sha256>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Switch to new keys ...
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Got EXT_INFO: {'server-sig-algs': b'ssh-ed25519,sk-ssh-ed25519@openssh.com,ssh-rsa,rsa-sha2-256,rsa-sha2-512,ssh-dss,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ecdsa-sha2-nistp256@openssh.com,webauthn-sk-ecdsa-sha2-nistp256@openssh.com', 'publickey-hostbound@openssh.com': b'0'}
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Auth banner: b'This device can be used by authorized users only. Unauthorized access is prosecuted by federal law (Federal law 63, article 272 of the Criminal Code of the Russian Federation\n'
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Authentication type (none) not permitted.
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Allowed methods: ['publickey', 'password', 'keyboard-interactive']
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Authentication (publickey) failed.
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Authentication (password) successful!
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Max packet in: 32768 bytes
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Received global request "hostkeys-00@openssh.com"
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Rejecting "hostkeys-00@openssh.com" global request from server.
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Max packet out: 32768 bytes
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Secsh channel 0 opened.
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Sesch channel 0 request ok
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Sesch channel 0 request ok
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 starting thread (client mode): 0x7c5dd610
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Local version/idstring: SSH-2.0-paramiko_3.5.1
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Remote version/idstring: SSH-2.0-OpenSSH_9.0
+[32mINFO    [0m paramiko.transport:transport.py:1944 Connected (version 2.0, client OpenSSH_9.0)
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === Key exchange possibilities ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex algos: curve25519-sha256@libssh.org, diffie-hellman-group-exchange-sha256
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server key: rsa-sha2-512, rsa-sha2-256, ssh-rsa, ssh-ed25519
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client encrypt: chacha20-poly1305@openssh.com, aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server encrypt: chacha20-poly1305@openssh.com, aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client mac: hmac-sha2-512-etm@openssh.com, hmac-sha2-256-etm@openssh.com, umac-128-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server mac: hmac-sha2-512-etm@openssh.com, hmac-sha2-256-etm@openssh.com, umac-128-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client compress: none, zlib@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server compress: none, zlib@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client lang: <none>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server lang: <none>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex follows: False
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === Key exchange agreements ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Kex: curve25519-sha256@libssh.org
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 HostKey: ssh-ed25519
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Cipher: aes128-ctr
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 MAC: hmac-sha2-256-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Compression: none
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === End of kex handshake ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex engine KexCurve25519 specified hash_algo <built-in function openssl_sha256>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Switch to new keys ...
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Got EXT_INFO: {'server-sig-algs': b'ssh-ed25519,sk-ssh-ed25519@openssh.com,ssh-rsa,rsa-sha2-256,rsa-sha2-512,ssh-dss,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ecdsa-sha2-nistp256@openssh.com,webauthn-sk-ecdsa-sha2-nistp256@openssh.com', 'publickey-hostbound@openssh.com': b'0'}
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Auth banner: b'This device can be used by authorized users only. Unauthorized access is prosecuted by federal law (Federal law 63, article 272 of the Criminal Code of the Russian Federation\n'
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Authentication type (none) not permitted.
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Allowed methods: ['publickey', 'password', 'keyboard-interactive']
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Authentication (publickey) failed.
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Authentication (password) successful!
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Max packet in: 32768 bytes
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Received global request "hostkeys-00@openssh.com"
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Rejecting "hostkeys-00@openssh.com" global request from server.
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Max packet out: 32768 bytes
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Secsh channel 0 opened.
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Sesch channel 0 request ok
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Sesch channel 0 request ok
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 starting thread (client mode): 0x7c60b8f0
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Local version/idstring: SSH-2.0-paramiko_3.5.1
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Remote version/idstring: SSH-2.0-OpenSSH_9.0
+[32mINFO    [0m paramiko.transport:transport.py:1944 Connected (version 2.0, client OpenSSH_9.0)
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === Key exchange possibilities ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex algos: curve25519-sha256@libssh.org, diffie-hellman-group-exchange-sha256
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server key: rsa-sha2-512, rsa-sha2-256, ssh-rsa, ssh-ed25519
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client encrypt: chacha20-poly1305@openssh.com, aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server encrypt: chacha20-poly1305@openssh.com, aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client mac: hmac-sha2-512-etm@openssh.com, hmac-sha2-256-etm@openssh.com, umac-128-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server mac: hmac-sha2-512-etm@openssh.com, hmac-sha2-256-etm@openssh.com, umac-128-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client compress: none, zlib@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server compress: none, zlib@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client lang: <none>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server lang: <none>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex follows: False
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === Key exchange agreements ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Kex: curve25519-sha256@libssh.org
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 HostKey: ssh-ed25519
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Cipher: aes128-ctr
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 MAC: hmac-sha2-256-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Compression: none
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === End of kex handshake ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex engine KexCurve25519 specified hash_algo <built-in function openssl_sha256>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Switch to new keys ...
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Got EXT_INFO: {'server-sig-algs': b'ssh-ed25519,sk-ssh-ed25519@openssh.com,ssh-rsa,rsa-sha2-256,rsa-sha2-512,ssh-dss,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ecdsa-sha2-nistp256@openssh.com,webauthn-sk-ecdsa-sha2-nistp256@openssh.com', 'publickey-hostbound@openssh.com': b'0'}
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Auth banner: b'This device can be used by authorized users only. Unauthorized access is prosecuted by federal law (Federal law 63, article 272 of the Criminal Code of the Russian Federation\n'
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Authentication type (none) not permitted.
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Allowed methods: ['publickey', 'password', 'keyboard-interactive']
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Authentication (publickey) failed.
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Authentication (password) successful!
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Max packet in: 32768 bytes
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Received global request "hostkeys-00@openssh.com"
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Rejecting "hostkeys-00@openssh.com" global request from server.
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Max packet out: 32768 bytes
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Secsh channel 0 opened.
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Sesch channel 0 request ok
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Sesch channel 0 request ok
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 starting thread (client mode): 0x7c60a330
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Local version/idstring: SSH-2.0-paramiko_3.5.1
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Remote version/idstring: SSH-2.0-OpenSSH_9.0
+[32mINFO    [0m paramiko.transport:transport.py:1944 Connected (version 2.0, client OpenSSH_9.0)
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === Key exchange possibilities ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex algos: curve25519-sha256@libssh.org, diffie-hellman-group-exchange-sha256
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server key: rsa-sha2-512, rsa-sha2-256, ssh-rsa, ssh-ed25519
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client encrypt: chacha20-poly1305@openssh.com, aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server encrypt: chacha20-poly1305@openssh.com, aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client mac: hmac-sha2-512-etm@openssh.com, hmac-sha2-256-etm@openssh.com, umac-128-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server mac: hmac-sha2-512-etm@openssh.com, hmac-sha2-256-etm@openssh.com, umac-128-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client compress: none, zlib@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server compress: none, zlib@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client lang: <none>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server lang: <none>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex follows: False
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === Key exchange agreements ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Kex: curve25519-sha256@libssh.org
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 HostKey: ssh-ed25519
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Cipher: aes128-ctr
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 MAC: hmac-sha2-256-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Compression: none
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === End of kex handshake ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex engine KexCurve25519 specified hash_algo <built-in function openssl_sha256>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Switch to new keys ...
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Got EXT_INFO: {'server-sig-algs': b'ssh-ed25519,sk-ssh-ed25519@openssh.com,ssh-rsa,rsa-sha2-256,rsa-sha2-512,ssh-dss,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ecdsa-sha2-nistp256@openssh.com,webauthn-sk-ecdsa-sha2-nistp256@openssh.com', 'publickey-hostbound@openssh.com': b'0'}
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Auth banner: b'This device can be used by authorized users only. Unauthorized access is prosecuted by federal law (Federal law 63, article 272 of the Criminal Code of the Russian Federation\n'
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Authentication type (none) not permitted.
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Allowed methods: ['publickey', 'password', 'keyboard-interactive']
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Authentication (publickey) failed.
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Authentication (password) successful!
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Max packet in: 32768 bytes
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Received global request "hostkeys-00@openssh.com"
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Rejecting "hostkeys-00@openssh.com" global request from server.
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Max packet out: 32768 bytes
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Secsh channel 0 opened.
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Sesch channel 0 request ok
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Sesch channel 0 request ok
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Sending global request "keepalive@lag.net"
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 starting thread (client mode): 0x7c6423c0
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Local version/idstring: SSH-2.0-paramiko_3.5.1
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Remote version/idstring: SSH-2.0-OpenSSH_9.0
+[32mINFO    [0m paramiko.transport:transport.py:1944 Connected (version 2.0, client OpenSSH_9.0)
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === Key exchange possibilities ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex algos: curve25519-sha256@libssh.org, diffie-hellman-group-exchange-sha256
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server key: rsa-sha2-512, rsa-sha2-256, ssh-rsa, ssh-ed25519
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client encrypt: chacha20-poly1305@openssh.com, aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server encrypt: chacha20-poly1305@openssh.com, aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client mac: hmac-sha2-512-etm@openssh.com, hmac-sha2-256-etm@openssh.com, umac-128-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server mac: hmac-sha2-512-etm@openssh.com, hmac-sha2-256-etm@openssh.com, umac-128-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client compress: none, zlib@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server compress: none, zlib@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client lang: <none>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server lang: <none>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex follows: False
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === Key exchange agreements ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Kex: curve25519-sha256@libssh.org
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 HostKey: ssh-ed25519
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Cipher: aes128-ctr
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 MAC: hmac-sha2-256-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Compression: none
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === End of kex handshake ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex engine KexCurve25519 specified hash_algo <built-in function openssl_sha256>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Switch to new keys ...
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Got EXT_INFO: {'server-sig-algs': b'ssh-ed25519,sk-ssh-ed25519@openssh.com,ssh-rsa,rsa-sha2-256,rsa-sha2-512,ssh-dss,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ecdsa-sha2-nistp256@openssh.com,webauthn-sk-ecdsa-sha2-nistp256@openssh.com', 'publickey-hostbound@openssh.com': b'0'}
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Auth banner: b'This device can be used by authorized users only. Unauthorized access is prosecuted by federal law (Federal law 63, article 272 of the Criminal Code of the Russian Federation\n'
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Authentication type (none) not permitted.
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Allowed methods: ['publickey', 'password', 'keyboard-interactive']
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Authentication (publickey) failed.
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Authentication (password) successful!
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Max packet in: 32768 bytes
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Received global request "hostkeys-00@openssh.com"
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Rejecting "hostkeys-00@openssh.com" global request from server.
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Max packet out: 32768 bytes
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Secsh channel 0 opened.
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Sesch channel 0 request ok
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Sesch channel 0 request ok
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 starting thread (client mode): 0x7c6438c0
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Local version/idstring: SSH-2.0-paramiko_3.5.1
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Remote version/idstring: SSH-2.0-OpenSSH_9.0
+[32mINFO    [0m paramiko.transport:transport.py:1944 Connected (version 2.0, client OpenSSH_9.0)
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === Key exchange possibilities ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex algos: curve25519-sha256@libssh.org, diffie-hellman-group-exchange-sha256
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server key: rsa-sha2-512, rsa-sha2-256, ssh-rsa, ssh-ed25519
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client encrypt: chacha20-poly1305@openssh.com, aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server encrypt: chacha20-poly1305@openssh.com, aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client mac: hmac-sha2-512-etm@openssh.com, hmac-sha2-256-etm@openssh.com, umac-128-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server mac: hmac-sha2-512-etm@openssh.com, hmac-sha2-256-etm@openssh.com, umac-128-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client compress: none, zlib@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server compress: none, zlib@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client lang: <none>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server lang: <none>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex follows: False
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === Key exchange agreements ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Kex: curve25519-sha256@libssh.org
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 HostKey: ssh-ed25519
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Cipher: aes128-ctr
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 MAC: hmac-sha2-256-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Compression: none
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === End of kex handshake ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex engine KexCurve25519 specified hash_algo <built-in function openssl_sha256>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Switch to new keys ...
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Got EXT_INFO: {'server-sig-algs': b'ssh-ed25519,sk-ssh-ed25519@openssh.com,ssh-rsa,rsa-sha2-256,rsa-sha2-512,ssh-dss,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ecdsa-sha2-nistp256@openssh.com,webauthn-sk-ecdsa-sha2-nistp256@openssh.com', 'publickey-hostbound@openssh.com': b'0'}
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Auth banner: b'This device can be used by authorized users only. Unauthorized access is prosecuted by federal law (Federal law 63, article 272 of the Criminal Code of the Russian Federation\n'
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Authentication type (none) not permitted.
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Allowed methods: ['publickey', 'password', 'keyboard-interactive']
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Authentication (publickey) failed.
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Authentication (password) successful!
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Max packet in: 32768 bytes
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Received global request "hostkeys-00@openssh.com"
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Rejecting "hostkeys-00@openssh.com" global request from server.
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Max packet out: 32768 bytes
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Secsh channel 0 opened.
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Sesch channel 0 request ok
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Sesch channel 0 request ok
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 starting thread (client mode): 0x7c5fb290
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Local version/idstring: SSH-2.0-paramiko_3.5.1
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Remote version/idstring: SSH-2.0-OpenSSH_9.0
+[32mINFO    [0m paramiko.transport:transport.py:1944 Connected (version 2.0, client OpenSSH_9.0)
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === Key exchange possibilities ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex algos: curve25519-sha256@libssh.org, diffie-hellman-group-exchange-sha256
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server key: rsa-sha2-512, rsa-sha2-256, ssh-rsa, ssh-ed25519
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client encrypt: chacha20-poly1305@openssh.com, aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server encrypt: chacha20-poly1305@openssh.com, aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client mac: hmac-sha2-512-etm@openssh.com, hmac-sha2-256-etm@openssh.com, umac-128-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server mac: hmac-sha2-512-etm@openssh.com, hmac-sha2-256-etm@openssh.com, umac-128-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client compress: none, zlib@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server compress: none, zlib@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client lang: <none>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server lang: <none>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex follows: False
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === Key exchange agreements ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Kex: curve25519-sha256@libssh.org
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 HostKey: ssh-ed25519
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Cipher: aes128-ctr
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 MAC: hmac-sha2-256-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Compression: none
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === End of kex handshake ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex engine KexCurve25519 specified hash_algo <built-in function openssl_sha256>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Switch to new keys ...
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Got EXT_INFO: {'server-sig-algs': b'ssh-ed25519,sk-ssh-ed25519@openssh.com,ssh-rsa,rsa-sha2-256,rsa-sha2-512,ssh-dss,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ecdsa-sha2-nistp256@openssh.com,webauthn-sk-ecdsa-sha2-nistp256@openssh.com', 'publickey-hostbound@openssh.com': b'0'}
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Auth banner: b'This device can be used by authorized users only. Unauthorized access is prosecuted by federal law (Federal law 63, article 272 of the Criminal Code of the Russian Federation\n'
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Authentication type (none) not permitted.
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Allowed methods: ['publickey', 'password', 'keyboard-interactive']
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Authentication (publickey) failed.
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Authentication (password) successful!
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Max packet in: 32768 bytes
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Received global request "hostkeys-00@openssh.com"
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Rejecting "hostkeys-00@openssh.com" global request from server.
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Max packet out: 32768 bytes
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Secsh channel 0 opened.
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Sesch channel 0 request ok
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Sesch channel 0 request ok
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 starting thread (client mode): 0x7c61fe60
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Local version/idstring: SSH-2.0-paramiko_3.5.1
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Remote version/idstring: SSH-2.0-OpenSSH_9.0
+[32mINFO    [0m paramiko.transport:transport.py:1944 Connected (version 2.0, client OpenSSH_9.0)
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === Key exchange possibilities ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex algos: curve25519-sha256@libssh.org, diffie-hellman-group-exchange-sha256
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server key: rsa-sha2-512, rsa-sha2-256, ssh-rsa, ssh-ed25519
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client encrypt: chacha20-poly1305@openssh.com, aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server encrypt: chacha20-poly1305@openssh.com, aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client mac: hmac-sha2-512-etm@openssh.com, hmac-sha2-256-etm@openssh.com, umac-128-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server mac: hmac-sha2-512-etm@openssh.com, hmac-sha2-256-etm@openssh.com, umac-128-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client compress: none, zlib@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server compress: none, zlib@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client lang: <none>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server lang: <none>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex follows: False
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === Key exchange agreements ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Kex: curve25519-sha256@libssh.org
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 HostKey: ssh-ed25519
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Cipher: aes128-ctr
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 MAC: hmac-sha2-256-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Compression: none
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === End of kex handshake ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex engine KexCurve25519 specified hash_algo <built-in function openssl_sha256>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Switch to new keys ...
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Got EXT_INFO: {'server-sig-algs': b'ssh-ed25519,sk-ssh-ed25519@openssh.com,ssh-rsa,rsa-sha2-256,rsa-sha2-512,ssh-dss,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ecdsa-sha2-nistp256@openssh.com,webauthn-sk-ecdsa-sha2-nistp256@openssh.com', 'publickey-hostbound@openssh.com': b'0'}
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Auth banner: b'This device can be used by authorized users only. Unauthorized access is prosecuted by federal law (Federal law 63, article 272 of the Criminal Code of the Russian Federation\n'
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Authentication type (none) not permitted.
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Allowed methods: ['publickey', 'password', 'keyboard-interactive']
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Authentication (publickey) failed.
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Authentication (password) successful!
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Max packet in: 32768 bytes
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Received global request "hostkeys-00@openssh.com"
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Rejecting "hostkeys-00@openssh.com" global request from server.
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Max packet out: 32768 bytes
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Secsh channel 0 opened.
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Sesch channel 0 request ok
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Sesch channel 0 request ok
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 starting thread (client mode): 0x7c5d6960
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Local version/idstring: SSH-2.0-paramiko_3.5.1
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Remote version/idstring: SSH-2.0-OpenSSH_9.0
+[32mINFO    [0m paramiko.transport:transport.py:1944 Connected (version 2.0, client OpenSSH_9.0)
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === Key exchange possibilities ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex algos: curve25519-sha256@libssh.org, diffie-hellman-group-exchange-sha256
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server key: rsa-sha2-512, rsa-sha2-256, ssh-rsa, ssh-ed25519
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client encrypt: chacha20-poly1305@openssh.com, aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server encrypt: chacha20-poly1305@openssh.com, aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client mac: hmac-sha2-512-etm@openssh.com, hmac-sha2-256-etm@openssh.com, umac-128-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server mac: hmac-sha2-512-etm@openssh.com, hmac-sha2-256-etm@openssh.com, umac-128-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client compress: none, zlib@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server compress: none, zlib@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client lang: <none>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server lang: <none>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex follows: False
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === Key exchange agreements ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Kex: curve25519-sha256@libssh.org
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 HostKey: ssh-ed25519
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Cipher: aes128-ctr
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 MAC: hmac-sha2-256-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Compression: none
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === End of kex handshake ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex engine KexCurve25519 specified hash_algo <built-in function openssl_sha256>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Switch to new keys ...
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Got EXT_INFO: {'server-sig-algs': b'ssh-ed25519,sk-ssh-ed25519@openssh.com,ssh-rsa,rsa-sha2-256,rsa-sha2-512,ssh-dss,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ecdsa-sha2-nistp256@openssh.com,webauthn-sk-ecdsa-sha2-nistp256@openssh.com', 'publickey-hostbound@openssh.com': b'0'}
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Auth banner: b'This device can be used by authorized users only. Unauthorized access is prosecuted by federal law (Federal law 63, article 272 of the Criminal Code of the Russian Federation\n'
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Authentication type (none) not permitted.
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Allowed methods: ['publickey', 'password', 'keyboard-interactive']
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Authentication (publickey) failed.
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Authentication (password) successful!
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Max packet in: 32768 bytes
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Received global request "hostkeys-00@openssh.com"
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Rejecting "hostkeys-00@openssh.com" global request from server.
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Max packet out: 32768 bytes
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Secsh channel 0 opened.
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Sesch channel 0 request ok
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Sesch channel 0 request ok
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Sending global request "keepalive@lag.net"
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 starting thread (client mode): 0x7c61d610
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Local version/idstring: SSH-2.0-paramiko_3.5.1
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Remote version/idstring: SSH-2.0-OpenSSH_9.0
+[32mINFO    [0m paramiko.transport:transport.py:1944 Connected (version 2.0, client OpenSSH_9.0)
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === Key exchange possibilities ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex algos: curve25519-sha256@libssh.org, diffie-hellman-group-exchange-sha256
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server key: rsa-sha2-512, rsa-sha2-256, ssh-rsa, ssh-ed25519
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client encrypt: chacha20-poly1305@openssh.com, aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server encrypt: chacha20-poly1305@openssh.com, aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client mac: hmac-sha2-512-etm@openssh.com, hmac-sha2-256-etm@openssh.com, umac-128-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server mac: hmac-sha2-512-etm@openssh.com, hmac-sha2-256-etm@openssh.com, umac-128-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client compress: none, zlib@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server compress: none, zlib@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client lang: <none>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server lang: <none>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex follows: False
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === Key exchange agreements ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Kex: curve25519-sha256@libssh.org
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 HostKey: ssh-ed25519
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Cipher: aes128-ctr
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 MAC: hmac-sha2-256-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Compression: none
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === End of kex handshake ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex engine KexCurve25519 specified hash_algo <built-in function openssl_sha256>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Switch to new keys ...
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Got EXT_INFO: {'server-sig-algs': b'ssh-ed25519,sk-ssh-ed25519@openssh.com,ssh-rsa,rsa-sha2-256,rsa-sha2-512,ssh-dss,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ecdsa-sha2-nistp256@openssh.com,webauthn-sk-ecdsa-sha2-nistp256@openssh.com', 'publickey-hostbound@openssh.com': b'0'}
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Auth banner: b'This device can be used by authorized users only. Unauthorized access is prosecuted by federal law (Federal law 63, article 272 of the Criminal Code of the Russian Federation\n'
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Authentication type (none) not permitted.
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Allowed methods: ['publickey', 'password', 'keyboard-interactive']
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Authentication (publickey) failed.
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Authentication (password) successful!
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Max packet in: 32768 bytes
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Received global request "hostkeys-00@openssh.com"
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Rejecting "hostkeys-00@openssh.com" global request from server.
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Max packet out: 32768 bytes
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Secsh channel 0 opened.
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Sesch channel 0 request ok
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Sesch channel 0 request ok
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 starting thread (client mode): 0x7c65eed0
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Local version/idstring: SSH-2.0-paramiko_3.5.1
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Remote version/idstring: SSH-2.0-OpenSSH_9.0
+[32mINFO    [0m paramiko.transport:transport.py:1944 Connected (version 2.0, client OpenSSH_9.0)
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === Key exchange possibilities ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex algos: curve25519-sha256@libssh.org, diffie-hellman-group-exchange-sha256
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server key: rsa-sha2-512, rsa-sha2-256, ssh-rsa, ssh-ed25519
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client encrypt: chacha20-poly1305@openssh.com, aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server encrypt: chacha20-poly1305@openssh.com, aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client mac: hmac-sha2-512-etm@openssh.com, hmac-sha2-256-etm@openssh.com, umac-128-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server mac: hmac-sha2-512-etm@openssh.com, hmac-sha2-256-etm@openssh.com, umac-128-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client compress: none, zlib@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server compress: none, zlib@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client lang: <none>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server lang: <none>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex follows: False
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === Key exchange agreements ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Kex: curve25519-sha256@libssh.org
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 HostKey: ssh-ed25519
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Cipher: aes128-ctr
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 MAC: hmac-sha2-256-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Compression: none
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === End of kex handshake ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex engine KexCurve25519 specified hash_algo <built-in function openssl_sha256>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Switch to new keys ...
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Got EXT_INFO: {'server-sig-algs': b'ssh-ed25519,sk-ssh-ed25519@openssh.com,ssh-rsa,rsa-sha2-256,rsa-sha2-512,ssh-dss,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ecdsa-sha2-nistp256@openssh.com,webauthn-sk-ecdsa-sha2-nistp256@openssh.com', 'publickey-hostbound@openssh.com': b'0'}
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Auth banner: b'This device can be used by authorized users only. Unauthorized access is prosecuted by federal law (Federal law 63, article 272 of the Criminal Code of the Russian Federation\n'
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Authentication type (none) not permitted.
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Allowed methods: ['publickey', 'password', 'keyboard-interactive']
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Authentication (publickey) failed.
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Authentication (password) successful!
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Max packet in: 32768 bytes
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Received global request "hostkeys-00@openssh.com"
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Rejecting "hostkeys-00@openssh.com" global request from server.
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Max packet out: 32768 bytes
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Secsh channel 0 opened.
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Sesch channel 0 request ok
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Sesch channel 0 request ok
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 starting thread (client mode): 0x7c67dbe0
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Local version/idstring: SSH-2.0-paramiko_3.5.1
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Remote version/idstring: SSH-2.0-OpenSSH_9.0
+[32mINFO    [0m paramiko.transport:transport.py:1944 Connected (version 2.0, client OpenSSH_9.0)
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === Key exchange possibilities ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex algos: curve25519-sha256@libssh.org, diffie-hellman-group-exchange-sha256
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server key: rsa-sha2-512, rsa-sha2-256, ssh-rsa, ssh-ed25519
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client encrypt: chacha20-poly1305@openssh.com, aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server encrypt: chacha20-poly1305@openssh.com, aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client mac: hmac-sha2-512-etm@openssh.com, hmac-sha2-256-etm@openssh.com, umac-128-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server mac: hmac-sha2-512-etm@openssh.com, hmac-sha2-256-etm@openssh.com, umac-128-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client compress: none, zlib@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server compress: none, zlib@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client lang: <none>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server lang: <none>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex follows: False
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === Key exchange agreements ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Kex: curve25519-sha256@libssh.org
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 HostKey: ssh-ed25519
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Cipher: aes128-ctr
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 MAC: hmac-sha2-256-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Compression: none
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === End of kex handshake ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex engine KexCurve25519 specified hash_algo <built-in function openssl_sha256>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Switch to new keys ...
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Got EXT_INFO: {'server-sig-algs': b'ssh-ed25519,sk-ssh-ed25519@openssh.com,ssh-rsa,rsa-sha2-256,rsa-sha2-512,ssh-dss,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ecdsa-sha2-nistp256@openssh.com,webauthn-sk-ecdsa-sha2-nistp256@openssh.com', 'publickey-hostbound@openssh.com': b'0'}
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Auth banner: b'This device can be used by authorized users only. Unauthorized access is prosecuted by federal law (Federal law 63, article 272 of the Criminal Code of the Russian Federation\n'
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Authentication type (none) not permitted.
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Allowed methods: ['publickey', 'password', 'keyboard-interactive']
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Authentication (publickey) failed.
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Authentication (password) successful!
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Max packet in: 32768 bytes
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Received global request "hostkeys-00@openssh.com"
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Rejecting "hostkeys-00@openssh.com" global request from server.
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Max packet out: 32768 bytes
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Secsh channel 0 opened.
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Sesch channel 0 request ok
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Sesch channel 0 request ok
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 starting thread (client mode): 0x7c48c170
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Local version/idstring: SSH-2.0-paramiko_3.5.1
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Remote version/idstring: SSH-2.0-OpenSSH_9.0
+[32mINFO    [0m paramiko.transport:transport.py:1944 Connected (version 2.0, client OpenSSH_9.0)
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === Key exchange possibilities ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex algos: curve25519-sha256@libssh.org, diffie-hellman-group-exchange-sha256
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server key: rsa-sha2-512, rsa-sha2-256, ssh-rsa, ssh-ed25519
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client encrypt: chacha20-poly1305@openssh.com, aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server encrypt: chacha20-poly1305@openssh.com, aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client mac: hmac-sha2-512-etm@openssh.com, hmac-sha2-256-etm@openssh.com, umac-128-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server mac: hmac-sha2-512-etm@openssh.com, hmac-sha2-256-etm@openssh.com, umac-128-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client compress: none, zlib@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server compress: none, zlib@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client lang: <none>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server lang: <none>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex follows: False
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === Key exchange agreements ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Kex: curve25519-sha256@libssh.org
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 HostKey: ssh-ed25519
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Cipher: aes128-ctr
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 MAC: hmac-sha2-256-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Compression: none
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === End of kex handshake ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex engine KexCurve25519 specified hash_algo <built-in function openssl_sha256>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Switch to new keys ...
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Got EXT_INFO: {'server-sig-algs': b'ssh-ed25519,sk-ssh-ed25519@openssh.com,ssh-rsa,rsa-sha2-256,rsa-sha2-512,ssh-dss,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ecdsa-sha2-nistp256@openssh.com,webauthn-sk-ecdsa-sha2-nistp256@openssh.com', 'publickey-hostbound@openssh.com': b'0'}
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Auth banner: b'This device can be used by authorized users only. Unauthorized access is prosecuted by federal law (Federal law 63, article 272 of the Criminal Code of the Russian Federation\n'
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Authentication type (none) not permitted.
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Allowed methods: ['publickey', 'password', 'keyboard-interactive']
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Authentication (publickey) failed.
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Authentication (password) successful!
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Max packet in: 32768 bytes
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Received global request "hostkeys-00@openssh.com"
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Rejecting "hostkeys-00@openssh.com" global request from server.
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Max packet out: 32768 bytes
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Secsh channel 0 opened.
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Sesch channel 0 request ok
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Sesch channel 0 request ok
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 starting thread (client mode): 0x7c48e600
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Local version/idstring: SSH-2.0-paramiko_3.5.1
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Remote version/idstring: SSH-2.0-OpenSSH_9.0
+[32mINFO    [0m paramiko.transport:transport.py:1944 Connected (version 2.0, client OpenSSH_9.0)
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === Key exchange possibilities ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex algos: curve25519-sha256@libssh.org, diffie-hellman-group-exchange-sha256
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server key: rsa-sha2-512, rsa-sha2-256, ssh-rsa, ssh-ed25519
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client encrypt: chacha20-poly1305@openssh.com, aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server encrypt: chacha20-poly1305@openssh.com, aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client mac: hmac-sha2-512-etm@openssh.com, hmac-sha2-256-etm@openssh.com, umac-128-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server mac: hmac-sha2-512-etm@openssh.com, hmac-sha2-256-etm@openssh.com, umac-128-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client compress: none, zlib@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server compress: none, zlib@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client lang: <none>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server lang: <none>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex follows: False
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === Key exchange agreements ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Kex: curve25519-sha256@libssh.org
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 HostKey: ssh-ed25519
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Cipher: aes128-ctr
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 MAC: hmac-sha2-256-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Compression: none
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === End of kex handshake ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex engine KexCurve25519 specified hash_algo <built-in function openssl_sha256>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Switch to new keys ...
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Got EXT_INFO: {'server-sig-algs': b'ssh-ed25519,sk-ssh-ed25519@openssh.com,ssh-rsa,rsa-sha2-256,rsa-sha2-512,ssh-dss,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ecdsa-sha2-nistp256@openssh.com,webauthn-sk-ecdsa-sha2-nistp256@openssh.com', 'publickey-hostbound@openssh.com': b'0'}
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Auth banner: b'This device can be used by authorized users only. Unauthorized access is prosecuted by federal law (Federal law 63, article 272 of the Criminal Code of the Russian Federation\n'
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Authentication type (none) not permitted.
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Allowed methods: ['publickey', 'password', 'keyboard-interactive']
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Authentication (publickey) failed.
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Authentication (password) successful!
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Max packet in: 32768 bytes
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Received global request "hostkeys-00@openssh.com"
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Rejecting "hostkeys-00@openssh.com" global request from server.
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Max packet out: 32768 bytes
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Secsh channel 0 opened.
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Sesch channel 0 request ok
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Sesch channel 0 request ok
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 starting thread (client mode): 0x7c49cb00
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Local version/idstring: SSH-2.0-paramiko_3.5.1
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Remote version/idstring: SSH-2.0-OpenSSH_9.0
+[32mINFO    [0m paramiko.transport:transport.py:1944 Connected (version 2.0, client OpenSSH_9.0)
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === Key exchange possibilities ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex algos: curve25519-sha256@libssh.org, diffie-hellman-group-exchange-sha256
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server key: rsa-sha2-512, rsa-sha2-256, ssh-rsa, ssh-ed25519
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client encrypt: chacha20-poly1305@openssh.com, aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server encrypt: chacha20-poly1305@openssh.com, aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client mac: hmac-sha2-512-etm@openssh.com, hmac-sha2-256-etm@openssh.com, umac-128-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server mac: hmac-sha2-512-etm@openssh.com, hmac-sha2-256-etm@openssh.com, umac-128-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client compress: none, zlib@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server compress: none, zlib@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client lang: <none>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server lang: <none>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex follows: False
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === Key exchange agreements ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Kex: curve25519-sha256@libssh.org
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 HostKey: ssh-ed25519
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Cipher: aes128-ctr
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 MAC: hmac-sha2-256-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Compression: none
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === End of kex handshake ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex engine KexCurve25519 specified hash_algo <built-in function openssl_sha256>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Switch to new keys ...
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Got EXT_INFO: {'server-sig-algs': b'ssh-ed25519,sk-ssh-ed25519@openssh.com,ssh-rsa,rsa-sha2-256,rsa-sha2-512,ssh-dss,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ecdsa-sha2-nistp256@openssh.com,webauthn-sk-ecdsa-sha2-nistp256@openssh.com', 'publickey-hostbound@openssh.com': b'0'}
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Auth banner: b'This device can be used by authorized users only. Unauthorized access is prosecuted by federal law (Federal law 63, article 272 of the Criminal Code of the Russian Federation\n'
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Authentication type (none) not permitted.
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Allowed methods: ['publickey', 'password', 'keyboard-interactive']
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Authentication (publickey) failed.
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Authentication (password) successful!
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Max packet in: 32768 bytes
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Received global request "hostkeys-00@openssh.com"
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Rejecting "hostkeys-00@openssh.com" global request from server.
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Max packet out: 32768 bytes
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Secsh channel 0 opened.
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Sesch channel 0 request ok
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Sesch channel 0 request ok
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 starting thread (client mode): 0x7c49eff0
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Local version/idstring: SSH-2.0-paramiko_3.5.1
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Remote version/idstring: SSH-2.0-OpenSSH_9.0
+[32mINFO    [0m paramiko.transport:transport.py:1944 Connected (version 2.0, client OpenSSH_9.0)
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === Key exchange possibilities ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex algos: curve25519-sha256@libssh.org, diffie-hellman-group-exchange-sha256
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server key: rsa-sha2-512, rsa-sha2-256, ssh-rsa, ssh-ed25519
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client encrypt: chacha20-poly1305@openssh.com, aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server encrypt: chacha20-poly1305@openssh.com, aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client mac: hmac-sha2-512-etm@openssh.com, hmac-sha2-256-etm@openssh.com, umac-128-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server mac: hmac-sha2-512-etm@openssh.com, hmac-sha2-256-etm@openssh.com, umac-128-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client compress: none, zlib@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server compress: none, zlib@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client lang: <none>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server lang: <none>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex follows: False
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === Key exchange agreements ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Kex: curve25519-sha256@libssh.org
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 HostKey: ssh-ed25519
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Cipher: aes128-ctr
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 MAC: hmac-sha2-256-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Compression: none
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === End of kex handshake ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex engine KexCurve25519 specified hash_algo <built-in function openssl_sha256>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Switch to new keys ...
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Got EXT_INFO: {'server-sig-algs': b'ssh-ed25519,sk-ssh-ed25519@openssh.com,ssh-rsa,rsa-sha2-256,rsa-sha2-512,ssh-dss,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ecdsa-sha2-nistp256@openssh.com,webauthn-sk-ecdsa-sha2-nistp256@openssh.com', 'publickey-hostbound@openssh.com': b'0'}
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Auth banner: b'This device can be used by authorized users only. Unauthorized access is prosecuted by federal law (Federal law 63, article 272 of the Criminal Code of the Russian Federation\n'
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Authentication type (none) not permitted.
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Allowed methods: ['publickey', 'password', 'keyboard-interactive']
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Authentication (publickey) failed.
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Authentication (password) successful!
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Max packet in: 32768 bytes
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Received global request "hostkeys-00@openssh.com"
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Rejecting "hostkeys-00@openssh.com" global request from server.
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Max packet out: 32768 bytes
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Secsh channel 0 opened.
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Sesch channel 0 request ok
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Sesch channel 0 request ok
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 starting thread (client mode): 0x7c4b54f0
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Local version/idstring: SSH-2.0-paramiko_3.5.1
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Remote version/idstring: SSH-2.0-OpenSSH_9.0
+[32mINFO    [0m paramiko.transport:transport.py:1944 Connected (version 2.0, client OpenSSH_9.0)
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === Key exchange possibilities ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex algos: curve25519-sha256@libssh.org, diffie-hellman-group-exchange-sha256
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server key: rsa-sha2-512, rsa-sha2-256, ssh-rsa, ssh-ed25519
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client encrypt: chacha20-poly1305@openssh.com, aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server encrypt: chacha20-poly1305@openssh.com, aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client mac: hmac-sha2-512-etm@openssh.com, hmac-sha2-256-etm@openssh.com, umac-128-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server mac: hmac-sha2-512-etm@openssh.com, hmac-sha2-256-etm@openssh.com, umac-128-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client compress: none, zlib@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server compress: none, zlib@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client lang: <none>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server lang: <none>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex follows: False
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === Key exchange agreements ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Kex: curve25519-sha256@libssh.org
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 HostKey: ssh-ed25519
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Cipher: aes128-ctr
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 MAC: hmac-sha2-256-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Compression: none
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === End of kex handshake ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex engine KexCurve25519 specified hash_algo <built-in function openssl_sha256>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Switch to new keys ...
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Got EXT_INFO: {'server-sig-algs': b'ssh-ed25519,sk-ssh-ed25519@openssh.com,ssh-rsa,rsa-sha2-256,rsa-sha2-512,ssh-dss,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ecdsa-sha2-nistp256@openssh.com,webauthn-sk-ecdsa-sha2-nistp256@openssh.com', 'publickey-hostbound@openssh.com': b'0'}
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Auth banner: b'This device can be used by authorized users only. Unauthorized access is prosecuted by federal law (Federal law 63, article 272 of the Criminal Code of the Russian Federation\n'
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Authentication type (none) not permitted.
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Allowed methods: ['publickey', 'password', 'keyboard-interactive']
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Authentication (publickey) failed.
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Authentication (password) successful!
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Max packet in: 32768 bytes
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Received global request "hostkeys-00@openssh.com"
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Rejecting "hostkeys-00@openssh.com" global request from server.
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Max packet out: 32768 bytes
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Secsh channel 0 opened.
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Sesch channel 0 request ok
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Sesch channel 0 request ok
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 starting thread (client mode): 0x7c4b7950
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Local version/idstring: SSH-2.0-paramiko_3.5.1
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Remote version/idstring: SSH-2.0-OpenSSH_9.0
+[32mINFO    [0m paramiko.transport:transport.py:1944 Connected (version 2.0, client OpenSSH_9.0)
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === Key exchange possibilities ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex algos: curve25519-sha256@libssh.org, diffie-hellman-group-exchange-sha256
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server key: rsa-sha2-512, rsa-sha2-256, ssh-rsa, ssh-ed25519
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client encrypt: chacha20-poly1305@openssh.com, aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server encrypt: chacha20-poly1305@openssh.com, aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client mac: hmac-sha2-512-etm@openssh.com, hmac-sha2-256-etm@openssh.com, umac-128-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server mac: hmac-sha2-512-etm@openssh.com, hmac-sha2-256-etm@openssh.com, umac-128-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client compress: none, zlib@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server compress: none, zlib@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client lang: <none>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server lang: <none>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex follows: False
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === Key exchange agreements ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Kex: curve25519-sha256@libssh.org
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 HostKey: ssh-ed25519
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Cipher: aes128-ctr
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 MAC: hmac-sha2-256-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Compression: none
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === End of kex handshake ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex engine KexCurve25519 specified hash_algo <built-in function openssl_sha256>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Switch to new keys ...
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Got EXT_INFO: {'server-sig-algs': b'ssh-ed25519,sk-ssh-ed25519@openssh.com,ssh-rsa,rsa-sha2-256,rsa-sha2-512,ssh-dss,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ecdsa-sha2-nistp256@openssh.com,webauthn-sk-ecdsa-sha2-nistp256@openssh.com', 'publickey-hostbound@openssh.com': b'0'}
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Auth banner: b'This device can be used by authorized users only. Unauthorized access is prosecuted by federal law (Federal law 63, article 272 of the Criminal Code of the Russian Federation\n'
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Authentication type (none) not permitted.
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Allowed methods: ['publickey', 'password', 'keyboard-interactive']
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Authentication (publickey) failed.
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Authentication (password) successful!
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Max packet in: 32768 bytes
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Received global request "hostkeys-00@openssh.com"
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Rejecting "hostkeys-00@openssh.com" global request from server.
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Max packet out: 32768 bytes
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Secsh channel 0 opened.
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Sesch channel 0 request ok
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Sesch channel 0 request ok
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 starting thread (client mode): 0x7c4b7e60
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Local version/idstring: SSH-2.0-paramiko_3.5.1
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Remote version/idstring: SSH-2.0-OpenSSH_9.0
+[32mINFO    [0m paramiko.transport:transport.py:1944 Connected (version 2.0, client OpenSSH_9.0)
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === Key exchange possibilities ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex algos: curve25519-sha256@libssh.org, diffie-hellman-group-exchange-sha256
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server key: rsa-sha2-512, rsa-sha2-256, ssh-rsa, ssh-ed25519
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client encrypt: chacha20-poly1305@openssh.com, aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server encrypt: chacha20-poly1305@openssh.com, aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client mac: hmac-sha2-512-etm@openssh.com, hmac-sha2-256-etm@openssh.com, umac-128-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server mac: hmac-sha2-512-etm@openssh.com, hmac-sha2-256-etm@openssh.com, umac-128-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client compress: none, zlib@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server compress: none, zlib@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client lang: <none>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server lang: <none>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex follows: False
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === Key exchange agreements ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Kex: curve25519-sha256@libssh.org
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 HostKey: ssh-ed25519
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Cipher: aes128-ctr
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 MAC: hmac-sha2-256-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Compression: none
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === End of kex handshake ===
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Unhandled channel request "keepalive@openssh.com"
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex engine KexCurve25519 specified hash_algo <built-in function openssl_sha256>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Switch to new keys ...
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Got EXT_INFO: {'server-sig-algs': b'ssh-ed25519,sk-ssh-ed25519@openssh.com,ssh-rsa,rsa-sha2-256,rsa-sha2-512,ssh-dss,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ecdsa-sha2-nistp256@openssh.com,webauthn-sk-ecdsa-sha2-nistp256@openssh.com', 'publickey-hostbound@openssh.com': b'0'}
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Auth banner: b'This device can be used by authorized users only. Unauthorized access is prosecuted by federal law (Federal law 63, article 272 of the Criminal Code of the Russian Federation\n'
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Authentication type (none) not permitted.
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Allowed methods: ['publickey', 'password', 'keyboard-interactive']
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Authentication (publickey) failed.
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Authentication (password) successful!
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Max packet in: 32768 bytes
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Received global request "hostkeys-00@openssh.com"
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Rejecting "hostkeys-00@openssh.com" global request from server.
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Max packet out: 32768 bytes
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Secsh channel 0 opened.
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Sesch channel 0 request ok
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Sesch channel 0 request ok
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 starting thread (client mode): 0x7c4cf860
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Local version/idstring: SSH-2.0-paramiko_3.5.1
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Remote version/idstring: SSH-2.0-OpenSSH_9.0
+[32mINFO    [0m paramiko.transport:transport.py:1944 Connected (version 2.0, client OpenSSH_9.0)
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === Key exchange possibilities ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex algos: curve25519-sha256@libssh.org, diffie-hellman-group-exchange-sha256
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server key: rsa-sha2-512, rsa-sha2-256, ssh-rsa, ssh-ed25519
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client encrypt: chacha20-poly1305@openssh.com, aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server encrypt: chacha20-poly1305@openssh.com, aes128-ctr, aes192-ctr, aes256-ctr, aes128-gcm@openssh.com, aes256-gcm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client mac: hmac-sha2-512-etm@openssh.com, hmac-sha2-256-etm@openssh.com, umac-128-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server mac: hmac-sha2-512-etm@openssh.com, hmac-sha2-256-etm@openssh.com, umac-128-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client compress: none, zlib@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server compress: none, zlib@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 client lang: <none>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 server lang: <none>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex follows: False
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === Key exchange agreements ===
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Kex: curve25519-sha256@libssh.org
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 HostKey: ssh-ed25519
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Cipher: aes128-ctr
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 MAC: hmac-sha2-256-etm@openssh.com
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Compression: none
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 === End of kex handshake ===
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Unhandled channel request "keepalive@openssh.com"
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 kex engine KexCurve25519 specified hash_algo <built-in function openssl_sha256>
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Switch to new keys ...
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Got EXT_INFO: {'server-sig-algs': b'ssh-ed25519,sk-ssh-ed25519@openssh.com,ssh-rsa,rsa-sha2-256,rsa-sha2-512,ssh-dss,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,sk-ecdsa-sha2-nistp256@openssh.com,webauthn-sk-ecdsa-sha2-nistp256@openssh.com', 'publickey-hostbound@openssh.com': b'0'}
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Auth banner: b'This device can be used by authorized users only. Unauthorized access is prosecuted by federal law (Federal law 63, article 272 of the Criminal Code of the Russian Federation\n'
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Authentication type (none) not permitted.
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Allowed methods: ['publickey', 'password', 'keyboard-interactive']
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Authentication (publickey) failed.
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 userauth is OK
+[32mINFO    [0m paramiko.transport:transport.py:1944 Authentication (password) successful!
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Max packet in: 32768 bytes
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Received global request "hostkeys-00@openssh.com"
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 Rejecting "hostkeys-00@openssh.com" global request from server.
+[32mINFO    [0m paramiko.transport:transport.py:1944 Disconnect (code 12): session limit exceeded
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] EOF sent (0)
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] EOF sent (0)
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Unhandled channel request "keepalive@openssh.com"
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] EOF sent (0)
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] Unhandled channel request "keepalive@openssh.com"
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] EOF sent (0)
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] EOF sent (0)
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] EOF sent (0)
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] EOF sent (0)
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] EOF sent (0)
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] EOF sent (0)
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] EOF sent (0)
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] EOF sent (0)
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] EOF sent (0)
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] EOF sent (0)
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] EOF sent (0)
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] EOF sent (0)
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] EOF sent (0)
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] EOF sent (0)
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] EOF sent (0)
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] EOF sent (0)
+[35mDEBUG   [0m paramiko.transport:channel.py:1210 [chan 0] EOF sent (0)
+[35mDEBUG   [0m paramiko.transport:transport.py:1944 EOF in transport thread

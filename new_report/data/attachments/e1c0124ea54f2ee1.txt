@@ -1,0 +1,12 @@
+ show route 192.168.74.0
+Mon Jun 16 09:59:28 2025
+  Routing entry for 192.168.74.0/24
+    Last update: 00h00m24s
+    Routing Descriptor Blocks
+      192.168.1.14, via te0/0/3
+      Known via ospf, distance 110, metric 0
+        type ospf-type2-external, protection none, route-type remote
+  
+  Entries: 1
+  
+0/ME5100:R1-G2# 

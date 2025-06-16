@@ -1,0 +1,9 @@
+ping 192.168.60.1
+Mon Jun 16 09:26:56 2025
+
+Sending 4, 56-byte ICMP Echos to 192.168.60.1,
+request send interval is 0.100 seconds,
+response wait timeout is 2.000 seconds:
+!!!!
+
+Success rate is 100 percent (4/4), round-trip min/avg/max = 0.114/0.138/0.205 ms

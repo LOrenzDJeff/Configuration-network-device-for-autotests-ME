@@ -1,0 +1,14 @@
+show system
+Mon Jun 16 09:24:05 2025
+  System type:            Eltex ME5100 carrier router
+  System name:            R2-G2
+  System software:        Eltex Network OS for ME5k version 3.9.9.9RC
+  System uptime:          3 days, 6 hours, 3 minutes
+  System restarted at:    Fri Jun 13 03:20:30 2025
+  System MAC address:     e0:d9:e3:df:35:e0
+  
+  Power supply 1 is    present, status ON
+  Power supply 2 is    not present
+  
+  SYSTEM HAS ACTIVE ALARMS
+0/ME5100:R2-G2# 

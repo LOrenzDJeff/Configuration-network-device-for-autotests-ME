@@ -1,0 +1,38 @@
+ show mpls ldp parameters
+Mon Jun 16 09:43:33 2025
+  LDP Parameters:
+    Router ID: 1.0.2.4
+    Transport address: 1.0.2.4
+  Graceful Restart:
+    Status: disabled
+    Reconnect Timeout: 120 sec, Forwarding State Holdtime: 120 sec
+  
+  Neighbors:
+  
+    Peer address: 1.0.2.1 
+      BFD status: disabled
+      Holdtime interval: 40 sec
+      Hello interval: 0 sec
+  
+    Peer address: 1.0.2.2 
+      BFD status: disabled
+      Holdtime interval: 40 sec
+      Hello interval: 0 sec
+  
+  Interfaces:
+  
+    Interface Tengigabitethernet0/0/11.255 
+      BFD status: disabled
+      Holdtime interval: 40 sec
+      Hello interval: 15 sec
+  
+    Interface Bundle-ether 1 
+      BFD status: disabled
+      Holdtime interval: 40 sec
+      Hello interval: 15 sec
+  
+    Interface Bundle-ether 2 
+      BFD status: disabled
+      Holdtime interval: 40 sec
+      Hello interval: 15 sec
+0/ME5100:R4-G2# 

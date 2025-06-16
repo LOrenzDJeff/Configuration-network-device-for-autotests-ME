@@ -1,0 +1,19 @@
+ show mpls ldp bindings local
+Mon Jun 16 09:43:26 2025
+  1.0.2.1/32
+    local binding: 1.0.2.2:0, label 17
+    State: mapping-established, type: prefix
+    Interface: 
+  1.0.2.2/32
+    local binding: 1.0.2.1:0, label 16
+    State: mapping-established, type: prefix
+    Interface: 
+  1.0.2.4/32
+    local binding: 1.0.2.1:0, label 3
+    State: mapping-established, type: prefix
+    Interface: 
+  1.0.2.4/32
+    local binding: 1.0.2.2:0, label 3
+    State: mapping-established, type: prefix
+    Interface: 
+0/ME5100:R4-G2# 

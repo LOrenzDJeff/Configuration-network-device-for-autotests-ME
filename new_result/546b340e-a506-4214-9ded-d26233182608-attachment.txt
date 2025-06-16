@@ -1,0 +1,13 @@
+ show l3forwarding 1.0.2.4
+Mon Jun 16 10:14:09 2025
+  
+  Subnet: 1.0.2.4/32 Nexthop: 192.168.3.18 
+  Interface: Tengigabitethernet0/0/1
+  Src MAC: e0:d9:e3:df:35:e1
+  Dst MAC: e0:d9:e3:df:35:41
+  Outer VID: 0 Inner VID: 0
+  MTU: 1500
+  Outgoing label: --
+  HW information:
+    FEC: 0x20000449, ECMP FEC: 0xffffffff, encap-id: 0x40002090
+0/ME5100:R2-G2# 

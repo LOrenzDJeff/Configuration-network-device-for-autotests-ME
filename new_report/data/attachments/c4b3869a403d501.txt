@@ -1,0 +1,49 @@
+
+Mon Jun 16 09:37:20 2025
+  IS-IS Router test
+    
+  Interface: Bundle-ether1
+                              Level-1                 Level-2
+                        Received    Sent        Received    Sent
+      Hello IS-IS PDUs  0           0           18          19        
+      Hello ES-IS PDUs  0           0           0           0         
+      Hello ES PDUs     0           0           0           0         
+      LSP               0           0           10          9         
+      CSNP              0           0           13          14        
+      PSNP              0           0           5           4         
+      Unknown packet    0           0           0           0         
+      Discarded IIH     0           0           0           0         
+      Discarded LSP     0           0           0           0         
+      Discarded CSNP    0           0           0           0         
+      Discarded PSNP    0           0           0           0         
+    
+  Interface: Bundle-ether2
+                              Level-1                 Level-2
+                        Received    Sent        Received    Sent
+      Hello IS-IS PDUs  0           0           17          19        
+      Hello ES-IS PDUs  0           0           0           0         
+      Hello ES PDUs     0           0           0           0         
+      LSP               0           0           7           6         
+      CSNP              0           0           13          13        
+      PSNP              0           0           4           4         
+      Unknown packet    0           0           0           0         
+      Discarded IIH     0           0           0           0         
+      Discarded LSP     0           0           0           0         
+      Discarded CSNP    0           0           0           0         
+      Discarded PSNP    0           0           0           0         
+    
+  Interface: Tengigabitethernet0/0/11.255
+                              Level-1                 Level-2
+                        Received    Sent        Received    Sent
+      Hello IS-IS PDUs  0           0           13          21        
+      Hello ES-IS PDUs  0           0           0           0         
+      Hello ES PDUs     0           0           0           0         
+      LSP               0           0           3           9         
+      CSNP              0           0           2           4         
+      PSNP              0           0           2           2         
+      Unknown packet    0           0           0           0         
+      Discarded IIH     0           0           0           0         
+      Discarded LSP     0           0           0           0         
+      Discarded CSNP    0           0           0           0         
+      Discarded PSNP    0           0           0           0         
+0/ME5100:R4-G2# 

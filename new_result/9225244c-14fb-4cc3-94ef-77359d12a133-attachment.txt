@@ -1,0 +1,29 @@
+
+Mon Jun 16 09:24:14 2025
+  Interface                Admin state  Oper state  Description 
+  ------------------------ ------------ ----------- ------------ 
+  te0/0/1                  up           up          to_R4:te0/0/1 
+  te0/0/2                  up           up          to_R4:te0/0/2 
+  te0/0/3                  up           up          to_R1:te0/0/1 
+  te0/0/4                  up           up          to_R1:te0/0/2 
+  te0/0/5                  up           down         
+  te0/0/6                  up           down         
+  te0/0/7                  up           down         
+  te0/0/8                  up           down         
+  te0/0/9                  up           down         
+  te0/0/10                 up           down         
+  te0/0/11                 up           up           
+  te0/0/12                 up           down         
+  te0/0/13                 up           down         
+  te0/0/14                 up           down         
+  te0/0/15                 up           down         
+  te0/0/16                 up           down         
+  te0/0/17                 up           down         
+  te0/0/18                 up           down         
+  te0/0/19                 up           down         
+  te0/0/20                 up           down         
+  te0/0/11.254             up           up          to_R3:ge0/0/0/2.254 
+  te0/0/11.3460            up           up           
+  bu1                      up           up          to_R1:bundle-ether1 
+  bu2                      up           up          to_R4:bundle-ether1 
+  mgmt0/fmc0/1             up           up           

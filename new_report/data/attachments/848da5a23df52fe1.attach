@@ -1,0 +1,3 @@
+ grep -e "show vrf 1750065808" /var/log/me5000/192.168.17.38/me5k.log
+Jun 16 16:23:29 R2-G2 [0/ME5100]: 2025-06-16T09:23:28+00:00 klish[715][28925]: %KLISH-I-COMMAND: From klish terminal [user='admin' host='192.168.16.112' terminal='telnet' vrf='MGN'] command: 'show vrf 1750065808'
+root@eve-ng-lab:/home/avtotest

@@ -1,0 +1,11 @@
+
+Mon Jun 16 09:37:17 2025
+  IS-IS Router test interface:
+  Interface        Oper   Last Up     Adjcs   Metric  Priority  PDU    Mode      BFD       
+                   State              L1/L2   L1/L2   L1/L2                      IPv4/v6   
+  ---------------- ------ ----------- ------- ------- --------- ------ --------- --------- 
+  bu1              up     00h02m05s   -/1     -/10    -/64      1500   active    Y/N       
+  bu2              up     00h02m05s   -/1     -/10    -/64      1500   active    Y/N       
+  lo10             up     never       -/-     -/-     -/-       1492   passive   N/N       
+  te0/0/5.253      up     00h02m05s   -/1     -/10    -/64      1500   active    N/N       
+0/ME5100:R1-G2# 

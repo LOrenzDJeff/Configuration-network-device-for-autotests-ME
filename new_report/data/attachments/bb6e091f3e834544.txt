@@ -1,0 +1,12 @@
+ show route 1.0.2.2
+Mon Jun 16 10:14:28 2025
+  Routing entry for 1.0.2.2/32
+    Last update: 00h00m22s
+    Routing Descriptor Blocks
+      192.168.2.9, via te0/0/1
+      Known via ospf, distance 30, metric 20
+        type ospf-intra-area, protection none, route-type remote
+  
+  Entries: 1
+  
+0/ME5100:R1-G2# 

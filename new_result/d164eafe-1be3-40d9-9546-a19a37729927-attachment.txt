@@ -1,0 +1,28 @@
+
+Mon Jun 16 09:24:08 2025
+  Hardware inventory information for chassis 0
+  
+   Main system module is ME5100
+    Serial number:      ME09000056
+    Hardware version:   3v2
+    Hardware revision:  0
+    MAC address:        e0:d9:e3:df:35:40
+    Installed RAM:      8 GB
+      Bank 0:           Kingston 9965527-029.A00LF
+        Capacity:       8 GB
+        Serial number:  523dfe3a
+    Storage:
+      Device model:     8GB SATA Flash Drive
+      Serial number:    96D70776052400283876
+      Capacity:         8.01 GB
+    Fuse state:
+      Secure fuse:      Set
+      Secure key:       Set
+  
+   Module in slot power supply 1 is PM350-220/12:rev.B
+    Serial number:      PM26006870
+    Hardware version:   2v10
+  
+   Module in slot power supply 2 is not present
+  
+0/ME5100:R4-G2# 

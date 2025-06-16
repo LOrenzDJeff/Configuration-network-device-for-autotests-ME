@@ -1,0 +1,21 @@
+ show lld statistic
+Mon Jun 16 09:34:14 2025
+  LLDP traffic statistics:
+  Last neighbor change: 00h00m12s ago
+        
+        Neighbor entries added: 4
+        Neighbor entries deleted: 0
+        Neighbor entries aged out: 0
+        Neighbor advertisements dropped: 0
+        
+  LLDP agent codes:
+        (N) Nearest Bridge, (NnT) Nearest non-TPMR Bridge
+        (NC) Nearest Customer Bridge)
+        
+  Port            TX frames total  TX frames errors  RX frames total  RX frames discarded  Frames errors  RX TLVs discarded  RX TLVs unrecognized  RX ageouts total  Agent  
+  --------------- ---------------- ----------------- ---------------- -------------------- -------------- ------------------ --------------------- ----------------- ------ 
+  te0/0/1         4                0                 4                0                    0              0                  0                     0                 N      
+  te0/0/2         4                0                 3                0                    0              0                  0                     0                 N      
+  te0/0/3         8                0                 4                0                    0              0                  0                     0                 N      
+  te0/0/4         8                0                 4                0                    0              0                  0                     0                 N      
+0/ME5100:R4-G2# 

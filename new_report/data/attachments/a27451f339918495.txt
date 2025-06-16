@@ -1,9 +1,0 @@
-
-Tue Jun 10 04:26:14 2025
-  SID     Username            Host                          Logged in at          Login/Idle time       Level  
-  ------- ------------------- ----------------------------- --------------------- --------------------- ------ 
-  1       admin                console                      04:24:35 10.06.2025   00h01m39s/00h01m32s   p15    
-  2 *     admin               192.168.16.112 telnet         04:26:14 10.06.2025   00h00m00s/00h00m00s   p15    
- 
-  Total entries: 2, * - current session, E - exclusive configuration mode
-0/ME5100:R1-G2# 

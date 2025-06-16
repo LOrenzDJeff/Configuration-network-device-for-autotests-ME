@@ -1,0 +1,32 @@
+show processes memory
+Mon Jun 16 09:33:34 2025
+  Module location  Process                  Allocated, kB  Used, kB  Used, %  
+  ---------------- ------------------------ -------------- --------- -------- 
+  0/ME5100         pp-manager               2212864        529280    6.58     
+  0/ME5100         clish                    1742784        348992    4.34     
+  0/ME5100         clish(console)           1742784        348992    4.34     
+  0/ME5100         mapper                   1354176        190784    2.37     
+  0/ME5100         if-manager               856512         25728     0.32     
+  0/ME5100         netconfd                 635840         205632    2.56     
+  0/ME5100         dcsi                     604160         179136    2.23     
+  0/ME5100         top-mgr                  568320         10240     0.127    
+  0/ME5100         syslog                   515008         14784     0.184    
+  0/ME5100         system-monitor           427968         6720      0.0836   
+  0/ME5100         fw-manager               345664         7232      0.09     
+  0/ME5100         snmpd                    296512         23168     0.288    
+  0/ME5100         route-manager            274240         5952      0.074    
+  0/ME5100         igmp-manager             271232         4352      0.0541   
+  0/ME5100         fs-mgr                   271168         4096      0.051    
+  0/ME5100         service-manager          271040         7232      0.09     
+  0/ME5100         bd-manager               270720         4096      0.051    
+  0/ME5100         alarm-manager            209472         5952      0.074    
+  0/ME5100         dhcp-manager             200512         9280      0.115    
+  0/ME5100         sync-manager             197120         4096      0.051    
+  0/ME5100         vrrp-manager             197056         3840      0.0478   
+  0/ME5100         sla-manager              196736         3840      0.0478   
+  0/ME5100         udld                     196672         5568      0.0693   
+  0/ME5100         ipc-hub                  183424         3392      0.0422   
+  0/ME5100         clish(192.168.16.112)    19456          10560     0.131    
+  0/ME5100         MGN#ssh                  10304          2560      0.0318   
+  0/ME5100         MGN#telnet               8512           5504      0.0685   
+  0/ME5100         ntp                      6592           4352      0.0541   

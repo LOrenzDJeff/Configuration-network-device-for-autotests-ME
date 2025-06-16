@@ -1,0 +1,13 @@
+ show l3forwarding 192.168.73.0
+Mon Jun 16 09:59:08 2025
+  
+  Subnet: 192.168.73.0/24 Nexthop: 192.168.3.18 
+  Interface: Tengigabitethernet0/0/1
+  Src MAC: e0:d9:e3:df:35:e1
+  Dst MAC: e0:d9:e3:df:35:41
+  Outer VID: 0 Inner VID: 0
+  MTU: 1500
+  Outgoing label: --
+  HW information:
+    FEC: 0x2000041a, ECMP FEC: 0xffffffff, encap-id: 0x40002030
+0/ME5100:R2-G2# 
